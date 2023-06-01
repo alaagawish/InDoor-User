@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		617457D32A292FB1001134E7 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617457D22A292FB1001134E7 /* NetworkProtocol.swift */; };
+		617457D52A292FCB001134E7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617457D42A292FCB001134E7 /* HomeViewModel.swift */; };
 		61E516042A2922EA004DAA1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516032A2922EA004DAA1D /* AppDelegate.swift */; };
 		61E516062A2922EA004DAA1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516052A2922EA004DAA1D /* SceneDelegate.swift */; };
 		61E516082A2922EA004DAA1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516072A2922EA004DAA1D /* ViewController.swift */; };
@@ -18,7 +20,6 @@
 		61E516282A2922EC004DAA1D /* InDoor_UserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516272A2922EC004DAA1D /* InDoor_UserUITests.swift */; };
 		61E5162A2A2922EC004DAA1D /* InDoor_UserUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516292A2922EC004DAA1D /* InDoor_UserUITestsLaunchTests.swift */; };
 		61E5163D2A2923FF004DAA1D /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E5163C2A2923FF004DAA1D /* Alerts.swift */; };
-		61E516412A29241B004DAA1D /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516402A29241B004DAA1D /* NetworkProtocol.swift */; };
 		920271F084C4E95FCF45CD93 /* Pods_InDoor_User_InDoor_UserUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940000ACFC4575F88A20FB5D /* Pods_InDoor_User_InDoor_UserUITests.framework */; };
 		9D1FD3989110A749C97AEEB6 /* Pods_InDoor_User.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA1447C2C4FA3E4CC670BE8 /* Pods_InDoor_User.framework */; };
 		F5F61E117AAF616C3BD5CFFC /* Pods_InDoor_UserTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C6DB28A14E65054943143A /* Pods_InDoor_UserTests.framework */; };
@@ -44,6 +45,8 @@
 /* Begin PBXFileReference section */
 		17FF673E10ADD60325A23E8F /* Pods-InDoor-UserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InDoor-UserTests.release.xcconfig"; path = "Target Support Files/Pods-InDoor-UserTests/Pods-InDoor-UserTests.release.xcconfig"; sourceTree = "<group>"; };
 		1BE9DD7E0D2E0FD0EE4A7294 /* Pods-InDoor-User-InDoor-UserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InDoor-User-InDoor-UserUITests.release.xcconfig"; path = "Target Support Files/Pods-InDoor-User-InDoor-UserUITests/Pods-InDoor-User-InDoor-UserUITests.release.xcconfig"; sourceTree = "<group>"; };
+		617457D22A292FB1001134E7 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkProtocol.swift; path = ../../../../../Documents/NetworkProtocol.swift; sourceTree = "<group>"; };
+		617457D42A292FCB001134E7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = ../../../../../../Documents/HomeViewModel.swift; sourceTree = "<group>"; };
 		61E516002A2922EA004DAA1D /* InDoor-User.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InDoor-User.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		61E516032A2922EA004DAA1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61E516052A2922EA004DAA1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,7 +62,6 @@
 		61E516272A2922EC004DAA1D /* InDoor_UserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InDoor_UserUITests.swift; sourceTree = "<group>"; };
 		61E516292A2922EC004DAA1D /* InDoor_UserUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InDoor_UserUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		61E5163C2A2923FF004DAA1D /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
-		61E516402A29241B004DAA1D /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 		65953E881A48EFEF3F9846B5 /* Pods-InDoor-User-InDoor-UserUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InDoor-User-InDoor-UserUITests.debug.xcconfig"; path = "Target Support Files/Pods-InDoor-User-InDoor-UserUITests/Pods-InDoor-User-InDoor-UserUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7AA1447C2C4FA3E4CC670BE8 /* Pods_InDoor_User.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InDoor_User.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		940000ACFC4575F88A20FB5D /* Pods_InDoor_User_InDoor_UserUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InDoor_User_InDoor_UserUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,6 +192,7 @@
 		61E5163A2A2923EB004DAA1D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				617457D42A292FCB001134E7 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -215,7 +218,7 @@
 		61E5163F2A29240A004DAA1D /* RemoteSource */ = {
 			isa = PBXGroup;
 			children = (
-				61E516402A29241B004DAA1D /* NetworkProtocol.swift */,
+				617457D22A292FB1001134E7 /* NetworkProtocol.swift */,
 			);
 			name = RemoteSource;
 			path = "../New Group/RemoteSource";
@@ -492,7 +495,8 @@
 			files = (
 				61E516082A2922EA004DAA1D /* ViewController.swift in Sources */,
 				61E5163D2A2923FF004DAA1D /* Alerts.swift in Sources */,
-				61E516412A29241B004DAA1D /* NetworkProtocol.swift in Sources */,
+				617457D52A292FCB001134E7 /* HomeViewModel.swift in Sources */,
+				617457D32A292FB1001134E7 /* NetworkProtocol.swift in Sources */,
 				61E5160E2A2922EA004DAA1D /* InDoor_User.xcdatamodeld in Sources */,
 				61E516042A2922EA004DAA1D /* AppDelegate.swift in Sources */,
 				61E516062A2922EA004DAA1D /* SceneDelegate.swift in Sources */,
