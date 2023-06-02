@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		617457D32A292FB1001134E7 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617457D22A292FB1001134E7 /* NetworkProtocol.swift */; };
-		617457D52A292FCB001134E7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617457D42A292FCB001134E7 /* HomeViewModel.swift */; };
+		
 		61E516042A2922EA004DAA1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516032A2922EA004DAA1D /* AppDelegate.swift */; };
 		61E516062A2922EA004DAA1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516052A2922EA004DAA1D /* SceneDelegate.swift */; };
 		61E516082A2922EA004DAA1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516072A2922EA004DAA1D /* ViewController.swift */; };
@@ -45,8 +44,6 @@
 /* Begin PBXFileReference section */
 		17FF673E10ADD60325A23E8F /* Pods-InDoor-UserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InDoor-UserTests.release.xcconfig"; path = "Target Support Files/Pods-InDoor-UserTests/Pods-InDoor-UserTests.release.xcconfig"; sourceTree = "<group>"; };
 		1BE9DD7E0D2E0FD0EE4A7294 /* Pods-InDoor-User-InDoor-UserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InDoor-User-InDoor-UserUITests.release.xcconfig"; path = "Target Support Files/Pods-InDoor-User-InDoor-UserUITests/Pods-InDoor-User-InDoor-UserUITests.release.xcconfig"; sourceTree = "<group>"; };
-		617457D22A292FB1001134E7 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkProtocol.swift; path = ../../../../../Documents/NetworkProtocol.swift; sourceTree = "<group>"; };
-		617457D42A292FCB001134E7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = ../../../../../../Documents/HomeViewModel.swift; sourceTree = "<group>"; };
 		61E516002A2922EA004DAA1D /* InDoor-User.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InDoor-User.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		61E516032A2922EA004DAA1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61E516052A2922EA004DAA1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,7 +189,6 @@
 		61E5163A2A2923EB004DAA1D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				617457D42A292FCB001134E7 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -218,7 +214,6 @@
 		61E5163F2A29240A004DAA1D /* RemoteSource */ = {
 			isa = PBXGroup;
 			children = (
-				617457D22A292FB1001134E7 /* NetworkProtocol.swift */,
 			);
 			name = RemoteSource;
 			path = "../New Group/RemoteSource";
@@ -495,8 +490,6 @@
 			files = (
 				61E516082A2922EA004DAA1D /* ViewController.swift in Sources */,
 				61E5163D2A2923FF004DAA1D /* Alerts.swift in Sources */,
-				617457D52A292FCB001134E7 /* HomeViewModel.swift in Sources */,
-				617457D32A292FB1001134E7 /* NetworkProtocol.swift in Sources */,
 				61E5160E2A2922EA004DAA1D /* InDoor_User.xcdatamodeld in Sources */,
 				61E516042A2922EA004DAA1D /* AppDelegate.swift in Sources */,
 				61E516062A2922EA004DAA1D /* SceneDelegate.swift in Sources */,
