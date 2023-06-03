@@ -9,26 +9,33 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var pageControl: UIPageControl!
-    
     @IBOutlet weak var brandCollectionView: UICollectionView!
     @IBOutlet weak var sliderCollectionView: UICollectionView!
+    var homeViewModel: HomeViewModel!
     let discountArray = ["discount1",
                          "discount2",
                          "discount5",
                          "discount3"]
     var timer: Timer?
     var currentIndex = 0
-    var brands:[String] = ["NIKE","ADDIDAS","POMA"]
+    var brands:[SmartCollections] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        homeViewModel = HomeViewModel(netWorkingDataSource: Network())
+        homeViewModel.bindResultToViewController = {[weak self] in
+            DispatchQueue.main.async {
+                self?.brands = self?.homeViewModel.result ?? []
+                self?.brandCollectionView.reloadData()
+                
+            }
+        }
         pageControl.numberOfPages = discountArray.count
-        
         startTimer()
+        homeViewModel.getItems()
     }
     func startTimer(){
-        timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(moveSlider), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(moveSlider), userInfo: nil, repeats: true)
     }
     @objc
     func moveSlider(){
@@ -55,7 +62,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "brandCell", for: indexPath) as! BrandCollectionViewCell
             
-            cell.setValues(brandName: brands[indexPath.row], brandImage: "")
+            cell.setValues(brandName: brands[indexPath.row].title ?? "", brandImage: brands[indexPath.row].image?.src ?? "")
             
             return cell
             
