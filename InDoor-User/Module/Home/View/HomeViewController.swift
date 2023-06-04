@@ -6,16 +6,20 @@
 //
 
 import UIKit
+import ImageSlideshow
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    @IBOutlet weak var pageControl: UIPageControl!
+
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ImageSlideshowDelegate {
     @IBOutlet weak var brandCollectionView: UICollectionView!
-    @IBOutlet weak var sliderCollectionView: UICollectionView!
+    @IBOutlet weak var couponsSlider: ImageSlideshow!
     var homeViewModel: HomeViewModel!
-    let discountArray = ["discount1",
-                         "discount2",
-                         "discount5",
-                         "discount3"]
+    
+    let promoCodes = [ImageSource(image: UIImage(named: "discount5")!),
+                      ImageSource(image: UIImage(named: "discount1")!),
+                      ImageSource(image: UIImage(named: "discount2")!),
+                      ImageSource(image: UIImage(named: "discount3")!)]
+    
+    
     var timer: Timer?
     var currentIndex = 0
     var brands:[SmartCollections] = []
@@ -30,72 +34,71 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 
             }
         }
-        pageControl.numberOfPages = discountArray.count
-        startTimer()
+        
+        startSlider()
+        
         homeViewModel.getItems()
     }
-    func startTimer(){
-        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(moveSlider), userInfo: nil, repeats: true)
-    }
-    @objc
-    func moveSlider(){
-        currentIndex = (currentIndex + 1) % sliderCollectionView.numberOfItems(inSection: 0)
-        self.sliderCollectionView.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .centeredHorizontally, animated: true)
-        pageControl.currentPage = currentIndex
+    func startSlider(){
+        couponsSlider.slideshowInterval = 2.5
+        couponsSlider.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
+        couponsSlider.isUserInteractionEnabled = true
+        
+        couponsSlider.contentScaleMode = UIViewContentMode.scaleAspectFill
+        let pageControl = UIPageControl()
+        pageControl.currentPageIndicatorTintColor = UIColor.black
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        couponsSlider.pageIndicator = pageControl
+        couponsSlider.activityIndicator = DefaultActivityIndicator()
+        couponsSlider.delegate = self
+        couponsSlider.setImageInputs(promoCodes)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        couponsSlider.addGestureRecognizer(tapGesture)
         
     }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == sliderCollectionView{
-            return discountArray.count
-        }else{
-            return brands.count
+    
+    @objc func imageTapped() {
+        let tappedImageIndex = couponsSlider.currentPage
+        
+        print("current page\(tappedImageIndex)")
+        
+    }
+    
+    func imageSlideshow(_ imageSlideshow: ImageSlideshow, didTapAt index: Int) {
+        print(index)
+        let currentImage = couponsSlider.currentSlideshowItem?.imageView.image
+        if let imageString = currentImage?.description {
+            print("Image String: \(imageString)")
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return brands.count
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == sliderCollectionView{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "slider", for: indexPath) as! SliderCollectionViewCell
-            
-            cell.discountImage.image = UIImage(named: discountArray[indexPath.row])
-            return cell
-            
-        }else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "brandCell", for: indexPath) as! BrandCollectionViewCell
-            
-            cell.setValues(brandName: brands[indexPath.row].title ?? "", brandImage: brands[indexPath.row].image?.src ?? "")
-            
-            return cell
-            
-        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "brandCell", for: indexPath) as! BrandCollectionViewCell
+        
+        cell.setValues(brandName: brands[indexPath.row].title ?? "", brandImage: brands[indexPath.row].image?.src ?? "")
+        
+        return cell
+        
         
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == sliderCollectionView{
-            return CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.height/3)
-        }else{
-            return CGSize(width: UIScreen.main.bounds.size.width/2 - 10, height: UIScreen.main.bounds.height/4 - 10)
-        }
+        
+        return CGSize(width: UIScreen.main.bounds.size.width/2 - 10, height: UIScreen.main.bounds.height/4 - 20)
+        
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionView == sliderCollectionView{
-            return 0
-        }else{
-            return 10
-        }
+        
+        return 10
+        
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == sliderCollectionView{
-            print(indexPath.row)
-            print(discountArray[indexPath.row])
-        }else{
-            
-        }
-    }
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "brandHeader", for: indexPath) as! HeaderCollectionReusableView
-        header.headerName.text = "Brands"
-        return header
         
     }
     
