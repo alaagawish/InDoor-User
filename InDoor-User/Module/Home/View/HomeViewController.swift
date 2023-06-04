@@ -27,6 +27,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         homeViewModel = HomeViewModel(netWorkingDataSource: Network())
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
+       
+        
+        startSlider()
+       callingData()
+       
+    }
+    func callingData(){
         homeViewModel.bindResultToViewController = {[weak self] in
             DispatchQueue.main.async {
                 self?.brands = self?.homeViewModel.result ?? []
@@ -34,11 +42,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 
             }
         }
-        
-        startSlider()
-        
         homeViewModel.getItems()
     }
+    
     func startSlider(){
         couponsSlider.slideshowInterval = 2.5
         couponsSlider.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
@@ -88,11 +94,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: UIScreen.main.bounds.size.width/2 - 10, height: UIScreen.main.bounds.height/4 - 20)
+        return CGSize(width: UIScreen.main.bounds.size.width/2 - 10, height: UIScreen.main.bounds.height/4 - 10)
         
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
         return 10
@@ -105,6 +113,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timer?.invalidate()
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
 }
