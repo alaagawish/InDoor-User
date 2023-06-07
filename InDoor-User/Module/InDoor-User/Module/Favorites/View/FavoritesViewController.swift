@@ -14,8 +14,6 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         self.favoritesTable.register(UINib(nibName:"FavoritesCell", bundle: nil), forCellReuseIdentifier: "favoriteCell")
     }
-    
-
 }
 
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -33,7 +31,4 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         145.0
     }
-    
-    
-    
 }

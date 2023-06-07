@@ -18,24 +18,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Zy0-df-xsn">
-                                <rect key="frame" x="16" y="115" width="361" height="703"/>
+                                <rect key="frame" x="16" y="106.33333333333331" width="361" height="711.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Y6W-OH-hqX" id="Ju3-fq-4Pf"/>
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="Ax9-K2-P3H"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFr-4K-5Rp">
-                                <rect key="frame" x="16" y="67" width="361" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wishlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFr-4K-5Rp">
+                                <rect key="frame" x="102" y="67" width="189" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGu-tr-WJG">
-                                <rect key="frame" x="16" y="67" width="40" height="40"/>
+                                <rect key="frame" x="15.999999999999998" y="67" width="31.333333333333329" height="31.333333333333329"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="diW-XF-vaF"/>
-                                    <constraint firstAttribute="width" constant="40" id="q20-6z-065"/>
+                                    <constraint firstAttribute="width" secondItem="rGu-tr-WJG" secondAttribute="height" multiplier="1:1" id="NRx-Qn-GBL"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button" image="back"/>
@@ -45,14 +44,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Zy0-df-xsn" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="0tD-RY-aOL"/>
+                            <constraint firstItem="RFr-4K-5Rp" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.480916" id="2qv-HA-TzI"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Zy0-df-xsn" secondAttribute="trailing" constant="16" id="8hq-Tq-ruc"/>
+                            <constraint firstItem="RFr-4K-5Rp" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="A4o-Wd-Al4"/>
+                            <constraint firstItem="rGu-tr-WJG" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.08" id="NYY-k4-6JH"/>
                             <constraint firstItem="RFr-4K-5Rp" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="8" id="QoN-2z-4up"/>
                             <constraint firstItem="Zy0-df-xsn" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="YRx-RZ-rQj"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="RFr-4K-5Rp" secondAttribute="trailing" constant="16" id="Z6j-1l-3gZ"/>
                             <constraint firstItem="rGu-tr-WJG" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="8" id="hkw-KD-dvD"/>
                             <constraint firstItem="Zy0-df-xsn" firstAttribute="top" secondItem="rGu-tr-WJG" secondAttribute="bottom" constant="8" id="lo4-HN-41d"/>
                             <constraint firstItem="rGu-tr-WJG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="uUD-xj-16w"/>
-                            <constraint firstItem="RFr-4K-5Rp" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="vPW-Go-CsT"/>
                         </constraints>
                     </view>
                     <connections>
