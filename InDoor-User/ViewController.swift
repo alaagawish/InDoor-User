@@ -13,6 +13,12 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func navigateToFav(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "FavoritesStoryBoard", bundle: nil)
+                let FavoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: "FavoritesStoryBoard") as! FavoritesViewController
+        FavoritesStoryBoard.modalPresentationStyle = .fullScreen
+                present(FavoritesStoryBoard, animated: true)
+    }
+    
 }
 
