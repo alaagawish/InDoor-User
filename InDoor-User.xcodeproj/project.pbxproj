@@ -7,7 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		
+		0455EA772A2CE9E30019C03C /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455EA762A2CE9E30019C03C /* AddAddressViewController.swift */; };
+		047927202A2B7FB60097907D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479271F2A2B7FB60097907D /* SettingsViewController.swift */; };
+		048344C82A2CB6D400D1B793 /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048344C72A2CB6D400D1B793 /* AddressViewController.swift */; };
+		048344CA2A2CC6E300D1B793 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048344C92A2CC6E300D1B793 /* CurrencyViewController.swift */; };
+		048344CC2A2CC70600D1B793 /* ConnectToUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048344CB2A2CC70600D1B793 /* ConnectToUsViewController.swift */; };
+		048344CE2A2CD2C800D1B793 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048344CD2A2CD2C800D1B793 /* AddressTableViewCell.swift */; };
+		04935FB32A2D25C90093A73E /* AboutInDoorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04935FB22A2D25C90093A73E /* AboutInDoorViewController.swift */; };
+		04E46E672A30D931002DB72B /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E46E662A30D931002DB72B /* CurrencyTableViewCell.swift */; };
+		04E4F6FD2A2A639100566559 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E4F6FC2A2A639100566559 /* Settings.storyboard */; };
 		61E516042A2922EA004DAA1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516032A2922EA004DAA1D /* AppDelegate.swift */; };
 		61E516062A2922EA004DAA1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516052A2922EA004DAA1D /* SceneDelegate.swift */; };
 		61E516082A2922EA004DAA1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516072A2922EA004DAA1D /* ViewController.swift */; };
@@ -42,6 +50,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0455EA762A2CE9E30019C03C /* AddAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewController.swift; sourceTree = "<group>"; };
+		0479271F2A2B7FB60097907D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		048344C72A2CB6D400D1B793 /* AddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
+		048344C92A2CC6E300D1B793 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
+		048344CB2A2CC70600D1B793 /* ConnectToUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToUsViewController.swift; sourceTree = "<group>"; };
+		048344CD2A2CD2C800D1B793 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
+		04935FB22A2D25C90093A73E /* AboutInDoorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutInDoorViewController.swift; sourceTree = "<group>"; };
+		04E46E662A30D931002DB72B /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		04E4F6FC2A2A639100566559 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		17FF673E10ADD60325A23E8F /* Pods-InDoor-UserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InDoor-UserTests.release.xcconfig"; path = "Target Support Files/Pods-InDoor-UserTests/Pods-InDoor-UserTests.release.xcconfig"; sourceTree = "<group>"; };
 		1BE9DD7E0D2E0FD0EE4A7294 /* Pods-InDoor-User-InDoor-UserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InDoor-User-InDoor-UserUITests.release.xcconfig"; path = "Target Support Files/Pods-InDoor-User-InDoor-UserUITests/Pods-InDoor-User-InDoor-UserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		61E516002A2922EA004DAA1D /* InDoor-User.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InDoor-User.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +113,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04E4F6F92A2A631900566559 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				04E4F6FB2A2A632600566559 /* ViewModel */,
+				04E4F6FA2A2A632000566559 /* View */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		04E4F6FA2A2A632000566559 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04E4F6FC2A2A639100566559 /* Settings.storyboard */,
+				048344CB2A2CC70600D1B793 /* ConnectToUsViewController.swift */,
+				0479271F2A2B7FB60097907D /* SettingsViewController.swift */,
+				048344C72A2CB6D400D1B793 /* AddressViewController.swift */,
+				048344C92A2CC6E300D1B793 /* CurrencyViewController.swift */,
+				048344CD2A2CD2C800D1B793 /* AddressTableViewCell.swift */,
+				0455EA762A2CE9E30019C03C /* AddAddressViewController.swift */,
+				04935FB22A2D25C90093A73E /* AboutInDoorViewController.swift */,
+				04E46E662A30D931002DB72B /* CurrencyTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04E4F6FB2A2A632600566559 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		61E515F72A2922EA004DAA1D = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +212,7 @@
 		61E516372A2923DA004DAA1D /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				04E4F6F92A2A631900566559 /* Settings */,
 				61E516382A2923E0004DAA1D /* Home */,
 			);
 			path = Module;
@@ -361,6 +411,7 @@
 				61E516132A2922EB004DAA1D /* LaunchScreen.storyboard in Resources */,
 				61E516102A2922EB004DAA1D /* Assets.xcassets in Resources */,
 				61E5160B2A2922EA004DAA1D /* Main.storyboard in Resources */,
+				04E4F6FD2A2A639100566559 /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,11 +539,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0455EA772A2CE9E30019C03C /* AddAddressViewController.swift in Sources */,
+				048344CC2A2CC70600D1B793 /* ConnectToUsViewController.swift in Sources */,
 				61E516082A2922EA004DAA1D /* ViewController.swift in Sources */,
+				048344CE2A2CD2C800D1B793 /* AddressTableViewCell.swift in Sources */,
+				048344CA2A2CC6E300D1B793 /* CurrencyViewController.swift in Sources */,
+				04E46E672A30D931002DB72B /* CurrencyTableViewCell.swift in Sources */,
 				61E5163D2A2923FF004DAA1D /* Alerts.swift in Sources */,
 				61E5160E2A2922EA004DAA1D /* InDoor_User.xcdatamodeld in Sources */,
+				04935FB32A2D25C90093A73E /* AboutInDoorViewController.swift in Sources */,
 				61E516042A2922EA004DAA1D /* AppDelegate.swift in Sources */,
 				61E516062A2922EA004DAA1D /* SceneDelegate.swift in Sources */,
+				048344C82A2CB6D400D1B793 /* AddressViewController.swift in Sources */,
+				047927202A2B7FB60097907D /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
