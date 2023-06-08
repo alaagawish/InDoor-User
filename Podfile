@@ -22,11 +22,6 @@ pod 'Kingfisher'
 pod 'Alamofire'
 pod 'lottie-ios'
 pod 'ReachabilitySwift'
-pod 'Firebase/Core'
-pod 'Firebase/Database'
-pod 'Firebase/Auth'
-pod 'Firebase/Storage'
-pod 'FirebaseFirestore'
 pod 'RealmSwift'
 
 end
