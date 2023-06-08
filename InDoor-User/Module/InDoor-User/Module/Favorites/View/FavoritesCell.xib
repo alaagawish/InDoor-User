@@ -36,6 +36,9 @@
                                 </hierarchicalColors>
                             </imageReference>
                         </state>
+                        <connections>
+                            <action selector="addOrRemoveFromFavorites:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cM5-eB-1GH"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SportyShoe" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="6GP-zj-Hyw">
                         <rect key="frame" x="180" y="15.999999999999998" width="151.33333333333337" height="20.333333333333329"/>
@@ -81,6 +84,13 @@ with fashionable look</string>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <connections>
+                <outlet property="heartButton" destination="Huk-kT-pyv" id="fwh-1b-fbx"/>
+                <outlet property="productImageView" destination="W0x-1X-3o5" id="G7O-Sh-hej"/>
+                <outlet property="productPriceLabel" destination="XVe-7w-MaQ" id="gwG-T4-TL9"/>
+                <outlet property="productStatusLabel" destination="mEd-Bj-ayt" id="Qk2-S4-NEn"/>
+                <outlet property="productTitleLabel" destination="6GP-zj-Hyw" id="AfR-qO-jaU"/>
+            </connections>
             <point key="canvasLocation" x="61.068702290076331" y="16.901408450704228"/>
         </tableViewCell>
     </objects>
