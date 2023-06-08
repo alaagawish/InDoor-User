@@ -7,12 +7,15 @@
 
 import Foundation
 import RealmSwift
+
 protocol DatabaseService{
     func fetchAll() -> [LocalProduct]
     func deleteAll()
-    func deleteItem(product: LocalProduct)
-    func insertItem(product: LocalProduct)
+    func deleteProduct(product: LocalProduct)
+    func insertProduct(product: LocalProduct)
+    func isFavorite(productId: Int) -> Bool
 }
+
 class DatabaseManager: DatabaseService {
     static let instance = DatabaseManager()
     let realm: Realm!
@@ -30,15 +33,26 @@ class DatabaseManager: DatabaseService {
         try! realm.commitWrite()
     }
 
-    func deleteItem(product: LocalProduct) {
+    func deleteProduct(product: LocalProduct) {
         realm.beginWrite()
         realm.delete(product)
         try! realm.commitWrite()
     }
 
-    func insertItem(product: LocalProduct) {
+    func insertProduct(product: LocalProduct) {
         realm.beginWrite()
         realm.add(product)
         try! realm.commitWrite()
+    }
+    
+    func isFavorite(productId: Int) -> Bool {
+        let allProductsList = fetchAll()
+    
+        for product in allProductsList {
+            if(product.id == productId) {
+                return true
+            }
+        }
+        return false
     }
 }
