@@ -23,7 +23,8 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
-                                    <action selector="navigateToFav:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BQf-8g-sKK"/>
+                                    <action selector="navigate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ffM-B9-5eJ"/>
+                                    <segue destination="14L-he-qxP" kind="show" id="Qe6-bW-mos"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -42,6 +43,15 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXh-tM-4lm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="709" y="6"/>
+        <!--Home-->
+        <scene sceneID="MNY-cB-b4w">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="home" storyboardName="Home" id="14L-he-qxP" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="jWc-2l-EaH"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mFW-vH-M3y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="659" y="-69"/>
         </scene>
     </scenes>
     <resources>
