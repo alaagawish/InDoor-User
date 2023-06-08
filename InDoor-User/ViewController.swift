@@ -11,8 +11,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
     }
 
+    @IBAction func navigate(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let recipeDetails = storyboard.instantiateViewController(withIdentifier: "tabbar") as! MainTabBarController
+        recipeDetails.modalPresentationStyle = .fullScreen
+      
+    
 
+        present(recipeDetails, animated: true)
+    }
+    
 }
 
