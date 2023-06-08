@@ -222,7 +222,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xs-W3-WRX">
-                                <rect key="frame" x="16" y="67" width="199.99999999999997" height="200"/>
+                                <rect key="frame" x="16" y="67" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5xs-W3-WRX" secondAttribute="height" multiplier="1:1" id="fND-d6-7vO"/>
                                 </constraints>
@@ -900,14 +900,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="currencyCell" id="8pu-Od-EGa" customClass="CurrencyTableViewCell" customModule="InDoor_User" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="42.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8pu-Od-EGa" id="xY8-vn-1vu">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="42.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIZ-S4-j3F">
-                                                    <rect key="frame" x="36" y="11.000000000000002" width="321" height="21.666666666666671"/>
+                                                    <rect key="frame" x="51" y="11.000000000000002" width="306" height="20.666666666666671"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qij-mj-qI4">
+                                                    <rect key="frame" x="36" y="11.000000000000002" width="11" height="20.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -915,13 +921,18 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="LIZ-S4-j3F" firstAttribute="top" secondItem="xY8-vn-1vu" secondAttribute="topMargin" id="156-Rg-51t"/>
-                                                <constraint firstItem="LIZ-S4-j3F" firstAttribute="leading" secondItem="xY8-vn-1vu" secondAttribute="leadingMargin" constant="16" id="1jo-WW-VxP"/>
+                                                <constraint firstItem="LIZ-S4-j3F" firstAttribute="leading" secondItem="qij-mj-qI4" secondAttribute="trailing" constant="4" id="5XG-EN-DFf"/>
+                                                <constraint firstItem="qij-mj-qI4" firstAttribute="width" secondItem="xY8-vn-1vu" secondAttribute="width" multiplier="0.0279898" id="C8x-Wf-lMY"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="LIZ-S4-j3F" secondAttribute="trailing" constant="16" id="SWV-k7-dqN"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="LIZ-S4-j3F" secondAttribute="bottom" id="U3U-Qr-eNb"/>
+                                                <constraint firstItem="qij-mj-qI4" firstAttribute="leading" secondItem="xY8-vn-1vu" secondAttribute="leadingMargin" constant="16" id="aCp-h4-sGS"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="qij-mj-qI4" secondAttribute="bottom" id="dio-vH-Rrm"/>
+                                                <constraint firstItem="qij-mj-qI4" firstAttribute="top" secondItem="xY8-vn-1vu" secondAttribute="topMargin" id="gE6-Yd-uEV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="currencyLabel" destination="LIZ-S4-j3F" id="izs-7E-uLY"/>
+                                            <outlet property="currencySymbolLabel" destination="qij-mj-qI4" id="3UC-b3-SVD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
