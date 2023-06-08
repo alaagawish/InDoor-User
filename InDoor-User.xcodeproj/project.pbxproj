@@ -194,6 +194,10 @@
 			isa = PBXGroup;
 			children = (
 				6168AA382A2BE36B00A8E33C /* HomeViewModel.swift */,
+                );
+            path = ViewModel;
+            sourceTree = "<group>";
+        };
 		048827932A2D0D31009DFD9B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
