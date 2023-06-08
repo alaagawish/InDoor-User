@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		048827972A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048827962A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard */; };
+		048C56572A3239EA0016AE06 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C56562A3239EA0016AE06 /* DatabaseManager.swift */; };
+		048C56592A323A100016AE06 /* LocalProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C56582A323A100016AE06 /* LocalProduct.swift */; };
+		048C565B2A3241CA0016AE06 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C565A2A3241CA0016AE06 /* FavoritesViewModel.swift */; };
 		04A1567F2A2D178000189909 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A1567D2A2D178000189909 /* FavoritesCell.swift */; };
 		04A156802A2D178000189909 /* FavoritesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A1567E2A2D178000189909 /* FavoritesCell.xib */; };
 		04A156822A2D225E00189909 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A156812A2D225E00189909 /* FavoritesViewController.swift */; };
-		048C56572A3239EA0016AE06 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C56562A3239EA0016AE06 /* DatabaseManager.swift */; };
-		048C56592A323A100016AE06 /* LocalProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C56582A323A100016AE06 /* LocalProduct.swift */; };
 		61E516042A2922EA004DAA1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516032A2922EA004DAA1D /* AppDelegate.swift */; };
 		61E516062A2922EA004DAA1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516052A2922EA004DAA1D /* SceneDelegate.swift */; };
 		61E516082A2922EA004DAA1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E516072A2922EA004DAA1D /* ViewController.swift */; };
@@ -48,11 +49,12 @@
 
 /* Begin PBXFileReference section */
 		048827962A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FavoritesStoryBoard.storyboard; sourceTree = "<group>"; };
+		048C56562A3239EA0016AE06 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		048C56582A323A100016AE06 /* LocalProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalProduct.swift; path = "InDoor-User/Service/LocalSource/LocalProduct.swift"; sourceTree = SOURCE_ROOT; };
+		048C565A2A3241CA0016AE06 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		04A1567D2A2D178000189909 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		04A1567E2A2D178000189909 /* FavoritesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesCell.xib; sourceTree = "<group>"; };
 		04A156812A2D225E00189909 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		048C56562A3239EA0016AE06 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
-		048C56582A323A100016AE06 /* LocalProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalProduct.swift; path = "InDoor-User/Service/LocalSource/LocalProduct.swift"; sourceTree = SOURCE_ROOT; };
 		17FF673E10ADD60325A23E8F /* Pods-InDoor-UserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InDoor-UserTests.release.xcconfig"; path = "Target Support Files/Pods-InDoor-UserTests/Pods-InDoor-UserTests.release.xcconfig"; sourceTree = "<group>"; };
 		1BE9DD7E0D2E0FD0EE4A7294 /* Pods-InDoor-User-InDoor-UserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InDoor-User-InDoor-UserUITests.release.xcconfig"; path = "Target Support Files/Pods-InDoor-User-InDoor-UserUITests/Pods-InDoor-User-InDoor-UserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		61E516002A2922EA004DAA1D /* InDoor-User.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InDoor-User.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +133,7 @@
 		048827932A2D0D31009DFD9B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				048C565A2A3241CA0016AE06 /* FavoritesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				61E516042A2922EA004DAA1D /* AppDelegate.swift in Sources */,
 				61E516062A2922EA004DAA1D /* SceneDelegate.swift in Sources */,
 				048C56592A323A100016AE06 /* LocalProduct.swift in Sources */,
+				048C565B2A3241CA0016AE06 /* FavoritesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
