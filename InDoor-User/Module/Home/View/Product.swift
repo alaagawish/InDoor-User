@@ -23,7 +23,7 @@ struct Product: Codable {
     let adminGraphqlApiId: String?
     let variants: [Variants]?
     let options: [Options]?
-    let images: [Images]?
+    let images: [Image]?
     let image: Image?
     
     private enum CodingKeys: String, CodingKey {

@@ -23,6 +23,7 @@ class BrandCollectionViewCell: UICollectionViewCell {
         
         self.brandName.text = brandName
         self.brandImageView.kf.setImage(with: URL(string: brandImage),
-                                        placeholder: UIImage(named: "noImage"))
+                                        placeholder: UIImage(named: Constants.noImage))
     }
+    
 }
