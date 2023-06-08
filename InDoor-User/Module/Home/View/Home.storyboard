@@ -155,6 +155,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="brandCollectionView" destination="LXS-RZ-aQX" id="Bhr-P4-XJQ"/>
+                        <outlet property="couponsSlider" destination="JaG-nU-Lzc" id="1Fa-aT-dhZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
