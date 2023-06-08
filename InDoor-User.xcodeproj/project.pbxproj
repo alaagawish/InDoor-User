@@ -165,6 +165,10 @@
 				61FD1DD32A2B9755008B938D /* HomeViewController.swift */,
 				61FD1DD72A2BA98A008B938D /* MainTabBarController.swift */,
 				61FD1DDD2A2BCA29008B938D /* BrandCollectionViewCell.swift */,
+                );
+            path = View;
+            sourceTree = "<group>";
+        };
 		048827912A2D0CCF009DFD9B /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
