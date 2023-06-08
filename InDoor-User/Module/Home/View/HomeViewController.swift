@@ -6,20 +6,19 @@
 //
 
 import UIKit
-import ImageSlideshow
 
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ImageSlideshowDelegate {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var brandCollectionView: UICollectionView!
-    @IBOutlet weak var couponsSlider: ImageSlideshow!
+   // @IBOutlet weak var couponsSlider: ImageSlideshow!
     var homeViewModel: HomeViewModel!
     
-    let promoCodes = [ImageSource(image: UIImage(named: "discount5")!),
-                      ImageSource(image: UIImage(named: "discount1")!),
-                      ImageSource(image: UIImage(named: "discount2")!),
-                      ImageSource(image: UIImage(named: "discount3")!)]
-    
-    
+//    let promoCodes = [ImageSource(image: UIImage(named: "discount5")!),
+//                      ImageSource(image: UIImage(named: "discount1")!),
+//                      ImageSource(image: UIImage(named: "discount2")!),
+//                      ImageSource(image: UIImage(named: "discount3")!)]
+//
+//
     var timer: Timer?
     var currentIndex = 0
     var brands:[SmartCollections] = []
@@ -30,7 +29,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
        
         
-        startSlider()
+   //     startSlider()
        callingData()
        
     }
@@ -45,39 +44,39 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         homeViewModel.getItems()
     }
     
-    func startSlider(){
-        couponsSlider.slideshowInterval = 2.5
-        couponsSlider.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
-        couponsSlider.isUserInteractionEnabled = true
-        
-        couponsSlider.contentScaleMode = UIViewContentMode.scaleAspectFill
-        let pageControl = UIPageControl()
-        pageControl.currentPageIndicatorTintColor = UIColor.black
-        pageControl.pageIndicatorTintColor = UIColor.lightGray
-        couponsSlider.pageIndicator = pageControl
-        couponsSlider.activityIndicator = DefaultActivityIndicator()
-        couponsSlider.delegate = self
-        couponsSlider.setImageInputs(promoCodes)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
-        couponsSlider.addGestureRecognizer(tapGesture)
-        
-    }
-    
-    @objc func imageTapped() {
-        let tappedImageIndex = couponsSlider.currentPage
-        
-        print("current page\(tappedImageIndex)")
-        
-    }
-    
-    func imageSlideshow(_ imageSlideshow: ImageSlideshow, didTapAt index: Int) {
-        print(index)
-        let currentImage = couponsSlider.currentSlideshowItem?.imageView.image
-        if let imageString = currentImage?.description {
-            print("Image String: \(imageString)")
-        }
-    }
-    
+//    func startSlider(){
+//        couponsSlider.slideshowInterval = 2.5
+//        couponsSlider.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
+//        couponsSlider.isUserInteractionEnabled = true
+//
+//        couponsSlider.contentScaleMode = UIViewContentMode.scaleAspectFill
+//        let pageControl = UIPageControl()
+//        pageControl.currentPageIndicatorTintColor = UIColor.black
+//        pageControl.pageIndicatorTintColor = UIColor.lightGray
+//        couponsSlider.pageIndicator = pageControl
+//        couponsSlider.activityIndicator = DefaultActivityIndicator()
+//        couponsSlider.delegate = self
+//        couponsSlider.setImageInputs(promoCodes)
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+//        couponsSlider.addGestureRecognizer(tapGesture)
+//
+//    }
+//
+//    @objc func imageTapped() {
+//        let tappedImageIndex = couponsSlider.currentPage
+//
+//        print("current page\(tappedImageIndex)")
+//
+//    }
+//
+//    func imageSlideshow(_ imageSlideshow: ImageSlideshow, didTapAt index: Int) {
+//        print(index)
+//        let currentImage = couponsSlider.currentSlideshowItem?.imageView.image
+//        if let imageString = currentImage?.description {
+//            print("Image String: \(imageString)")
+//        }
+//    }
+//
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return brands.count
