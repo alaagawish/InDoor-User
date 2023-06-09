@@ -70,7 +70,7 @@
 /* Begin PBXFileReference section */
 		048827962A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FavoritesStoryBoard.storyboard; sourceTree = "<group>"; };
 		048C56562A3239EA0016AE06 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
-		048C56582A323A100016AE06 /* LocalProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalProduct.swift; path = "InDoor-User/Service/LocalSource/LocalProduct.swift"; sourceTree = SOURCE_ROOT; };
+		048C56582A323A100016AE06 /* LocalProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalProduct.swift; path = "InDoor-User/Model/LocalProduct.swift"; sourceTree = SOURCE_ROOT; };
 		048C565A2A3241CA0016AE06 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		04A1567D2A2D178000189909 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		04A1567E2A2D178000189909 /* FavoritesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesCell.xib; sourceTree = "<group>"; };
@@ -78,16 +78,16 @@
 		17FF673E10ADD60325A23E8F /* Pods-InDoor-UserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InDoor-UserTests.release.xcconfig"; path = "Target Support Files/Pods-InDoor-UserTests/Pods-InDoor-UserTests.release.xcconfig"; sourceTree = "<group>"; };
 		1BE9DD7E0D2E0FD0EE4A7294 /* Pods-InDoor-User-InDoor-UserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InDoor-User-InDoor-UserUITests.release.xcconfig"; path = "Target Support Files/Pods-InDoor-User-InDoor-UserUITests/Pods-InDoor-User-InDoor-UserUITests.release.xcconfig"; sourceTree = "<group>"; };
 		614798B82A2B755B009CCD30 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		6168AA272A2BDD8C00A8E33C /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkProtocol.swift; path = "InDoor-User/Module/Home/View/NetworkProtocol.swift"; sourceTree = SOURCE_ROOT; };
-		6168AA292A2BDDF400A8E33C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Network.swift; path = "InDoor-User/Module/Home/View/Network.swift"; sourceTree = SOURCE_ROOT; };
-		6168AA2D2A2BE05B00A8E33C /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Product.swift; path = "InDoor-User/Module/Home/View/Product.swift"; sourceTree = SOURCE_ROOT; };
-		6168AA2F2A2BE07A00A8E33C /* Variants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Variants.swift; path = "InDoor-User/Module/Home/View/Variants.swift"; sourceTree = SOURCE_ROOT; };
-		6168AA312A2BE0A700A8E33C /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Options.swift; path = "InDoor-User/Module/Home/View/Options.swift"; sourceTree = SOURCE_ROOT; };
-		6168AA352A2BE0D400A8E33C /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Image.swift; path = "InDoor-User/Module/Home/View/Image.swift"; sourceTree = SOURCE_ROOT; };
+		6168AA272A2BDD8C00A8E33C /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkProtocol.swift; path = "InDoor-User/Service/RemoteSource/NetworkProtocol.swift"; sourceTree = SOURCE_ROOT; };
+		6168AA292A2BDDF400A8E33C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Network.swift; path = "InDoor-User/Service/RemoteSource/Network.swift"; sourceTree = SOURCE_ROOT; };
+		6168AA2D2A2BE05B00A8E33C /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Product.swift; path = "InDoor-User/Model/Product.swift"; sourceTree = SOURCE_ROOT; };
+		6168AA2F2A2BE07A00A8E33C /* Variants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Variants.swift; path = "InDoor-User/Model/Variants.swift"; sourceTree = SOURCE_ROOT; };
+		6168AA312A2BE0A700A8E33C /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Options.swift; path = "InDoor-User/Model/Options.swift"; sourceTree = SOURCE_ROOT; };
+		6168AA352A2BE0D400A8E33C /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Image.swift; path = "InDoor-User/Model/Image.swift"; sourceTree = SOURCE_ROOT; };
 		6168AA382A2BE36B00A8E33C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		6168AA3C2A2BE4EA00A8E33C /* SmartCollections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SmartCollections.swift; path = "InDoor-User/Module/Home/ViewModel/SmartCollections.swift"; sourceTree = SOURCE_ROOT; };
-		6168AA3E2A2BE50300A8E33C /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Rules.swift; path = "InDoor-User/Module/Home/ViewModel/Rules.swift"; sourceTree = SOURCE_ROOT; };
-		6168AA402A2BE87B00A8E33C /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Response.swift; path = "InDoor-User/Module/Home/ViewModel/Response.swift"; sourceTree = SOURCE_ROOT; };
+		6168AA3C2A2BE4EA00A8E33C /* SmartCollections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SmartCollections.swift; path = "InDoor-User/Model/SmartCollections.swift"; sourceTree = SOURCE_ROOT; };
+		6168AA3E2A2BE50300A8E33C /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Rules.swift; path = "InDoor-User/Model/Rules.swift"; sourceTree = SOURCE_ROOT; };
+		6168AA402A2BE87B00A8E33C /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Response.swift; path = "InDoor-User/Model/Response.swift"; sourceTree = SOURCE_ROOT; };
 		61A19C962A322A8D0067D2F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		61A19C9A2A327D890067D2F2 /* Splitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splitter.swift; sourceTree = "<group>"; };
 		61DDC23B2A30D0620093A1DE /* BrandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +149,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		048827912A2D0CCF009DFD9B /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				048827932A2D0D31009DFD9B /* ViewModel */,
+				048827922A2D0D26009DFD9B /* View */,
+			);
+			name = Favorites;
+			path = ../Favorites;
+			sourceTree = "<group>";
+		};
+		048827922A2D0D26009DFD9B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				048827962A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard */,
+				04A1567D2A2D178000189909 /* FavoritesCell.swift */,
+				04A1567E2A2D178000189909 /* FavoritesCell.xib */,
+				04A156812A2D225E00189909 /* FavoritesViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		048827932A2D0D31009DFD9B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				048C565A2A3241CA0016AE06 /* FavoritesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6106CDCF2A3329F700627234 /* RemoteSource */ = {
+			isa = PBXGroup;
+			children = (
+				6168AA292A2BDDF400A8E33C /* Network.swift */,
+				6168AA272A2BDD8C00A8E33C /* NetworkProtocol.swift */,
+			);
+			path = RemoteSource;
+			sourceTree = "<group>";
+		};
 		614798BA2A2B770D009CCD30 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,27 +203,6 @@
 				61FD1DD32A2B9755008B938D /* HomeViewController.swift */,
 				61FD1DD72A2BA98A008B938D /* MainTabBarController.swift */,
 				61FD1DDD2A2BCA29008B938D /* BrandCollectionViewCell.swift */,
-                );
-            path = View;
-            sourceTree = "<group>";
-        };
-		048827912A2D0CCF009DFD9B /* Favorites */ = {
-			isa = PBXGroup;
-			children = (
-				048827932A2D0D31009DFD9B /* ViewModel */,
-				048827922A2D0D26009DFD9B /* View */,
-			);
-			name = Favorites;
-			path = "InDoor-User/Module/Favorites";
-			sourceTree = "<group>";
-		};
-		048827922A2D0D26009DFD9B /* View */ = {
-			isa = PBXGroup;
-			children = (
-				048827962A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard */,
-				04A1567D2A2D178000189909 /* FavoritesCell.swift */,
-				04A1567E2A2D178000189909 /* FavoritesCell.xib */,
-				04A156812A2D225E00189909 /* FavoritesViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -194,14 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				6168AA382A2BE36B00A8E33C /* HomeViewModel.swift */,
-                );
-            path = ViewModel;
-            sourceTree = "<group>";
-        };
-		048827932A2D0D31009DFD9B /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				048C565A2A3241CA0016AE06 /* FavoritesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -303,14 +312,14 @@
 		61E516362A2923D5004DAA1D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6168AA2D2A2BE05B00A8E33C /* Product.swift */,
-				6168AA2F2A2BE07A00A8E33C /* Variants.swift */,
 				6168AA312A2BE0A700A8E33C /* Options.swift */,
-				6168AA352A2BE0D400A8E33C /* Image.swift */,
-				6168AA3C2A2BE4EA00A8E33C /* SmartCollections.swift */,
+				048C56582A323A100016AE06 /* LocalProduct.swift */,
 				6168AA3E2A2BE50300A8E33C /* Rules.swift */,
 				6168AA402A2BE87B00A8E33C /* Response.swift */,
-				048C56582A323A100016AE06 /* LocalProduct.swift */,
+				6168AA352A2BE0D400A8E33C /* Image.swift */,
+				6168AA3C2A2BE4EA00A8E33C /* SmartCollections.swift */,
+				6168AA2F2A2BE07A00A8E33C /* Variants.swift */,
+				6168AA2D2A2BE05B00A8E33C /* Product.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -318,9 +327,9 @@
 		61E516372A2923DA004DAA1D /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				048827912A2D0CCF009DFD9B /* Favorites */,
 				61DDC2382A30D01C0093A1DE /* BrandProducts */,
 				614798BA2A2B770D009CCD30 /* Home */,
-				048827912A2D0CCF009DFD9B /* Favorites */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -337,20 +346,10 @@
 		61E5163E2A292404004DAA1D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				6106CDCF2A3329F700627234 /* RemoteSource */,
 				61E516422A29241E004DAA1D /* LocalSource */,
-				61E5163F2A29240A004DAA1D /* RemoteSource */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		61E5163F2A29240A004DAA1D /* RemoteSource */ = {
-			isa = PBXGroup;
-			children = (
-				6168AA272A2BDD8C00A8E33C /* NetworkProtocol.swift */,
-				6168AA292A2BDDF400A8E33C /* Network.swift */,
-			);
-			name = RemoteSource;
-			path = "../New Group/RemoteSource";
 			sourceTree = "<group>";
 		};
 		61E516422A29241E004DAA1D /* LocalSource */ = {

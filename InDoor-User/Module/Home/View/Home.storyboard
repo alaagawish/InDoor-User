@@ -214,7 +214,7 @@
                                     <constraint firstAttribute="width" secondItem="gzp-lw-1iu" secondAttribute="height" multiplier="1:1" id="Pmi-kh-xir"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="square.and.arrow.up.circle.fill" catalog="system"/>
+                                <state key="normal" image="back"/>
                                 <connections>
                                     <action selector="back:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="akZ-xo-vds"/>
                                 </connections>
@@ -335,12 +335,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="200" height="200"/>
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="person" catalog="system" width="128" height="121"/>
-        <image name="square.and.arrow.up.circle.fill" catalog="system" width="128" height="123"/>
         <image name="square.grid.3x3.topright.fill" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
