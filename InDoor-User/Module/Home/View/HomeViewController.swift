@@ -30,7 +30,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
        
         
         startSlider()
-       callingData()
+        callingData()
        
     }
     func callingData(){
