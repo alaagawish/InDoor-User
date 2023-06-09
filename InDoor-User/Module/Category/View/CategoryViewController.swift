@@ -27,8 +27,6 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     var categoryViewModel: CategoryViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
         categoryViewModel = CategoryViewModel(netWorkingDataSource: Network())
         productsCollectionView.register(UINib(nibName: Constants.brandProductCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.brandProduct)
         callingData()
@@ -54,6 +52,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewWillAppear(_ animated: Bool) {
         womenProducts(womenBarItem!)
         allProducts(allproducts!)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
     }
     
     func tintCurrentItem(_ sender: Any,_ id: Int) {

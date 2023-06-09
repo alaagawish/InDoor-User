@@ -33,6 +33,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         callingData()
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
+    }
     func callingData(){
         homeViewModel.bindResultToViewController = {[weak self] in
             DispatchQueue.main.async {
@@ -93,11 +96,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        return CGSize(width: UIScreen.main.bounds.size.width/2 - 12, height: UIScreen.main.bounds.height/4 - 15)
-//
-//    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let products = self.storyboard?.instantiateViewController(withIdentifier: Constants.brandDetails) as! BrandViewController
