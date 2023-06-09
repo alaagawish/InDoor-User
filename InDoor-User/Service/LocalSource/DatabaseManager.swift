@@ -8,12 +8,13 @@
 import Foundation
 import RealmSwift
 
-protocol DatabaseService{
+protocol DatabaseService {
     func fetchAll() -> [LocalProduct]
     func deleteAll()
     func deleteProduct(product: LocalProduct)
     func insertProduct(product: LocalProduct)
     func isFavorite(productId: Int) -> Bool
+    func fetchProduct(productId: Int) -> LocalProduct
 }
 
 class DatabaseManager: DatabaseService {
@@ -54,5 +55,17 @@ class DatabaseManager: DatabaseService {
             }
         }
         return false
+    }
+    
+    func fetchProduct(productId: Int) -> LocalProduct {
+        let allProductsList = fetchAll()
+        var productObj: LocalProduct!
+        for product in allProductsList {
+            if(product.id == productId) {
+                productObj = product
+                break
+            }
+        }
+        return productObj
     }
 }
