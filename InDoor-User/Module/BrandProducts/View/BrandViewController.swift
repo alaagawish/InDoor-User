@@ -13,13 +13,14 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
     var brandViewModel: BrandViewModel!
     var products: [Product] = []
     var id: Int!
+    var favoritesViewModel: FavoritesViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
         productsCollectionView.register(UINib(nibName: Constants.brandProductCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.brandProduct)
         
         brandViewModel = BrandViewModel(netWorkingDataSource: Network())
         callingData()
-        
+        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance)
     }
     func callingData(){
         brandViewModel.bindResultToViewController = {[weak self] in
@@ -38,7 +39,8 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.brandProduct, for: indexPath) as! BrandProductCollectionViewCell
-        cell.setValues(image: products[indexPath.row].image?.src ?? "" , title: products[indexPath.row].title ?? "", isFav: true, viewController: self)
+        cell.setValues(product: products[indexPath.row], isFav: favoritesViewModel.checkIfProductIsFavorite(productId: products[indexPath.row].id), viewController: self)
+
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
