@@ -10,7 +10,6 @@ import Kingfisher
 
 class FavoritesCell: UITableViewCell {
 
-    @IBOutlet weak var heartButton: UIButton!
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var productStatusLabel: UILabel!
     @IBOutlet weak var productTitleLabel: UILabel!
@@ -52,15 +51,9 @@ class FavoritesCell: UITableViewCell {
     func setDataToTableCell(product: LocalProduct) {
         self.product = product
         productImageView.kf.setImage(with: URL(string: product.image ))
-        productTitleLabel.text = product.title
+        productTitleLabel.text = Splitter().splitName(text: product.title, delimiter: "| ")
         productStatusLabel.text = product.status
         productPriceLabel.text = product.price
-//        if product.isFavorite ?? false {
-//            heartButton.setImage(UIImage(systemName: "heart.fill"), for: UIControl.State.normal)
-//        }
-    }
-    
-    @IBAction func addOrRemoveFromFavorites(_ sender: UIButton) {
     }
     
 }
