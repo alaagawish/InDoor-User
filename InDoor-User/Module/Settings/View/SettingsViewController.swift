@@ -53,30 +53,39 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func addressTap(_ sender: UITapGestureRecognizer? = nil) {
-        let address = self.storyboard?.instantiateViewController(withIdentifier: "address") as! AddressViewController
+        let address = self.storyboard?.instantiateViewController(withIdentifier: Constants.addressIdentifier) as! AddressViewController
         address.modalPresentationStyle = .fullScreen
         present(address, animated: true)
     }
     
     @objc func currencyTap(_ sender: UITapGestureRecognizer? = nil) {
-        let currency = self.storyboard?.instantiateViewController(withIdentifier: "currency") as! CurrencyViewController
+        let currency = self.storyboard?.instantiateViewController(withIdentifier: Constants.currencyIdentifier) as! CurrencyViewController
         currency.modalPresentationStyle = .fullScreen
         present(currency, animated: true)
     }
     
     @objc func connectToUsTap(_ sender: UITapGestureRecognizer? = nil) {
-        let connect = self.storyboard?.instantiateViewController(withIdentifier: "connectToUs") as! ConnectToUsViewController
+        let connect = self.storyboard?.instantiateViewController(withIdentifier: Constants.connectToUsIdentifier) as! ConnectToUsViewController
         connect.modalPresentationStyle = .fullScreen
         present(connect, animated: true)
     }
     
     @objc func aboutInDoorTap(_ sender: UITapGestureRecognizer? = nil) {
-        let about = self.storyboard?.instantiateViewController(withIdentifier: "aboutInDoor") as! AboutInDoorViewController
+        let about = self.storyboard?.instantiateViewController(withIdentifier: Constants.aboutInDoorIdentifier) as! AboutInDoorViewController
         about.modalPresentationStyle = .fullScreen
         present(about, animated: true)
     }
     
     @IBAction func backButton(_ sender: UIButton) {
         self.dismiss(animated: true)
+    }
+}
+
+extension SettingsViewController{
+    class Constants{
+        static let addressIdentifier = "address"
+        static let currencyIdentifier = "currency"
+        static let connectToUsIdentifier = "connectToUs"
+        static let aboutInDoorIdentifier = "aboutInDoor"
     }
 }

@@ -26,8 +26,14 @@ class AddressViewController: UIViewController {
     }
     
     @IBAction func addAddressButton(_ sender: UIButton) {
-        let addAddress = self.storyboard?.instantiateViewController(withIdentifier: "addAddress") as! AddAddressViewController
+        let addAddress = self.storyboard?.instantiateViewController(withIdentifier: Constants.addressIdentifier) as! AddAddressViewController
         addAddress.modalPresentationStyle = .fullScreen
         present(addAddress, animated: true)
+    }
+}
+
+extension AddressViewController{
+    class Constants{
+        static let addressIdentifier = "addAddress"
     }
 }
