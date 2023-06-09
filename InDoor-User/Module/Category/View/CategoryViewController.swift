@@ -52,7 +52,6 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewWillAppear(_ animated: Bool) {
         womenProducts(womenBarItem!)
         allProducts(allproducts!)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
     }
     
     func tintCurrentItem(_ sender: Any,_ id: Int) {
@@ -157,7 +156,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         return 0.3
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        return UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(products[indexPath.row])

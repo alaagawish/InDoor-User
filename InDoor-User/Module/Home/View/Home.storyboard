@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -177,6 +178,7 @@
                             </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqv-mB-7gM">
                                 <rect key="frame" x="0.0" y="100" width="393" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="2Pd-WH-8qE"/>
                                 </constraints>
@@ -192,6 +194,8 @@
                                         </searchBar>
                                     </barButtonItem>
                                 </items>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cMf-6u-ccq">
                                 <rect key="frame" x="0.0" y="152" width="393" height="666"/>
@@ -269,6 +273,7 @@
                                 <color systemColor="tertiaryLabelColor"/>
                             </hierarchicalColors>
                         </imageReference>
+                        <color key="badgeColor" systemColor="labelColor"/>
                     </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eu6-0W-YsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -323,7 +328,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djB-Em-8Pt">
-                                <rect key="frame" x="0.0" y="94" width="393" height="44"/>
+                                <rect key="frame" x="0.0" y="93.666666666666671" width="393" height="44.000000000000014"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jgM-GU-bPe"/>
@@ -359,7 +364,7 @@
                                 <color key="tintColor" red="1" green="0.84609584729999998" blue="0.25085485800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rY8-VE-xM1">
-                                <rect key="frame" x="0.0" y="138" width="393" height="44"/>
+                                <rect key="frame" x="0.0" y="137.66666666666666" width="393" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="yz6-eL-9Fg"/>
                                     <barButtonItem title="ALL" id="Rii-Kx-peJ">
@@ -430,10 +435,18 @@
                         <imageReference key="image" image="square.grid.3x3.topright.fill" catalog="system" renderingMode="hierarchical">
                             <hierarchicalColors>
                                 <color systemColor="labelColor"/>
-                                <color systemColor="secondaryLabelColor"/>
-                                <color systemColor="tertiaryLabelColor"/>
+                                <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </hierarchicalColors>
                         </imageReference>
+                        <imageReference key="largeContentSizeImage" image="square.grid.3x3.fill" catalog="system" renderingMode="hierarchical">
+                            <hierarchicalColors>
+                                <color systemColor="labelColor"/>
+                                <color systemColor="labelColor"/>
+                                <color systemColor="labelColor"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                        <color key="badgeColor" systemColor="labelColor"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="allproducts" destination="Rii-Kx-peJ" id="Xqs-KQ-t8y"/>
@@ -457,6 +470,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="main"/>
                     </tabBar>
                     <connections>
                         <segue destination="Y6W-OH-hqX" kind="relationship" relationship="viewControllers" destinationCreationSelector="brandImageView:" id="pgn-Mw-BvW"/>
@@ -487,6 +501,7 @@
             <point key="canvasLocation" x="-740" y="-27"/>
         </scene>
     </scenes>
+    <color key="tintColor" systemColor="labelColor"/>
     <resources>
         <image name="back" width="200" height="200"/>
         <image name="cart" catalog="system" width="128" height="102"/>
@@ -494,7 +509,11 @@
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="person" catalog="system" width="128" height="121"/>
+        <image name="square.grid.3x3.fill" catalog="system" width="128" height="113"/>
         <image name="square.grid.3x3.topright.fill" catalog="system" width="128" height="113"/>
+        <namedColor name="main">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
