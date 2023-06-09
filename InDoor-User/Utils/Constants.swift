@@ -6,11 +6,11 @@
 //
 
 import Foundation
-class Constants{
+class Constants {
     static let heart = "heart"
     static let fillHeart = "heart.fill"
-    static let deleteTitle = "Delete Item"
-    static let deleteMessage = "Are you sure to delete this item?"
+    static let removeAlertTitle = "Removing Product"
+    static let removeAlertMessage = "Are you sure to remove this product from Wishlist?"
     static let noImage = "noImage"
     static let cancel = "Cancel"
     static let yes = "Yes"
@@ -18,5 +18,8 @@ class Constants{
     static let brandProduct = "brandProduct"
     static let brandCell = "brandCell"
     static let brandProductCollectionViewCell = "BrandProductCollectionViewCell"
+    static let favoritesNibName = "FavoritesCell"
+    static let favoritesCellIdentifier = "favoriteCell"
+    static let favoritesCellHeight = 145.0
     
 }
