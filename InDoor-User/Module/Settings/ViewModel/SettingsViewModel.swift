@@ -10,12 +10,21 @@ import Foundation
 class SettingsViewModel{
     
     var bindCurrencyToViewController: (()->()) = {}
+    var bindRatesToViewController: (()->()) = {}
     var netWorkingDataSource: NetworkProtocol!
     
     var result: [Currency]? = [] {
         didSet{
             DispatchQueue.main.async {
                 self.bindCurrencyToViewController()
+            }
+        }
+    }
+    
+    var rates: Rates? {
+        didSet{
+            DispatchQueue.main.async {
+                self.bindRatesToViewController()
             }
         }
     }
@@ -29,6 +38,12 @@ class SettingsViewModel{
         
         netWorkingDataSource.getData(path: path){ [weak self] (response : Response?) in
             self?.result = response?.currencies
+        }
+    }
+    
+    func getEquivalentCurrencies(){
+        netWorkingDataSource.getEquivalentCurrency { [weak self] (response : Response?) in
+            self?.rates = response?.rates
         }
     }
 }

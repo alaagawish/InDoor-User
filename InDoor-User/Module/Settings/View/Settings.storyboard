@@ -906,14 +906,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="43.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIZ-S4-j3F">
-                                                    <rect key="frame" x="51" y="10.999999999999998" width="306" height="21.333333333333329"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GBP£" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIZ-S4-j3F">
+                                                    <rect key="frame" x="313" y="10.999999999999998" width="44" height="21.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qij-mj-qI4">
-                                                    <rect key="frame" x="36" y="10.999999999999998" width="11" height="21.333333333333329"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GBP" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qij-mj-qI4">
+                                                    <rect key="frame" x="36" y="10.999999999999998" width="33.666666666666657" height="21.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -921,8 +921,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="LIZ-S4-j3F" firstAttribute="top" secondItem="xY8-vn-1vu" secondAttribute="topMargin" id="156-Rg-51t"/>
-                                                <constraint firstItem="LIZ-S4-j3F" firstAttribute="leading" secondItem="qij-mj-qI4" secondAttribute="trailing" constant="4" id="5XG-EN-DFf"/>
-                                                <constraint firstItem="qij-mj-qI4" firstAttribute="width" secondItem="xY8-vn-1vu" secondAttribute="width" multiplier="0.0279898" id="C8x-Wf-lMY"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="LIZ-S4-j3F" secondAttribute="trailing" constant="16" id="SWV-k7-dqN"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="LIZ-S4-j3F" secondAttribute="bottom" id="U3U-Qr-eNb"/>
                                                 <constraint firstItem="qij-mj-qI4" firstAttribute="leading" secondItem="xY8-vn-1vu" secondAttribute="leadingMargin" constant="16" id="aCp-h4-sGS"/>
@@ -931,8 +929,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="currencyLabel" destination="LIZ-S4-j3F" id="izs-7E-uLY"/>
-                                            <outlet property="currencySymbolLabel" destination="qij-mj-qI4" id="3UC-b3-SVD"/>
+                                            <outlet property="currencyLabel" destination="qij-mj-qI4" id="Rsf-tv-lpW"/>
+                                            <outlet property="currencySymbolLabel" destination="LIZ-S4-j3F" id="i1t-57-b6F"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

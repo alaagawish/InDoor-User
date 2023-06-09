@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		044EB3182A332845002A74F3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EB3172A332845002A74F3 /* SettingsViewModel.swift */; };
+		044EB33C2A333958002A74F3 /* Rates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EB33B2A333958002A74F3 /* Rates.swift */; };
 		0455EA772A2CE9E30019C03C /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455EA762A2CE9E30019C03C /* AddAddressViewController.swift */; };
 		047927202A2B7FB60097907D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479271F2A2B7FB60097907D /* SettingsViewController.swift */; };
 		0481448D2A33220F00F495E9 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0481448C2A33220D00F495E9 /* Currency.swift */; };
@@ -67,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		044EB3172A332845002A74F3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		044EB33B2A333958002A74F3 /* Rates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rates.swift; sourceTree = "<group>"; };
 		0455EA762A2CE9E30019C03C /* AddAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewController.swift; sourceTree = "<group>"; };
 		0479271F2A2B7FB60097907D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0481448C2A33220D00F495E9 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				6168AA3E2A2BE50300A8E33C /* Rules.swift */,
 				6168AA352A2BE0D400A8E33C /* Image.swift */,
 				0481448C2A33220D00F495E9 /* Currency.swift */,
+				044EB33B2A333958002A74F3 /* Rates.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				04E46E672A30D931002DB72B /* CurrencyTableViewCell.swift in Sources */,
 				61E5163D2A2923FF004DAA1D /* Alerts.swift in Sources */,
 				6168AA2A2A2BDDF400A8E33C /* Network.swift in Sources */,
+				044EB33C2A333958002A74F3 /* Rates.swift in Sources */,
 				6168AA3D2A2BE4EA00A8E33C /* SmartCollections.swift in Sources */,
 				0481448D2A33220F00F495E9 /* Currency.swift in Sources */,
 				61FD1DD82A2BA98A008B938D /* MainTabBarController.swift in Sources */,

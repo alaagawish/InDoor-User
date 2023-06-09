@@ -25,4 +25,16 @@ class Network: NetworkProtocol{
             
         }
     }
+    
+    func getEquivalentCurrency(handler: @escaping (Response?) -> Void) {
+        
+        AF.request("https://api.apilayer.com/exchangerates_data/latest?apikey=k1jEDD07jaXYpHqcghG5HSqgDGFS7La0&base=USD").responseDecodable(of: Response.self) { response in
+            switch response.result{
+                case .success(let data):
+                    handler(data)
+                case .failure(let error):
+                    print("Error: \(error)")
+            }
+        }
+    }
 }
