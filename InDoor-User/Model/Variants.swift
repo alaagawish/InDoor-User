@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Variants: Codable {
+struct Variants:Hashable,Codable {
     
     let id: Int?
     let productId: Int?
