@@ -9,13 +9,15 @@ import UIKit
 
 class BrandProductCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var currencySymbol: UILabel!
     @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet weak var productTitle: UILabel!
     @IBOutlet weak var productImage: UIImageView!
     var viewController: BrandViewController?
+    var categoryViewController: CategoryViewController?
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
     }
     override func layoutSubviews() {
@@ -44,6 +46,19 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
         }
         
     }
+    func setValuess(image: String, title: String, isFav: Bool, viewController: CategoryViewController ){
+        self.categoryViewController = viewController
+        self.productTitle.text = Splitter().splitName(text: title, delimiter: "|")
+        self.productImage.kf.setImage(with: URL(string: image),
+                                      placeholder: UIImage(named: Constants.noImage))
+        if isFav{
+            self.favouriteButton.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
+        }else{
+            self.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
+        }
+        
+    }
+    
     @IBAction func checkFavouriteProduct(_ sender: Any) {
         
         if favouriteButton.currentImage == UIImage(systemName: Constants.heart){
@@ -51,7 +66,7 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
             favouriteButton.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
         }else{
             print("removing")
-//            favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
+            //            favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
             viewController?.present(Alert().removeFromFav(title: Constants.deleteTitle, msg: Constants.deleteMessage), animated: true, completion: nil)
         }
         

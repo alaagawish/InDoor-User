@@ -45,5 +45,5 @@ struct Product: Codable {
         case images = "images"
         case image = "image"
     }
-    
+
 }

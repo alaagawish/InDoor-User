@@ -25,5 +25,17 @@ class BrandCollectionViewCell: UICollectionViewCell {
         self.brandImageView.kf.setImage(with: URL(string: brandImage),
                                         placeholder: UIImage(named: Constants.noImage))
     }
-    
+    override var frame: CGRect{
+        get {
+            return super.frame
+        }
+        set(newFrame){
+            var frame = newFrame
+            frame.origin.x += 8
+            frame.origin.y += 8
+            frame.size.width -= 2 * 8
+            frame.size.height -= 2 * 8
+            super.frame = frame
+        }
+    }
 }
