@@ -14,15 +14,23 @@ class FavoritesViewModel{
         self.service = service
     }
     
-    func addProduct(product: LocalProduct){
+    func addProduct(product: LocalProduct) {
         service.insertProduct(product: product)
     }
     
-    func removeProduct(product: LocalProduct){
+    func removeProduct(product: LocalProduct) {
         service.deleteProduct(product: product)
     }
     
-    func getAllProducts(){
+    func getAllProducts() {
         allProductsList = service.fetchAll()
+    }
+    
+    func checkIfProductIsFavorite(productId: Int) -> Bool {
+        return service.isFavorite(productId: productId)
+    }
+    
+    func getProduct(productId: Int) -> LocalProduct {
+        return service.fetchProduct(productId: productId)
     }
 }
