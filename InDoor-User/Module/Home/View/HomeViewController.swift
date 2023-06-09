@@ -72,9 +72,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func imageSlideshow(_ imageSlideshow: ImageSlideshow, didTapAt index: Int) {
         print(index)
         let currentImage = couponsSlider.currentSlideshowItem?.imageView.image
-        if let imageString = currentImage?.description {
-            
-        }
+//        if let imageString = currentImage?.description {
+//
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

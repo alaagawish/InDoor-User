@@ -46,11 +46,14 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
         }
         
     }
-    func setValuess(image: String, title: String, isFav: Bool, viewController: CategoryViewController ){
+    func setValuess(product: Product, isFav: Bool, viewController: CategoryViewController ){
         self.categoryViewController = viewController
-        self.productTitle.text = Splitter().splitName(text: title, delimiter: "|")
-        self.productImage.kf.setImage(with: URL(string: image),
+        self.productTitle.text = Splitter().splitName(text: product.title ?? "", delimiter: "|")
+        self.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""),
                                       placeholder: UIImage(named: Constants.noImage))
+        if product.variants?.count ?? 0 > 0{
+            self.price.text = "\(product.variants![0].price)"
+        }
         if isFav{
             self.favouriteButton.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
         }else{

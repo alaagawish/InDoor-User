@@ -8,24 +8,15 @@
 import Foundation
 class CategoryViewModel{
     var bindResultToViewController: (()->()) = {}
-    var bindProductToViewController: (()->()) = {}
     var netWorkingDataSource: NetworkProtocol!
     
     var result: [Product]? = [] {
         didSet{
-            DispatchQueue.main.async {
-                self.bindResultToViewController()
+            DispatchQueue.main.async {[weak self] in
+                self?.bindResultToViewController()
             }
         }
     }
-    var product: Product = Product(id: 0, title: "", bodyHtml: "", vendor: "", productType: "", createdAt: "", handle: "", updatedAt: "", publishedAt: "", status: "", publishedScope: "", tags: "", adminGraphqlApiId: "", variants: [], options: [], images: [], image: Image(id: 0, productId: 0, position: 0, createdAt: "", updatedAt: "", width: 0, height: 0, src: "", adminGraphqlApiId: "")) {
-        didSet{
-            DispatchQueue.main.async {
-                self.bindProductToViewController()
-            }
-        }
-    }
-    
     init(netWorkingDataSource: NetworkProtocol) {
         self.netWorkingDataSource = netWorkingDataSource
     }
@@ -37,11 +28,12 @@ class CategoryViewModel{
             self?.result = response?.products
         }
     }
-    func getPrice(i: Product) {
-        let path = "products/\(i.id)"
-        netWorkingDataSource.getData(path: path){ [weak self] (response : Response?) in
-            self?.product =  response?.product ?? Product(id: 0, title: "", bodyHtml: "", vendor: "", productType: "", createdAt: "", handle: "", updatedAt: "", publishedAt: "", status: "", publishedScope: "", tags: "", adminGraphqlApiId: "", variants: [], options: [], images: [], image: Image(id: 0, productId: 0, position: 0, createdAt: "", updatedAt: "", width: 0, height: 0, src: "", adminGraphqlApiId: "")) 
+    
+    func getPrice(i: Product, completionHandler: @escaping (Product) -> Void){
+        
+        netWorkingDataSource.getData(path: "products/\(i.id)") { product in
             
+            completionHandler(product?.product ?? i)
         }
     }
     

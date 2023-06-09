@@ -15,7 +15,15 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var categoriesToolbar: UIToolbar!
     
     var products: [Product] = []
-    var currentProducts: [Product] = []
+    var currentProducts: [Product] = [] {
+        didSet{
+            if currentProducts.count == products.count {
+                products = currentProducts
+                productsCollectionView.reloadData()
+                
+            }
+        }
+    }
     var categoryViewModel: CategoryViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,22 +36,25 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     func callingData(){
         categoryViewModel.bindResultToViewController = {[weak self] in
-            DispatchQueue.main.async {
+            self?.products = self?.categoryViewModel.result ?? []
+            for product in 0 ..< (self?.products.count ?? 0)  {
                 
-                self?.products = self?.categoryViewModel.result ?? []
-                self?.currentProducts = self?.categoryViewModel.result ?? []
-                print(self?.currentProducts)
-                self?.productsCollectionView.reloadData()
-                
+                self?.categoryViewModel.getPrice(i: (self?.products[product])! , completionHandler: {  product in
+                    self?.currentProducts.append(product)
+                })
             }
+    
         }
+        
         categoryViewModel.getItems(id: Constants.womenID)
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
-        womenProducts(womenBarItem)
-        allProducts(allproducts)
+        womenProducts(womenBarItem!)
+        allProducts(allproducts!)
     }
+    
     func tintCurrentItem(_ sender: Any,_ id: Int) {
         if id == 0{
             for item in categoriesToolbar.items ?? [] {
@@ -55,13 +66,14 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return products.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.brandProduct, for: indexPath) as! BrandProductCollectionViewCell
-        cell.setValuess(image: products[indexPath.row].image?.src ?? "" , title: products[indexPath.row].title ?? "", isFav: true, viewController: self)
+        cell.setValuess(product: products[indexPath.row], isFav: true, viewController: self)
         return cell
     }
     
@@ -69,27 +81,27 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         tintCurrentItem(sender,0)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
         categoryViewModel.getItems(id: Constants.womenID)
-        allProducts(allproducts)
+        allProducts(allproducts!)
     }
     
     @IBAction func menProducts(_ sender: Any) {
         tintCurrentItem(sender,0)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
         categoryViewModel.getItems(id: Constants.menID)
-        allProducts(allproducts)
+        allProducts(allproducts!)
     }
     
     @IBAction func kidsProducts(_ sender: Any) {
         tintCurrentItem(sender,0)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
         categoryViewModel.getItems(id: Constants.kidID)
-        allProducts(allproducts)
+        allProducts(allproducts!)
     }
     @IBAction func saleProducts(_ sender: Any) {
         tintCurrentItem(sender,0)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
         categoryViewModel.getItems(id: Constants.saleID)
-        allProducts(allproducts)
+        allProducts(allproducts!)
     }
     
     @IBAction func allProducts(_ sender: Any) {
@@ -103,9 +115,8 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBAction func shoesProducts(_ sender: Any) {
         tintCurrentItem(sender,1)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
-        print(currentProducts[0].productType)
+    
         products = currentProducts.filter{$0.productType == Constants.shoes}
-        print(products)
         productsCollectionView.reloadData()
     }
     
@@ -136,5 +147,8 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(products[indexPath.row])
     }
 }
