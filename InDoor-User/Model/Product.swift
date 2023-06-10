@@ -6,9 +6,11 @@
 //
 
 import Foundation
-struct Product: Codable {
-    
-    let id: Int?
+
+
+struct Product: Hashable, Codable {
+
+    let id: Int
     let title: String?
     let bodyHtml: String?
     let vendor: String?
@@ -45,5 +47,5 @@ struct Product: Codable {
         case images = "images"
         case image = "image"
     }
-    
+
 }

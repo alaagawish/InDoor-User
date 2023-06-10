@@ -25,6 +25,7 @@ class Network: NetworkProtocol{
             
         }
     }
+
     
     func getEquivalentCurrency(handler: @escaping (Response?) -> Void) {
         
@@ -37,4 +38,5 @@ class Network: NetworkProtocol{
             }
         }
     }
+
 }

@@ -6,7 +6,9 @@
 //
 
 import Foundation
-struct Image: Codable {
+
+struct Image:Hashable, Codable {
+
     
     let id: Int?
     let productId: Int?

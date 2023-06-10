@@ -9,5 +9,7 @@ import Foundation
 protocol NetworkProtocol{
     
     func getData(path: String, handler: @escaping (Response?) -> Void)
+
     func getEquivalentCurrency(handler: @escaping (Response?) -> Void)
+
 }

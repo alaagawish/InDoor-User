@@ -1,18 +1,18 @@
 //
-//  HomeViewModel.swift
+//  BrandViewModel.swift
 //  InDoor-User
 //
-//  Created by Alaa on 04/06/2023.
+//  Created by Alaa on 07/06/2023.
 //
 
 import Foundation
 
-class HomeViewModel{
-    
+
+class BrandViewModel{
     var bindResultToViewController: (()->()) = {}
     var netWorkingDataSource: NetworkProtocol!
     
-    var result: [SmartCollections]? = [] {
+    var result: [Product] = []  {
         didSet{
             DispatchQueue.main.async {
                 self.bindResultToViewController()
@@ -21,15 +21,18 @@ class HomeViewModel{
     }
     
     init(netWorkingDataSource: NetworkProtocol) {
+        
         self.netWorkingDataSource = netWorkingDataSource
     }
     
-    func getItems(){
-        let path = Constants.smartCollections
+    func getItems(id: Int){
+        
+//        let path = "collections/448450855199/products"
+        let path = "collections/\(id)/products"
+        
         netWorkingDataSource.getData(path: path){ [weak self] (response : Response?) in
-            self?.result = response?.smartCollections
+            
+            self?.result = response?.products ?? []
         }
     }
-    
-    
 }
