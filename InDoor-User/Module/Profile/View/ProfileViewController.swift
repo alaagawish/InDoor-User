@@ -10,6 +10,7 @@ import UIKit
 class ProfileViewController: UIViewController {
     @IBOutlet weak var cartItem: UIBarButtonItem!
     
+    @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var settingsItem: UIBarButtonItem!
     @IBOutlet weak var loggedInStack: UIStackView!
     override func viewDidLoad() {
@@ -21,11 +22,13 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if checkLogged() {
             loggedInStack.isHidden = true
+            profileView.isHidden = false
             cartItem.isHidden = false
             settingsItem.isHidden = false
         }else{
             loggedInStack.isHidden = false
             cartItem.isHidden = true
+            profileView.isHidden = true
             settingsItem.isHidden = true
         }
     }
@@ -54,4 +57,19 @@ class ProfileViewController: UIViewController {
         return true
     }
     
+    @IBAction func seeAllOrders(_ sender: Any) {
+ 
+        let ordersStoryBoard = self.storyboard?.instantiateViewController(withIdentifier: Constants.ordersStoryboardID) as! OrdersViewController
+       ordersStoryBoard.modalPresentationStyle = .fullScreen
+        present(ordersStoryBoard, animated: true)
+    }
+    
+    
+    @IBAction func seeAllWishlist(_ sender: Any) {
+        let storyboard = UIStoryboard(name: Constants.favoritesStoryboardName, bundle: nil)
+        let favoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.favoritesStoryboardName) as! FavoritesViewController
+        favoritesStoryBoard.modalPresentationStyle = .fullScreen
+        present(favoritesStoryBoard, animated: true)
+        
+    }
 }
