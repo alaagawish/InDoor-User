@@ -8,7 +8,6 @@
 import UIKit
 import ImageSlideshow
 
-
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ImageSlideshowDelegate {
     @IBOutlet weak var brandCollectionView: UICollectionView!
     @IBOutlet weak var couponsSlider: ImageSlideshow!
@@ -18,8 +17,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                       ImageSource(image: UIImage(named: "discount1")!),
                       ImageSource(image: UIImage(named: "discount2")!),
                       ImageSource(image: UIImage(named: "discount3")!)]
-    
-    
+
+
     var timer: Timer?
     var currentIndex = 0
     var brands:[SmartCollections] = []
@@ -27,13 +26,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         homeViewModel = HomeViewModel(netWorkingDataSource: Network())
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
-        
         
         startSlider()
         callingData()
-        
+
     }
+    
     func callingData(){
         homeViewModel.bindResultToViewController = {[weak self] in
             DispatchQueue.main.async {
@@ -49,7 +47,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         couponsSlider.slideshowInterval = 2.5
         couponsSlider.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
         couponsSlider.isUserInteractionEnabled = true
-        
+
         couponsSlider.contentScaleMode = UIViewContentMode.scaleAspectFill
         let pageControl = UIPageControl()
         pageControl.currentPageIndicatorTintColor = UIColor.black
@@ -60,24 +58,24 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         couponsSlider.setImageInputs(promoCodes)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         couponsSlider.addGestureRecognizer(tapGesture)
-        
+
     }
-    
+
     @objc func imageTapped() {
         let tappedImageIndex = couponsSlider.currentPage
-        
+
         print("current page\(tappedImageIndex)")
-        
+
     }
-    
+
     func imageSlideshow(_ imageSlideshow: ImageSlideshow, didTapAt index: Int) {
         print(index)
-        let currentImage = couponsSlider.currentSlideshowItem?.imageView.image
-        if let imageString = currentImage?.description {
-            
-        }
+        //        let currentImage = couponsSlider.currentSlideshowItem?.imageView.image
+        //        if let imageString = currentImage?.description {
+        //
+        //        }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return brands.count
@@ -94,11 +92,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: UIScreen.main.bounds.size.width/2 - 12, height: UIScreen.main.bounds.height/4 - 12)
-        
-    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let products = self.storyboard?.instantiateViewController(withIdentifier: Constants.brandDetails) as! BrandViewController
@@ -112,14 +105,32 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewWillDisappear(animated)
         timer?.invalidate()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width/2 - 10, height: UIScreen.main.bounds.height/4.5 )
+        
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+        return 7
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.1
+        return 0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 5)
+        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
     
+    @IBAction func navigateToFavoritesScreen(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: Constants.favoritesStoryboardName, bundle: nil)
+        let favoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.favoritesStoryboardName) as! FavoritesViewController
+        favoritesStoryBoard.modalPresentationStyle = .fullScreen
+        present(favoritesStoryBoard, animated: true)
+    }
+    @IBAction func moveToShoppingCart(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: Constants.cartStoryboard, bundle: nil)
+        let cartStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.cartIdentifier) as! ShoppingCartViewController
+        cartStoryboard.modalPresentationStyle = .fullScreen
+        present(cartStoryboard, animated: true)
+    }
 }

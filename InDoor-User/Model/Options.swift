@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Options: Codable {
-    
+
+struct Options:Hashable, Codable {
+
     let id: Int?
     let productId: Int?
     let name: String?

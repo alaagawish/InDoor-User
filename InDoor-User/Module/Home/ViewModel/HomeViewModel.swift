@@ -21,19 +21,15 @@ class HomeViewModel{
     }
     
     init(netWorkingDataSource: NetworkProtocol) {
-        
         self.netWorkingDataSource = netWorkingDataSource
     }
     
     func getItems(){
-        
-        let path = "smart_collections"
-        
+        let path = Constants.smartCollections
         netWorkingDataSource.getData(path: path){ [weak self] (response : Response?) in
-            
             self?.result = response?.smartCollections
-            
         }
     }
+    
     
 }
