@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1fI-v8-s60">
+
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -159,7 +161,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="brandCollectionView" destination="LXS-RZ-aQX" id="Bhr-P4-XJQ"/>
-                        <outlet property="couponsSlider" destination="JaG-nU-Lzc" id="whE-c6-2pT"/>
+                        <outlet property="couponsSlider" destination="JaG-nU-Lzc" id="1Fa-aT-dhZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

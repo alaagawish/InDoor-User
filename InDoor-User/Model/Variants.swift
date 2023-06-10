@@ -7,12 +7,16 @@
 
 import Foundation
 
+
 struct Variants:Hashable,Codable {
+
     
     let id: Int?
     let productId: Int?
     let title: String?
+
     let price: String
+
     let sku: String?
     let position: Int?
     let inventoryPolicy: String?

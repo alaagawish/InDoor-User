@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct Product: Hashable, Codable {
 
     let id: Int

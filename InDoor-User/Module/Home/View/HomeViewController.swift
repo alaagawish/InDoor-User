@@ -8,7 +8,6 @@
 import UIKit
 import ImageSlideshow
 
-
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ImageSlideshowDelegate {
     @IBOutlet weak var brandCollectionView: UICollectionView!
     @IBOutlet weak var couponsSlider: ImageSlideshow!
@@ -18,8 +17,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                       ImageSource(image: UIImage(named: "discount1")!),
                       ImageSource(image: UIImage(named: "discount2")!),
                       ImageSource(image: UIImage(named: "discount3")!)]
-    
-    
+
+
     var timer: Timer?
     var currentIndex = 0
     var brands:[SmartCollections] = []
@@ -30,7 +29,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         startSlider()
         callingData()
-        
+
     }
     
     func callingData(){
@@ -48,7 +47,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         couponsSlider.slideshowInterval = 2.5
         couponsSlider.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
         couponsSlider.isUserInteractionEnabled = true
-        
+
         couponsSlider.contentScaleMode = UIViewContentMode.scaleAspectFill
         let pageControl = UIPageControl()
         pageControl.currentPageIndicatorTintColor = UIColor.black
@@ -59,16 +58,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         couponsSlider.setImageInputs(promoCodes)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         couponsSlider.addGestureRecognizer(tapGesture)
-        
+
     }
-    
+
     @objc func imageTapped() {
         let tappedImageIndex = couponsSlider.currentPage
-        
+
         print("current page\(tappedImageIndex)")
-        
+
     }
-    
+
     func imageSlideshow(_ imageSlideshow: ImageSlideshow, didTapAt index: Int) {
         print(index)
         //        let currentImage = couponsSlider.currentSlideshowItem?.imageView.image
@@ -76,7 +75,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         //
         //        }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return brands.count
