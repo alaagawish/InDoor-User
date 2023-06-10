@@ -8,18 +8,9 @@
 import Foundation
 import RealmSwift
 
-protocol DatabaseService {
-    func fetchAll() -> [LocalProduct]
-    func deleteAll()
-    func deleteProduct(product: LocalProduct)
-    func insertProduct(product: LocalProduct)
-    func isFavorite(productId: Int) -> Bool
-    func fetchProduct(productId: Int) -> LocalProduct
-}
-
 class DatabaseManager: DatabaseService {
     static let instance = DatabaseManager()
-    let realm: Realm!
+    let realm: Realm
     private init() {
         realm = try! Realm()
     }
@@ -27,28 +18,40 @@ class DatabaseManager: DatabaseService {
     func fetchAll() -> [LocalProduct] {
         return Array(realm.objects(LocalProduct.self))
     }
-
+    
     func deleteAll() {
-        realm.beginWrite()
-        realm.deleteAll()
-        try! realm.commitWrite()
+        do {
+            realm.beginWrite()
+            realm.deleteAll()
+            try realm.commitWrite()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
-
+    
     func deleteProduct(product: LocalProduct) {
-        realm.beginWrite()
-        realm.delete(product)
-        try! realm.commitWrite()
+        do {
+            realm.beginWrite()
+            realm.delete(product)
+            try realm.commitWrite()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
-
+    
     func insertProduct(product: LocalProduct) {
-        realm.beginWrite()
-        realm.add(product)
-        try! realm.commitWrite()
+        do {
+            realm.beginWrite()
+            realm.add(product)
+            try realm.commitWrite()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
     
     func isFavorite(productId: Int) -> Bool {
         let allProductsList = fetchAll()
-    
+        
         for product in allProductsList {
             if(product.id == productId) {
                 return true
