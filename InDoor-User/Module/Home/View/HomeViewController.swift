@@ -121,4 +121,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
     
+    @IBAction func navigateToFavoritesScreen(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: Constants.favoritesStoryboardName, bundle: nil)
+        let favoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.favoritesStoryboardName) as! FavoritesViewController
+        favoritesStoryBoard.modalPresentationStyle = .fullScreen
+        present(favoritesStoryBoard, animated: true)
+    }
 }

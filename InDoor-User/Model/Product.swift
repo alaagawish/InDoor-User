@@ -6,8 +6,9 @@
 //
 
 import Foundation
+
 struct Product: Hashable, Codable {
-       
+
     let id: Int
     let title: String?
     let bodyHtml: String?

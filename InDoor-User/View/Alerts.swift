@@ -10,17 +10,10 @@ import UIKit
 
 class Alert{
     
-    func removeFromFav(title: String, msg: String)-> UIAlertController{
+    func showRemoveProductFromFavoritesAlert(title: String, msg: String, yesHandler:@escaping (UIAlertAction)->())-> UIAlertController{
         let alert : UIAlertController = UIAlertController(title: title, message:msg, preferredStyle: .alert)
-      
-        alert.addAction(UIAlertAction(title: Constants.cancel, style: .cancel,handler: nil))
-        
-        alert.addAction(UIAlertAction(title: Constants.yes, style: .default,handler: { action in
-            print("remove from realm")
-            
-            // remove from realm
-            
-        }))
+        alert.addAction(UIAlertAction(title: Constants.cancel, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: Constants.yes, style: .default, handler: yesHandler))
         return alert
     }
 }
