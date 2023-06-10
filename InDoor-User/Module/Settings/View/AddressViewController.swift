@@ -8,7 +8,7 @@
 import UIKit
 
 class AddressViewController: UIViewController {
-
+    
     @IBOutlet weak var addAddressButton: UIButton!
     @IBOutlet weak var addressesTable: UITableView!
     
@@ -27,14 +27,8 @@ class AddressViewController: UIViewController {
     }
     
     @IBAction func addAddressButton(_ sender: UIButton) {
-        let addAddress = self.storyboard?.instantiateViewController(withIdentifier: Constants.addressIdentifier) as! AddAddressViewController
+        let addAddress = self.storyboard?.instantiateViewController(withIdentifier: Constants.addAddressIdentifier) as! AddAddressViewController
         addAddress.modalPresentationStyle = .fullScreen
         present(addAddress, animated: true)
-    }
-}
-
-extension AddressViewController{
-    class Constants{
-        static let addressIdentifier = "addAddress"
     }
 }

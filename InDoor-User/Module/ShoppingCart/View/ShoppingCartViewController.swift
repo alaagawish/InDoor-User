@@ -8,7 +8,7 @@
 import UIKit
 
 class ShoppingCartViewController: UIViewController {
-
+    
     @IBOutlet weak var shoppingCartTabelView: UITableView!
     @IBOutlet weak var proceedToCheckoutButton: UIButton!
     @IBOutlet weak var shoppingCartBottomView: UIView!
@@ -57,9 +57,4 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
-extension ShoppingCartViewController{
-    class Constants{
-        static let nibFileName = "ShoppingCartTableViewCell"
-        static let cartCellIdentifier = "cartCell"
-    }
-}
+

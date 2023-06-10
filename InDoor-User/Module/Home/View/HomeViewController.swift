@@ -126,4 +126,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         favoritesStoryBoard.modalPresentationStyle = .fullScreen
         present(favoritesStoryBoard, animated: true)
     }
+    @IBAction func moveToShoppingCart(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: Constants.cartStoryboard, bundle: nil)
+        let cartStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.cartIdentifier) as! ShoppingCartViewController
+        cartStoryboard.modalPresentationStyle = .fullScreen
+        present(cartStoryboard, animated: true)
+    }
 }

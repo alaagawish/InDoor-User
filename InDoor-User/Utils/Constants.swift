@@ -30,5 +30,17 @@ class Constants {
     static let favoritesCellIdentifier = "favoriteCell"
     static let favoritesCellHeight = 145.0
     static let favoritesStoryboardName = "FavoritesStoryBoard"
+    static let ok = "OK"
+    static let nibFileName = "ShoppingCartTableViewCell"
+    static let cartCellIdentifier = "cartCell"
+    static let cartIdentifier = "cart"
+    static let currencyPath = "currencies"
+    static let addressIdentifier = "address"
+    static let currencyIdentifier = "currency"
+    static let connectToUsIdentifier = "connectToUs"
+    static let aboutInDoorIdentifier = "aboutInDoor"
+    static let addAddressIdentifier = "addAddress"
+    static let cartStoryboard = "Cart"
+    
     
 }

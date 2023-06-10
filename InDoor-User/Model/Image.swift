@@ -8,8 +8,6 @@
 import Foundation
 
 struct Image:Hashable, Codable {
-
-    
     let id: Int?
     let productId: Int?
     let position: Int?

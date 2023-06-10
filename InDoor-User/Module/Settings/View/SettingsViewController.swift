@@ -8,7 +8,7 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
+    
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var addressView: UIView!
     @IBOutlet weak var currencyView: UIView!
@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController {
         uiView.layer.shadowOpacity = 0.5
         uiView.layer.masksToBounds = false
     }
-
+    
     func setupTapGesture(){
         let addressTap = UITapGestureRecognizer(target: self, action: #selector(self.addressTap(_:)))
         addressView.addGestureRecognizer(addressTap)
@@ -81,11 +81,3 @@ class SettingsViewController: UIViewController {
     }
 }
 
-extension SettingsViewController{
-    class Constants{
-        static let addressIdentifier = "address"
-        static let currencyIdentifier = "currency"
-        static let connectToUsIdentifier = "connectToUs"
-        static let aboutInDoorIdentifier = "aboutInDoor"
-    }
-}

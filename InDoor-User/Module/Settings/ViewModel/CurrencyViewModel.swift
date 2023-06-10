@@ -47,9 +47,3 @@ class CurrencyViewModel{
     }
 }
 
-extension CurrencyViewModel{
-    class Constants{
-        static let currencyPath = "currencies"
-    }
-}
-

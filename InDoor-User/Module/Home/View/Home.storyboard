@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1fI-v8-s60">
-
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1fI-v8-s60">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -23,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zZO-vQ-w2T">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="93.666666666666671"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="76.666666666666671"/>
                                 <items>
                                     <barButtonItem title="Item" id="1Yw-m5-yFL">
                                         <imageReference key="image" image="magnifyingglass" catalog="system" renderingMode="hierarchical">
@@ -43,6 +40,9 @@
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
                                         </imageReference>
+                                        <connections>
+                                            <action selector="moveToShoppingCart:" destination="Y6W-OH-hqX" id="0kV-sf-cd1"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem id="hwX-DR-ypO">
                                         <imageReference key="image" image="heart.fill" catalog="system" renderingMode="hierarchical">
@@ -59,11 +59,11 @@
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JaG-nU-Lzc" customClass="ImageSlideshow" customModule="ImageSlideshow">
-                                <rect key="frame" x="0.0" y="93.666666666666686" width="393" height="247"/>
+                                <rect key="frame" x="0.0" y="76.666666666666686" width="393" height="247"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LXS-RZ-aQX">
-                                <rect key="frame" x="3" y="369.66666666666674" width="390" height="399.33333333333326"/>
+                                <rect key="frame" x="3" y="352.66666666666674" width="390" height="416.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mUM-04-zF6">
                                     <size key="itemSize" width="128" height="128"/>
@@ -112,7 +112,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brands" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bk0-Xa-PaW">
-                                <rect key="frame" x="16" y="340.66666666666669" width="377" height="21"/>
+                                <rect key="frame" x="16" y="323.66666666666669" width="377" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="kzh-2P-0ir"/>
                                 </constraints>
@@ -120,8 +120,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUl-Em-Bnx">
-                                <rect key="frame" x="160" y="52.666666666666657" width="73.333333333333314" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUl-Em-Bnx">
+                                <rect key="frame" x="98.333333333333329" y="40.666666666666664" width="196.33333333333337" height="35.999999999999993"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -136,17 +136,19 @@
                             <constraint firstItem="LXS-RZ-aQX" firstAttribute="top" secondItem="bk0-Xa-PaW" secondAttribute="bottom" constant="8" id="6eZ-Cn-wCk"/>
                             <constraint firstItem="JaG-nU-Lzc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Ng1-Ye-vZr"/>
                             <constraint firstItem="bk0-Xa-PaW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="O09-Pn-fco"/>
+                            <constraint firstItem="JaG-nU-Lzc" firstAttribute="top" secondItem="dUl-Em-Bnx" secondAttribute="bottom" id="Q95-98-b4C"/>
+                            <constraint firstItem="dUl-Em-Bnx" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0422535" id="RcI-bI-p1f"/>
+                            <constraint firstItem="dUl-Em-Bnx" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.5" id="YQb-gl-yPc"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LXS-RZ-aQX" secondAttribute="trailing" id="cFr-If-vri"/>
-                            <constraint firstItem="JaG-nU-Lzc" firstAttribute="top" secondItem="dUl-Em-Bnx" secondAttribute="bottom" constant="5" id="eMd-c3-bth"/>
                             <constraint firstItem="zZO-vQ-w2T" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="f3P-SJ-vZD"/>
+                            <constraint firstItem="dUl-Em-Bnx" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="ghq-BS-Foi"/>
                             <constraint firstAttribute="trailing" secondItem="zZO-vQ-w2T" secondAttribute="trailing" id="hyf-O5-I2m"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="JaG-nU-Lzc" secondAttribute="trailing" id="iL5-rJ-l8g"/>
                             <constraint firstItem="JaG-nU-Lzc" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.29" id="ihM-CG-ZJM"/>
-                            <constraint firstItem="zZO-vQ-w2T" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.11" id="meN-Nl-cSk"/>
+                            <constraint firstItem="zZO-vQ-w2T" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.09" id="meN-Nl-cSk"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="LXS-RZ-aQX" secondAttribute="bottom" id="nHv-c7-OWf"/>
                             <constraint firstItem="LXS-RZ-aQX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="3" id="p0Q-b9-EFC"/>
                             <constraint firstItem="JaG-nU-Lzc" firstAttribute="top" secondItem="zZO-vQ-w2T" secondAttribute="bottom" id="pMF-5g-cVl"/>
-                            <constraint firstItem="dUl-Em-Bnx" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="yhO-uX-URk"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Shop" id="UC7-WF-bT1">
@@ -183,14 +185,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqv-mB-7gM">
-                                <rect key="frame" x="0.0" y="100" width="393" height="44"/>
+                                <rect key="frame" x="0.0" y="104" width="393" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="2Pd-WH-8qE"/>
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" id="lJh-yl-cxn">
-                                        <searchBar key="customView" contentMode="redraw" id="zs7-g5-kUT">
+                                        <searchBar key="customView" contentMode="redraw" misplaced="YES" id="zs7-g5-kUT">
                                             <rect key="frame" x="16" y="0.0" width="361" height="44"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -204,7 +206,7 @@
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cMf-6u-ccq">
-                                <rect key="frame" x="0.0" y="152" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="156" width="393" height="662"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Cmm-CY-S9H">
                                     <size key="itemSize" width="128" height="128"/>
@@ -219,7 +221,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzp-lw-1iu">
-                                <rect key="frame" x="16" y="58.999999999999993" width="23.666666666666671" height="23.666666666666664"/>
+                                <rect key="frame" x="16" y="58.999999999999993" width="27.666666666666671" height="27.666666666666664"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gzp-lw-1iu" secondAttribute="height" multiplier="1:1" id="Pmi-kh-xir"/>
                                 </constraints>
@@ -236,8 +238,7 @@
                         <viewLayoutGuide key="safeArea" id="Rxf-Jy-OJL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ieg-dO-A5r" firstAttribute="top" secondItem="Rxf-Jy-OJL" secondAttribute="top" id="D3p-PL-Jam"/>
-                            <constraint firstItem="lqv-mB-7gM" firstAttribute="top" secondItem="ieg-dO-A5r" secondAttribute="bottom" constant="5" id="EpK-jK-HIS"/>
+                            <constraint firstItem="lqv-mB-7gM" firstAttribute="top" secondItem="gzp-lw-1iu" secondAttribute="bottom" constant="17.329999999999998" id="EpK-jK-HIS"/>
                             <constraint firstItem="ieg-dO-A5r" firstAttribute="centerX" secondItem="8Oq-e1-L7W" secondAttribute="centerX" id="HTV-qj-KaN"/>
                             <constraint firstItem="ieg-dO-A5r" firstAttribute="top" secondItem="Rxf-Jy-OJL" secondAttribute="top" id="IVb-o1-GJ0"/>
                             <constraint firstItem="cMf-6u-ccq" firstAttribute="top" secondItem="lqv-mB-7gM" secondAttribute="bottom" constant="8" id="KJk-UU-2un"/>
@@ -250,7 +251,7 @@
                             <constraint firstItem="ieg-dO-A5r" firstAttribute="width" secondItem="8Oq-e1-L7W" secondAttribute="width" multiplier="0.5" id="qfn-HI-A1Q"/>
                             <constraint firstItem="cMf-6u-ccq" firstAttribute="leading" secondItem="Rxf-Jy-OJL" secondAttribute="leading" id="vS4-yw-DX3"/>
                             <constraint firstItem="Rxf-Jy-OJL" firstAttribute="bottom" secondItem="cMf-6u-ccq" secondAttribute="bottom" id="wmm-gA-u2C"/>
-                            <constraint firstItem="gzp-lw-1iu" firstAttribute="width" secondItem="8Oq-e1-L7W" secondAttribute="width" multiplier="0.06" id="znD-KZ-GpJ"/>
+                            <constraint firstItem="gzp-lw-1iu" firstAttribute="width" secondItem="ieg-dO-A5r" secondAttribute="width" multiplier="0.09" constant="10" id="znD-KZ-GpJ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -295,7 +296,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sPN-cW-8xw">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="93.666666666666671"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="76.666666666666671"/>
                                 <items>
                                     <barButtonItem title="Item" id="Ap3-Th-rDv">
                                         <imageReference key="image" image="magnifyingglass" catalog="system" renderingMode="hierarchical">
@@ -315,6 +316,9 @@
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
                                         </imageReference>
+                                        <connections>
+                                            <action selector="moveToShoppingCart:" destination="bTV-LK-jel" id="4WP-cs-WHB"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem id="5TT-sc-n3F">
                                         <imageReference key="image" image="heart.fill" catalog="system" renderingMode="hierarchical">
@@ -324,17 +328,20 @@
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
                                         </imageReference>
+                                        <connections>
+                                            <action selector="moveToFavourites:" destination="bTV-LK-jel" id="OPB-i4-UyZ"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fL-Cj-88L">
-                                <rect key="frame" x="119.66666666666669" y="52.666666666666657" width="154" height="36"/>
+                                <rect key="frame" x="119.66666666666669" y="40.666666666666664" width="154" height="35.999999999999993"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djB-Em-8Pt">
-                                <rect key="frame" x="0.0" y="93.666666666666671" width="393" height="44.000000000000014"/>
+                                <rect key="frame" x="0.0" y="76.666666666666671" width="393" height="44"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jgM-GU-bPe"/>
@@ -370,7 +377,7 @@
                                 <color key="tintColor" red="1" green="0.84609584729999998" blue="0.25085485800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rY8-VE-xM1">
-                                <rect key="frame" x="0.0" y="137.66666666666666" width="393" height="44"/>
+                                <rect key="frame" x="0.0" y="120.66666666666669" width="393" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="yz6-eL-9Fg"/>
                                     <barButtonItem title="ALL" id="Rii-Kx-peJ">
@@ -401,7 +408,7 @@
                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qi1-Cx-Sz0">
-                                <rect key="frame" x="0.0" y="181.66666666666669" width="393" height="587.33333333333326"/>
+                                <rect key="frame" x="0.0" y="164.66666666666669" width="393" height="604.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Stn-6G-tKr">
                                     <size key="itemSize" width="128" height="128"/>
@@ -421,8 +428,8 @@
                         <constraints>
                             <constraint firstItem="djB-Em-8Pt" firstAttribute="top" secondItem="sPN-cW-8xw" secondAttribute="bottom" id="3El-8I-7UI"/>
                             <constraint firstItem="AVW-uJ-aWd" firstAttribute="trailing" secondItem="rY8-VE-xM1" secondAttribute="trailing" id="4bz-IJ-299"/>
-                            <constraint firstItem="sPN-cW-8xw" firstAttribute="height" secondItem="vQu-es-BF3" secondAttribute="height" multiplier="0.11" id="C3a-qR-TbE"/>
-                            <constraint firstItem="djB-Em-8Pt" firstAttribute="top" secondItem="2fL-Cj-88L" secondAttribute="bottom" constant="5" id="EiY-Tg-M2S"/>
+                            <constraint firstItem="sPN-cW-8xw" firstAttribute="height" secondItem="vQu-es-BF3" secondAttribute="height" multiplier="0.09" id="C3a-qR-TbE"/>
+                            <constraint firstItem="djB-Em-8Pt" firstAttribute="top" secondItem="2fL-Cj-88L" secondAttribute="bottom" id="EiY-Tg-M2S"/>
                             <constraint firstItem="sPN-cW-8xw" firstAttribute="leading" secondItem="AVW-uJ-aWd" secondAttribute="leading" id="G9x-Ec-1hL"/>
                             <constraint firstItem="AVW-uJ-aWd" firstAttribute="trailing" secondItem="Qi1-Cx-Sz0" secondAttribute="trailing" id="PEh-i4-Rgm"/>
                             <constraint firstItem="2fL-Cj-88L" firstAttribute="centerX" secondItem="vQu-es-BF3" secondAttribute="centerX" id="RtA-jD-HNI"/>

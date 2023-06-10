@@ -161,4 +161,17 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(products[indexPath.row])
     }
+    @IBAction func moveToFavourites(_ sender: Any) {
+        let storyboard = UIStoryboard(name: Constants.favoritesStoryboardName, bundle: nil)
+        let favoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.favoritesStoryboardName) as! FavoritesViewController
+        favoritesStoryBoard.modalPresentationStyle = .fullScreen
+        present(favoritesStoryBoard, animated: true)
+    }
+    @IBAction func moveToShoppingCart(_ sender: Any) {
+        let storyboard = UIStoryboard(name: Constants.cartStoryboard, bundle: nil)
+        let cartStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.cartIdentifier) as! ShoppingCartViewController
+        cartStoryboard.modalPresentationStyle = .fullScreen
+        present(cartStoryboard, animated: true)
+        
+    }
 }

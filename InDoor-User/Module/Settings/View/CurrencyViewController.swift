@@ -66,7 +66,7 @@ extension CurrencyViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         userDefaults.set(currencies[indexPath.row].currency, forKey: Constants.newCurrencyKey)
         userDefaults.set(mappingCurrency(currency: currencies[indexPath.row].currency ?? Constants.defaultValueForNoRayes), forKey: Constants.ratesKey)
-
+        
         let alert = Alert().showChangeCurrencyAlert(title: Constants.conformAlertTitle, msg: "\(Constants.conformAlertMessage) \(currencies[indexPath.row].currency ?? Constants.currency.USD.rawValue)") { [weak self] action in
             self?.dismiss(animated: true)
         }
@@ -134,19 +134,18 @@ extension CurrencyViewController: UITableViewDelegate, UITableViewDataSource{
     }
 }
 
-extension CurrencyViewController{
-    class Constants{
-        static let currencySymbol = ["د.إ", "AU$", "CA$", "CHF", "Kč", "kr", "€", "GBP£", "HK$", "₪", "¥", "₩", "RM", "NZ$", "zł", "kr", "SG$", "$", "E£"]
-        static let currencyCellIdentifier = "currencyCell"
-        static let newCurrencyKey = "newCurrency"
-        static let ratesKey = "rates"
-        static let date = "2023-06-08T20:14:30-04:00"
-        static let defaultValueForNoRayes = "noRates"
-        static let conformAlertTitle = "Conform currency change"
-        static let conformAlertMessage = "You change currency of application to"
-        
-        enum currency: String{
-            case AED, AUD, CAD, CHF, CZK, DKK, EGP, EUR, GBP, HKD, ILS, JPY, KRW, MYR, NZD, PLN, SEK, SGD, USD
-        }
+extension Constants{
+    static let currencySymbol = ["د.إ", "AU$", "CA$", "CHF", "Kč", "kr", "€", "GBP£", "HK$", "₪", "¥", "₩", "RM", "NZ$", "zł", "kr", "SG$", "$", "E£"]
+    static let currencyCellIdentifier = "currencyCell"
+    static let newCurrencyKey = "newCurrency"
+    static let ratesKey = "rates"
+    static let date = "2023-06-08T20:14:30-04:00"
+    static let defaultValueForNoRayes = "noRates"
+    static let conformAlertTitle = "Conform currency change"
+    static let conformAlertMessage = "You change currency of application to"
+    
+    enum currency: String{
+        case AED, AUD, CAD, CHF, CZK, DKK, EGP, EUR, GBP, HKD, ILS, JPY, KRW, MYR, NZD, PLN, SEK, SGD, USD
     }
+    
 }
