@@ -9,15 +9,17 @@ import UIKit
 
 class BrandProductCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var currencySymbol: UILabel!
     @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet weak var productTitle: UILabel!
     @IBOutlet weak var productImage: UIImageView!
     var viewController: BrandViewController?
     var product:Product!
-    
+    var categoryViewController: CategoryViewController?
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
     }
     override func layoutSubviews() {
@@ -46,6 +48,23 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
             self.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
         }
     }
+
+    func setValuess(product: Product, isFav: Bool, viewController: CategoryViewController ){
+        self.categoryViewController = viewController
+        self.productTitle.text = Splitter().splitName(text: product.title ?? "", delimiter: "|")
+        self.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""),
+                                      placeholder: UIImage(named: Constants.noImage))
+        if product.variants?.count ?? 0 > 0{
+            self.price.text = "\(product.variants![0].price)"
+        }
+        if isFav{
+            self.favouriteButton.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
+        }else{
+            self.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
+        }
+        
+    }
+
     
     @IBAction func checkFavouriteProduct(_ sender: Any) {
         
@@ -53,6 +72,7 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
             let localProduct = LocalProduct(id: product.id, title: product.title ?? "", status: product.status ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
             viewController?.favoritesViewModel.addProduct(product: localProduct)
             favouriteButton.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
+
         } else {
             let retrievedProduct = self.viewController?.favoritesViewModel.getProduct(productId: self.product.id )
             let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) { [weak self] action in
@@ -60,6 +80,7 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
                 self?.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
             }
             viewController?.present(alert, animated: true, completion: nil)
+
         }
     }
     
