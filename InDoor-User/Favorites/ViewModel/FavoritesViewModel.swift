@@ -10,7 +10,7 @@ class FavoritesViewModel{
     var service: DatabaseService!
     var allProductsList = [LocalProduct]()
     
-    init(service: DatabaseService!) {
+    init(service: DatabaseService) {
         self.service = service
     }
     
