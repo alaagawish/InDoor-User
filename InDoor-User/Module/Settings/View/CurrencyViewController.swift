@@ -10,14 +10,14 @@ import UIKit
 class CurrencyViewController: UIViewController {
     @IBOutlet weak var currencyTableView: UITableView!
     
-    var settingsViewModel: SettingsViewModel!
+    var settingsViewModel: CurrencyViewModel!
     var userDefaults: UserDefaults!
     var currencies:[Currency] = []
     var rates: Rates!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        settingsViewModel = SettingsViewModel(netWorkingDataSource: Network())
+        settingsViewModel = CurrencyViewModel(netWorkingDataSource: Network())
         userDefaults = UserDefaults.standard
         callingData()
         callingEquivalentCurrency()
@@ -25,11 +25,9 @@ class CurrencyViewController: UIViewController {
     
     func callingData(){
         settingsViewModel.bindCurrencyToViewController = {[weak self] in
-            DispatchQueue.main.async {
-                self?.currencies = self?.settingsViewModel.result ?? []
-                self?.currencies.append(Currency(currency: Constants.currency.EGP.rawValue, rateUpdatedAt: Constants.date, enabled: true))
-                self?.currencyTableView.reloadData()
-            }
+            self?.currencies = self?.settingsViewModel.result ?? []
+            self?.currencies.append(Currency(currency: Constants.currency.EGP.rawValue, rateUpdatedAt: Constants.date, enabled: true))
+            self?.currencyTableView.reloadData()
         }
         settingsViewModel.getCurrencies()
     }
@@ -40,7 +38,7 @@ class CurrencyViewController: UIViewController {
         }
         settingsViewModel.getEquivalentCurrencies()
     }
-
+    
     @IBAction func backButton(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
@@ -68,6 +66,11 @@ extension CurrencyViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         userDefaults.set(currencies[indexPath.row].currency, forKey: Constants.newCurrencyKey)
         userDefaults.set(mappingCurrency(currency: currencies[indexPath.row].currency ?? Constants.defaultValueForNoRayes), forKey: Constants.ratesKey)
+
+        let alert = Alert().showChangeCurrencyAlert(title: Constants.conformAlertTitle, msg: "\(Constants.conformAlertMessage) \(currencies[indexPath.row].currency ?? Constants.currency.USD.rawValue)") { [weak self] action in
+            self?.dismiss(animated: true)
+        }
+        self.present(alert, animated: true, completion: nil)
     }
     
     func mappingCurrency(currency: String) -> Double{
@@ -139,9 +142,11 @@ extension CurrencyViewController{
         static let ratesKey = "rates"
         static let date = "2023-06-08T20:14:30-04:00"
         static let defaultValueForNoRayes = "noRates"
+        static let conformAlertTitle = "Conform currency change"
+        static let conformAlertMessage = "You change currency of application to"
         
         enum currency: String{
-            case AED, AUD, CAD, CHF, CZK, DKK, EGP, EUR, GBP, HKD, ILS, JPY, KRW, MYR, NZD, PLN, SEK, SGD
+            case AED, AUD, CAD, CHF, CZK, DKK, EGP, EUR, GBP, HKD, ILS, JPY, KRW, MYR, NZD, PLN, SEK, SGD, USD
         }
     }
 }

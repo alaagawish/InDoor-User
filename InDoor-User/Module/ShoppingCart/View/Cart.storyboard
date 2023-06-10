@@ -46,7 +46,7 @@
                                 <rect key="frame" x="0.0" y="681.66666666666663" width="393" height="170.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9W-P9-WSy">
-                                        <rect key="frame" x="49.999999999999993" y="69.666666666666742" width="84.333333333333314" height="22.333333333333329"/>
+                                        <rect key="frame" x="49.999999999999993" y="58" width="84.333333333333314" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -62,13 +62,13 @@
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZe-c0-jg1">
-                                        <rect key="frame" x="291" y="68" width="52" height="24"/>
+                                        <rect key="frame" x="291" y="58" width="52" height="34"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ga5-cD-pKf">
-                                        <rect key="frame" x="195.33333333333337" y="26" width="147.66666666666663" height="34"/>
+                                        <rect key="frame" x="195.33333333333337" y="16" width="147.66666666666663" height="34"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,7 +78,7 @@
                                         </state>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Coupon" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7ZG-6C-01t">
-                                        <rect key="frame" x="50" y="24.333333333333375" width="137.66666666666666" height="37.333333333333343"/>
+                                        <rect key="frame" x="50" y="16" width="137.66666666666666" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -87,6 +87,7 @@
                                 <constraints>
                                     <constraint firstItem="Ga5-cD-pKf" firstAttribute="height" secondItem="8Un-8r-ZnF" secondAttribute="height" multiplier="0.2" id="46X-Oh-0ik"/>
                                     <constraint firstItem="d9W-P9-WSy" firstAttribute="width" secondItem="8Un-8r-ZnF" secondAttribute="width" multiplier="0.214589" id="4Dc-Qi-6MP"/>
+                                    <constraint firstItem="Ga5-cD-pKf" firstAttribute="top" secondItem="8Un-8r-ZnF" secondAttribute="top" constant="16" id="5wn-M4-vY9"/>
                                     <constraint firstItem="NZe-c0-jg1" firstAttribute="trailing" secondItem="135-e9-IXz" secondAttribute="trailing" id="6oN-El-YGo"/>
                                     <constraint firstItem="135-e9-IXz" firstAttribute="height" secondItem="8Un-8r-ZnF" secondAttribute="height" multiplier="0.26" id="6xh-QA-0D3"/>
                                     <constraint firstItem="7ZG-6C-01t" firstAttribute="width" secondItem="8Un-8r-ZnF" secondAttribute="width" multiplier="0.35" id="7aK-cW-ygs"/>
@@ -100,6 +101,7 @@
                                     <constraint firstItem="Ga5-cD-pKf" firstAttribute="width" secondItem="8Un-8r-ZnF" secondAttribute="width" multiplier="0.375827" id="eDl-Mz-Lih"/>
                                     <constraint firstItem="d9W-P9-WSy" firstAttribute="top" secondItem="7ZG-6C-01t" secondAttribute="bottom" constant="8" id="fmg-Dl-pH4"/>
                                     <constraint firstItem="d9W-P9-WSy" firstAttribute="leading" secondItem="135-e9-IXz" secondAttribute="leading" id="iCU-Hq-MPi"/>
+                                    <constraint firstItem="7ZG-6C-01t" firstAttribute="top" secondItem="8Un-8r-ZnF" secondAttribute="top" constant="16" id="iGo-j4-zJM"/>
                                     <constraint firstItem="NZe-c0-jg1" firstAttribute="top" secondItem="Ga5-cD-pKf" secondAttribute="bottom" constant="8" id="ntx-ir-aSZ"/>
                                     <constraint firstAttribute="bottom" secondItem="135-e9-IXz" secondAttribute="bottom" constant="26" id="xfi-sF-Qde"/>
                                 </constraints>
