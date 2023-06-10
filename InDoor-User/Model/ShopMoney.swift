@@ -7,13 +7,13 @@
 
 import Foundation
 struct ShopMoney: Codable {
-
-    let amount: String
-    let currencyCode: String
-
+    
+    let amount: String?
+    let currencyCode: String?
+    
     private enum CodingKeys: String, CodingKey {
         case amount = "amount"
         case currencyCode = "currency_code"
     }
-
+    
 }

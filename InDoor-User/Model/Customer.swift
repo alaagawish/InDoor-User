@@ -7,24 +7,24 @@
 
 import Foundation
 struct Customer: Codable {
-
+    
     let id: Int
-    let email: String
-    let acceptsMarketing: Bool
-    let createdAt: String
-    let updatedAt: String
-    let firstName: String
-    let lastName: String
-    let state: String
-    let verifiedEmail: Bool
-    let taxExempt: Bool
-    let phone: String
-    let tags: String
-    let currency: String
-    let acceptsMarketingUpdatedAt: String
-    let adminGraphqlApiId: String
-    let defaultAddress: DefaultAddress
-
+    let email: String?
+    let acceptsMarketing: Bool?
+    let createdAt: String?
+    let updatedAt: String?
+    let firstName: String?
+    let lastName: String?
+    let state: String?
+    let verifiedEmail: Bool?
+    let taxExempt: Bool?
+    let phone: String?
+    let tags: String?
+    let currency: String?
+    let acceptsMarketingUpdatedAt: String?
+    let adminGraphqlApiId: String?
+    let defaultAddress: DefaultAddress?
+    
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case email = "email"
@@ -43,5 +43,5 @@ struct Customer: Codable {
         case adminGraphqlApiId = "admin_graphql_api_id"
         case defaultAddress = "default_address"
     }
-
+    
 }

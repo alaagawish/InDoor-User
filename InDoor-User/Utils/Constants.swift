@@ -24,11 +24,12 @@ class Constants {
     static let menID = 448451215647
     static let kidID = 448451281183
     static let saleID = 448451313951
-    static let smartCollections = "smart_collections"
+    static let smartCollections = "smart_collections.json"
     static let brandProductCollectionViewCell = "BrandProductCollectionViewCell"
     static let favoritesNibName = "FavoritesCell"
     static let favoritesCellIdentifier = "favoriteCell"
     static let favoritesCellHeight = 145.0
+    static let orderCellHeight = 200.0
     static let favoritesStoryboardName = "FavoritesStoryBoard"
     static let ok = "OK"
     static let nibFileName = "ShoppingCartTableViewCell"
@@ -45,6 +46,8 @@ class Constants {
     static let settingsStoryboardID = "settings"
     static let ordersStoryboardID = "orders"
     static let orderCellIdentifier = "orderCell"
+    static let orderNibFile = "OrderTableViewCell"
+    static let getOrdersPath = "orders.json?status=any"
     
     
 }

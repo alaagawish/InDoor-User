@@ -340,9 +340,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wishlist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lc-1v-536">
-                                        <rect key="frame" x="16" y="284" width="118" height="20.333333333333314"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="16" y="284" width="118" height="31.333333333333314"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4f-CZ-5GO">
@@ -354,9 +354,9 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aH-3u-5XA">
-                                        <rect key="frame" x="16" y="34.333333333333329" width="118" height="20.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="16" y="34.333333333333329" width="118" height="31.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3D2-1f-1RP">
@@ -442,8 +442,10 @@
                     <connections>
                         <outlet property="cartItem" destination="HFM-01-qMy" id="yfV-Nz-488"/>
                         <outlet property="loggedInStack" destination="f4c-yA-bHL" id="hvn-mM-QEc"/>
+                        <outlet property="orderTableView" destination="hk4-SJ-DhV" id="W2P-g0-JFi"/>
                         <outlet property="profileView" destination="rZc-aR-ZoX" id="nBX-QX-pmh"/>
                         <outlet property="settingsItem" destination="gDK-iW-Bmh" id="FBe-PN-9c9"/>
+                        <outlet property="wishlistTableView" destination="E7Q-41-X2S" id="4cR-NX-pW6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eu6-0W-YsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -475,6 +477,7 @@
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
+                                    <action selector="back:" destination="LEM-E0-FdN" eventType="touchUpInside" id="Ca1-qN-Qry"/>
                                     <action selector="back:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="eC1-Bn-jba"/>
                                 </connections>
                             </button>
@@ -498,10 +501,13 @@
                             <constraint firstItem="zz0-7x-nN3" firstAttribute="width" secondItem="JsM-X3-iC0" secondAttribute="width" multiplier="0.5" id="oq0-ef-0x6"/>
                             <constraint firstItem="aN5-Ut-zL5" firstAttribute="trailing" secondItem="95N-IL-oof" secondAttribute="trailing" id="q2V-nR-LX2"/>
                             <constraint firstItem="zz0-7x-nN3" firstAttribute="top" secondItem="aN5-Ut-zL5" secondAttribute="top" id="xX3-OW-bPx"/>
-                            <constraint firstItem="95N-IL-oof" firstAttribute="top" secondItem="zz0-7x-nN3" secondAttribute="bottom" id="z2j-Qw-c3g"/>
+                            <constraint firstItem="95N-IL-oof" firstAttribute="top" secondItem="7F8-EK-OCD" secondAttribute="bottom" constant="8.3333333333333428" id="z2j-Qw-c3g"/>
                             <constraint firstItem="7F8-EK-OCD" firstAttribute="width" secondItem="zz0-7x-nN3" secondAttribute="width" multiplier="0.09" constant="10" id="zUr-li-CdV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="orderTableView" destination="95N-IL-oof" id="DMI-zo-Soz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f19-iJ-Hmf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

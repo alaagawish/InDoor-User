@@ -7,14 +7,14 @@
 
 import Foundation
 struct TotalPriceSet: Codable {
-
-    let shopMoney: ShopMoney
-    let presentmentMoney: PresentmentMoney
-
+    
+    let shopMoney: ShopMoney?
+    let presentmentMoney: ShopMoney?
+    
     private enum CodingKeys: String, CodingKey {
         case shopMoney = "shop_money"
         case presentmentMoney = "presentment_money"
     }
-
+    
 }
 

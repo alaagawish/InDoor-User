@@ -6,60 +6,61 @@
 //
 
 import Foundation
+
 struct Orders: Codable {
     
     let id: Int
-    let adminGraphqlApiId: String
-    let appId: Int
-    let buyerAcceptsMarketing: Bool
-    let confirmed: Bool
-    let contactEmail: String
-    let createdAt: String
-    let currency: String
-    let currentSubtotalPrice: String
-    let currentSubtotalPriceSet: TotalPriceSet
-    let currentTotalDiscounts: String
-    let currentTotalDiscountsSet: TotalPriceSet
-    let currentTotalPrice: String
-    let currentTotalPriceSet: TotalPriceSet
-    let currentTotalTax: String
-    let currentTotalTaxSet: TotalPriceSet
-    //   let discountCodes: [Any]
-    let email: String
-    let estimatedTaxes: Bool
-    let financialStatus: String
-    let name: String
-    let number: Int
-    let orderNumber: Int
-    let orderStatusUrl: String
-    // let phone: String
-    let presentmentCurrency: String
-    let processedAt: String
-    let sourceName: String
-    let subtotalPrice: String
-    let subtotalPriceSet: TotalPriceSet
-    let tags: String
-    let taxesIncluded: Bool
-    let test: Bool
-    let token: String
-    let totalDiscounts: String
-    let totalDiscountsSet: TotalPriceSet
-    let totalLineItemsPrice: String
-    let totalLineItemsPriceSet: TotalPriceSet
-    let totalOutstanding: String
-    let totalPrice: String
-    let totalPriceSet: TotalPriceSet
-    let totalShippingPriceSet: TotalPriceSet
-    let totalTax: String
-    let totalTaxSet: TotalPriceSet
-    let totalTipReceived: String
-    let totalWeight: Int
-    let updatedAt: String
-    // let userId: Int
-    let billingAddress: BillingAddress
-    let customer: Customer
-    let lineItems: [LineItems]
-    let shippingAddress: BillingAddress
+    let adminGraphqlApiId: String?
+    let appId: Int?
+    let buyerAcceptsMarketing: Bool?
+    let confirmed: Bool?
+    let contactEmail: String?
+    let createdAt: String?
+    let currency: String?
+    let currentSubtotalPrice: String?
+    let currentSubtotalPriceSet: TotalPriceSet?
+    let currentTotalDiscounts: String?
+    let currentTotalDiscountsSet: TotalPriceSet?
+    let currentTotalPrice: String?
+    let currentTotalPriceSet: TotalPriceSet?
+    let currentTotalTax: String?
+    let currentTotalTaxSet: TotalPriceSet?
+    //   let discountCodes: [Any]?
+    let email: String?
+    let estimatedTaxes: Bool?
+    let financialStatus: String?
+    let name: String?
+    let number: Int?
+    let orderNumber: Int?
+    let orderStatusUrl: String?
+    // let phone: String?
+    let presentmentCurrency: String?
+    let processedAt: String?
+    let sourceName: String?
+    let subtotalPrice: String?
+    let subtotalPriceSet: TotalPriceSet?
+    let tags: String?
+    let taxesIncluded: Bool?
+    let test: Bool?
+    let token: String?
+    let totalDiscounts: String?
+    let totalDiscountsSet: TotalPriceSet?
+    let totalLineItemsPrice: String?
+    let totalLineItemsPriceSet: TotalPriceSet?
+    let totalOutstanding: String?
+    let totalPrice: String?
+    let totalPriceSet: TotalPriceSet?
+    let totalShippingPriceSet: TotalPriceSet?
+    let totalTax: String?
+    let totalTaxSet: TotalPriceSet?
+    let totalTipReceived: String?
+    let totalWeight: Int?
+    let updatedAt: String?
+    // let userId: Int?
+    let billingAddress: BillingAddress?
+    let customer: Customer?
+    let lineItems: [LineItems]?
+    let shippingAddress: BillingAddress?
     
     
     private enum CodingKeys: String, CodingKey {

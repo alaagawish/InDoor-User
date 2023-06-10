@@ -52,7 +52,6 @@
 		616BCF052A3517F10021BDD9 /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 616BCF032A3517F10021BDD9 /* OrderTableViewCell.xib */; };
 		616BCF072A351BC50021BDD9 /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616BCF062A351BC50021BDD9 /* Orders.swift */; };
 		616BCF0B2A351D510021BDD9 /* ShopMoney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616BCF0A2A351D510021BDD9 /* ShopMoney.swift */; };
-		616BCF0D2A351D7E0021BDD9 /* PresentmentMoney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616BCF0C2A351D7E0021BDD9 /* PresentmentMoney.swift */; };
 		616BCF192A351DE90021BDD9 /* TotalPriceSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616BCF182A351DE90021BDD9 /* TotalPriceSet.swift */; };
 		616BCF1B2A351E7A0021BDD9 /* BillingAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616BCF1A2A351E7A0021BDD9 /* BillingAddress.swift */; };
 		616BCF1D2A351E950021BDD9 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616BCF1C2A351E950021BDD9 /* Customer.swift */; };
@@ -149,7 +148,6 @@
 		616BCF032A3517F10021BDD9 /* OrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
 		616BCF062A351BC50021BDD9 /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
 		616BCF0A2A351D510021BDD9 /* ShopMoney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopMoney.swift; sourceTree = "<group>"; };
-		616BCF0C2A351D7E0021BDD9 /* PresentmentMoney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentmentMoney.swift; sourceTree = "<group>"; };
 		616BCF182A351DE90021BDD9 /* TotalPriceSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalPriceSet.swift; sourceTree = "<group>"; };
 		616BCF1A2A351E7A0021BDD9 /* BillingAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingAddress.swift; sourceTree = "<group>"; };
 		616BCF1C2A351E950021BDD9 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
@@ -345,7 +343,6 @@
 		614798BB2A2B772D009CCD30 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				614798B82A2B755B009CCD30 /* Home.storyboard */,
 				61FD1DD32A2B9755008B938D /* HomeViewController.swift */,
 				61FD1DD72A2BA98A008B938D /* MainTabBarController.swift */,
 				61FD1DDD2A2BCA29008B938D /* BrandCollectionViewCell.swift */,
@@ -509,12 +506,12 @@
 		61E516362A2923D5004DAA1D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6168AA402A2BE87B00A8E33C /* Response.swift */,
 				6168AA312A2BE0A700A8E33C /* Options.swift */,
 				0481448C2A33220D00F495E9 /* Currency.swift */,
 				044EB33B2A333958002A74F3 /* Rates.swift */,
 				048C56582A323A100016AE06 /* LocalProduct.swift */,
 				6168AA3E2A2BE50300A8E33C /* Rules.swift */,
-				6168AA402A2BE87B00A8E33C /* Response.swift */,
 				6168AA352A2BE0D400A8E33C /* Image.swift */,
 				6168AA3C2A2BE4EA00A8E33C /* SmartCollections.swift */,
 				6168AA2F2A2BE07A00A8E33C /* Variants.swift */,
@@ -522,7 +519,6 @@
 				6106CDD72A3365FB00627234 /* CustomCollections.swift */,
 				616BCF062A351BC50021BDD9 /* Orders.swift */,
 				616BCF0A2A351D510021BDD9 /* ShopMoney.swift */,
-				616BCF0C2A351D7E0021BDD9 /* PresentmentMoney.swift */,
 				616BCF182A351DE90021BDD9 /* TotalPriceSet.swift */,
 				616BCF1A2A351E7A0021BDD9 /* BillingAddress.swift */,
 				616BCF1C2A351E950021BDD9 /* Customer.swift */,
@@ -550,6 +546,7 @@
 		61E5163B2A2923F3004DAA1D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				614798B82A2B755B009CCD30 /* Home.storyboard */,
 				61E516092A2922EA004DAA1D /* Main.storyboard */,
 				61E5163C2A2923FF004DAA1D /* Alerts.swift */,
 			);
@@ -853,7 +850,6 @@
 				616BCF072A351BC50021BDD9 /* Orders.swift in Sources */,
 				048344CC2A2CC70600D1B793 /* ConnectToUsViewController.swift in Sources */,
 				048344CE2A2CD2C800D1B793 /* AddressTableViewCell.swift in Sources */,
-				616BCF0D2A351D7E0021BDD9 /* PresentmentMoney.swift in Sources */,
 				048344CA2A2CC6E300D1B793 /* CurrencyViewController.swift in Sources */,
 				04E46E672A30D931002DB72B /* CurrencyTableViewCell.swift in Sources */,
 				61E5163D2A2923FF004DAA1D /* Alerts.swift in Sources */,

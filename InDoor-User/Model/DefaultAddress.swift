@@ -9,22 +9,22 @@ import Foundation
 struct DefaultAddress: Codable {
     
     let id: Int
-    let customerId: Int
-    let firstName: String
-    let lastName: String
-    let company: String
-    let address1: String
-    let address2: String
-    let city: String
-    // let province: Any
-    let country: String
-    let zip: String
-    let phone: String
-    let name: String
-    //   let provinceCode: Any
-    let countryCode: String
-    let countryName: String
-    let defaultField: Bool
+    let customerId: Int?
+    let firstName: String?
+    let lastName: String?
+    let company: String?
+    let address1: String?
+    let address2: String?
+    let city: String?
+    // let province: Any?
+    let country: String?
+    let zip: String?
+    let phone: String?
+    let name: String?
+    //   let provinceCode: Any?
+    let countryCode: String?
+    let countryName: String?
+    let defaultField: Bool?
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"

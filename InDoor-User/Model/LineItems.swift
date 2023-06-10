@@ -8,30 +8,30 @@
 import Foundation
 
 struct LineItems: Codable {
-
+    
     let id: Int
-    let adminGraphqlApiId: String
-    let fulfillableQuantity: Int
-    let fulfillmentService: String
-    let giftCard: Bool
-    let grams: Int
-    let name: String
-    let price: String
-    let priceSet: TotalPriceSet
-    let productExists: Bool
-    let productId: Int
-    let quantity: Int
-    let requiresShipping: Bool
-    let sku: String
-    let taxable: Bool
-    let title: String
-    let totalDiscount: String
-    let totalDiscountSet: TotalPriceSet
-    let variantId: Int
-    let variantInventoryManagement: String
-    let variantTitle: String
-    let vendor: String
-
+    let adminGraphqlApiId: String?
+    let fulfillableQuantity: Int?
+    let fulfillmentService: String?
+    let giftCard: Bool?
+    let grams: Int?
+    let name: String?
+    let price: String?
+    let priceSet: TotalPriceSet?
+    let productExists: Bool?
+    let productId: Int?
+    let quantity: Int?
+    let requiresShipping: Bool?
+    let sku: String?
+    let taxable: Bool?
+    let title: String?
+    let totalDiscount: String?
+    let totalDiscountSet: TotalPriceSet?
+    let variantId: Int?
+    let variantInventoryManagement: String?
+    let variantTitle: String?
+    let vendor: String?
+    
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case adminGraphqlApiId = "admin_graphql_api_id"
@@ -56,5 +56,5 @@ struct LineItems: Codable {
         case variantTitle = "variant_title"
         case vendor = "vendor"
     }
-
+    
 }
