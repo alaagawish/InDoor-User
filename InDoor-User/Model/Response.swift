@@ -14,6 +14,7 @@ struct Response: Codable {
     let currencies: [Currency]?
     let base: String?
     let rates: Rates?
+    let orders: [Orders]
 
     private enum CodingKeys: String, CodingKey {
         case smartCollections = "smart_collections"
@@ -22,6 +23,7 @@ struct Response: Codable {
         case rates = "rates"
         case product = "product"
         case products = "products"
+        case orders = "orders"
         case customCollections = "custom_collections"
     }
 }

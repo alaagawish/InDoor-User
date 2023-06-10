@@ -44,6 +44,7 @@ class Constants {
     static let settingsStoryboard = "Settings"
     static let settingsStoryboardID = "settings"
     static let ordersStoryboardID = "orders"
+    static let orderCellIdentifier = "orderCell"
     
     
 }
