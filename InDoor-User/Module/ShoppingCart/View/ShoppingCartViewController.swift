@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ShoppingCartViewController: UIViewController {
+class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var shoppingCartTabelView: UITableView!
     @IBOutlet weak var proceedToCheckoutButton: UIButton!
@@ -19,6 +19,7 @@ class ShoppingCartViewController: UIViewController {
         super.viewDidLoad()
         setShoppingCartCellNibFile()
         setupUI()
+        couponTextField.delegate = self
     }
     
     func setShoppingCartCellNibFile(){
@@ -29,6 +30,18 @@ class ShoppingCartViewController: UIViewController {
     func setupUI(){
         proceedToCheckoutButton.layer.cornerRadius = 12
         applyCouponButton.layer.cornerRadius = 12
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == couponTextField {
+            view.endEditing(true)
+        }
+        
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     @IBAction func backButton(_ sender: UIButton) {

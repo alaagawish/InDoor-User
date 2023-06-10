@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddAddressViewController: UIViewController {
+class AddAddressViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -21,6 +21,7 @@ class AddAddressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupDelegation()
     }
     
     func setupUI(){
@@ -39,6 +40,46 @@ class AddAddressViewController: UIViewController {
         uiView.layer.borderWidth = 1.0
         uiView.layer.borderColor = UIColor.black.cgColor
         uiView.layer.masksToBounds = true
+    }
+    
+    func setupDelegation(){
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        phoneTextField.delegate = self
+        cityTextField.delegate = self
+        zipCodeTextField.delegate = self
+        addressLine1TextField.delegate = self
+        addressLine2TextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == firstNameTextField{
+            lastNameTextField.becomeFirstResponder()
+        }
+        else if textField == lastNameTextField{
+            phoneTextField.becomeFirstResponder()
+        }
+        else if textField == phoneTextField{
+            cityTextField.becomeFirstResponder()
+        }
+        else if textField == cityTextField{
+            zipCodeTextField.becomeFirstResponder()
+        }
+        else if textField == zipCodeTextField{
+            addressLine1TextField.becomeFirstResponder()
+        }
+        else if textField == addressLine1TextField{
+            addressLine2TextField.becomeFirstResponder()
+        }
+        else{
+            view.endEditing(true)
+        }
+        
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     @IBAction func backButton(_ sender: UIButton) {
