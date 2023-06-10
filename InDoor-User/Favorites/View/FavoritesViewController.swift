@@ -54,7 +54,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
                 self?.checkIfThereAreFavoriteRecipes(allProductsList: (self?.favoritesViewModel.allProductsList)!)
             }
             self.present(alert, animated: true)
-           
+            
         }
     }
 }

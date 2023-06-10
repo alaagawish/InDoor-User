@@ -46,7 +46,7 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
             self.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
         }
     }
-
+    
     @IBAction func checkFavouriteProduct(_ sender: Any) {
         
         if favouriteButton.currentImage == UIImage(systemName: Constants.heart) {
