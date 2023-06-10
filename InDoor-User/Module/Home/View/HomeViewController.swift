@@ -123,8 +123,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func navigateToFavoritesScreen(_ sender: UIBarButtonItem) {
-        let storyboard = UIStoryboard(name: "FavoritesStoryBoard", bundle: nil)
-        let favoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: "FavoritesStoryBoard") as! FavoritesViewController
+        let storyboard = UIStoryboard(name: Constants.favoritesStoryboardName, bundle: nil)
+        let favoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.favoritesStoryboardName) as! FavoritesViewController
         favoritesStoryBoard.modalPresentationStyle = .fullScreen
         present(favoritesStoryBoard, animated: true)
     }

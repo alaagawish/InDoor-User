@@ -21,5 +21,6 @@ class Constants {
     static let favoritesNibName = "FavoritesCell"
     static let favoritesCellIdentifier = "favoriteCell"
     static let favoritesCellHeight = 145.0
+    static let favoritesStoryboardName = "FavoritesStoryBoard"
     
 }
