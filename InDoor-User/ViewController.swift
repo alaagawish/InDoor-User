@@ -15,13 +15,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func navigate(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let recipeDetails = storyboard.instantiateViewController(withIdentifier: "tabbar") as! MainTabBarController
-        recipeDetails.modalPresentationStyle = .fullScreen
-        
-        
-        
-        present(recipeDetails, animated: true)
+        let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
+        let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
+        home.modalPresentationStyle = .fullScreen
+        present(home, animated: true)
     }
 //    @IBAction func navigateToFav(_ sender: UIButton) {
 //        let storyboard = UIStoryboard(name: "FavoritesStoryBoard", bundle: nil)
