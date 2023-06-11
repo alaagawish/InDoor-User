@@ -38,5 +38,37 @@ class Network: NetworkProtocol{
             }
         }
     }
+    
+    func registerUser(parameters: Parameters ,handler: @escaping (Int) -> Void) {
+        
+        let headers: HTTPHeaders = [
+            "X-Shopify-Access-Token": "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"
+        ]
+        
+        AF.request("https://mad43-sv-ios1.myshopify.com/admin/api/2023-04/customers.json",method: .post,parameters: parameters, headers: headers).responseDecodable(of: Int.self) { response in
+            switch response.result {
+                case .success(let data):
+                    handler(data)
+                case .failure(let error):
+                    print("Error: \(error)")
+            }
+        }
+    }
+    
+//    func getUser(parameters: Parameters ,handler: @escaping (Int) -> Void) {
+//        
+//        let headers: HTTPHeaders = [
+//            "X-Shopify-Access-Token": "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"
+//        ]
+//        
+//        AF.request("https://mad43-sv-ios1.myshopify.com/admin/api/2023-04/customers.json",method: .get,parameters: parameters, headers: headers).responseDecodable(of: Int.self) { response in
+//            switch response.result {
+//                case .success(let data):
+//                    handler(data)
+//                case .failure(let error):
+//                    print("Error: \(error)")
+//            }
+//        }
+//    }
 
 }
