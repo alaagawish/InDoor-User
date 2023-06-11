@@ -41,6 +41,10 @@ class Constants {
     static let aboutInDoorIdentifier = "aboutInDoor"
     static let addAddressIdentifier = "addAddress"
     static let cartStoryboard = "Cart"
+    static let homeStoryboardName = "Home"
+    static let homeIdentifier = "tabbar"
+    static let signUpIdentifier = "signup"
+    static let loginIdentifier = "login"
     
     
 }
