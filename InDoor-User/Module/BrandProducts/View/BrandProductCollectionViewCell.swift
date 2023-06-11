@@ -14,10 +14,11 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet weak var productTitle: UILabel!
     @IBOutlet weak var productImage: UIImageView!
-    var viewController: BrandViewController?
+    var view: String = ""
+    var viewController: UIViewController?
     var product:Product!
     var categoryViewController: CategoryViewController?
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -36,8 +37,14 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .white
         
     }
-    func setValues(product:Product, isFav: Bool, viewController: BrandViewController ) {
-        self.viewController = viewController
+    func setValues(product:Product, isFav: Bool, viewController: UIViewController, view: String ) {
+        if view == Constants.brand {
+            self.view = view
+            self.viewController = viewController as! BrandViewController
+        }else {
+            self.view = view
+            self.viewController = viewController as! CategoryViewController
+        }
         self.product = product
         self.productTitle.text = Splitter().splitName(text: product.title ?? "", delimiter: "|")
         self.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""),
@@ -51,40 +58,56 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
             self.price.text = "\(product.variants![0].price)"
         }
     }
-
-    func setValuess(product: Product, isFav: Bool, viewController: CategoryViewController ){
-        self.categoryViewController = viewController
-        self.productTitle.text = Splitter().splitName(text: product.title ?? "", delimiter: "|")
-        self.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""),
-                                      placeholder: UIImage(named: Constants.noImage))
-        if product.variants?.count ?? 0 > 0{
-            self.price.text = "\(product.variants![0].price)"
-        }
-        if isFav{
-            self.favouriteButton.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
-        }else{
-            self.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
-        }
-        
-    }
-
+    
+    //    func setValuess(product: Product, isFav: Bool, viewController: CategoryViewController ){
+    //        self.categoryViewController = viewController
+    //        self.productTitle.text = Splitter().splitName(text: product.title ?? "", delimiter: "|")
+    //        self.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""),
+    //                                      placeholder: UIImage(named: Constants.noImage))
+    //        if product.variants?.count ?? 0 > 0{
+    //            self.price.text = "\(product.variants![0].price)"
+    //        }
+    //        if isFav{
+    //            self.favouriteButton.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
+    //        }else{
+    //            self.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
+    //        }
+    //
+    //    }
+    //
     
     @IBAction func checkFavouriteProduct(_ sender: Any) {
         
         if favouriteButton.currentImage == UIImage(systemName: Constants.heart) {
             let localProduct = LocalProduct(id: product.id, title: product.title ?? "", status: product.status ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
-            viewController?.favoritesViewModel.addProduct(product: localProduct)
-            favouriteButton.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
-
-        } else {
-            let retrievedProduct = self.viewController?.favoritesViewModel.getProduct(productId: self.product.id )
-            let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) { [weak self] action in
-                self?.viewController?.favoritesViewModel.removeProduct(product: retrievedProduct!)
-                self?.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
+            if self.view == Constants.brand {
+                ( viewController as! BrandViewController).favoritesViewModel.addProduct(product: localProduct)
+            }else {
+                ( viewController as! CategoryViewController).favoritesViewModel.addProduct(product: localProduct)
             }
-            viewController?.present(alert, animated: true, completion: nil)
-
+            favouriteButton.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
+            
+        } else {
+            if self.view == Constants.brand {
+                let retrievedProduct = ( self.viewController as! BrandViewController).favoritesViewModel.getProduct(productId: self.product.id )
+                
+                let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) { [weak self] action in
+                    ( self?.viewController as! BrandViewController).favoritesViewModel.removeProduct(product: retrievedProduct)
+                    self?.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
+                }
+                viewController?.present(alert, animated: true, completion: nil)
+            }else {
+                let retrievedProduct = ( self.viewController as! CategoryViewController).favoritesViewModel.getProduct(productId: self.product.id )
+                
+                let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) { [weak self] action in
+                    ( self?.viewController as! CategoryViewController).favoritesViewModel.removeProduct(product: retrievedProduct)
+                    self?.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
+                }
+                viewController?.present(alert, animated: true, completion: nil)
+            }
         }
+        
+        
     }
     
     override var frame: CGRect {

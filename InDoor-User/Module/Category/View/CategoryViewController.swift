@@ -24,11 +24,13 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
         }
     }
+    var favoritesViewModel: FavoritesViewModel!
     var categoryViewModel: CategoryViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryViewModel = CategoryViewModel(netWorkingDataSource: Network())
         productsCollectionView.register(UINib(nibName: Constants.brandProductCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.brandProduct)
+        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance)
         callingData()
         
     }
@@ -74,7 +76,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.brandProduct, for: indexPath) as! BrandProductCollectionViewCell
         
-        cell.setValuess(product: products[indexPath.row], isFav: true, viewController: self)
+        cell.setValues(product: products[indexPath.row], isFav: favoritesViewModel.checkIfProductIsFavorite(productId: products[indexPath.row].id), viewController: self, view: Constants.category)
         return cell
     }
     
@@ -110,7 +112,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         products = []
         currentProducts = []
         categoryViewModel.getItems(id: Constants.saleID)
-    
+        
         allProducts(allproducts!)
     }
     

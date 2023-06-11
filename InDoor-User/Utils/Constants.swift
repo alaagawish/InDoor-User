@@ -49,6 +49,7 @@ class Constants {
     static let orderCellIdentifier = "orderCell"
     static let orderNibFile = "OrderTableViewCell"
     static let getOrdersPath = "orders.json?status=any"
-    
+    static let brand = "brand"
+    static let category = "category"
     
 }
