@@ -150,7 +150,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqv-mB-7gM">
-                                <rect key="frame" x="0.0" y="86.666666666666671" width="393" height="44.000000000000014"/>
+                                <rect key="frame" x="0.0" y="94.666666666666671" width="393" height="44.000000000000014"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <barButtonItem style="plain" id="lJh-yl-cxn">
@@ -158,9 +158,6 @@
                                             <rect key="frame" x="16" y="0.0" width="361" height="44"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="WSL-u9-4Hj" id="JmP-1F-see"/>
-                                            </connections>
                                         </searchBar>
                                     </barButtonItem>
                                 </items>
@@ -168,7 +165,7 @@
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cMf-6u-ccq">
-                                <rect key="frame" x="0.0" y="138.66666666666669" width="393" height="679.33333333333326"/>
+                                <rect key="frame" x="0.0" y="146.66666666666669" width="393" height="671.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Cmm-CY-S9H">
                                     <size key="itemSize" width="128" height="128"/>
@@ -207,7 +204,7 @@
                             <constraint firstItem="ieg-dO-A5r" firstAttribute="centerX" secondItem="8Oq-e1-L7W" secondAttribute="centerX" id="HTV-qj-KaN"/>
                             <constraint firstItem="ieg-dO-A5r" firstAttribute="top" secondItem="Rxf-Jy-OJL" secondAttribute="top" id="IVb-o1-GJ0"/>
                             <constraint firstItem="lqv-mB-7gM" firstAttribute="width" secondItem="8Oq-e1-L7W" secondAttribute="width" id="Q1I-Ax-Gf3"/>
-                            <constraint firstItem="lqv-mB-7gM" firstAttribute="top" secondItem="gzp-lw-1iu" secondAttribute="bottom" id="Qyi-F9-eEP"/>
+                            <constraint firstItem="lqv-mB-7gM" firstAttribute="top" secondItem="gzp-lw-1iu" secondAttribute="bottom" constant="8" id="Qyi-F9-eEP"/>
                             <constraint firstItem="gzp-lw-1iu" firstAttribute="leading" secondItem="Rxf-Jy-OJL" secondAttribute="leading" constant="16" id="Yew-G0-Ezz"/>
                             <constraint firstItem="Rxf-Jy-OJL" firstAttribute="trailing" secondItem="cMf-6u-ccq" secondAttribute="trailing" id="ZE0-S8-RDP"/>
                             <constraint firstItem="gzp-lw-1iu" firstAttribute="top" secondItem="Rxf-Jy-OJL" secondAttribute="top" id="e7T-Ip-1dP"/>
@@ -219,6 +216,7 @@
                     </view>
                     <connections>
                         <outlet property="productsCollectionView" destination="cMf-6u-ccq" id="PZP-cH-DgA"/>
+                        <outlet property="searchBar" destination="zs7-g5-kUT" id="ASf-P1-5zd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSB-01-ZNH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
