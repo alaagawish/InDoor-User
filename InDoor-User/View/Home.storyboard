@@ -355,10 +355,10 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4f-CZ-5GO">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4f-CZ-5GO">
                                         <rect key="frame" x="259" y="278.66666666666663" width="118" height="34.333333333333314"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Seel All"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="See All"/>
                                         <connections>
                                             <action selector="seeAllWishlist:" destination="2uB-ev-aaP" eventType="touchUpInside" id="LiW-d5-Q2L"/>
                                         </connections>
@@ -369,7 +369,7 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3D2-1f-1RP">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3D2-1f-1RP">
                                         <rect key="frame" x="259" y="34.333333333333329" width="118" height="34.333333333333329"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="See All"/>
@@ -625,7 +625,7 @@
                                 </connections>
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djB-Em-8Pt">
-                                <rect key="frame" x="0.0" y="76" width="393" height="44"/>
+                                <rect key="frame" x="0.0" y="76.666666666666671" width="393" height="44"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jgM-GU-bPe"/>

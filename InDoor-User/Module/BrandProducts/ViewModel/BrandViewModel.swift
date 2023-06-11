@@ -34,11 +34,8 @@ class BrandViewModel{
                     print(product)
                     self?.result.append(product)
                 }
-//                if i == response?.products?.count {
-//                    self?.result = response?.products ?? []
-//                }
             }
-          
+            
         }
     }
     func getPrice(i: Product, completionHandler: @escaping (Product) -> Void){

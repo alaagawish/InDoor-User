@@ -51,8 +51,8 @@ class OrderTableViewCell: UITableViewCell {
         self.orderNumber.text = order.name
         self.itemsNumber.text = "\(order.lineItems?.count ?? 1)"
         self.totalPrice.text = order.totalPrice
-        self.shippingAddress.text = collect(address:[ "\(order.shippingAddress?.firstName ?? "") \(order.shippingAddress?.lastName ?? "")","\(order.shippingAddress?.address1 ?? "")","\(order.shippingAddress?.city ?? "")","\(order.shippingAddress?.country ?? "")","\(order.shippingAddress?.phone ?? "")"])
-        self.billingAddress.text = collect(address:[ "\(order.billingAddress?.firstName ?? "") \(order.billingAddress?.lastName ??    "")","\(order.billingAddress?.address1 ?? "")","\(order.billingAddress?.city ?? "")","\(order.billingAddress?.country ?? "")","\(order.billingAddress?.phone ?? "")"])
+        self.shippingAddress.text = collect(address:[ "\(order.shippingAddress?.firstName ?? "") \(order.shippingAddress?.lastName ?? "")","\(order.shippingAddress?.address1 ?? "")","\(order.shippingAddress?.city ?? "")"])
+        self.billingAddress.text = collect(address:[ "\(order.billingAddress?.firstName ?? "") \(order.billingAddress?.lastName ??    "")","\(order.billingAddress?.address1 ?? "")","\(order.billingAddress?.city ?? "")"])
         self.items.text = collect(items: order.lineItems ?? [])
         self.status.text = order.financialStatus
         
