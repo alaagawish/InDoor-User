@@ -26,6 +26,10 @@
 		048C56592A323A100016AE06 /* LocalProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C56582A323A100016AE06 /* LocalProduct.swift */; };
 		048C565B2A3241CA0016AE06 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C565A2A3241CA0016AE06 /* FavoritesViewModel.swift */; };
 		04935FB32A2D25C90093A73E /* AboutInDoorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04935FB22A2D25C90093A73E /* AboutInDoorViewController.swift */; };
+		049953642A363C39000C6146 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953632A363C39000C6146 /* User.swift */; };
+		049953662A363C4B000C6146 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953652A363C4B000C6146 /* Address.swift */; };
+		0499536A2A367E98000C6146 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953692A367E98000C6146 /* LoginViewModel.swift */; };
+		049C383A2A35FCC100639C7B /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38392A35FCC100639C7B /* SignUpViewModel.swift */; };
 		049D4B6E2A34971300A9386F /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D4B6D2A34971300A9386F /* DatabaseService.swift */; };
 		04A1567F2A2D178000189909 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A1567D2A2D178000189909 /* FavoritesCell.swift */; };
 		04A156802A2D178000189909 /* FavoritesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A1567E2A2D178000189909 /* FavoritesCell.xib */; };
@@ -111,6 +115,10 @@
 		048C56582A323A100016AE06 /* LocalProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalProduct.swift; path = "InDoor-User/Model/LocalProduct.swift"; sourceTree = SOURCE_ROOT; };
 		048C565A2A3241CA0016AE06 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		04935FB22A2D25C90093A73E /* AboutInDoorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutInDoorViewController.swift; sourceTree = "<group>"; };
+		049953632A363C39000C6146 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		049953652A363C4B000C6146 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		049953692A367E98000C6146 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		049C38392A35FCC100639C7B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		049D4B6D2A34971300A9386F /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		04A1567D2A2D178000189909 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 		04A1567E2A2D178000189909 /* FavoritesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesCell.xib; sourceTree = "<group>"; };
@@ -275,6 +283,7 @@
 		04A8AB7A2A351A5100E80636 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				049C38392A35FCC100639C7B /* SignUpViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -331,6 +340,7 @@
 		04A8AB852A3538B700E80636 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				049953692A367E98000C6146 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -521,6 +531,8 @@
 				6168AA2F2A2BE07A00A8E33C /* Variants.swift */,
 				6168AA2D2A2BE05B00A8E33C /* Product.swift */,
 				6106CDD72A3365FB00627234 /* CustomCollections.swift */,
+				049953632A363C39000C6146 /* User.swift */,
+				049953652A363C4B000C6146 /* Address.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -844,7 +856,9 @@
 				0455EA772A2CE9E30019C03C /* AddAddressViewController.swift in Sources */,
 				048344CC2A2CC70600D1B793 /* ConnectToUsViewController.swift in Sources */,
 				048344CE2A2CD2C800D1B793 /* AddressTableViewCell.swift in Sources */,
+				049C383A2A35FCC100639C7B /* SignUpViewModel.swift in Sources */,
 				048344CA2A2CC6E300D1B793 /* CurrencyViewController.swift in Sources */,
+				049953662A363C4B000C6146 /* Address.swift in Sources */,
 				04E46E672A30D931002DB72B /* CurrencyTableViewCell.swift in Sources */,
 				61E5163D2A2923FF004DAA1D /* Alerts.swift in Sources */,
 				047AC20F2A34A01200438F8C /* CurrencyViewModel.swift in Sources */,
@@ -863,6 +877,7 @@
 				044EB3452A338C83002A74F3 /* ShoppingCartTableViewCell.swift in Sources */,
 				04A8AB872A3538CA00E80636 /* LoginViewController.swift in Sources */,
 				044EB3422A3378B3002A74F3 /* ShoppingCartViewController.swift in Sources */,
+				0499536A2A367E98000C6146 /* LoginViewModel.swift in Sources */,
 				6168AA322A2BE0A700A8E33C /* Options.swift in Sources */,
 				61DDC2432A30E2460093A1DE /* BrandProductCollectionViewCell.swift in Sources */,
 				61E5160E2A2922EA004DAA1D /* InDoor_User.xcdatamodeld in Sources */,
@@ -887,6 +902,7 @@
 				6106CDD42A33339100627234 /* CategoryViewController.swift in Sources */,
 				04A1567F2A2D178000189909 /* FavoritesCell.swift in Sources */,
 				048C56572A3239EA0016AE06 /* DatabaseManager.swift in Sources */,
+				049953642A363C39000C6146 /* User.swift in Sources */,
 				048C56592A323A100016AE06 /* LocalProduct.swift in Sources */,
 				048C565B2A3241CA0016AE06 /* FavoritesViewModel.swift in Sources */,
 			);
