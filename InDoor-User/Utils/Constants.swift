@@ -17,6 +17,7 @@ class Constants {
     static let brandDetails = "brandDetails"
     static let brandProduct = "brandProduct"
     static let brandCell = "brandCell"
+    static let brandsNibFile = "BrandsCollectionViewCell"
     static let tShirt = "T-SHIRTS"
     static let shoes = "SHOES"
     static let accessories = "ACCESSORIES"

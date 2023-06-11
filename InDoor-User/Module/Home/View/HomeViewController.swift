@@ -26,7 +26,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         homeViewModel = HomeViewModel(netWorkingDataSource: Network())
-        
+        brandCollectionView.register(UINib(nibName: Constants.brandsNibFile, bundle: nil), forCellWithReuseIdentifier: Constants.brandCell)
         startSlider()
         callingData()
 
@@ -84,7 +84,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.brandCell, for: indexPath) as! BrandCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.brandCell, for: indexPath) as! BrandsCollectionViewCell
         
         cell.setValues(brandName: brands[indexPath.row].title ?? "", brandImage: brands[indexPath.row].image?.src ?? "")
         
@@ -107,19 +107,19 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width/2 - 10, height: UIScreen.main.bounds.height/4.5 )
+        return CGSize(width: UIScreen.main.bounds.width/2 - 15, height: UIScreen.main.bounds.height/4 - 15)
         
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 7
+        return 10
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 0.3
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        return UIEdgeInsets(top: 0, left: 5, bottom: 5, right: 5)
     }
-    
+
     @IBAction func navigateToFavoritesScreen(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: Constants.favoritesStoryboardName, bundle: nil)
         let favoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.favoritesStoryboardName) as! FavoritesViewController
