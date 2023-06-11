@@ -11,6 +11,9 @@ import RxCocoa
 
 class BrandViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var currentPrice: UILabel!
+    @IBOutlet weak var priceSlider: UISlider!
+    @IBOutlet weak var filterView: UIView!
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var productsCollectionView: UICollectionView!
@@ -18,6 +21,7 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
     var products: [Product] = []
     var orginList: [Product] = []
     var id: Int!
+    var filterFlag = false
     var favoritesViewModel: FavoritesViewModel!
     var searchQuery: BehaviorRelay<Product>!
     var disposeBag: DisposeBag!
@@ -30,6 +34,21 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         callingData()
         favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance)
         search()
+        filterView.translatesAutoresizingMaskIntoConstraints = false
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        priceSlider.isHidden = true
+        filterView.isHidden = true
+        if let heightConstraint = filterView.constraints.first(where: { $0.firstAttribute == .height }) {
+            heightConstraint.constant = 0
+        }
+        
+    }
+    func setSliderValues(){
+        
+        priceSlider.maximumValue = Float(orginList.max(by: { Double($0.variants?[0].price ?? "") ?? 0 < Double($1.variants?[0].price ?? "") ?? 0  })?.variants?[0].price ?? "0") ?? 0
+        priceSlider.minimumValue =  Float(orginList.min(by: { Double($0.variants?[0].price ?? "") ?? 0 < Double($1.variants?[0].price ?? "") ?? 0  })?.variants?[0].price ?? "0") ?? 0
     }
     func search() {
         searchBar.rx.text.subscribe{[weak self] text in
@@ -54,6 +73,7 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
             DispatchQueue.main.async {
                 self?.products = self?.brandViewModel.result ?? []
                 self?.orginList = self?.brandViewModel.result ?? []
+                self?.setSliderValues()
                 self?.productsCollectionView.reloadData()
                 self?.searchQuery = BehaviorRelay<Product>(value: (self?.products[0])!)
             }
@@ -89,4 +109,35 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBAction func back(_ sender: Any) {
         self.dismiss(animated: true)
     }
+    
+    @IBAction func startFilter(_ sender: Any) {
+        
+        if filterFlag {
+            priceSlider.isHidden = true
+            filterView.isHidden = true
+            if let heightConstraint = filterView.constraints.first(where: { $0.firstAttribute == .height }) {
+                heightConstraint.constant = 0
+            }
+            
+        }else {
+            priceSlider.isHidden = false
+            filterView.isHidden = false
+            if let heightConstraint = filterView.constraints.first(where: { $0.firstAttribute == .height }) {
+                heightConstraint.constant = UIScreen.main.bounds.height * 0.03
+            }
+        }
+        filterFlag = !filterFlag
+    }
+    func filter(){
+        products = orginList.filter{Float($0.variants?[0].price ?? "") ?? 0 <= priceSlider.value}
+        productsCollectionView.reloadData()
+    }
+    
+    
+    @IBAction func filterChanging(_ sender: Any) {
+        currentPrice.text = "price: \(Int(priceSlider.value))"
+        
+        filter()
+    }
+    
 }
