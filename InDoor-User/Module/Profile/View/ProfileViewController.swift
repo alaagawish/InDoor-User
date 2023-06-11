@@ -16,10 +16,29 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     @IBOutlet weak var orderTableView: UITableView!
     @IBOutlet weak var wishlistTableView: UITableView!
     
+    var orders: [Orders] = []
+    var products: [LocalProduct] = []
+    var profileViewModel: ProfileViewModel!
+    var favoritesViewModel: FavoritesViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        profileViewModel = ProfileViewModel(netWorkingDataSource: Network())
+        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance)
         self.orderTableView.register(UINib(nibName: Constants.orderNibFile, bundle: nil), forCellReuseIdentifier: Constants.orderCellIdentifier)
         self.wishlistTableView.register(UINib(nibName: Constants.favoritesNibName, bundle: nil), forCellReuseIdentifier: Constants.favoritesCellIdentifier)
+        callingData()
+        
+    }
+    
+    
+    func callingData(){
+        profileViewModel.bindOrdersToViewController = {[weak self] in
+            self?.orders = self?.profileViewModel.result ?? []
+            self?.orderTableView.reloadData()
+        }
+        profileViewModel.getOrders()
+        favoritesViewModel.getAllProducts()
         
         
     }
@@ -35,24 +54,38 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
             profileView.isHidden = true
             settingsItem.isHidden = true
         }
+        callingData()
+        wishlistTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if tableView == orderTableView{
+            if orders.count > 0 {
+                return 1
+            }
+        }else if tableView == wishlistTableView {
+            if favoritesViewModel.allProductsList.count > 0 {
+                
+                return 1
+            }
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == wishlistTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.favoritesCellIdentifier, for: indexPath) as! FavoritesCell
+            cell.setDataToTableCell(product: favoritesViewModel.allProductsList[indexPath.row])
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.orderCellIdentifier, for: indexPath) as! OrderTableViewCell
+            cell.setOrderValues(order: orders[indexPath.row])
             return cell
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == wishlistTableView {
-           return Constants.favoritesCellHeight
+            return Constants.favoritesCellHeight
         }else {
             return Constants.orderCellHeight
         }
@@ -62,7 +95,22 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         if tableView == wishlistTableView {
             return true
         }else {
-           return false
+            return false
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if tableView == wishlistTableView {
+            if(editingStyle == .delete){
+                let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) {[weak self] action in
+                    self?.favoritesViewModel.removeProduct(product: (self?.favoritesViewModel.allProductsList[indexPath.row])!)
+                    self?.favoritesViewModel.allProductsList.remove(at: indexPath.row)
+                    self?.wishlistTableView.reloadData()
+                    
+                }
+                self.present(alert, animated: true)
+                
+            }
         }
     }
     

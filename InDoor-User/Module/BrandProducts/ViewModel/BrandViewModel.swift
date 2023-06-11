@@ -27,7 +27,7 @@ class BrandViewModel{
     
     func getItems(id: Int){
         
-        let path = "collections/\(id)/products"
+        let path = "collections/\(id)/products.json"
         
         netWorkingDataSource.getData(path: path){ [weak self] (response : Response?) in
             

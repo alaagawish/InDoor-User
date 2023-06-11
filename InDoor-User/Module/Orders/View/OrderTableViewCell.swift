@@ -15,7 +15,7 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var totalPrice: UILabel!
     @IBOutlet weak var itemsNumber: UILabel!
     @IBOutlet weak var orderNumber: UILabel!
-    
+    @IBOutlet weak var status: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.shadowRadius = 5.0
@@ -27,6 +27,7 @@ class OrderTableViewCell: UITableViewCell {
         contentView.layer.masksToBounds = true
         backgroundColor = .clear
         contentView.backgroundColor = .white
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -53,6 +54,7 @@ class OrderTableViewCell: UITableViewCell {
         self.shippingAddress.text = collect(address:[ "\(order.shippingAddress?.firstName ?? "") \(order.shippingAddress?.lastName ?? "")","\(order.shippingAddress?.address1 ?? "")","\(order.shippingAddress?.city ?? "")","\(order.shippingAddress?.country ?? "")","\(order.shippingAddress?.phone ?? "")"])
         self.billingAddress.text = collect(address:[ "\(order.billingAddress?.firstName ?? "") \(order.billingAddress?.lastName ??    "")","\(order.billingAddress?.address1 ?? "")","\(order.billingAddress?.city ?? "")","\(order.billingAddress?.country ?? "")","\(order.billingAddress?.phone ?? "")"])
         self.items.text = collect(items: order.lineItems ?? [])
+        self.status.text = order.financialStatus
         
         
     }
@@ -67,7 +69,7 @@ class OrderTableViewCell: UITableViewCell {
     func collect(items: [LineItems]) -> String{
         var item = ""
         for i in items {
-            item += (i.name ?? "") + ", "
+            item += Splitter().splitName(text: (i.name ?? ""), delimiter: "| ") + ", "
         }
         return item
         
