@@ -47,6 +47,9 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
         } else {
             self.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
         }
+        if product.variants?.count ?? 0 > 0{
+            self.price.text = "\(product.variants![0].price)"
+        }
     }
 
     func setValuess(product: Product, isFav: Bool, viewController: CategoryViewController ){
