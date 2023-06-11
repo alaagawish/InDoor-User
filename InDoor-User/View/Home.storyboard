@@ -530,42 +530,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djB-Em-8Pt">
-                                <rect key="frame" x="0.0" y="76.666666666666671" width="393" height="44"/>
-                                <color key="backgroundColor" systemColor="labelColor"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="jgM-GU-bPe"/>
-                                    <barButtonItem title="WOMEN" id="UmI-FZ-jdJ">
-                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <action selector="womenProducts:" destination="bTV-LK-jel" id="Eg2-Mz-FXs"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="N8z-Bf-sBy"/>
-                                    <barButtonItem title="MEN" id="2re-OK-LFu">
-                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <action selector="menProducts:" destination="bTV-LK-jel" id="Dr3-ic-YVZ"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Wul-7k-yfC"/>
-                                    <barButtonItem title="KIDS" id="APh-X2-yDk">
-                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <action selector="kidsProducts:" destination="bTV-LK-jel" id="QLu-nD-PTs"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="iYj-6Z-5uj"/>
-                                    <barButtonItem title="SALE" id="S4b-jM-2P0">
-                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <action selector="saleProducts:" destination="bTV-LK-jel" id="NbD-zj-f4e"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="NIh-P8-jXU"/>
-                                </items>
-                                <color key="tintColor" red="1" green="0.84609584729999998" blue="0.25085485800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rY8-VE-xM1">
                                 <rect key="frame" x="0.0" y="120.66666666666669" width="393" height="44"/>
                                 <items>
@@ -612,6 +576,42 @@
                                     <outlet property="delegate" destination="bTV-LK-jel" id="kSW-b3-Uo8"/>
                                 </connections>
                             </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djB-Em-8Pt">
+                                <rect key="frame" x="0.0" y="76" width="393" height="44"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="jgM-GU-bPe"/>
+                                    <barButtonItem title="WOMEN" id="UmI-FZ-jdJ">
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="womenProducts:" destination="bTV-LK-jel" id="Eg2-Mz-FXs"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="N8z-Bf-sBy"/>
+                                    <barButtonItem title="MEN" id="2re-OK-LFu">
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="menProducts:" destination="bTV-LK-jel" id="Dr3-ic-YVZ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Wul-7k-yfC"/>
+                                    <barButtonItem title="KIDS" id="APh-X2-yDk">
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="kidsProducts:" destination="bTV-LK-jel" id="QLu-nD-PTs"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="iYj-6Z-5uj"/>
+                                    <barButtonItem title="SALE" id="S4b-jM-2P0">
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="saleProducts:" destination="bTV-LK-jel" id="NbD-zj-f4e"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="NIh-P8-jXU"/>
+                                </items>
+                                <color key="tintColor" red="1" green="0.84609584729999998" blue="0.25085485800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AVW-uJ-aWd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -652,9 +652,15 @@
                         <color key="badgeColor" systemColor="labelColor"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="accBarItem" destination="Zrw-UF-9pk" id="8N7-t1-2dI"/>
                         <outlet property="allproducts" destination="Rii-Kx-peJ" id="Xqs-KQ-t8y"/>
                         <outlet property="categoriesToolbar" destination="djB-Em-8Pt" id="Acr-WM-kcS"/>
+                        <outlet property="kidsBarItem" destination="APh-X2-yDk" id="Tk1-tv-qoe"/>
+                        <outlet property="menBarItem" destination="2re-OK-LFu" id="7KU-UG-rug"/>
                         <outlet property="productsCollectionView" destination="Qi1-Cx-Sz0" id="pix-Yh-9E7"/>
+                        <outlet property="saleBarItem" destination="S4b-jM-2P0" id="KFX-Ho-dHB"/>
+                        <outlet property="shirtBarItem" destination="b5p-ba-zh1" id="Saf-gC-jcj"/>
+                        <outlet property="shoesBarItem" destination="phC-Vr-tpF" id="ZQC-3A-dxL"/>
                         <outlet property="subCategoriesToolbar" destination="rY8-VE-xM1" id="LeG-j1-4mu"/>
                         <outlet property="womenBarItem" destination="UmI-FZ-jdJ" id="PXL-uw-OWb"/>
                     </connections>
