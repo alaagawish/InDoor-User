@@ -22,8 +22,8 @@ class LoginViewModel{
         self.service = service
     }
     
-    func getUser(){
-        service.getUser {[weak self] (users) in
+    func getUsers(){
+        service.getUsers {[weak self] (users) in
             self?.usersList = users
         }
     }
