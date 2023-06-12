@@ -178,8 +178,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postal Code*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1Q-fi-bDd">
-                                <rect key="frame" x="16" y="329.33333333333331" width="111" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1Q-fi-bDd">
+                                <rect key="frame" x="16" y="329.33333333333331" width="77" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -281,12 +281,12 @@
                         <outlet property="addressTextField" destination="ruI-cg-z3G" id="BO4-3B-rA5"/>
                         <outlet property="cityTextField" destination="z7C-t0-MfK" id="Q0V-9N-Xs4"/>
                         <outlet property="confirmPasswordTextField" destination="KMk-I0-J00" id="gUm-8a-UBv"/>
+                        <outlet property="countryTextField" destination="ur0-Qh-mUD" id="1nd-OU-61H"/>
                         <outlet property="emailTextField" destination="pVh-mx-Y7n" id="z5f-s7-7fl"/>
                         <outlet property="firstNameTextField" destination="VL4-P1-UtI" id="HDc-bx-vtf"/>
                         <outlet property="lastNameTextField" destination="RNn-Me-XOZ" id="ybZ-7S-zbc"/>
                         <outlet property="passwordTextField" destination="Xsh-t6-7Wd" id="00T-QP-sNJ"/>
                         <outlet property="phoneTextField" destination="CAd-zu-mr9" id="Mj4-fH-er8"/>
-                        <outlet property="postalCodeTextField" destination="ur0-Qh-mUD" id="fwM-gQ-Ezj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G1S-t1-xJA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
