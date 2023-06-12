@@ -63,6 +63,11 @@ class Constants {
     static let registeredSuccessfully = "Congrats, you registered successfully."
     static let checkEmailAndPassword = "Invalid data\nPlease, check your email and password."
     static let emailAndPasswordCannotBeEmpty = "Please, enter your email and your password."
+    static let customerId = "customer_id"
+    static let invalidPassword = "Please, Enter valid Password\nMinimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character"
+    static let congratulations = "Congratulations"
+    static let phoneUsedbefore = "This phone number is used before."
+    
     
     
     
