@@ -11,5 +11,5 @@ struct Address: Codable {
     let id: Int?
     let address1: String?
     let city: String?
-    let postalCode: String?
+    let country: String?
 }
