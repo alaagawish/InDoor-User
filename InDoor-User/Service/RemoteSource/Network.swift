@@ -39,7 +39,7 @@ class Network: NetworkProtocol{
         }
     }
     
-    func registerUser(parameters: Parameters,handler: @escaping (Response) -> Void) {
+    func registerUser(parameters: Parameters,handler: @escaping (Response?,Int?) -> Void) {
         
         let headers: HTTPHeaders = [
             "X-Shopify-Access-Token": "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",
@@ -50,35 +50,21 @@ class Network: NetworkProtocol{
             switch response.result {
                 case .success(let data):
                     do {
-                       guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-                           print("Error: Cannot convert data to JSON object")
-                           return
-                       }
-                       guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
-                           print("Error: Cannot convert JSON object to Pretty JSON data")
-                           return
-                       }
-                       guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
-                           print("Error: Could print JSON in String")
-                           return
-                       }
-               
-                       print(prettyPrintedJson)
-                        print("before decode")
                         let result = try JSONDecoder().decode(Response.self, from: data)
                         print("after decode \(result)")
-                        handler(result)
+                        handler(result,response.response?.statusCode)
                    } catch {
                        print("Error: Trying to convert JSON data to string")
                        return
                    }
                case .failure(let error):
-                   print(error)
+                print(error)
+                handler(nil,error.responseCode)
             }
         }
     }
     
-    func getUser(handler: @escaping ([User]?) -> Void) {
+    func getUsers(handler: @escaping ([User]?) -> Void) {
         
         let headers: HTTPHeaders = [
             "X-Shopify-Access-Token": "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"

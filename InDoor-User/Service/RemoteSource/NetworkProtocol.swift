@@ -13,7 +13,7 @@ protocol NetworkProtocol{
 
     func getEquivalentCurrency(handler: @escaping (Response?) -> Void)
 
-    func registerUser(parameters: Parameters,handler: @escaping (Response) -> Void)
+    func registerUser(parameters: Parameters,handler: @escaping (Response?,Int?) -> Void)
     
-    func getUser(handler: @escaping ([User]?) -> Void)
+    func getUsers(handler: @escaping ([User]?) -> Void)
 }
