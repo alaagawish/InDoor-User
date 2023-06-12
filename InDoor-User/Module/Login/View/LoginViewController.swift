@@ -13,7 +13,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     var loginViewModel: LoginViewModel!
     var found = false
-    
+    let defaults = UserDefaults.standard
+    var customerId: Int? = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -23,6 +24,7 @@ class LoginViewController: UIViewController {
                 for user in list {
                     if user.email == self?.emailTextField.text && user.tags == self?.passwordTextField.text {
                         self?.found = true
+                        self?.customerId = user.id
                         break
                     }
                 }
@@ -32,6 +34,7 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                         let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
                         let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
+                        self?.defaults.setValue(self?.customerId, forKey: Constants.customerId)
                         home.modalPresentationStyle = .fullScreen
                         self?.present(home, animated: true)
                 }
@@ -62,7 +65,7 @@ class LoginViewController: UIViewController {
             self.present(alert, animated: true)
         }
         else{
-            loginViewModel.getUser()
+            loginViewModel.getUsers()
         }
     }
     func setupUI(){
