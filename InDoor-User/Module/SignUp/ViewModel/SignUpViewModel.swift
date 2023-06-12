@@ -19,6 +19,7 @@ class SignUpViewModel{
             bindUserToSignUpController()
         }
     }
+    var code: Int?
     var usersList: [User]! = []{
         didSet{
             bindToUsersListSignUpController()
@@ -30,8 +31,9 @@ class SignUpViewModel{
     }
     
     func postUser(parameters: Parameters){
-        service.registerUser(parameters: parameters) { [weak self] (response) in
-            self?.user = response.customer
+        service.registerUser(parameters: parameters) { [weak self] (response,code) in
+            self?.user = response?.customer
+            self?.code = code
         }
     }
     
