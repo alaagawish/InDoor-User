@@ -9,6 +9,7 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
 
+    let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -16,6 +17,7 @@ class WelcomeViewController: UIViewController {
     @IBAction func navigateToHomeAsGuest(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
         let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
+        defaults.setValue(-1, forKey: Constants.customerId)
         home.modalPresentationStyle = .fullScreen
         present(home, animated: true)
 
