@@ -17,8 +17,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                       ImageSource(image: UIImage(named: "discount1")!),
                       ImageSource(image: UIImage(named: "discount2")!),
                       ImageSource(image: UIImage(named: "discount3")!)]
-
-
+    
+    
     var timer: Timer?
     var currentIndex = 0
     var brands:[SmartCollections] = []
@@ -26,10 +26,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         homeViewModel = HomeViewModel(netWorkingDataSource: Network())
-        
+        brandCollectionView.register(UINib(nibName: Constants.brandsNibFile, bundle: nil), forCellWithReuseIdentifier: Constants.brandCell)
         startSlider()
         callingData()
-
+        
     }
     
     func callingData(){
@@ -47,7 +47,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         couponsSlider.slideshowInterval = 2.5
         couponsSlider.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
         couponsSlider.isUserInteractionEnabled = true
-
+        
         couponsSlider.contentScaleMode = UIViewContentMode.scaleAspectFill
         let pageControl = UIPageControl()
         pageControl.currentPageIndicatorTintColor = UIColor.black
@@ -58,16 +58,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         couponsSlider.setImageInputs(promoCodes)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         couponsSlider.addGestureRecognizer(tapGesture)
-
+        
     }
-
+    
     @objc func imageTapped() {
         let tappedImageIndex = couponsSlider.currentPage
-
+        
         print("current page\(tappedImageIndex)")
-
+        
     }
-
+    
     func imageSlideshow(_ imageSlideshow: ImageSlideshow, didTapAt index: Int) {
         print(index)
         //        let currentImage = couponsSlider.currentSlideshowItem?.imageView.image
@@ -75,7 +75,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         //
         //        }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return brands.count
@@ -84,7 +84,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.brandCell, for: indexPath) as! BrandCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.brandCell, for: indexPath) as! BrandsCollectionViewCell
         
         cell.setValues(brandName: brands[indexPath.row].title ?? "", brandImage: brands[indexPath.row].image?.src ?? "")
         
@@ -107,17 +107,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width/2 - 10, height: UIScreen.main.bounds.height/4.5 )
+        return CGSize(width: UIScreen.main.bounds.width/2 - 15, height: UIScreen.main.bounds.height/4 - 15)
         
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 7
+        return 10
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 0.3
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        return UIEdgeInsets(top: 0, left: 5, bottom: 5, right: 5)
     }
     
     @IBAction func navigateToFavoritesScreen(_ sender: UIBarButtonItem) {
@@ -128,8 +128,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     @IBAction func moveToShoppingCart(_ sender: Any) {
         
-        let storyboard = UIStoryboard(name: Constants.cartStoryboard, bundle: nil)
-        let cartStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.cartIdentifier) as! ShoppingCartViewController
+        let storyboard = UIStoryboard(name: Constants.cartIdentifier, bundle: nil)
+        let cartStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.cartStoryboard) as! ShoppingCartViewController
         cartStoryboard.modalPresentationStyle = .fullScreen
         present(cartStoryboard, animated: true)
     }
