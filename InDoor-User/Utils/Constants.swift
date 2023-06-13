@@ -36,7 +36,7 @@ class Constants {
     static let nibFileName = "ShoppingCartTableViewCell"
     static let cartCellIdentifier = "cartCell"
     static let cartIdentifier = "cart"
-    static let currencyPath = "currencies"
+    static let currencyPath = "currencies.json"
     static let addressIdentifier = "address"
     static let currencyIdentifier = "currency"
     static let connectToUsIdentifier = "connectToUs"

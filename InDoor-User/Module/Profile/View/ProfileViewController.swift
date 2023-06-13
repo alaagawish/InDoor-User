@@ -60,12 +60,16 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == orderTableView{
-            if orders.count > 0 {
+            if orders.count > 1 {
+                return 2
+            }else if orders.count == 1 {
                 return 1
             }
         }else if tableView == wishlistTableView {
-            if favoritesViewModel.allProductsList.count > 0 {
+            if favoritesViewModel.allProductsList.count > 1 {
                 
+                return 2
+            }else if favoritesViewModel.allProductsList.count == 1 {
                 return 1
             }
         }
