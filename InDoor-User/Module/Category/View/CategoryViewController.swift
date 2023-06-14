@@ -8,6 +8,13 @@
 import UIKit
 
 class CategoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    @IBOutlet weak var saleBarItem: UIBarButtonItem!
+    @IBOutlet weak var accBarItem: UIBarButtonItem!
+    @IBOutlet weak var shoesBarItem: UIBarButtonItem!
+    @IBOutlet weak var shirtBarItem: UIBarButtonItem!
+    @IBOutlet weak var kidsBarItem: UIBarButtonItem!
+    @IBOutlet weak var menBarItem: UIBarButtonItem!
     @IBOutlet weak var allproducts: UIBarButtonItem!
     @IBOutlet weak var productsCollectionView: UICollectionView!
     @IBOutlet weak var subCategoriesToolbar: UIToolbar!
@@ -19,16 +26,20 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         didSet{
             if Array(Set(currentProducts)).count == products.count  && currentProducts.count != 0 {
                 products = currentProducts
+                disableToolbarItems(status: false)
                 productsCollectionView.reloadData()
                 
             }
         }
     }
+    var favoritesViewModel: FavoritesViewModel!
     var categoryViewModel: CategoryViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryViewModel = CategoryViewModel(netWorkingDataSource: Network())
         productsCollectionView.register(UINib(nibName: Constants.brandProductCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.brandProduct)
+        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance)
+        
         callingData()
         
     }
@@ -42,7 +53,6 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
                     self?.currentProducts.append(product)
                 })
             }
-            
         }
         
         categoryViewModel.getItems(id: Constants.womenID)
@@ -52,6 +62,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewWillAppear(_ animated: Bool) {
         womenProducts(womenBarItem!)
         allProducts(allproducts!)
+        disableToolbarItems(status: true)
     }
     
     func tintCurrentItem(_ sender: Any,_ id: Int) {
@@ -74,7 +85,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.brandProduct, for: indexPath) as! BrandProductCollectionViewCell
         
-        cell.setValuess(product: products[indexPath.row], isFav: true, viewController: self)
+        cell.setValues(product: products[indexPath.row], isFav: favoritesViewModel.checkIfProductIsFavorite(productId: products[indexPath.row].id), viewController: self, view: Constants.category)
         return cell
     }
     
@@ -84,6 +95,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         products = []
         currentProducts = []
         categoryViewModel.getItems(id: Constants.womenID)
+        disableToolbarItems(status: true)
         allProducts(allproducts!)
     }
     
@@ -91,6 +103,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         tintCurrentItem(sender,0)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
         products = []
+        disableToolbarItems(status: true)
         currentProducts = []
         categoryViewModel.getItems(id: Constants.menID)
         allProducts(allproducts!)
@@ -100,6 +113,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         tintCurrentItem(sender,0)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
         products = []
+        disableToolbarItems(status: true)
         currentProducts = []
         categoryViewModel.getItems(id: Constants.kidID)
         allProducts(allproducts!)
@@ -109,8 +123,9 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         (sender as! UIBarButtonItem).tintColor = UIColor.black
         products = []
         currentProducts = []
+        disableToolbarItems(status: true)
         categoryViewModel.getItems(id: Constants.saleID)
-    
+        
         allProducts(allproducts!)
     }
     
@@ -173,5 +188,30 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         cartStoryboard.modalPresentationStyle = .fullScreen
         present(cartStoryboard, animated: true)
         
+    }
+    func disableToolbarItems(status: Bool) {
+        
+        if status {
+            
+            womenBarItem.isEnabled = false
+            allproducts.isEnabled = false
+            menBarItem.isEnabled = false
+            kidsBarItem.isEnabled = false
+            accBarItem.isEnabled = false
+            saleBarItem.isEnabled = false
+            shoesBarItem.isEnabled = false
+            shirtBarItem.isEnabled = false
+            
+        }else {
+            womenBarItem.isEnabled = true
+            allproducts.isEnabled = true
+            menBarItem.isEnabled = true
+            kidsBarItem.isEnabled = true
+            accBarItem.isEnabled = true
+            saleBarItem.isEnabled = true
+            shoesBarItem.isEnabled = true
+            shirtBarItem.isEnabled = true
+            
+        }
     }
 }

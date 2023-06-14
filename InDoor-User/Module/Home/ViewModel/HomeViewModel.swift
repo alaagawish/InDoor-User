@@ -26,7 +26,7 @@ class HomeViewModel{
     
     func getItems(){
         let path = Constants.smartCollections
-        netWorkingDataSource.getData(path: path){ [weak self] (response : Response?) in
+        netWorkingDataSource.getData(path: path, parameters: [:]){ [weak self] (response : Response?) in
             self?.result = response?.smartCollections
         }
     }

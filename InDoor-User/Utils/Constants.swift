@@ -17,6 +17,7 @@ class Constants {
     static let brandDetails = "brandDetails"
     static let brandProduct = "brandProduct"
     static let brandCell = "brandCell"
+    static let brandsNibFile = "BrandsCollectionViewCell"
     static let tShirt = "T-SHIRTS"
     static let shoes = "SHOES"
     static let accessories = "ACCESSORIES"
@@ -29,6 +30,7 @@ class Constants {
     static let favoritesNibName = "FavoritesCell"
     static let favoritesCellIdentifier = "favoriteCell"
     static let favoritesCellHeight = 145.0
+    static let orderCellHeight = 200.0
     static let favoritesStoryboardName = "FavoritesStoryBoard"
     static let ok = "OK"
     static let nibFileName = "ShoppingCartTableViewCell"
@@ -68,8 +70,16 @@ class Constants {
     static let congratulations = "Congratulations"
     static let phoneUsedbefore = "This phone number is used before."
     static let productDetailsStoryboardName = "ProductDetailsStoryBoard"
-    
-    
-    
-    
+    static let settingsStoryboard = "Settings"
+    static let settingsStoryboardID = "settings"
+    static let ordersStoryboardID = "orders"
+    static let orderCellIdentifier = "orderCell"
+    static let orderNibFile = "OrderTableViewCell"
+    static let getOrdersPath = "orders"
+    static let brand = "brand"
+    static let category = "category"
+    static let mainStoryboard = "Main"
+    static let passwordFormat = "SELF MATCHES %@ "
+    static let passwordRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{8,}"
+    static let customersPath = "customers"
 }

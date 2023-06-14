@@ -66,7 +66,7 @@ class SignUpViewController: UIViewController {
                 let addresses = [Address(id: nil, address1: self?.addressTextField.text, city: self?.cityTextField.text, country: self?.countryTextField.text)]
                 let user = User(id: nil, firstName: self?.firstNameTextField.text, lastName: self?.lastNameTextField.text, email: self?.emailTextField.text, phone: self?.phoneTextField.text, addresses: addresses, tags: self?.passwordTextField.text)
                 
-                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil)
+                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, orders: nil)
                 let params = self?.encodeToJson(objectClass: response)
                 self?.signUpViewModel.postUser(parameters: params ?? [:])
             }
@@ -82,42 +82,42 @@ class SignUpViewController: UIViewController {
             let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.enterAllData, positiveButtonTitle: Constants.ok, positiveHandler: nil)
             self.present(alert, animated: true)
         }
-                else if(firstNameTextField.text == "") {
-                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.firstNameIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
-                    self.present(alert, animated: true)
-                }
-                else if(lastNameTextField.text == "") {
-                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.lastNameIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
-                    self.present(alert, animated: true)
-                }
-                else if(cityTextField.text == "") {
-                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.cityIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
-                    self.present(alert, animated: true)
-                }
-                else if(countryTextField.text == "") {
-                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.postalCodeIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
-                    self.present(alert, animated: true)
-                }
-                else if(addressTextField.text == "") {
-                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.addressIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
-                    self.present(alert, animated: true)
-                }
-                else if(phoneTextField.text == "") {
-                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.phoneIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
-                    self.present(alert, animated: true)
-                }
-                else if(emailTextField.text == "") {
-                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.emailIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
-                    self.present(alert, animated: true)
-                }
-                else if(passwordTextField.text == "") {
-                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.passwordIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
-                    self.present(alert, animated: true)
-                }
-                else if(confirmPasswordTextField.text == "") {
-                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.confirmPasswordIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
-                    self.present(alert, animated: true)
-                }
+        else if(firstNameTextField.text == "") {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.firstNameIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
+            self.present(alert, animated: true)
+        }
+        else if(lastNameTextField.text == "") {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.lastNameIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
+            self.present(alert, animated: true)
+        }
+        else if(cityTextField.text == "") {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.cityIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
+            self.present(alert, animated: true)
+        }
+        else if(countryTextField.text == "") {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.postalCodeIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
+            self.present(alert, animated: true)
+        }
+        else if(addressTextField.text == "") {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.addressIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
+            self.present(alert, animated: true)
+        }
+        else if(phoneTextField.text == "") {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.phoneIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
+            self.present(alert, animated: true)
+        }
+        else if(emailTextField.text == "") {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.emailIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
+            self.present(alert, animated: true)
+        }
+        else if(passwordTextField.text == "") {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.passwordIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
+            self.present(alert, animated: true)
+        }
+        else if(confirmPasswordTextField.text == "") {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.confirmPasswordIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
+            self.present(alert, animated: true)
+        }
         else{
             if(isValidPassword(password: passwordTextField.text ?? "") == false){
                 let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.invalidPassword, positiveButtonTitle: Constants.ok){_ in
@@ -176,7 +176,7 @@ class SignUpViewController: UIViewController {
     }
     
     func isValidPassword(password: String) -> Bool{
-        let passwordRegex = NSPredicate(format: "SELF MATCHES %@ ", "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{8,}")
+        let passwordRegex = NSPredicate(format: Constants.passwordFormat, Constants.passwordRegEx)
         return passwordRegex.evaluate(with: password)
     }
 }
