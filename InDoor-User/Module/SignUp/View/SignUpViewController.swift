@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -25,6 +25,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupDelegation()
         signUpViewModel = SignUpViewModel(service: Network())
         
         signUpViewModel.bindUserToSignUpController = { [weak self] in
@@ -178,5 +179,53 @@ class SignUpViewController: UIViewController {
     func isValidPassword(password: String) -> Bool{
         let passwordRegex = NSPredicate(format: Constants.passwordFormat, Constants.passwordRegEx)
         return passwordRegex.evaluate(with: password)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func setupDelegation(){
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        phoneTextField.delegate = self
+        cityTextField.delegate = self
+        countryTextField.delegate = self
+        addressTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == firstNameTextField{
+            lastNameTextField.becomeFirstResponder()
+        }
+        else if textField == lastNameTextField{
+            phoneTextField.becomeFirstResponder()
+        }
+        else if textField == phoneTextField{
+            cityTextField.becomeFirstResponder()
+        }
+        else if textField == cityTextField{
+            cityTextField.becomeFirstResponder()
+        }
+        else if textField == countryTextField{
+            countryTextField.becomeFirstResponder()
+        }
+        else if textField == addressTextField{
+            addressTextField.becomeFirstResponder()
+        }
+        else if textField == emailTextField{
+            emailTextField.becomeFirstResponder()
+        }
+        else if textField == passwordTextField{
+            passwordTextField.becomeFirstResponder()
+        }
+        else{
+            view.endEditing(true)
+        }
+        
+        return true
     }
 }
