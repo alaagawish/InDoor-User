@@ -11,7 +11,7 @@ class LoginViewModel{
     
     var service : NetworkProtocol!
     var bindToUsersListSignUpController:(()->Void) = {}
-
+    
     var usersList: [User]! = []{
         didSet{
             bindToUsersListSignUpController()
@@ -23,9 +23,11 @@ class LoginViewModel{
     }
     
     func getUsers(){
-        service.getUsers {[weak self] (users) in
-            self?.usersList = users
-        }
+        
+        service.getData(path: Constants.customersPath, parameters: [:], handler: { [weak self] response in
+            self?.usersList = response?.customers
+            
+        })
     }
     
 }

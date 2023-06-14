@@ -22,19 +22,14 @@ class ProfileViewModel {
         }
     }
     init(netWorkingDataSource: NetworkProtocol) {
-//        self.service = service
+        //        self.service = service
         self.netWorkingDataSource = netWorkingDataSource
     }
     
     func getOrders() {
-        netWorkingDataSource.getData(path: Constants.getOrdersPath){ [weak self] (response : Response?) in
+        netWorkingDataSource.getData(path: Constants.getOrdersPath, parameters: [:]){ [weak self] (response : Response?) in
             self?.result = response?.orders
         }
     }
-
-//    func getAllProducts() {
-//        allProductsList = service.fetchAll()
-//    }
-    
     
 }

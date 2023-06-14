@@ -24,7 +24,7 @@ class OrdersViewModel {
     
     func getOrders() {
         
-        netWorkingDataSource.getData(path: Constants.getOrdersPath){ [weak self] (response : Response?) in
+        netWorkingDataSource.getData(path: Constants.getOrdersPath,parameters: ["status":"any"]){ [weak self] (response : Response?) in
             self?.result = response?.orders
         }
     }

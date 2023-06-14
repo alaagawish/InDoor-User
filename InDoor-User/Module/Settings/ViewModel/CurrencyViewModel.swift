@@ -35,7 +35,7 @@ class CurrencyViewModel{
     
     func getCurrencies(){
         
-        netWorkingDataSource.getData(path: Constants.currencyPath){ [weak self] (response : Response?) in
+        netWorkingDataSource.getData(path: Constants.currencyPath, parameters: [:]){ [weak self] (response : Response?) in
             self?.result = response?.currencies
         }
     }

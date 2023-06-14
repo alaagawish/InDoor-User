@@ -27,8 +27,8 @@ class BrandViewModel{
     
     func getItems(id: Int){
         
-        let path = "collections/\(id)/products.json"
-        netWorkingDataSource.getData(path: path){ [weak self] (response : Response?) in
+        let path = "collections/\(id)/products"
+        netWorkingDataSource.getData(path: path, parameters: [:]){ [weak self] (response : Response?) in
             for i in 0 ..< (response?.products?.count ?? 0) {
                 self?.getPrice(i: (response?.products?[i])!) { product in
                     print(product)
@@ -39,7 +39,7 @@ class BrandViewModel{
         }
     }
     func getPrice(i: Product, completionHandler: @escaping (Product) -> Void){
-        netWorkingDataSource.getData(path: "products/\(i.id).json") { product in
+        netWorkingDataSource.getData(path: "products/\(i.id)", parameters: [:]) { product in
             completionHandler(product?.product ?? i)
         }
     }
