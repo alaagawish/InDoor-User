@@ -58,13 +58,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcr-St-Hs3">
-                                <rect key="frame" x="8" y="264.66666666666669" width="39" height="20.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <rect key="frame" x="7.9999999999999982" y="264.66666666666669" width="28.333333333333329" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="303.77" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItU-e7-Yi1">
-                                <rect key="frame" x="51" y="264.66666666666669" width="57.333333333333343" height="20.333333333333314"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="303.77" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItU-e7-Yi1">
+                                <rect key="frame" x="40.333333333333343" y="264.66666666666669" width="300.66666666666663" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -83,7 +83,9 @@
                             <constraint firstItem="9ja-X1-YiU" firstAttribute="leading" secondItem="cWd-1V-Rlr" secondAttribute="leading" constant="8" id="Ua8-jf-Cba"/>
                             <constraint firstItem="ItU-e7-Yi1" firstAttribute="leading" secondItem="wcr-St-Hs3" secondAttribute="trailing" constant="4" id="b14-sD-0dh"/>
                             <constraint firstItem="wcr-St-Hs3" firstAttribute="leading" secondItem="cWd-1V-Rlr" secondAttribute="leading" constant="8" id="cMm-JE-JeO"/>
+                            <constraint firstItem="ItU-e7-Yi1" firstAttribute="width" secondItem="cWd-1V-Rlr" secondAttribute="width" multiplier="0.8" id="dpP-OR-rSl"/>
                             <constraint firstItem="9ja-X1-YiU" firstAttribute="top" secondItem="cWd-1V-Rlr" secondAttribute="top" constant="8" id="fwS-ad-FqR"/>
+                            <constraint firstItem="wcr-St-Hs3" firstAttribute="centerY" secondItem="ItU-e7-Yi1" secondAttribute="centerY" id="gf3-L1-EFV"/>
                             <constraint firstItem="ItU-e7-Yi1" firstAttribute="top" secondItem="Vzf-bQ-yKj" secondAttribute="bottom" constant="5" id="idV-2M-BuA"/>
                             <constraint firstItem="Vzf-bQ-yKj" firstAttribute="leading" secondItem="cWd-1V-Rlr" secondAttribute="leading" constant="8" id="rJH-92-t4C"/>
                         </constraints>
