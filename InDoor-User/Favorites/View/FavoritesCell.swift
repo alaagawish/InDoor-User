@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 class FavoritesCell: UITableViewCell {
-
+    
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var productStatusLabel: UILabel!
     @IBOutlet weak var productTitleLabel: UILabel!
@@ -28,10 +28,10 @@ class FavoritesCell: UITableViewCell {
         backgroundColor = .clear
         contentView.backgroundColor = .white
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     

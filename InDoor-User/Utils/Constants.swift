@@ -17,6 +17,7 @@ class Constants {
     static let brandDetails = "brandDetails"
     static let brandProduct = "brandProduct"
     static let brandCell = "brandCell"
+    static let brandsNibFile = "BrandsCollectionViewCell"
     static let tShirt = "T-SHIRTS"
     static let shoes = "SHOES"
     static let accessories = "ACCESSORIES"
@@ -24,17 +25,18 @@ class Constants {
     static let menID = 448451215647
     static let kidID = 448451281183
     static let saleID = 448451313951
-    static let smartCollections = "smart_collections"
+    static let smartCollections = "smart_collections.json"
     static let brandProductCollectionViewCell = "BrandProductCollectionViewCell"
     static let favoritesNibName = "FavoritesCell"
     static let favoritesCellIdentifier = "favoriteCell"
     static let favoritesCellHeight = 145.0
+    static let orderCellHeight = 200.0
     static let favoritesStoryboardName = "FavoritesStoryBoard"
     static let ok = "OK"
     static let nibFileName = "ShoppingCartTableViewCell"
     static let cartCellIdentifier = "cartCell"
     static let cartIdentifier = "cart"
-    static let currencyPath = "currencies"
+    static let currencyPath = "currencies.json"
     static let addressIdentifier = "address"
     static let currencyIdentifier = "currency"
     static let connectToUsIdentifier = "connectToUs"
@@ -67,8 +69,13 @@ class Constants {
     static let invalidPassword = "Please, Enter valid Password\nMinimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character"
     static let congratulations = "Congratulations"
     static let phoneUsedbefore = "This phone number is used before."
-    
-    
-    
+    static let settingsStoryboard = "Settings"
+    static let settingsStoryboardID = "settings"
+    static let ordersStoryboardID = "orders"
+    static let orderCellIdentifier = "orderCell"
+    static let orderNibFile = "OrderTableViewCell"
+    static let getOrdersPath = "orders.json?status=any"
+    static let brand = "brand"
+    static let category = "category"
     
 }

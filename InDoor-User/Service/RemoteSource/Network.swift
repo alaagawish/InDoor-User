@@ -15,7 +15,7 @@ class Network: NetworkProtocol{
             "X-Shopify-Access-Token": "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"
         ]
         
-        AF.request("https://mad43-sv-ios1.myshopify.com/admin/api/2023-04/\(path).json", headers: headers).responseDecodable(of: Response.self) { response in
+        AF.request("https://mad43-sv-ios1.myshopify.com/admin/api/2023-04/\(path)", headers: headers).responseDecodable(of: Response.self) { response in
             switch response.result {
             case .success(let data):
                 handler(data)
