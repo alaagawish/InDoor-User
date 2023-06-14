@@ -82,4 +82,6 @@ class Constants {
     static let passwordFormat = "SELF MATCHES %@ "
     static let passwordRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{8,}"
     static let customersPath = "customers"
+    static let welcomeIdentifier = "welcome"
+    
 }
