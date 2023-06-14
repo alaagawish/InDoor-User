@@ -184,7 +184,7 @@
                                     <constraint firstAttribute="width" secondItem="Wum-E1-GbR" secondAttribute="height" id="8IR-zb-9yA"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="text.justifyleft" catalog="system"/>
+                                <state key="normal" image="text.justify" catalog="system"/>
                                 <connections>
                                     <action selector="startFilter:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="hGO-TY-TXx"/>
                                 </connections>
@@ -204,6 +204,21 @@
                                     <outlet property="delegate" destination="WSL-u9-4Hj" id="knW-As-3yr"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Vj-Up-a3x">
+                                <rect key="frame" x="209" y="726" width="60" height="60"/>
+                                <color key="backgroundColor" name="main"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Ean-Uf-QuN"/>
+                                    <constraint firstAttribute="width" constant="60" id="Edd-oQ-2qb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="A/Z"/>
+                                <connections>
+                                    <action selector="sortByAlphabet:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="xXN-OJ-LR7"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23m-zT-VJv">
                                 <rect key="frame" x="8" y="143.66666666666666" width="377" height="0.0"/>
                                 <subviews>
@@ -232,39 +247,78 @@
                                     <constraint firstAttribute="bottom" secondItem="o8W-kt-wjO" secondAttribute="bottom" id="mH1-RY-6Cu"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAL-YA-t1H">
+                                <rect key="frame" x="301" y="726" width="60" height="60"/>
+                                <color key="backgroundColor" name="main"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="7Z8-2l-3ZM"/>
+                                    <constraint firstAttribute="width" constant="60" id="xpn-qe-Xce"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="pencil" catalog="system"/>
+                                <connections>
+                                    <action selector="sorting:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="Xbk-Xo-64Y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wi5-ay-jM3">
+                                <rect key="frame" x="223" y="634" width="60" height="60"/>
+                                <color key="backgroundColor" name="main"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="d1p-o7-7E0"/>
+                                    <constraint firstAttribute="height" constant="60" id="hfP-9f-Som"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Price"/>
+                                <connections>
+                                    <action selector="sortByPrice:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="xr2-lb-Iig"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Rxf-Jy-OJL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cMf-6u-ccq" firstAttribute="trailing" secondItem="Rxf-Jy-OJL" secondAttribute="trailing" id="1Zi-Ie-DuX"/>
+                            <constraint firstItem="Rxf-Jy-OJL" firstAttribute="bottom" secondItem="8Vj-Up-a3x" secondAttribute="bottom" constant="32" id="5BY-N6-ywt"/>
                             <constraint firstItem="Rxf-Jy-OJL" firstAttribute="trailing" secondItem="Wum-E1-GbR" secondAttribute="trailing" constant="16" id="6EJ-QM-z70"/>
                             <constraint firstItem="cMf-6u-ccq" firstAttribute="leading" secondItem="Rxf-Jy-OJL" secondAttribute="leading" id="BDJ-7D-Vcf"/>
                             <constraint firstItem="Wum-E1-GbR" firstAttribute="top" secondItem="gzp-lw-1iu" secondAttribute="top" id="Cxf-WI-Fd0"/>
+                            <constraint firstItem="Rxf-Jy-OJL" firstAttribute="trailing" secondItem="oAL-YA-t1H" secondAttribute="trailing" constant="32" id="CzB-b2-ia8"/>
                             <constraint firstItem="lqv-mB-7gM" firstAttribute="trailing" secondItem="Rxf-Jy-OJL" secondAttribute="trailing" id="Fvx-Lt-3wN"/>
                             <constraint firstItem="ieg-dO-A5r" firstAttribute="centerX" secondItem="8Oq-e1-L7W" secondAttribute="centerX" id="HTV-qj-KaN"/>
                             <constraint firstItem="ieg-dO-A5r" firstAttribute="top" secondItem="Rxf-Jy-OJL" secondAttribute="top" id="IVb-o1-GJ0"/>
+                            <constraint firstItem="oAL-YA-t1H" firstAttribute="leading" secondItem="8Vj-Up-a3x" secondAttribute="trailing" constant="32" id="Js1-dG-bsu"/>
                             <constraint firstItem="23m-zT-VJv" firstAttribute="top" secondItem="lqv-mB-7gM" secondAttribute="bottom" constant="5" id="JyH-Mr-vFS"/>
                             <constraint firstItem="lqv-mB-7gM" firstAttribute="width" secondItem="8Oq-e1-L7W" secondAttribute="width" id="Q1I-Ax-Gf3"/>
                             <constraint firstItem="23m-zT-VJv" firstAttribute="leading" secondItem="Rxf-Jy-OJL" secondAttribute="leading" constant="8" id="QKT-Mx-jqS"/>
                             <constraint firstItem="lqv-mB-7gM" firstAttribute="top" secondItem="gzp-lw-1iu" secondAttribute="bottom" constant="8" id="Qyi-F9-eEP"/>
                             <constraint firstItem="gzp-lw-1iu" firstAttribute="leading" secondItem="Rxf-Jy-OJL" secondAttribute="leading" constant="16" id="Yew-G0-Ezz"/>
                             <constraint firstItem="Rxf-Jy-OJL" firstAttribute="trailing" secondItem="cMf-6u-ccq" secondAttribute="trailing" id="ZE0-S8-RDP"/>
+                            <constraint firstItem="Rxf-Jy-OJL" firstAttribute="bottom" secondItem="oAL-YA-t1H" secondAttribute="bottom" constant="32" id="a6A-bI-4ql"/>
                             <constraint firstItem="Rxf-Jy-OJL" firstAttribute="trailing" secondItem="23m-zT-VJv" secondAttribute="trailing" constant="8" id="abX-N4-kS6"/>
                             <constraint firstItem="gzp-lw-1iu" firstAttribute="top" secondItem="Rxf-Jy-OJL" secondAttribute="top" id="e7T-Ip-1dP"/>
                             <constraint firstItem="cMf-6u-ccq" firstAttribute="top" secondItem="23m-zT-VJv" secondAttribute="bottom" constant="8" id="fLn-JM-JgX"/>
                             <constraint firstItem="lqv-mB-7gM" firstAttribute="leading" secondItem="Rxf-Jy-OJL" secondAttribute="leading" id="gz2-Wv-IO2"/>
                             <constraint firstItem="ieg-dO-A5r" firstAttribute="width" secondItem="8Oq-e1-L7W" secondAttribute="width" multiplier="0.5" id="qfn-HI-A1Q"/>
+                            <constraint firstItem="8Vj-Up-a3x" firstAttribute="top" secondItem="wi5-ay-jM3" secondAttribute="bottom" constant="32" id="sUm-XC-GRN"/>
+                            <constraint firstItem="Rxf-Jy-OJL" firstAttribute="trailing" secondItem="wi5-ay-jM3" secondAttribute="trailing" constant="110" id="swH-Q0-kSE"/>
                             <constraint firstItem="Wum-E1-GbR" firstAttribute="width" secondItem="gzp-lw-1iu" secondAttribute="width" id="vJO-bd-vLI"/>
                             <constraint firstItem="Rxf-Jy-OJL" firstAttribute="bottom" secondItem="cMf-6u-ccq" secondAttribute="bottom" id="wmm-gA-u2C"/>
                             <constraint firstItem="gzp-lw-1iu" firstAttribute="width" secondItem="ieg-dO-A5r" secondAttribute="width" multiplier="0.09" constant="10" id="znD-KZ-GpJ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="alphabetFloatingButton" destination="8Vj-Up-a3x" id="PYL-go-V1E"/>
                         <outlet property="currentPrice" destination="YJ0-2G-3Sc" id="V8K-YC-zxW"/>
                         <outlet property="filterView" destination="23m-zT-VJv" id="LAd-xi-X3x"/>
+                        <outlet property="priceFloatingButton" destination="wi5-ay-jM3" id="dv9-cx-Go1"/>
                         <outlet property="priceSlider" destination="o8W-kt-wjO" id="upk-u3-0VO"/>
                         <outlet property="productsCollectionView" destination="cMf-6u-ccq" id="PZP-cH-DgA"/>
                         <outlet property="searchBar" destination="zs7-g5-kUT" id="ASf-P1-5zd"/>
+                        <outlet property="sortingButton" destination="oAL-YA-t1H" id="Qsh-Yv-csL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSB-01-ZNH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -766,10 +820,11 @@
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="square.grid.3x3.fill" catalog="system" width="128" height="113"/>
         <image name="square.grid.3x3.topright.fill" catalog="system" width="128" height="113"/>
-        <image name="text.justifyleft" catalog="system" width="128" height="99"/>
+        <image name="text.justify" catalog="system" width="128" height="99"/>
         <namedColor name="main">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
