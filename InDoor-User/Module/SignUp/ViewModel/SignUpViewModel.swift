@@ -31,7 +31,7 @@ class SignUpViewModel{
     }
     
     func postUser(parameters: Parameters){
-        service.registerUser(parameters: parameters) { [weak self] (response,code) in
+        service.postData(path: Constants.customersPath ,parameters: parameters) { [weak self] (response,code) in
             self?.user = response?.customer
             self?.code = code
         }

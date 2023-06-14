@@ -81,4 +81,29 @@ class Constants {
     static let passwordFormat = "SELF MATCHES %@ "
     static let passwordRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{8,}"
     static let customersPath = "customers"
+    static let addressPath = "customers/\(UserDefault().getCustomerId())/addresses"
+    static let addressCell = "addressCell"
+    static let updateAddressMsg = "Do you want to update this address?"
+    static let newAddressMsg = "New address is successfully added"
+    static let removeAddressMsg = "Do you want to remove this address?"
+    static let removeAddressTitle = "Removig address"
+    static let addressCellNibFile = "AddressTableViewCell"
+}
+
+
+func encodeToJson(objectClass: Response) -> [String: Any]?{
+    do{
+        let jsonData = try JSONEncoder().encode(objectClass)
+        let json = String(data: jsonData, encoding: String.Encoding.utf8)!
+        return jsonToDictionary(from: json)
+    }catch let error{
+        print(error.localizedDescription)
+        return nil
+    }
+}
+
+func jsonToDictionary(from text: String) -> [String: Any]? {
+    guard let data = text.data(using: .utf8) else { return nil }
+    let anyResult = try? JSONSerialization.jsonObject(with: data, options: [])
+    return anyResult as? [String : Any]
 }
