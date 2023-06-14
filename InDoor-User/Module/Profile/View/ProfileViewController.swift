@@ -119,11 +119,18 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func goSignUp(_ sender: Any) {
+        let storyboard = UIStoryboard(name: Constants.mainStoryboard, bundle: nil)
+        let signUpStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.signUpIdentifier) as! SignUpViewController
+        signUpStoryboard.modalPresentationStyle = .fullScreen
+        present(signUpStoryboard, animated: true)
         
     }
     
     @IBAction func goSignIn(_ sender: Any) {
-        
+        let storyboard = UIStoryboard(name: Constants.mainStoryboard, bundle: nil)
+        let loginStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.loginIdentifier) as! LoginViewController
+        loginStoryboard.modalPresentationStyle = .fullScreen
+        present(loginStoryboard, animated: true)
     }
     
     @IBAction func goSettings(_ sender: Any) {
@@ -141,6 +148,9 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     func checkLogged() -> Bool{
+        if UserDefault().getCustomerId() == -1 {
+            return false
+        }
         return true
     }
     

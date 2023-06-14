@@ -25,7 +25,7 @@ class Constants {
     static let menID = 448451215647
     static let kidID = 448451281183
     static let saleID = 448451313951
-    static let smartCollections = "smart_collections.json"
+    static let smartCollections = "smart_collections"
     static let brandProductCollectionViewCell = "BrandProductCollectionViewCell"
     static let favoritesNibName = "FavoritesCell"
     static let favoritesCellIdentifier = "favoriteCell"
@@ -36,7 +36,7 @@ class Constants {
     static let nibFileName = "ShoppingCartTableViewCell"
     static let cartCellIdentifier = "cartCell"
     static let cartIdentifier = "cart"
-    static let currencyPath = "currencies.json"
+    static let currencyPath = "currencies"
     static let addressIdentifier = "address"
     static let currencyIdentifier = "currency"
     static let connectToUsIdentifier = "connectToUs"
@@ -74,8 +74,11 @@ class Constants {
     static let ordersStoryboardID = "orders"
     static let orderCellIdentifier = "orderCell"
     static let orderNibFile = "OrderTableViewCell"
-    static let getOrdersPath = "orders.json?status=any"
+    static let getOrdersPath = "orders"
     static let brand = "brand"
     static let category = "category"
-    
+    static let mainStoryboard = "Main"
+    static let passwordFormat = "SELF MATCHES %@ "
+    static let passwordRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{8,}"
+    static let customersPath = "customers"
 }

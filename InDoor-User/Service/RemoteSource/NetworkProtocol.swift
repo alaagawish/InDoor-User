@@ -9,11 +9,10 @@ import Foundation
 import Alamofire
 protocol NetworkProtocol{
     
-    func getData(path: String, handler: @escaping (Response?) -> Void)
-
+    func getData(path: String, parameters: Alamofire.Parameters, handler: @escaping (Response?) -> Void)
+    
     func getEquivalentCurrency(handler: @escaping (Response?) -> Void)
-
+    
     func registerUser(parameters: Parameters,handler: @escaping (Response?,Int?) -> Void)
     
-    func getUsers(handler: @escaping ([User]?) -> Void)
 }
