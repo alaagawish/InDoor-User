@@ -17,4 +17,12 @@ class UserDefault{
         
         return userDefaults.integer(forKey: Constants.customerId)
     }
+    
+    func getCurrencySymbol() -> String {
+        return userDefaults.string(forKey: Constants.newCurrencyKey) ?? "USD"
+    }
+    func getCurrencyRate() -> Double {
+        return userDefaults.double(forKey: Constants.ratesKey)
+        
+    }
 }
