@@ -89,6 +89,14 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: Constants.productDetailsStoryboardName, bundle: nil)
+        let productDetails = storyboard.instantiateViewController(withIdentifier: Constants.productDetailsStoryboardName) as! ProductDetailsViewController
+        productDetails.product = products[indexPath.row]
+        productDetails.modalPresentationStyle = .fullScreen
+        present(productDetails, animated: true)
+    }
+    
     @IBAction func womenProducts(_ sender: Any) {
         tintCurrentItem(sender,0)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
@@ -173,9 +181,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(products[indexPath.row])
-    }
+
     @IBAction func moveToFavourites(_ sender: Any) {
         let storyboard = UIStoryboard(name: Constants.favoritesStoryboardName, bundle: nil)
         let favoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.favoritesStoryboardName) as! FavoritesViewController
