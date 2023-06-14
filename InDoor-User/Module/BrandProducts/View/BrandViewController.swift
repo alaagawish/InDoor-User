@@ -22,6 +22,7 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var alphabetFloatingButton: UIButton!
     @IBOutlet weak var priceFloatingButton: UIButton!
     
+    @IBOutlet weak var close: UIButton!
     var brandViewModel: BrandViewModel!
     var products: [Product] = []
     var orginList: [Product] = []
@@ -50,6 +51,7 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         if !sortingTypesFlag{
             alphabetFloatingButton.isHidden = true
             priceFloatingButton.isHidden = true
+            close.isHidden = true
         }
         sortingButton.layer.shadowRadius = 10
         sortingButton.layer.shadowOpacity = 0.3
@@ -58,6 +60,10 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         alphabetFloatingButton.layer.shadowRadius = 10
         alphabetFloatingButton.layer.shadowOpacity = 0.3
         alphabetFloatingButton.layer.cornerRadius = 30
+        
+        close.layer.shadowRadius = 10
+        close.layer.shadowOpacity = 0.3
+        close.layer.cornerRadius = 30
         
         priceFloatingButton.layer.shadowRadius = 10
         priceFloatingButton.layer.shadowOpacity = 0.3
@@ -148,15 +154,18 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         if sortingTypesFlag{
             alphabetFloatingButton.isHidden = false
             priceFloatingButton.isHidden = false
+            close.isHidden = false
         }else{
             alphabetFloatingButton.isHidden = true
             priceFloatingButton.isHidden = true
+            close.isHidden = true
         }
     }
     @IBAction func sortByPrice(_ sender: Any) {
         sortingTypesFlag = false
         alphabetFloatingButton.isHidden = true
         priceFloatingButton.isHidden = true
+        close.isHidden = true
         products = products.sorted(by:  {Float($0.variants?[0].price ?? "") ?? 0 < Float($1.variants?[0].price ?? "") ?? 0})
         productsCollectionView.reloadData()
         
@@ -166,10 +175,12 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         sortingTypesFlag = false
         alphabetFloatingButton.isHidden = true
         priceFloatingButton.isHidden = true
-        
+        close.isHidden = true
         products = products.sorted(by:  {$0.title ?? "" < $1.title ?? ""})
         productsCollectionView.reloadData()
     }
+    
+    
 }
 extension BrandViewController {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
