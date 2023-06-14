@@ -69,6 +69,7 @@ class Constants {
     static let invalidPassword = "Please, Enter valid Password\nMinimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character"
     static let congratulations = "Congratulations"
     static let phoneUsedbefore = "This phone number is used before."
+    static let productDetailsStoryboardName = "ProductDetailsStoryBoard"
     static let settingsStoryboard = "Settings"
     static let settingsStoryboardID = "settings"
     static let ordersStoryboardID = "orders"
