@@ -42,7 +42,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         callingData()
         
     }
-   
+    
     func callingData(){
         categoryViewModel.bindResultToViewController = {[weak self] in
             self?.products = self?.categoryViewModel.result ?? []
@@ -148,7 +148,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         productsCollectionView.reloadData()
     }
     
-   
+    
     @IBAction func moveToFavourites(_ sender: Any) {
         let storyboard = UIStoryboard(name: Constants.favoritesStoryboardName, bundle: nil)
         let favoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.favoritesStoryboardName) as! FavoritesViewController
