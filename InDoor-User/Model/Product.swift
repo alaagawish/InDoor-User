@@ -27,6 +27,7 @@ struct Product: Hashable, Codable {
     let options: [Options]?
     let images: [Image]?
     let image: Image?
+    let templateSuffix: String?
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -46,6 +47,7 @@ struct Product: Hashable, Codable {
         case options = "options"
         case images = "images"
         case image = "image"
+        case templateSuffix = "template_suffix"
     }
 
 }
