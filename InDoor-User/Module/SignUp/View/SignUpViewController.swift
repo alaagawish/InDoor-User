@@ -63,7 +63,7 @@ class SignUpViewController: UIViewController {
                 self?.present(alert, animated: true)
                 
             } else if self?.registered == false {
-                let addresses = [Address(id: nil, customer_id: nil, name: "\(self?.firstNameTextField) \(self?.lastNameTextField)", first_name: self?.firstNameTextField.text, last_name: self?.lastNameTextField.text, phone: self?.phoneTextField.text, address1: self?.addressTextField.text, city: self?.cityTextField.text, country: self?.countryTextField.text)]
+                let addresses = [Address(id: nil, customer_id: nil, name: "\(self?.firstNameTextField) \(self?.lastNameTextField)", first_name: self?.firstNameTextField.text, last_name: self?.lastNameTextField.text, phone: self?.phoneTextField.text, address1: self?.addressTextField.text, city: self?.cityTextField.text, country: self?.countryTextField.text, default: true)]
                 let user = User(id: nil, firstName: self?.firstNameTextField.text, lastName: self?.lastNameTextField.text, email: self?.emailTextField.text, phone: self?.phoneTextField.text, addresses: addresses, tags: self?.passwordTextField.text)
                 
                 let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, orders: nil)

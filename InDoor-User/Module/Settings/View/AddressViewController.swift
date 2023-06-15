@@ -90,12 +90,18 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if(editingStyle == .delete){
-            let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.removeAddressTitle, msg: Constants.removeAddressMsg, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok, positiveHandler: { [weak self] action in
-                self?.settingsViewModel.deleteAddress(path: "\(Constants.addressPath)/\(self?.addressesList[indexPath.row].id ?? 0)")
-                self?.addressesList.remove(at: indexPath.row)
-                self?.addressesTable.reloadData()
-            })
-            self.present(alert, animated: true)
+            
+            if addressesList[indexPath.row].default ?? false {
+                let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.defaultAddressMsg, positiveButtonTitle: Constants.ok)
+                self.present(alert, animated: true)
+            }else{
+                let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.removeAddressTitle, msg: Constants.removeAddressMsg, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok, positiveHandler: { [weak self] action in
+                    self?.settingsViewModel.deleteAddress(path: "\(Constants.addressPath)/\(self?.addressesList[indexPath.row].id ?? 0)")
+                    self?.addressesList.remove(at: indexPath.row)
+                    self?.addressesTable.reloadData()
+                })
+                self.present(alert, animated: true)
+            }
         }
     }
     

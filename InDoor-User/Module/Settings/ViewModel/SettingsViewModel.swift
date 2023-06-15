@@ -15,6 +15,7 @@ class SettingsViewModel{
     var bindAddressToViewController: (()->()) = {}
     var bindUpdatedAddressToViewController: (()->()) = {}
     var netWorkingDataSource: NetworkProtocol!
+    var code: Int?
     
     var address: Address?{
         didSet{
@@ -62,6 +63,7 @@ class SettingsViewModel{
     func postAddress(parameters: Parameters){
         netWorkingDataSource.postData(path: Constants.addressPath ,parameters: parameters) { [weak self] (response, code) in
             self?.address = response?.customer_address
+            self?.code = code
         }
     }
     

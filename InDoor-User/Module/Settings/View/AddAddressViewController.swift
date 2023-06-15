@@ -36,6 +36,9 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
                     self?.dismiss(animated: true)
                 }
                 self?.present(alert, animated: true)
+            }else if self?.settingsViewModel.code == 422 {
+                let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.addressMsg, positiveButtonTitle: Constants.ok, positiveHandler: nil)
+                self?.present(alert, animated: true)
             }
         }
         
@@ -133,7 +136,7 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
             self.present(alert, animated: true)
         }
         else if(countryTextField.text == "") {
-            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.postalCodeIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.countryIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
             self.present(alert, animated: true)
         }
         else if(addressTextField.text == "") {
@@ -145,7 +148,7 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
             self.present(alert, animated: true)
         }
         else{
-            let address = Address(id: nil, customer_id: UserDefault().getCustomerId(), name: "\(self.firstNameTextField.text ?? "") \(self.lastNameTextField.text ?? "")", first_name:firstNameTextField.text ?? "", last_name: lastNameTextField.text ?? "", phone: phoneTextField.text ?? "", address1: self.addressTextField.text ?? "", city: self.cityTextField.text ?? "", country: self.countryTextField.text ?? "")
+            let address = Address(id: nil, customer_id: UserDefault().getCustomerId(), name: "\(self.firstNameTextField.text ?? "") \(self.lastNameTextField.text ?? "")", first_name:firstNameTextField.text ?? "", last_name: lastNameTextField.text ?? "", phone: phoneTextField.text ?? "", address1: self.addressTextField.text ?? "", city: self.cityTextField.text ?? "", country: self.countryTextField.text ?? "", default: false)
             
             let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil)
             

@@ -17,4 +17,5 @@ struct Address: Codable {
     let address1: String?
     let city: String?
     let country: String?
+    let `default`: Bool?
 }

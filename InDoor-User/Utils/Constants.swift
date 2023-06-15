@@ -58,6 +58,7 @@ class Constants {
     static let passwordIsEmpty = "Please, Enter your password."
     static let confirmPasswordIsEmpty = "Please, Enter password confirmation."
     static let cityIsEmpty = "Please, Enter your city."
+    static let countryIsEmpty = "Please, Enter your country."
     static let addressIsEmpty = "Please, Enter your address."
     static let postalCodeIsEmpty = "Please, Enter the postal code/zip."
     static let phoneIsEmpty = "Please, Enter your phone number."
@@ -88,6 +89,8 @@ class Constants {
     static let removeAddressMsg = "Do you want to remove this address?"
     static let removeAddressTitle = "Removig address"
     static let addressCellNibFile = "AddressTableViewCell"
+    static let defaultAddressMsg = "You can't delete default address"
+    static let addressMsg = "You can't use the same address with the same name"
 }
 
 
