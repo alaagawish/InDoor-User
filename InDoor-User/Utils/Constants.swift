@@ -83,5 +83,20 @@ class Constants {
     static let passwordRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{8,}"
     static let customersPath = "customers"
     static let welcomeIdentifier = "welcome"
-    
+    static let reviewNibFileName = "ReviewTableViewCell"
+    static let reviewCellIdentifier = "reviewCell"
+    static let goodReviews: [Review] = [
+        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Safiya Fikry", rate: 4, reviewMessage: "I liked this product, it also look like the picture."),
+        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Ahd Weal", rate: 4.5, reviewMessage: "It is very confortable product with very high quality."),
+        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Alaa Gewish", rate: 3.2, reviewMessage: "I recommend this product, although it is expensive."),
+        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeQ-HkOk0nyWwdR6GNhI19KyuIDOyg-_w_tQ&usqp=CAU", personName: "Ahmed Abdo", rate: 4.1, reviewMessage: "It iis worthy."),
+        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeQ-HkOk0nyWwdR6GNhI19KyuIDOyg-_w_tQ&usqp=CAU", personName: "Ahmed Ward", rate: 3.8, reviewMessage: "Good Product.")
+    ]
+    static let badReviews: [Review] = [
+        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeQ-HkOk0nyWwdR6GNhI19KyuIDOyg-_w_tQ&usqp=CAU", personName: "Hossam Fadaly", rate: 2.2, reviewMessage: "This product is not reusable"),
+        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Manal Hamada", rate: 1.0, reviewMessage: "It was a bad idea to buy this product."),
+        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Arwa Ashraf", rate: 1.7, reviewMessage: "This product is suitable for single use."),
+        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Haidy Yassin", rate: 1.3, reviewMessage: "I regret buying this product, it doesn't even worth this price"),
+        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeQ-HkOk0nyWwdR6GNhI19KyuIDOyg-_w_tQ&usqp=CAU", personName: "Moaz El-sadat", rate: 2.8, reviewMessage: "At first it was good and confortable but after couple of weeks it got worse")
+    ]
 }
