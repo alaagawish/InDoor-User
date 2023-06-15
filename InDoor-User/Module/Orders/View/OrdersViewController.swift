@@ -44,5 +44,7 @@ class OrdersViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func back(_ sender: Any) {
         self.dismiss(animated: true)
     }
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.orderCellHeight
+    }
 }
