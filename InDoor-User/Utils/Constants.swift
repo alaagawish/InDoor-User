@@ -90,7 +90,7 @@ class Constants {
     static let removeAddressTitle = "Removig address"
     static let addressCellNibFile = "AddressTableViewCell"
     static let defaultAddressMsg = "You can't delete default address"
-    static let addressMsg = "You can't use the same address with the same name"
+    static let addressMsg = "Your address is already exists or there is something wrong with your data"
     static let addressUpdateTitle = "Update Address"
     static let delete = "Delete"
     static let edit = "Edit"
