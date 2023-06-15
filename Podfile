@@ -29,5 +29,6 @@ pod 'ReachabilitySwift'
 #pod 'Firebase/Storage'
 #pod 'FirebaseFirestore'
 pod 'RealmSwift'
+pod 'MaterialComponents/Buttons'
 
 end

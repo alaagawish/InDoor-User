@@ -30,7 +30,7 @@ class Constants {
     static let favoritesNibName = "FavoritesCell"
     static let favoritesCellIdentifier = "favoriteCell"
     static let favoritesCellHeight = 145.0
-    static let orderCellHeight = 200.0
+    static let orderCellHeight = 100.0
     static let favoritesStoryboardName = "FavoritesStoryBoard"
     static let ok = "OK"
     static let nibFileName = "ShoppingCartTableViewCell"
@@ -81,4 +81,7 @@ class Constants {
     static let passwordFormat = "SELF MATCHES %@ "
     static let passwordRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{8,}"
     static let customersPath = "customers"
+    static let orderCollectionViewCell = "OrderCollectionViewCell"
+    static let couponChosen = "Coupon"
+    static let orderStoryID = "orderStoryID"
 }
