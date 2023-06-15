@@ -83,4 +83,5 @@ class Constants {
     static let customersPath = "customers"
     static let orderCollectionViewCell = "OrderCollectionViewCell"
     static let couponChosen = "Coupon"
+    static let orderStoryID = "orderStoryID"
 }

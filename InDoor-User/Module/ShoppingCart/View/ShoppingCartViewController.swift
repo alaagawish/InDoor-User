@@ -42,8 +42,8 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func continueToOrder(_ sender: Any) {
         
-        let storyboard = UIStoryboard(name: Constants.mainStoryboard, bundle: nil)
-        let orderStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.orderCellIdentifier) as! ReceiptViewController
+        let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
+        let orderStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.orderStoryID) as! ReceiptViewController
         orderStoryBoard.modalPresentationStyle = .fullScreen
         orderStoryBoard.products = products
         present(orderStoryBoard, animated: true)

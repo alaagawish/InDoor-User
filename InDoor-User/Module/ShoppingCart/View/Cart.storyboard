@@ -45,7 +45,7 @@
                                 <rect key="frame" x="0.0" y="724.33333333333337" width="393" height="127.66666666666663"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9W-P9-WSy">
-                                        <rect key="frame" x="50.000000000000007" y="29" width="115.66666666666669" height="31.333333333333329"/>
+                                        <rect key="frame" x="50.000000000000007" y="16.000000000000004" width="115.66666666666669" height="44.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -64,7 +64,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZe-c0-jg1">
-                                        <rect key="frame" x="274.66666666666669" y="29" width="68.333333333333314" height="31.333333333333329"/>
+                                        <rect key="frame" x="274.66666666666669" y="16.000000000000004" width="68.333333333333314" height="44.333333333333343"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -79,6 +79,8 @@
                                     <constraint firstItem="135-e9-IXz" firstAttribute="top" secondItem="d9W-P9-WSy" secondAttribute="bottom" constant="8" id="Vgh-vE-me0"/>
                                     <constraint firstItem="135-e9-IXz" firstAttribute="leading" secondItem="8Un-8r-ZnF" secondAttribute="leading" constant="50" id="cf6-Ey-GLD"/>
                                     <constraint firstItem="d9W-P9-WSy" firstAttribute="leading" secondItem="135-e9-IXz" secondAttribute="leading" id="iCU-Hq-MPi"/>
+                                    <constraint firstItem="NZe-c0-jg1" firstAttribute="top" secondItem="8Un-8r-ZnF" secondAttribute="top" constant="16" id="oGT-Pa-vqJ"/>
+                                    <constraint firstItem="d9W-P9-WSy" firstAttribute="top" secondItem="8Un-8r-ZnF" secondAttribute="top" constant="16" id="q4D-MB-KVa"/>
                                     <constraint firstAttribute="bottom" secondItem="135-e9-IXz" secondAttribute="bottom" constant="26" id="xfi-sF-Qde"/>
                                 </constraints>
                             </view>

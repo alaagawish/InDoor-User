@@ -67,6 +67,10 @@ class ReceiptViewController: UIViewController {
         }
     }
     
+    @IBAction func back(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
 }
 
 extension ReceiptViewController: UICollectionViewDelegate ,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
