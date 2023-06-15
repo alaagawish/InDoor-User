@@ -58,6 +58,7 @@ class Constants {
     static let passwordIsEmpty = "Please, Enter your password."
     static let confirmPasswordIsEmpty = "Please, Enter password confirmation."
     static let cityIsEmpty = "Please, Enter your city."
+    static let countryIsEmpty = "Please, Enter your country."
     static let addressIsEmpty = "Please, Enter your address."
     static let postalCodeIsEmpty = "Please, Enter the postal code/zip."
     static let phoneIsEmpty = "Please, Enter your phone number."
@@ -81,7 +82,36 @@ class Constants {
     static let passwordFormat = "SELF MATCHES %@ "
     static let passwordRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{8,}"
     static let customersPath = "customers"
+
+    static let addressPath = "customers/\(UserDefault().getCustomerId())/addresses"
+    static let addressCell = "addressCell"
+    static let updateAddressMsg = "Do you want to update this address?"
+    static let newAddressMsg = "New address is successfully added"
+    static let removeAddressMsg = "Do you want to remove this address?"
+    static let removeAddressTitle = "Removig address"
+    static let addressCellNibFile = "AddressTableViewCell"
+    static let defaultAddressMsg = "You can't delete default address"
+    static let addressMsg = "Your address is already exists or there is something wrong with your data"
+    static let addressUpdateTitle = "Update Address"
+    static let delete = "Delete"
+    static let edit = "Edit"
     static let orderCollectionViewCell = "OrderCollectionViewCell"
     static let couponChosen = "Coupon"
     static let orderStoryID = "orderStoryID"
+}
+func encodeToJson(objectClass: Response) -> [String: Any]?{
+    do{
+        let jsonData = try JSONEncoder().encode(objectClass)
+        let json = String(data: jsonData, encoding: String.Encoding.utf8)!
+        return jsonToDictionary(from: json)
+    }catch let error{
+        print(error.localizedDescription)
+        return nil
+    }
+}
+
+func jsonToDictionary(from text: String) -> [String: Any]? {
+    guard let data = text.data(using: .utf8) else { return nil }
+    let anyResult = try? JSONSerialization.jsonObject(with: data, options: [])
+    return anyResult as? [String : Any]
 }
