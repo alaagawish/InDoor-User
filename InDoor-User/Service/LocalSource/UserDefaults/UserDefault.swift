@@ -25,4 +25,9 @@ class UserDefault{
         return userDefaults.double(forKey: Constants.ratesKey)
         
     }
+    
+    func getCoupon() -> String {
+        return userDefaults.string(forKey: Constants.couponChosen) ?? "null"
+        
+    }
 }

@@ -13,7 +13,7 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var proceedToCheckoutButton: UIButton!
     @IBOutlet weak var shoppingCartBottomView: UIView!
    
-    var orders: [Orders] = []
+    var products: [Product] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,7 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
         let storyboard = UIStoryboard(name: Constants.mainStoryboard, bundle: nil)
         let orderStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.orderCellIdentifier) as! ReceiptViewController
         orderStoryBoard.modalPresentationStyle = .fullScreen
-        orderStoryBoard.orders = orders
+        orderStoryBoard.products = products
         present(orderStoryBoard, animated: true)
     }
 }

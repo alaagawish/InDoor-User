@@ -82,4 +82,5 @@ class Constants {
     static let passwordRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{8,}"
     static let customersPath = "customers"
     static let orderCollectionViewCell = "OrderCollectionViewCell"
+    static let couponChosen = "Coupon"
 }
