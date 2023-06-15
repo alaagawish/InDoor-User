@@ -16,6 +16,7 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var countryTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var saveAddressButton: UIButton!
+    @IBOutlet weak var addressTitleLabel: UILabel!
     var settingsViewModel: SettingsViewModel!
     var updateAddress: Address!
     var toUpdateAddress = false
@@ -27,6 +28,7 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
         setupDelegation()
         
         if toUpdateAddress{
+            addressTitleLabel.text = Constants.addressUpdateTitle
             setUpdatedAddress()
         }
         
