@@ -8,15 +8,18 @@
 import UIKit
 import ImageSlideshow
 import ImageSlideshowKingfisher
+import Cosmos
 
 class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     
+    @IBOutlet weak var rating: CosmosView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var productImagesSlider: ImageSlideshow!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productVendorAndType: UILabel!
     @IBOutlet weak var sizeCollectionView: UICollectionView!
     @IBOutlet weak var colorCollectionView: UICollectionView!
+    @IBOutlet weak var reviewTableView: UITableView!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var stockCount: UILabel!
     
@@ -24,6 +27,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     var product:Product!
     var sizeCollectionHandler = ProductSizeCollectionDelegatesHandling()
     var colorCollectionHandler = ProductColorCollectionDelegatesHandling()
+    var reviewTableHandler = ReviewsTableViewDelegatesHandling()
     var selectedSize: String!{
         didSet{
             checkPriceAndAvailability()
@@ -37,6 +41,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        reviewTableView.register(UINib(nibName:Constants.reviewNibFileName , bundle: nil), forCellReuseIdentifier: Constants.reviewCellIdentifier)
         prepareProductImagesArr()
         initializeUI()
     }
@@ -50,10 +55,13 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     func initializeUI(){
         prepareSizeCollection()
         prepareColorCollection()
+        prepareReviewTable()
         startSlider()
         productName.text = product.title
         productVendorAndType.text = "\(product.vendor ?? ""), \(product.productType ?? "")"
         descriptionLabel.text = product.bodyHtml
+        rating.settings.updateOnTouch = false
+        rating.rating = Double(product.templateSuffix ?? "0.0") ?? 0.0
     }
     
     func prepareSizeCollection(){
@@ -61,7 +69,6 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         sizeCollectionHandler.viewController = self
         sizeCollectionView.dataSource = sizeCollectionHandler
         sizeCollectionView.delegate = sizeCollectionHandler
-        print(sizeCollectionHandler.sizeArr.count)
     }
     
     func prepareColorCollection(){
@@ -69,7 +76,21 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         colorCollectionHandler.viewController = self
         colorCollectionView.dataSource = colorCollectionHandler
         colorCollectionView.delegate = colorCollectionHandler
-        print(colorCollectionHandler.colorArr.count)
+    }
+    
+    func prepareReviewTable(){
+        if Double(product.templateSuffix ?? "0.0") ?? 0.0 >= 3 && Double(product.templateSuffix ?? "0.0") ?? 0.0 <= 5{
+            for i in 0 ..< 3{
+                reviewTableHandler.productReviews.append(Constants.goodReviews[i])
+            }
+        } else {
+            for i in 0 ..< 3{
+                reviewTableHandler.productReviews.append(Constants.badReviews[i])
+            }
+        }
+        reviewTableHandler.viewController = self
+        reviewTableView.dataSource = reviewTableHandler
+        reviewTableView.delegate = reviewTableHandler
     }
     
     func startSlider(){
@@ -114,4 +135,14 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         self.dismiss(animated: true)
     }
     
+    @IBAction func seeAllReviews(_ sender: UIButton) {
+        let allReviews = self.storyboard?.instantiateViewController(identifier: "allReviews") as! AllReviewsViewController
+        allReviews.modalPresentationStyle = .fullScreen
+        if Double(product.templateSuffix ?? "0.0") ?? 0.0 >= 3 && Double(product.templateSuffix ?? "0.0") ?? 0.0 <= 5{
+            allReviews.reviewsList = Constants.goodReviews
+        } else {
+            allReviews.reviewsList = Constants.badReviews
+        }
+        self.present(allReviews, animated: true)
+    }
 }
