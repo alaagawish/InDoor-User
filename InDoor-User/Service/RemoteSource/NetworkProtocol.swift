@@ -13,9 +13,6 @@ protocol NetworkProtocol{
     
     func getEquivalentCurrency(handler: @escaping (Response?) -> Void)
     
-    func postData(path: String, parameters: Parameters,handler: @escaping (Response?,Int?) -> Void)
+    func registerUser(parameters: Parameters,handler: @escaping (Response?,Int?) -> Void)
     
-    func deleteData(path: String, handler: @escaping (Response?) -> Void)
-    
-    func putData(path: String, parameters: Parameters,handler: @escaping (Response?,Int?) -> Void)
 }

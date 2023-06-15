@@ -63,12 +63,11 @@ class SignUpViewController: UIViewController {
                 self?.present(alert, animated: true)
                 
             } else if self?.registered == false {
-                let addresses = [Address(id: nil, customer_id: nil, name: "\(self?.firstNameTextField) \(self?.lastNameTextField)", first_name: self?.firstNameTextField.text, last_name: self?.lastNameTextField.text, phone: self?.phoneTextField.text, address1: self?.addressTextField.text, city: self?.cityTextField.text, country: self?.countryTextField.text, default: true)]
+                let addresses = [Address(id: nil, address1: self?.addressTextField.text, city: self?.cityTextField.text, country: self?.countryTextField.text)]
                 let user = User(id: nil, firstName: self?.firstNameTextField.text, lastName: self?.lastNameTextField.text, email: self?.emailTextField.text, phone: self?.phoneTextField.text, addresses: addresses, tags: self?.passwordTextField.text)
                 
-                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, orders: nil)
-                
-                let params = encodeToJson(objectClass: response)
+                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, orders: nil)
+                let params = self?.encodeToJson(objectClass: response)
                 self?.signUpViewModel.postUser(parameters: params ?? [:])
             }
         }
@@ -157,6 +156,23 @@ class SignUpViewController: UIViewController {
         uiView.layer.borderWidth = 1.0
         uiView.layer.borderColor = UIColor.black.cgColor
         uiView.layer.masksToBounds = true
+    }
+    
+    func encodeToJson(objectClass: Response) -> [String: Any]?{
+        do{
+            let jsonData = try JSONEncoder().encode(objectClass)
+            let json = String(data: jsonData, encoding: String.Encoding.utf8)!
+            return jsonToDictionary(from: json)
+        }catch let error{
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+    
+    func jsonToDictionary(from text: String) -> [String: Any]? {
+        guard let data = text.data(using: .utf8) else { return nil }
+        let anyResult = try? JSONSerialization.jsonObject(with: data, options: [])
+        return anyResult as? [String : Any]
     }
     
     func isValidPassword(password: String) -> Bool{

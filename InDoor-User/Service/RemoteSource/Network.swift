@@ -39,14 +39,14 @@ class Network: NetworkProtocol{
         }
     }
     
-    func postData(path: String, parameters: Parameters,handler: @escaping (Response?,Int?) -> Void) {
+    func registerUser(parameters: Parameters,handler: @escaping (Response?,Int?) -> Void) {
         
         let headers: HTTPHeaders = [
             "X-Shopify-Access-Token": "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",
             "Content-Type": "application/json"
         ]
         
-        AF.request("https://mad43-sv-ios1.myshopify.com/admin/api/2023-04/\(path).json",method: .post,parameters: parameters,encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200 ..< 299).responseData{ response in
+        AF.request("https://mad43-sv-ios1.myshopify.com/admin/api/2023-04/customers.json",method: .post,parameters: parameters,encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200 ..< 299).responseData{ response in
             switch response.result {
             case .success(let data):
                 do {
@@ -64,46 +64,5 @@ class Network: NetworkProtocol{
         }
     }
     
-    func deleteData(path: String, handler: @escaping (Response?) -> Void) {
-        
-        let headers: HTTPHeaders = [
-            "X-Shopify-Access-Token": "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",
-            "Content-Type": "application/json"
-        ]
-        
-        AF.request("https://mad43-sv-ios1.myshopify.com/admin/api/2023-04/\(path).json", method: .delete, headers: headers).responseDecodable(of: Response.self) { response in
-            switch response.result {
-            case .success(let data):
-                handler(data)
-            case .failure(let error):
-                print("Error: \(error)")
-            }
-            
-        }
-    }
-
-    func putData(path: String, parameters: Parameters,handler: @escaping (Response?,Int?) -> Void) {
-        
-        let headers: HTTPHeaders = [
-            "X-Shopify-Access-Token": "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",
-            "Content-Type": "application/json"
-        ]
-        
-        AF.request("https://mad43-sv-ios1.myshopify.com/admin/api/2023-04/\(path).json",method: .put, parameters: parameters,encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200 ..< 299).responseData{ response in
-            switch response.result {
-            case .success(let data):
-                do {
-                    let result = try JSONDecoder().decode(Response.self, from: data)
-                    print("after decode \(result)")
-                    handler(result,response.response?.statusCode)
-                } catch {
-                    print("Error: Trying to convert JSON data to string")
-                    return
-                }
-            case .failure(let error):
-                print(error)
-                handler(nil,error.responseCode)
-            }
-        }
-    }
+    
 }
