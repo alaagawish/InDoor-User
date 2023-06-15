@@ -9,7 +9,9 @@ import UIKit
 
 class OrderTableViewCell: UITableViewCell {
     
-    
+    @IBOutlet weak var billingAddress: UILabel!
+    @IBOutlet weak var shippingAddress: UILabel!
+    @IBOutlet weak var items: UILabel!
     @IBOutlet weak var totalPrice: UILabel!
     @IBOutlet weak var itemsNumber: UILabel!
     @IBOutlet weak var orderNumber: UILabel!
@@ -49,8 +51,28 @@ class OrderTableViewCell: UITableViewCell {
         self.orderNumber.text = order.name
         self.itemsNumber.text = "\(order.lineItems?.count ?? 1)"
         self.totalPrice.text = order.totalPrice
-        
+        self.shippingAddress.text = collect(address:[ "\(order.shippingAddress?.firstName ?? "") \(order.shippingAddress?.lastName ?? "")","\(order.shippingAddress?.address1 ?? "")","\(order.shippingAddress?.city ?? "")"])
+        self.billingAddress.text = collect(address:[ "\(order.billingAddress?.firstName ?? "") \(order.billingAddress?.lastName ??    "")","\(order.billingAddress?.address1 ?? "")","\(order.billingAddress?.city ?? "")"])
+        self.items.text = collect(items: order.lineItems ?? [])
         self.status.text = order.financialStatus
+        
+        
+    }
+    func collect(address: [String]) -> String{
+        var item = ""
+        for i in address {
+            item += i + ", "
+        }
+        return item
+        
+    }
+    func collect(items: [LineItems]) -> String{
+        var item = ""
+        for i in items {
+            item += Splitter().splitName(text: (i.name ?? ""), delimiter: "| ") + ", "
+        }
+        return item
+        
     }
     
 }

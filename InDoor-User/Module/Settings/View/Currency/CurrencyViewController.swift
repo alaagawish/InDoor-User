@@ -10,33 +10,33 @@ import UIKit
 class CurrencyViewController: UIViewController {
     @IBOutlet weak var currencyTableView: UITableView!
     
-    var settingsViewModel: CurrencyViewModel!
+    var currencyViewModel: CurrencyViewModel!
     var userDefaults: UserDefaults!
     var currencies:[Currency] = []
     var rates: Rates!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        settingsViewModel = CurrencyViewModel(netWorkingDataSource: Network())
+        currencyViewModel = CurrencyViewModel(netWorkingDataSource: Network())
         userDefaults = UserDefaults.standard
         callingData()
         callingEquivalentCurrency()
     }
     
     func callingData(){
-        settingsViewModel.bindCurrencyToViewController = {[weak self] in
-            self?.currencies = self?.settingsViewModel.result ?? []
+        currencyViewModel.bindCurrencyToViewController = {[weak self] in
+            self?.currencies = self?.currencyViewModel.result ?? []
             self?.currencies.append(Currency(currency: Constants.currency.EGP.rawValue, rateUpdatedAt: Constants.date, enabled: true))
             self?.currencyTableView.reloadData()
         }
-        settingsViewModel.getCurrencies()
+        currencyViewModel.getCurrencies()
     }
     
     func callingEquivalentCurrency(){
-        settingsViewModel.bindRatesToViewController = {[weak self] in
-            self?.rates = self?.settingsViewModel.rates
+        currencyViewModel.bindRatesToViewController = {[weak self] in
+            self?.rates = self?.currencyViewModel.rates
         }
-        settingsViewModel.getEquivalentCurrencies()
+        currencyViewModel.getEquivalentCurrencies()
     }
     
     @IBAction func backButton(_ sender: UIButton) {

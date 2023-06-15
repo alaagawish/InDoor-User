@@ -30,7 +30,7 @@ class Constants {
     static let favoritesNibName = "FavoritesCell"
     static let favoritesCellIdentifier = "favoriteCell"
     static let favoritesCellHeight = 145.0
-    static let orderCellHeight = 100.0
+    static let orderCellHeight = 200.0
     static let favoritesStoryboardName = "FavoritesStoryBoard"
     static let ok = "OK"
     static let nibFileName = "ShoppingCartTableViewCell"
@@ -58,6 +58,7 @@ class Constants {
     static let passwordIsEmpty = "Please, Enter your password."
     static let confirmPasswordIsEmpty = "Please, Enter password confirmation."
     static let cityIsEmpty = "Please, Enter your city."
+    static let countryIsEmpty = "Please, Enter your country."
     static let addressIsEmpty = "Please, Enter your address."
     static let postalCodeIsEmpty = "Please, Enter the postal code/zip."
     static let phoneIsEmpty = "Please, Enter your phone number."
@@ -81,7 +82,16 @@ class Constants {
     static let passwordFormat = "SELF MATCHES %@ "
     static let passwordRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{8,}"
     static let customersPath = "customers"
-    static let orderCollectionViewCell = "OrderCollectionViewCell"
-    static let couponChosen = "Coupon"
-    static let orderStoryID = "orderStoryID"
+    static let addressPath = "customers/\(UserDefault().getCustomerId())/addresses"
+    static let addressCell = "addressCell"
+    static let updateAddressMsg = "Do you want to update this address?"
+    static let newAddressMsg = "New address is successfully added"
+    static let removeAddressMsg = "Do you want to remove this address?"
+    static let removeAddressTitle = "Removig address"
+    static let addressCellNibFile = "AddressTableViewCell"
+    static let defaultAddressMsg = "You can't delete default address"
+    static let addressMsg = "Your address is already exists or there is something wrong with your data"
+    static let addressUpdateTitle = "Update Address"
+    static let delete = "Delete"
+    static let edit = "Edit"
 }

@@ -12,14 +12,14 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var shoppingCartTabelView: UITableView!
     @IBOutlet weak var proceedToCheckoutButton: UIButton!
     @IBOutlet weak var shoppingCartBottomView: UIView!
-   
-    var products: [Product] = []
+    @IBOutlet weak var applyCouponButton: UIButton!
+    @IBOutlet weak var couponTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setShoppingCartCellNibFile()
         setupUI()
-       
+        couponTextField.delegate = self
     }
     
     func setShoppingCartCellNibFile(){
@@ -29,7 +29,15 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     
     func setupUI(){
         proceedToCheckoutButton.layer.cornerRadius = 12
+        applyCouponButton.layer.cornerRadius = 12
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == couponTextField {
+            view.endEditing(true)
+        }
         
+        return true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -38,15 +46,6 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func backButton(_ sender: UIButton) {
         self.dismiss(animated: true)
-    }
-    
-    @IBAction func continueToOrder(_ sender: Any) {
-        
-        let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
-        let orderStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.orderStoryID) as! ReceiptViewController
-        orderStoryBoard.modalPresentationStyle = .fullScreen
-        orderStoryBoard.products = products
-        present(orderStoryBoard, animated: true)
     }
 }
 
@@ -69,8 +68,6 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 145
     }
-    
-    
 }
 
 
