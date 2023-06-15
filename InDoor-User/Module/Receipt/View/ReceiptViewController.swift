@@ -56,7 +56,7 @@ class ReceiptViewController: UIViewController {
                 self.discount.text =  "- \(discountAmount )"
                 self.totalMoney.text = "\((subtotalPrice ?? 0) - discountAmount)"
             }else{
-                //check if coupon text field contains coupon in list back from api 
+                //check if coupon text field contains coupon in list back from api
                 
                 
             }
@@ -97,6 +97,5 @@ extension ReceiptViewController: UICollectionViewDelegate ,UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
-    
-    
+      
 }
