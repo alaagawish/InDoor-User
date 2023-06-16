@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0410DFC92A3CA0C20005114A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DFC82A3CA0C20005114A /* Extensions.swift */; };
 		044EB3182A332845002A74F3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EB3172A332845002A74F3 /* SettingsViewModel.swift */; };
 		044EB33C2A333958002A74F3 /* Rates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EB33B2A333958002A74F3 /* Rates.swift */; };
 		044EB33F2A33786C002A74F3 /* Cart.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 044EB33E2A33786C002A74F3 /* Cart.storyboard */; };
@@ -126,6 +127,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0410DFC82A3CA0C20005114A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		044EB3172A332845002A74F3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		044EB33B2A333958002A74F3 /* Rates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rates.swift; sourceTree = "<group>"; };
 		044EB33E2A33786C002A74F3 /* Cart.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Cart.storyboard; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 			children = (
 				61A19C962A322A8D0067D2F2 /* Constants.swift */,
 				61A19C9A2A327D890067D2F2 /* Splitter.swift */,
+				0410DFC82A3CA0C20005114A /* Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1137,6 +1140,7 @@
 				049953642A363C39000C6146 /* User.swift in Sources */,
 				616BCF232A351FDE0021BDD9 /* LineItems.swift in Sources */,
 				048C56592A323A100016AE06 /* LocalProduct.swift in Sources */,
+				0410DFC92A3CA0C20005114A /* Extensions.swift in Sources */,
 				04B397D62A3B958700D50B37 /* ReviewsTableViewDelegatesHandling.swift in Sources */,
 				04B1A30B2A3BB7E7004AE0C4 /* Review.swift in Sources */,
 				048C565B2A3241CA0016AE06 /* FavoritesViewModel.swift in Sources */,
