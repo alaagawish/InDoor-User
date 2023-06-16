@@ -37,7 +37,6 @@
       }
     },
     {
-
       "identity" : "lottie-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/airbnb/lottie-ios.git",

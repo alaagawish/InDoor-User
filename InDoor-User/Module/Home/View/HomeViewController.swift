@@ -133,4 +133,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         cartStoryboard.modalPresentationStyle = .fullScreen
         present(cartStoryboard, animated: true)
     }
+    
+    
+    @IBAction func NavigateToSearch(_ sender: Any) {
+    }
 }
