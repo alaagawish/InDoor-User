@@ -136,7 +136,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     }
     
     @IBAction func seeAllReviews(_ sender: UIButton) {
-        let allReviews = self.storyboard?.instantiateViewController(identifier: "allReviews") as! AllReviewsViewController
+        let allReviews = self.storyboard?.instantiateViewController(identifier: Constants.allReviewsIdentifier) as! AllReviewsViewController
         allReviews.modalPresentationStyle = .fullScreen
         if Double(product.templateSuffix ?? "0.0") ?? 0.0 >= 3 && Double(product.templateSuffix ?? "0.0") ?? 0.0 <= 5{
             allReviews.reviewsList = Constants.goodReviews
