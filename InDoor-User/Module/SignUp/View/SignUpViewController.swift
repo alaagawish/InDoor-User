@@ -69,7 +69,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 
                 let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, orders: nil)
                 
-                let params = encodeToJson(objectClass: response)
+                let params = JSONCoding().encodeToJson(objectClass: response)
                 self?.signUpViewModel.postUser(parameters: params ?? [:])
             }
         }

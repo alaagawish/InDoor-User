@@ -29,6 +29,9 @@
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
                                         </imageReference>
+                                        <connections>
+                                            <action selector="NavigateToSearch:" destination="Y6W-OH-hqX" id="jsW-xK-zWb"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="sLy-LX-lj8"/>
                                     <barButtonItem id="nHv-Z3-YFc">
@@ -788,6 +791,9 @@
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
                                         </imageReference>
+                                        <connections>
+                                            <action selector="NavigateToSearch:" destination="bTV-LK-jel" id="vQV-iz-Z0o"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jQt-7G-jjM"/>
                                     <barButtonItem id="Jwy-Ko-5Px">

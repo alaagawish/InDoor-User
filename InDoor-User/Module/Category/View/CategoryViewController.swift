@@ -21,10 +21,10 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var womenBarItem: UIBarButtonItem!
     @IBOutlet weak var categoriesToolbar: UIToolbar!
     var products: [Product] = []
-    var currentProducts: [Product] = [] {
+    var allProducts: [Product] = [] {
         didSet{
-            if Array(Set(currentProducts)).count == products.count  && currentProducts.count != 0 {
-                products = currentProducts
+            if Array(Set(allProducts)).count == products.count  && allProducts.count != 0 {
+                products = allProducts
                 disableToolbarItems(status: false)
                 productsCollectionView.reloadData()
                 
@@ -46,11 +46,11 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     func callingData(){
         categoryViewModel.bindResultToViewController = {[weak self] in
             self?.products = self?.categoryViewModel.result ?? []
-            self?.currentProducts = []
+            self?.allProducts = []
             for product in 0 ..< (self?.products.count ?? 0)  {
                 
                 self?.categoryViewModel.getPrice(i: (self?.products[product])! , completionHandler: {  product in
-                    self?.currentProducts.append(product)
+                    self?.allProducts.append(product)
                 })
             }
         }
@@ -76,12 +76,12 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
         }
     }
-   
+    
     @IBAction func womenProducts(_ sender: Any) {
         tintCurrentItem(sender,0)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
         products = []
-        currentProducts = []
+        allProducts = []
         categoryViewModel.getItems(id: Constants.womenID)
         disableToolbarItems(status: true)
         allProducts(allproducts!)
@@ -92,7 +92,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         (sender as! UIBarButtonItem).tintColor = UIColor.black
         products = []
         disableToolbarItems(status: true)
-        currentProducts = []
+        allProducts = []
         categoryViewModel.getItems(id: Constants.menID)
         allProducts(allproducts!)
     }
@@ -102,7 +102,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         (sender as! UIBarButtonItem).tintColor = UIColor.black
         products = []
         disableToolbarItems(status: true)
-        currentProducts = []
+        allProducts = []
         categoryViewModel.getItems(id: Constants.kidID)
         allProducts(allproducts!)
     }
@@ -110,7 +110,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         tintCurrentItem(sender,0)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
         products = []
-        currentProducts = []
+        allProducts = []
         disableToolbarItems(status: true)
         categoryViewModel.getItems(id: Constants.saleID)
         
@@ -120,7 +120,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBAction func allProducts(_ sender: Any) {
         tintCurrentItem(sender,1)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
-        products = currentProducts
+        products = allProducts
         productsCollectionView.reloadData()
         
     }
@@ -129,14 +129,14 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         tintCurrentItem(sender,1)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
         
-        products = currentProducts.filter{$0.productType == Constants.shoes}
+        products = allProducts.filter{$0.productType == Constants.shoes}
         productsCollectionView.reloadData()
     }
     
     @IBAction func shirtProducts(_ sender: Any) {
         tintCurrentItem(sender,1)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
-        products = currentProducts.filter{$0.productType == Constants.tShirt}
+        products = allProducts.filter{$0.productType == Constants.tShirt}
         
         productsCollectionView.reloadData()
     }
@@ -144,11 +144,11 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBAction func accessoriesProducts(_ sender: Any) {
         tintCurrentItem(sender,1)
         (sender as! UIBarButtonItem).tintColor = UIColor.black
-        products = currentProducts.filter{$0.productType == Constants.accessories}
+        products = allProducts.filter{$0.productType == Constants.accessories}
         productsCollectionView.reloadData()
     }
     
-
+    
     @IBAction func moveToFavourites(_ sender: Any) {
         let storyboard = UIStoryboard(name: Constants.favoritesStoryboardName, bundle: nil)
         let favoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.favoritesStoryboardName) as! FavoritesViewController
@@ -187,6 +187,10 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
             
         }
     }
+    
+    
+    @IBAction func NavigateToSearch(_ sender: Any) {
+    }
 }
 extension CategoryViewController{
     
@@ -216,7 +220,12 @@ extension CategoryViewController{
         return UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(products[indexPath.row])
+        let storyboard = UIStoryboard(name: Constants.productDetailsStoryboardName, bundle: nil)
+        let productDetails = storyboard.instantiateViewController(withIdentifier: Constants.productDetailsStoryboardName) as! ProductDetailsViewController
+        productDetails.product = products[indexPath.row]
+        productDetails.modalPresentationStyle = .fullScreen
+        present(productDetails, animated: true)
+        
     }
     
     

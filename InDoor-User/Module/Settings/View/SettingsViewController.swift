@@ -79,5 +79,13 @@ class SettingsViewController: UIViewController {
     @IBAction func backButton(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
+    @IBAction func logout(_ sender: Any) {
+        
+        UserDefault().logout()
+        let storyboard = UIStoryboard(name: Constants.mainStoryboard, bundle: nil)
+        let welcome = storyboard.instantiateViewController(identifier: Constants.welcomeIdentifier) as! WelcomeViewController
+        welcome.modalPresentationStyle = .fullScreen
+        self.present(welcome, animated: true)
+    }
 }
 

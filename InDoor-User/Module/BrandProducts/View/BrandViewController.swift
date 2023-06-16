@@ -115,7 +115,7 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         brandViewModel.getItems(id: id)
     }
     
-
+    
     @IBAction func back(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -206,5 +206,14 @@ extension BrandViewController {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: Constants.productDetailsStoryboardName, bundle: nil)
+        let productDetails = storyboard.instantiateViewController(withIdentifier: Constants.productDetailsStoryboardName) as! ProductDetailsViewController
+        productDetails.product = products[indexPath.row]
+        productDetails.modalPresentationStyle = .fullScreen
+        present(productDetails, animated: true)
+        
     }
 }

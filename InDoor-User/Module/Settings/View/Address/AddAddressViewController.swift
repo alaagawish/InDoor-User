@@ -154,7 +154,7 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
             
             let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil)
             
-            let params = encodeToJson(objectClass: response)
+            let params = JSONCoding().encodeToJson(objectClass: response)
             
             if !toUpdateAddress{
                 self.settingsViewModel.postAddress(parameters: params ?? [:])
