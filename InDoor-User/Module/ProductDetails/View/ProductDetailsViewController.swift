@@ -24,6 +24,12 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     @IBOutlet weak var reviewTableView: UITableView!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var stockCount: UILabel!
+    @IBOutlet weak var addToCartView: UIView!
+    @IBOutlet weak var counterTextField: UILabel!
+    @IBOutlet weak var minusButton: UIButton!
+    @IBOutlet weak var plusButton: UIButton!
+    
+    @IBOutlet weak var bottomSpace: NSLayoutConstraint!
     
     var productImagesArr: [InputSource] = []
     var product:Product!
@@ -45,14 +51,18 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
                 stockCount.text = Constants.selectColor
             }
             selectedColor = nil
-            addToCartOutlet.isHidden = true
+            minusButton.isEnabled = false
+            addToCartView.isHidden = true
+            counterTextField.text = "1"
+            bottomSpace.constant = 16
         }
     }
     var selectedColor: String!{
         didSet{
             checkPriceAndAvailability()
             if selectedSize != nil && selectedColor != nil {
-                addToCartOutlet.isHidden = false
+                addToCartView.isHidden = false
+                bottomSpace.constant = 85
             }
         }
     }
@@ -75,7 +85,9 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         }else {
             favouriteButtonOutlet.isHidden = false
         }
-        addToCartOutlet.isHidden = true
+        addToCartView.isHidden = true
+        bottomSpace.constant = 16
+        counterTextField.text = "1"
         selectedSize = nil
         selectedColor = nil
         colorCollectionHandler.colorArr = product.options?[1].values ?? []
@@ -179,5 +191,24 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     
     @IBAction func addToCart(_ sender: UIButton) {
         
+    }
+    
+    @IBAction func increaseCounter(_ sender: UIButton) {
+        let count = Int(counterTextField.text ?? "1")
+        counterTextField.text = String((count ?? 1) + 1)
+        if Int(counterTextField.text ?? "1") != 1 {
+            minusButton.isEnabled = true
+        }
+    }
+    
+    @IBAction func decreaseCounter(_ sender: Any) {
+        let count = Int(counterTextField.text ?? "1")
+        if count != 1 {
+            counterTextField.text = String((count ?? 0) - 1)
+            minusButton.isEnabled = true
+        }
+        if Int(counterTextField.text ?? "1") == 1{
+            minusButton.isEnabled = false
+        }
     }
 }
