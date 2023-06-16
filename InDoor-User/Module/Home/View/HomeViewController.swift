@@ -149,5 +149,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     @IBAction func NavigateToSearch(_ sender: Any) {
+        let storyboard = UIStoryboard(name: Constants.productSearchStoryboard, bundle: nil)
+        let productSearch = storyboard.instantiateViewController(withIdentifier: Constants.productSearchStoryboard) as! ProductSearchViewController
+        productSearch.modalPresentationStyle = .fullScreen
+        present(productSearch, animated: true)
     }
 }
