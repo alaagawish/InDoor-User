@@ -86,11 +86,13 @@ class Constants {
     static let reviewNibFileName = "ReviewTableViewCell"
     static let reviewCellIdentifier = "reviewCell"
     static let allReviewsIdentifier = "allReviews"
+    static let selectColor = "Select color"
+    static let shouldChooseSizeAndColorFirst = "Please, choose size and color first."
     static let goodReviews: [Review] = [
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Safiya Fikry", rate: 4, reviewMessage: "I liked this product, it also look like the picture."),
-        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Ahd Weal", rate: 4.5, reviewMessage: "It is very confortable product with very high quality."),
+        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Ahd Weal", rate: 4.5, reviewMessage: "It is very comfortable product with very high quality."),
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Alaa Gewish", rate: 3.2, reviewMessage: "I recommend this product, although it is expensive."),
-        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeQ-HkOk0nyWwdR6GNhI19KyuIDOyg-_w_tQ&usqp=CAU", personName: "Ahmed Abdo", rate: 4.1, reviewMessage: "It iis worthy."),
+        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeQ-HkOk0nyWwdR6GNhI19KyuIDOyg-_w_tQ&usqp=CAU", personName: "Ahmed Abdo", rate: 4.1, reviewMessage: "It is worthy."),
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeQ-HkOk0nyWwdR6GNhI19KyuIDOyg-_w_tQ&usqp=CAU", personName: "Ahmed Ward", rate: 3.8, reviewMessage: "Good Product.")
     ]
     static let badReviews: [Review] = [
