@@ -44,7 +44,6 @@
 		04B154CD2A3A060700B808E3 /* launchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B154CC2A3A060700B808E3 /* launchScreenViewController.swift */; };
 		04B154D02A3A08DE00B808E3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 04B154CF2A3A08DE00B808E3 /* Lottie */; };
 		04B154D82A3A0F3900B808E3 /* animation_livuicgk.json in Resources */ = {isa = PBXBuildFile; fileRef = 04B154D72A3A0F3900B808E3 /* animation_livuicgk.json */; };
-		04B1A3052A3BB5F6004AE0C4 /* AllReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1A3042A3BB5F6004AE0C4 /* AllReviewsViewController.swift */; };
 		04B1A3082A3BB79D004AE0C4 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1A3062A3BB79D004AE0C4 /* ReviewTableViewCell.swift */; };
 		04B1A3092A3BB79D004AE0C4 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B1A3072A3BB79D004AE0C4 /* ReviewTableViewCell.xib */; };
 		04B1A30B2A3BB7E7004AE0C4 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B1A30A2A3BB7E7004AE0C4 /* Review.swift */; };
@@ -141,6 +140,7 @@
 		048344CB2A2CC70600D1B793 /* ConnectToUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToUsViewController.swift; sourceTree = "<group>"; };
 		048344CD2A2CD2C800D1B793 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
 		048827962A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FavoritesStoryBoard.storyboard; sourceTree = "<group>"; };
+		048B38992A3C90F200790D03 /* AllReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewsViewController.swift; sourceTree = "<group>"; };
 		048C2F292A37C40B00D44A7A /* ProductDetailsStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProductDetailsStoryBoard.storyboard; sourceTree = "<group>"; };
 		048C2F2B2A37C46300D44A7A /* ProductDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewController.swift; sourceTree = "<group>"; };
 		048C2F2D2A37C5D400D44A7A /* SizeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -162,7 +162,6 @@
 		04A8AB862A3538CA00E80636 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		04B154CC2A3A060700B808E3 /* launchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = launchScreenViewController.swift; sourceTree = "<group>"; };
 		04B154D72A3A0F3900B808E3 /* animation_livuicgk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation_livuicgk.json; sourceTree = "<group>"; };
-		04B1A3042A3BB5F6004AE0C4 /* AllReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AllReviewsViewController.swift; path = ../../../../../../Documents/AllReviewsViewController.swift; sourceTree = "<group>"; };
 		04B1A3062A3BB79D004AE0C4 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		04B1A3072A3BB79D004AE0C4 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
 		04B1A30A2A3BB7E7004AE0C4 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
@@ -465,7 +464,7 @@
 		04B1A3032A3BB5D6004AE0C4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				04B1A3042A3BB5F6004AE0C4 /* AllReviewsViewController.swift */,
+				048B38992A3C90F200790D03 /* AllReviewsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1070,7 +1069,6 @@
 				0455EA772A2CE9E30019C03C /* AddAddressViewController.swift in Sources */,
 				616BCF072A351BC50021BDD9 /* Orders.swift in Sources */,
 				048344CC2A2CC70600D1B793 /* ConnectToUsViewController.swift in Sources */,
-				04B1A3052A3BB5F6004AE0C4 /* AllReviewsViewController.swift in Sources */,
 				048344CE2A2CD2C800D1B793 /* AddressTableViewCell.swift in Sources */,
 				049C383A2A35FCC100639C7B /* SignUpViewModel.swift in Sources */,
 				048344CA2A2CC6E300D1B793 /* CurrencyViewController.swift in Sources */,
