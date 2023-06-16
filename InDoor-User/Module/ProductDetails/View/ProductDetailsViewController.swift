@@ -12,6 +12,7 @@ import Cosmos
 
 class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     
+    @IBOutlet weak var addToCartOutlet: UIButton!
     @IBOutlet weak var rating: CosmosView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var productImagesSlider: ImageSlideshow!
@@ -30,12 +31,28 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     var reviewTableHandler = ReviewsTableViewDelegatesHandling()
     var selectedSize: String!{
         didSet{
-            checkPriceAndAvailability()
+            var tempColorArr:[String] = []
+                        for variant in product.variants! {
+                if variant.option1 == selectedSize{
+                    tempColorArr.append(variant.option2!)
+                }
+            }
+            colorCollectionHandler.colorArr = tempColorArr
+            colorCollectionView.reloadData()
+            if selectedSize != nil{
+                price.text = Constants.selectColor
+                stockCount.text = Constants.selectColor
+            }
+            selectedColor = nil
+            addToCartOutlet.isHidden = true
         }
     }
     var selectedColor: String!{
         didSet{
             checkPriceAndAvailability()
+            if selectedSize != nil && selectedColor != nil {
+                addToCartOutlet.isHidden = false
+            }
         }
     }
     
@@ -51,7 +68,12 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
             productImagesArr.append(KingfisherSource(url: URL(string: image.src ?? "")!))
         }
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        addToCartOutlet.isHidden = true
+        selectedSize = nil
+        selectedColor = nil
+        colorCollectionHandler.colorArr = product.options?[1].values ?? []
+    }
     func initializeUI(){
         prepareSizeCollection()
         prepareColorCollection()
@@ -65,20 +87,23 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     }
     
     func prepareSizeCollection(){
-        sizeCollectionHandler.sizeArr = product.options?[0].values ?? []
         sizeCollectionHandler.viewController = self
         sizeCollectionView.dataSource = sizeCollectionHandler
         sizeCollectionView.delegate = sizeCollectionHandler
+        sizeCollectionHandler.sizeArr = product.options?[0].values ?? []
     }
     
     func prepareColorCollection(){
-        colorCollectionHandler.colorArr = product.options?[1].values ?? []
         colorCollectionHandler.viewController = self
         colorCollectionView.dataSource = colorCollectionHandler
         colorCollectionView.delegate = colorCollectionHandler
+        colorCollectionHandler.colorArr = product.options?[1].values ?? []
     }
     
     func prepareReviewTable(){
+        reviewTableHandler.viewController = self
+        reviewTableView.dataSource = reviewTableHandler
+        reviewTableView.delegate = reviewTableHandler
         if Double(product.templateSuffix ?? "0.0") ?? 0.0 >= 3 && Double(product.templateSuffix ?? "0.0") ?? 0.0 <= 5{
             for i in 0 ..< 3{
                 reviewTableHandler.productReviews.append(Constants.goodReviews[i])
@@ -88,9 +113,6 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
                 reviewTableHandler.productReviews.append(Constants.badReviews[i])
             }
         }
-        reviewTableHandler.viewController = self
-        reviewTableView.dataSource = reviewTableHandler
-        reviewTableView.delegate = reviewTableHandler
     }
     
     func startSlider(){
@@ -149,5 +171,6 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     }
     
     @IBAction func addToCart(_ sender: UIButton) {
+        
     }
 }
