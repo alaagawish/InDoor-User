@@ -30,7 +30,7 @@ class Constants {
     static let favoritesNibName = "FavoritesCell"
     static let favoritesCellIdentifier = "favoriteCell"
     static let favoritesCellHeight = 145.0
-    static let orderCellHeight = 200.0
+    static let orderCellHeight = 100.0
     static let favoritesStoryboardName = "FavoritesStoryBoard"
     static let ok = "OK"
     static let nibFileName = "ShoppingCartTableViewCell"
@@ -58,6 +58,7 @@ class Constants {
     static let passwordIsEmpty = "Please, Enter your password."
     static let confirmPasswordIsEmpty = "Please, Enter password confirmation."
     static let cityIsEmpty = "Please, Enter your city."
+    static let countryIsEmpty = "Please, Enter your country."
     static let addressIsEmpty = "Please, Enter your address."
     static let postalCodeIsEmpty = "Please, Enter the postal code/zip."
     static let phoneIsEmpty = "Please, Enter your phone number."
@@ -82,6 +83,21 @@ class Constants {
     static let passwordFormat = "SELF MATCHES %@ "
     static let passwordRegEx = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[d$@$!%*?&#])[A-Za-z\\dd$@$!%*?&#]{8,}"
     static let customersPath = "customers"
+    static let addressPath = "customers/\(UserDefault().getCustomerId())/addresses"
+    static let addressCell = "addressCell"
+    static let updateAddressMsg = "Do you want to update this address?"
+    static let newAddressMsg = "New address is successfully added"
+    static let removeAddressMsg = "Do you want to remove this address?"
+    static let removeAddressTitle = "Removig address"
+    static let addressCellNibFile = "AddressTableViewCell"
+    static let defaultAddressMsg = "You can't delete default address"
+    static let addressMsg = "Your address is already exists or there is something wrong with your data"
+    static let addressUpdateTitle = "Update Address"
+    static let delete = "Delete"
+    static let edit = "Edit"
+    static let orderCollectionViewCell = "OrderCollectionViewCell"
+    static let couponChosen = "Coupon"
+    static let orderStoryID = "orderStoryID"
     static let welcomeIdentifier = "welcome"
     static let reviewNibFileName = "ReviewTableViewCell"
     static let reviewCellIdentifier = "reviewCell"
@@ -91,7 +107,7 @@ class Constants {
     static let goodReviews: [Review] = [
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Safiya Fikry", rate: 4, reviewMessage: "I liked this product, it also look like the picture."),
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Ahd Weal", rate: 4.5, reviewMessage: "It is very comfortable product with very high quality."),
-        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Alaa Gewish", rate: 3.2, reviewMessage: "I recommend this product, although it is expensive."),
+        Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Alaa Gawish", rate: 3.2, reviewMessage: "I recommend this product, although it is expensive."),
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeQ-HkOk0nyWwdR6GNhI19KyuIDOyg-_w_tQ&usqp=CAU", personName: "Ahmed Abdo", rate: 4.1, reviewMessage: "It is worthy."),
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeQ-HkOk0nyWwdR6GNhI19KyuIDOyg-_w_tQ&usqp=CAU", personName: "Ahmed Ward", rate: 3.8, reviewMessage: "Good Product.")
     ]
@@ -102,4 +118,5 @@ class Constants {
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Haidy Yassin", rate: 1.3, reviewMessage: "I regret buying this product, it doesn't even worth this price"),
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeQ-HkOk0nyWwdR6GNhI19KyuIDOyg-_w_tQ&usqp=CAU", personName: "Moaz El-sadat", rate: 2.8, reviewMessage: "At first it was good and confortable but after couple of weeks it got worse")
     ]
+
 }

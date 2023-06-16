@@ -10,10 +10,10 @@ import UIKit
 class BrandProductCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var price: UILabel!
-    @IBOutlet weak var currencySymbol: UILabel!
     @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet weak var productTitle: UILabel!
     @IBOutlet weak var productImage: UIImageView!
+    @IBOutlet weak var currencySymbol: UILabel!
     var view: String = ""
     var viewController: UIViewController?
     var product:Product!
@@ -49,33 +49,19 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
         self.productTitle.text = Splitter().splitName(text: product.title ?? "", delimiter: "|")
         self.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""),
                                       placeholder: UIImage(named: Constants.noImage))
+        self.currencySymbol.text = UserDefault().getCurrencySymbol()
         if isFav {
             self.favouriteButton.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
         } else {
             self.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
         }
+        
         if product.variants?.count ?? 0 > 0{
-            self.price.text = "\(product.variants![0].price)"
+            
+            self.price.text = String(format: "%.2f", Double(product.variants![0].price)! *  UserDefault().getCurrencyRate())
         }
     }
-    
-    //    func setValuess(product: Product, isFav: Bool, viewController: CategoryViewController ){
-    //        self.categoryViewController = viewController
-    //        self.productTitle.text = Splitter().splitName(text: product.title ?? "", delimiter: "|")
-    //        self.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""),
-    //                                      placeholder: UIImage(named: Constants.noImage))
-    //        if product.variants?.count ?? 0 > 0{
-    //            self.price.text = "\(product.variants![0].price)"
-    //        }
-    //        if isFav{
-    //            self.favouriteButton.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
-    //        }else{
-    //            self.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
-    //        }
-    //
-    //    }
-    //
-    
+
     @IBAction func checkFavouriteProduct(_ sender: Any) {
         
         if favouriteButton.currentImage == UIImage(systemName: Constants.heart) {
@@ -106,8 +92,7 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
                 viewController?.present(alert, animated: true, completion: nil)
             }
         }
-        
-        
+             
     }
     
     override var frame: CGRect {

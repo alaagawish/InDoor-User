@@ -15,8 +15,14 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var priceSlider: UISlider!
     @IBOutlet weak var filterView: UIView!
     
+    @IBOutlet weak var sortingButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var productsCollectionView: UICollectionView!
+    
+    @IBOutlet weak var alphabetFloatingButton: UIButton!
+    @IBOutlet weak var priceFloatingButton: UIButton!
+    
+    @IBOutlet weak var close: UIButton!
     var brandViewModel: BrandViewModel!
     var products: [Product] = []
     var orginList: [Product] = []
@@ -25,6 +31,7 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
     var favoritesViewModel: FavoritesViewModel!
     var searchQuery: BehaviorRelay<Product>!
     var disposeBag: DisposeBag!
+    var sortingTypesFlag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +43,31 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         search()
         filterView.translatesAutoresizingMaskIntoConstraints = false
         
+        setUpUI()
+        
+    }
+    
+    func setUpUI(){
+        if !sortingTypesFlag{
+            alphabetFloatingButton.isHidden = true
+            priceFloatingButton.isHidden = true
+            close.isHidden = true
+        }
+        sortingButton.layer.shadowRadius = 10
+        sortingButton.layer.shadowOpacity = 0.3
+        sortingButton.layer.cornerRadius = 30
+        
+        alphabetFloatingButton.layer.shadowRadius = 10
+        alphabetFloatingButton.layer.shadowOpacity = 0.3
+        alphabetFloatingButton.layer.cornerRadius = 30
+        
+        close.layer.shadowRadius = 10
+        close.layer.shadowOpacity = 0.3
+        close.layer.cornerRadius = 30
+        
+        priceFloatingButton.layer.shadowRadius = 10
+        priceFloatingButton.layer.shadowOpacity = 0.3
+        priceFloatingButton.layer.cornerRadius = 30
     }
     override func viewWillAppear(_ animated: Bool) {
         priceSlider.isHidden = true
@@ -57,6 +89,8 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         }.disposed(by: disposeBag)
         
     }
+    
+    
     func filter(searchText:String) {
         if(!searchText.isEmpty){
             products = orginList.filter{(Splitter().splitName(text: $0.title!, delimiter: "| ").lowercased().contains(searchText.lowercased()))}
@@ -81,37 +115,7 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         brandViewModel.getItems(id: id)
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return products.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.brandProduct, for: indexPath) as! BrandProductCollectionViewCell
-        cell.setValues(product: products[indexPath.row], isFav: favoritesViewModel.checkIfProductIsFavorite(productId: products[indexPath.row].id), viewController: self, view: Constants.brand)
-        
-        return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width/2 - 10, height: UIScreen.main.bounds.height/4 - 12)
-        
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.3
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: Constants.productDetailsStoryboardName, bundle: nil)
-        let productDetails = storyboard.instantiateViewController(withIdentifier: Constants.productDetailsStoryboardName) as! ProductDetailsViewController
-        productDetails.product = products[indexPath.row]
-        productDetails.modalPresentationStyle = .fullScreen
-        present(productDetails, animated: true)
-    }
+
     @IBAction func back(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -146,4 +150,61 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         filter()
     }
     
+    @IBAction func sorting(_ sender: Any) {
+        sortingTypesFlag = !sortingTypesFlag
+        if sortingTypesFlag{
+            alphabetFloatingButton.isHidden = false
+            priceFloatingButton.isHidden = false
+            close.isHidden = false
+        }else{
+            alphabetFloatingButton.isHidden = true
+            priceFloatingButton.isHidden = true
+            close.isHidden = true
+        }
+    }
+    @IBAction func sortByPrice(_ sender: Any) {
+        sortingTypesFlag = false
+        alphabetFloatingButton.isHidden = true
+        priceFloatingButton.isHidden = true
+        close.isHidden = true
+        products = products.sorted(by:  {Float($0.variants?[0].price ?? "") ?? 0 < Float($1.variants?[0].price ?? "") ?? 0})
+        productsCollectionView.reloadData()
+        
+    }
+    
+    @IBAction func sortByAlphabet(_ sender: Any) {
+        sortingTypesFlag = false
+        alphabetFloatingButton.isHidden = true
+        priceFloatingButton.isHidden = true
+        close.isHidden = true
+        products = products.sorted(by:  {$0.title ?? "" < $1.title ?? ""})
+        productsCollectionView.reloadData()
+    }
+    
+    
+}
+extension BrandViewController {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return products.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.brandProduct, for: indexPath) as! BrandProductCollectionViewCell
+        cell.setValues(product: products[indexPath.row], isFav: favoritesViewModel.checkIfProductIsFavorite(productId: products[indexPath.row].id), viewController: self, view: Constants.brand)
+        
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width/2 - 10, height: UIScreen.main.bounds.height/4 - 12)
+        
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.3
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    }
 }
