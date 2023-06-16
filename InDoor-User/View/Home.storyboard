@@ -189,7 +189,7 @@
                                     <constraint firstAttribute="width" secondItem="Wum-E1-GbR" secondAttribute="height" id="8IR-zb-9yA"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="text.justify" catalog="system"/>
+                                <state key="normal" image="dollarsign.circle.fill" catalog="system"/>
                                 <connections>
                                     <action selector="startFilter:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="hGO-TY-TXx"/>
                                 </connections>
@@ -219,7 +219,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Price"/>
+                                <state key="normal" image="dollarsign" catalog="system"/>
                                 <connections>
                                     <action selector="sortByPrice:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="xr2-lb-Iig"/>
                                 </connections>
@@ -234,7 +234,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="A/Z"/>
+                                <state key="normal" image="abc" catalog="system"/>
                                 <connections>
                                     <action selector="sortByAlphabet:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="xXN-OJ-LR7"/>
                                 </connections>
@@ -277,7 +277,9 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="pencil" catalog="system"/>
+                                <state key="normal" image="slider.horizontal.3" catalog="system">
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="sorting:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="Xbk-Xo-64Y"/>
                                 </connections>
@@ -294,9 +296,9 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="xmark" catalog="system"/>
+                                <state key="normal" image="star.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="sorting:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="KZi-B4-Q1I"/>
+                                    <action selector="sortByBestSeller:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="jIc-Hp-yoE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -336,7 +338,7 @@
                     </view>
                     <connections>
                         <outlet property="alphabetFloatingButton" destination="8Vj-Up-a3x" id="PYL-go-V1E"/>
-                        <outlet property="close" destination="1Gn-7v-IQe" id="QzC-Q1-GdV"/>
+                        <outlet property="bestSellerFloatingButton" destination="1Gn-7v-IQe" id="OJc-Le-uWZ"/>
                         <outlet property="currentPrice" destination="YJ0-2G-3Sc" id="V8K-YC-zxW"/>
                         <outlet property="filterView" destination="23m-zT-VJv" id="LAd-xi-X3x"/>
                         <outlet property="priceFloatingButton" destination="wi5-ay-jM3" id="dv9-cx-Go1"/>
@@ -1027,19 +1029,21 @@
     </scenes>
     <color key="tintColor" systemColor="labelColor"/>
     <resources>
+        <image name="abc" catalog="system" width="128" height="50"/>
         <image name="back" width="200" height="200"/>
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="checkmark.circle.badge.questionmark.fill" catalog="system" width="128" height="114"/>
+        <image name="dollarsign" catalog="system" width="89" height="128"/>
+        <image name="dollarsign.circle.fill" catalog="system" width="128" height="123"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="121"/>
+        <image name="slider.horizontal.3" catalog="system" width="128" height="99"/>
         <image name="square.grid.3x3.fill" catalog="system" width="128" height="113"/>
         <image name="square.grid.3x3.topright.fill" catalog="system" width="128" height="113"/>
-        <image name="text.justify" catalog="system" width="128" height="99"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <namedColor name="main">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
