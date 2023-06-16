@@ -115,6 +115,7 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         brandViewModel.getItems(id: id)
     }
     
+
     @IBAction func back(_ sender: Any) {
         self.dismiss(animated: true)
     }

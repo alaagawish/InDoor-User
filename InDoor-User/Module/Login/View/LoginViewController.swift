@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -78,5 +78,25 @@ class LoginViewController: UIViewController {
         uiView.layer.borderWidth = 1.0
         uiView.layer.borderColor = UIColor.black.cgColor
         uiView.layer.masksToBounds = true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func setupDelegation(){
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField{
+            emailTextField.becomeFirstResponder()
+        }
+        else{
+            view.endEditing(true)
+        }
+        
+        return true
     }
 }
