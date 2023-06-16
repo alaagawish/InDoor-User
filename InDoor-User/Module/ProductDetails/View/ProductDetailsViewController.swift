@@ -145,4 +145,9 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         }
         self.present(allReviews, animated: true)
     }
+    @IBAction func addOrRemoveFromFavorites(_ sender: UIButton) {
+    }
+    
+    @IBAction func addToCart(_ sender: UIButton) {
+    }
 }

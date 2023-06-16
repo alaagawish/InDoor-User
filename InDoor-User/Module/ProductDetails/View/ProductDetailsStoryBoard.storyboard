@@ -200,6 +200,9 @@
                                                 <buttonConfiguration key="configuration" style="filled" image="cart" catalog="system" title="   Add to cart">
                                                     <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="addToCart:" destination="aIW-Z5-OKN" eventType="touchUpInside" id="TpI-hd-Hf4"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqt-k4-LBS" customClass="CosmosView" customModule="Cosmos">
                                                 <rect key="frame" x="16" y="372.66666666666669" width="361" height="20"/>
@@ -284,6 +287,9 @@
                                         </hierarchicalColors>
                                     </imageReference>
                                 </state>
+                                <connections>
+                                    <action selector="addOrRemoveFromFavorites:" destination="aIW-Z5-OKN" eventType="touchUpInside" id="kXJ-Qd-EWy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJm-yp-EuP">
                                 <rect key="frame" x="16.000000000000004" y="75" width="35.333333333333343" height="35.333333333333343"/>
@@ -336,7 +342,6 @@
         <!--All Reviews View Controller-->
         <scene sceneID="iSH-Th-bH9">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ylm-v6-voi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="allReviews" id="bQK-dW-kAv" customClass="AllReviewsViewController" customModule="InDoor_User" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="srV-tT-xOI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -387,6 +392,7 @@
                         <outlet property="allReviewsTableView" destination="1lk-CZ-EZT" id="cjl-qj-Pen"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ylm-v6-voi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="251.14503816793894" y="-76.056338028169023"/>
         </scene>

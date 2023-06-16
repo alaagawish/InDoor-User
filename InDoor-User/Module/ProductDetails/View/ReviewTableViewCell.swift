@@ -45,6 +45,7 @@ class ReviewTableViewCell: UITableViewCell {
         photo.kf.setImage(with: URL(string: review.photo))
         personName.text = review.personName
         rating.rating = review.rate
+        rating.settings.updateOnTouch = false
         reviewMessage.text = review.reviewMessage
     }
     
