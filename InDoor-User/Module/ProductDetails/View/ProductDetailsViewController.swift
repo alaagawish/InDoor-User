@@ -12,6 +12,7 @@ import Cosmos
 
 class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     
+    @IBOutlet weak var favouriteButtonOutlet: UIButton!
     @IBOutlet weak var addToCartOutlet: UIButton!
     @IBOutlet weak var rating: CosmosView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -69,6 +70,11 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         }
     }
     override func viewWillAppear(_ animated: Bool) {
+        if UserDefault().getCustomerId() == -1 {
+            favouriteButtonOutlet.isHidden = true
+        }else {
+            favouriteButtonOutlet.isHidden = false
+        }
         addToCartOutlet.isHidden = true
         selectedSize = nil
         selectedColor = nil

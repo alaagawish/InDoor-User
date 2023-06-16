@@ -324,6 +324,7 @@
                         <outlet property="addToCartOutlet" destination="3Pn-66-Na0" id="gzV-XH-j3q"/>
                         <outlet property="colorCollectionView" destination="1b9-tG-y1h" id="M9g-tk-fO0"/>
                         <outlet property="descriptionLabel" destination="rFR-9g-b6d" id="lCA-k7-tT1"/>
+                        <outlet property="favouriteButtonOutlet" destination="YbG-s0-oIe" id="8I0-jT-dpG"/>
                         <outlet property="price" destination="bfc-41-3rn" id="Hce-Kc-Kbf"/>
                         <outlet property="productImagesSlider" destination="mT8-IK-gGo" id="NsS-Bg-TQC"/>
                         <outlet property="productName" destination="DXQ-9K-pui" id="uxZ-3t-erd"/>

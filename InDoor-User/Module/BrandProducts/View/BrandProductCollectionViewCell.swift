@@ -38,6 +38,12 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
         
     }
     func setValues(product:Product, isFav: Bool, viewController: UIViewController, view: String ) {
+        
+        if UserDefault().getCustomerId() == -1 {
+            favouriteButton.isHidden = true
+        }else {
+            favouriteButton.isHidden = false
+        }
         if view == Constants.brand {
             self.view = view
             self.viewController = viewController as! BrandViewController

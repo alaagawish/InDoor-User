@@ -9,6 +9,8 @@ import UIKit
 
 class CategoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var favouriteOutlet: UIBarButtonItem!
+    @IBOutlet weak var cartOutlet: UIBarButtonItem!
     @IBOutlet weak var saleBarItem: UIBarButtonItem!
     @IBOutlet weak var accBarItem: UIBarButtonItem!
     @IBOutlet weak var shoesBarItem: UIBarButtonItem!
@@ -63,6 +65,13 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         womenProducts(womenBarItem!)
         allProducts(allproducts!)
         disableToolbarItems(status: true)
+        if UserDefault().getCustomerId() == -1 {
+            favouriteOutlet.isHidden = true
+            cartOutlet.isHidden = true
+        }else {
+            favouriteOutlet.isHidden = false
+            cartOutlet.isHidden = false
+        }
     }
     
     func tintCurrentItem(_ sender: Any,_ id: Int) {

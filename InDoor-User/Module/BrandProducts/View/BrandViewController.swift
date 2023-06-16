@@ -177,7 +177,7 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         alphabetFloatingButton.isHidden = true
         priceFloatingButton.isHidden = true
         close.isHidden = true
-        products = products.sorted(by:  {$0.title ?? "" < $1.title ?? ""})
+        products = products.sorted(by:  {Splitter().splitName(text: $0.title ?? "", delimiter: "| ") < Splitter().splitName(text: $1.title ?? "", delimiter: "| ") })
         productsCollectionView.reloadData()
     }
     

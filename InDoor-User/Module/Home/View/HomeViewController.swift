@@ -9,6 +9,11 @@ import UIKit
 import ImageSlideshow
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ImageSlideshowDelegate {
+    
+    @IBOutlet weak var cartOutlet: UIBarButtonItem!
+    
+    @IBOutlet weak var favouriteOutlet: UIBarButtonItem!
+    
     @IBOutlet weak var brandCollectionView: UICollectionView!
     @IBOutlet weak var couponsSlider: ImageSlideshow!
     var homeViewModel: HomeViewModel!
@@ -31,7 +36,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         callingData()
         
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        if UserDefault().getCustomerId() == -1 {
+            favouriteOutlet.isHidden = true
+            cartOutlet.isHidden = true
+        }else {
+            favouriteOutlet.isHidden = false
+            cartOutlet.isHidden = false
+        }
+    }
     func callingData(){
         homeViewModel.bindResultToViewController = {[weak self] in
             DispatchQueue.main.async {
