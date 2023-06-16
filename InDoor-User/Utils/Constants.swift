@@ -85,6 +85,7 @@ class Constants {
     static let welcomeIdentifier = "welcome"
     static let reviewNibFileName = "ReviewTableViewCell"
     static let reviewCellIdentifier = "reviewCell"
+    static let allReviewsIdentifier = "allReviews"
     static let goodReviews: [Review] = [
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Safiya Fikry", rate: 4, reviewMessage: "I liked this product, it also look like the picture."),
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Ahd Weal", rate: 4.5, reviewMessage: "It is very confortable product with very high quality."),
