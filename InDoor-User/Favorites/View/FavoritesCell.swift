@@ -14,7 +14,8 @@ class FavoritesCell: UITableViewCell {
     @IBOutlet weak var productStatusLabel: UILabel!
     @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var productImageView: UIImageView!
-    var product: LocalProduct!
+    var localProduct: LocalProduct!
+    var product: Product!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -49,11 +50,19 @@ class FavoritesCell: UITableViewCell {
         }
     }
     func setDataToTableCell(product: LocalProduct) {
+        self.localProduct = product
+        productImageView.kf.setImage(with: URL(string: localProduct.image ))
+        productTitleLabel.text = Splitter().splitName(text: localProduct.title, delimiter: "| ")
+        productStatusLabel.text = localProduct.status
+        productPriceLabel.text = localProduct.price
+    }
+    
+    func setProductToTableCell(product: Product) {
         self.product = product
-        productImageView.kf.setImage(with: URL(string: product.image ))
-        productTitleLabel.text = Splitter().splitName(text: product.title, delimiter: "| ")
+        productImageView.kf.setImage(with: URL(string: product.image?.src ?? ""))
+        productTitleLabel.text = Splitter().splitName(text: product.title ?? "", delimiter: "| ")
         productStatusLabel.text = product.status
-        productPriceLabel.text = product.price
+        productPriceLabel.text = product.variants?[0].price
     }
     
 }
