@@ -118,5 +118,5 @@ class Constants {
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Haidy Yassin", rate: 1.3, reviewMessage: "I regret buying this product, it doesn't even worth this price"),
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeQ-HkOk0nyWwdR6GNhI19KyuIDOyg-_w_tQ&usqp=CAU", personName: "Moaz El-sadat", rate: 2.8, reviewMessage: "At first it was good and confortable but after couple of weeks it got worse")
     ]
-
+    static let productSearchStoryboard = "ProductSearchStoryboard"
 }
