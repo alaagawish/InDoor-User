@@ -57,4 +57,14 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             
         }
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let storyboard = UIStoryboard(name: Constants.productDetailsStoryboardName, bundle: nil)
+        let productDetails = storyboard.instantiateViewController(withIdentifier: Constants.productDetailsStoryboardName) as! ProductDetailsViewController
+//        productDetails.product = favoritesViewModel.allProductsList[indexPath.row]
+        productDetails.modalPresentationStyle = .fullScreen
+        present(productDetails, animated: true)
+        
+        
+    }
 }

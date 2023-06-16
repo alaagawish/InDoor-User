@@ -30,4 +30,8 @@ class UserDefault{
         return userDefaults.string(forKey: Constants.couponChosen) ?? "null"
         
     }
+    
+    func logout() {
+        userDefaults.setValue(-1, forKey: Constants.customerId)
+    }
 }
