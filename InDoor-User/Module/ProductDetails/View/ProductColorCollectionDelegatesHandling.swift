@@ -8,10 +8,17 @@
 import UIKit
 
 class ProductColorCollectionDelegatesHandling: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    
-    var colorArr:[String] = []
     var viewController:ProductDetailsViewController!
     
+    var colorArr: [String] = []{
+        willSet{
+            for index in colorArr.indices {
+                self.collectionView(viewController.colorCollectionView, didDeselectItemAt: IndexPath(row: index, section: 0))
+            }
+            self.viewController.colorCollectionView.reloadData()
+        }
+    }
+   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return colorArr.count
     }
@@ -27,24 +34,16 @@ class ProductColorCollectionDelegatesHandling: NSObject, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.layer.shadowRadius = 0.0
-        cell?.layer.shadowColor = UIColor.gray.cgColor
-        cell?.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        cell?.layer.shadowOpacity = 0.0
-        viewController.selectedColor = colorArr[indexPath.row]
-        cell?.contentView.layer.borderWidth = 4
-        cell?.contentView.layer.borderColor = UIColor.black.cgColor
+        if viewController.selectedSize != nil {
+            viewController.selectedColor = colorArr[indexPath.row]
+            let cell = collectionView.cellForItem(at: indexPath)
+            cell?.addBorderAndRemoveShadow()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
-        cell?.layer.shadowRadius = 5.0
-        cell?.layer.shadowColor = UIColor.gray.cgColor
-        cell?.layer.shadowOffset = CGSize(width: 3.3, height: 5.7)
-        cell?.layer.shadowOpacity = 0.7
-        cell?.contentView.layer.borderWidth = 0
-        cell?.contentView.layer.borderColor = UIColor.white.cgColor
+        cell?.elevateCellAndRemoveBorder()
     }
 }
 
