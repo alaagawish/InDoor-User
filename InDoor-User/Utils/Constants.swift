@@ -119,4 +119,7 @@ class Constants {
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeQ-HkOk0nyWwdR6GNhI19KyuIDOyg-_w_tQ&usqp=CAU", personName: "Moaz El-sadat", rate: 2.8, reviewMessage: "At first it was good and confortable but after couple of weeks it got worse")
     ]
     static let productSearchStoryboard = "ProductSearchStoryboard"
+    static let comingToSearchFrom = "comingToSearchFrom"
+    static let comingToSearchFromHome = "comingToSearchFromHome"
+    static let comingToSearchFromCategory = "comingToSearchFromCategory"
 }
