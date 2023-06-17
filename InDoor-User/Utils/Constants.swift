@@ -122,4 +122,5 @@ class Constants {
     static let comingToSearchFrom = "comingToSearchFrom"
     static let comingToSearchFromHome = "comingToSearchFromHome"
     static let comingToSearchFromCategory = "comingToSearchFromCategory"
+    static let isGoogle = "isGoogle"
 }
