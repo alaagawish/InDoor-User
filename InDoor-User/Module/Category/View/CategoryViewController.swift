@@ -35,8 +35,11 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     var favoritesViewModel: FavoritesViewModel!
     var categoryViewModel: CategoryViewModel!
+    var defaults:UserDefaults!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        defaults = UserDefaults.standard
         categoryViewModel = CategoryViewModel(netWorkingDataSource: Network())
         productsCollectionView.register(UINib(nibName: Constants.brandProductCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.brandProduct)
         favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance)
@@ -199,6 +202,12 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     
     @IBAction func NavigateToSearch(_ sender: Any) {
+        let storyboard = UIStoryboard(name: Constants.productSearchStoryboard, bundle: nil)
+        let productSearch = storyboard.instantiateViewController(withIdentifier: Constants.productSearchStoryboard) as! ProductSearchViewController
+        productSearch.modalPresentationStyle = .fullScreen
+        defaults.setValue(Constants.comingToSearchFromCategory, forKey: Constants.comingToSearchFrom)
+        productSearch.products = Array(Set(allProducts))
+        present(productSearch, animated: true)
     }
 }
 extension CategoryViewController{
