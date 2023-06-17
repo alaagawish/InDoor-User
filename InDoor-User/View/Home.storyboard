@@ -637,6 +637,9 @@
                                             <action selector="seeAllOrders:" destination="2uB-ev-aaP" eventType="touchUpInside" id="Uf8-FO-xBp"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noOrder" translatesAutoresizingMaskIntoConstraints="NO" id="GPs-Y6-jIS">
+                                        <rect key="frame" x="0.0" y="70.666666666666686" width="393" height="220"/>
+                                    </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hk4-SJ-DhV">
                                         <rect key="frame" x="0.0" y="70.666666666666686" width="393" height="220"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -662,8 +665,11 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="GPs-Y6-jIS" firstAttribute="height" secondItem="hk4-SJ-DhV" secondAttribute="height" id="3fB-7C-UaX"/>
+                                    <constraint firstItem="GPs-Y6-jIS" firstAttribute="leading" secondItem="hk4-SJ-DhV" secondAttribute="leading" id="AgC-KN-hyp"/>
                                     <constraint firstItem="3D2-1f-1RP" firstAttribute="top" secondItem="Fge-lX-sYg" secondAttribute="bottom" constant="8" id="Hph-3x-4pg"/>
                                     <constraint firstItem="7aH-3u-5XA" firstAttribute="top" secondItem="Fge-lX-sYg" secondAttribute="bottom" constant="8" id="NwZ-lP-2Vt"/>
+                                    <constraint firstItem="GPs-Y6-jIS" firstAttribute="top" secondItem="hk4-SJ-DhV" secondAttribute="top" id="OP1-yd-q0J"/>
                                     <constraint firstAttribute="trailing" secondItem="3D2-1f-1RP" secondAttribute="trailing" constant="16" id="R6Z-CI-LVo"/>
                                     <constraint firstAttribute="trailing" secondItem="hk4-SJ-DhV" secondAttribute="trailing" id="TO4-Ar-UVy"/>
                                     <constraint firstItem="Y4f-CZ-5GO" firstAttribute="top" secondItem="hk4-SJ-DhV" secondAttribute="bottom" constant="8" id="VZR-aY-2vV"/>
@@ -679,6 +685,7 @@
                                     <constraint firstItem="Fge-lX-sYg" firstAttribute="leading" secondItem="rZc-aR-ZoX" secondAttribute="leading" constant="16" id="iCR-fA-aUV"/>
                                     <constraint firstItem="E7Q-41-X2S" firstAttribute="top" secondItem="Y4f-CZ-5GO" secondAttribute="bottom" constant="8" id="jdk-gF-DTe"/>
                                     <constraint firstItem="E7Q-41-X2S" firstAttribute="leading" secondItem="rZc-aR-ZoX" secondAttribute="leading" id="l2f-6I-4vj"/>
+                                    <constraint firstItem="GPs-Y6-jIS" firstAttribute="width" secondItem="hk4-SJ-DhV" secondAttribute="width" id="lxv-zr-2Ea"/>
                                     <constraint firstItem="0lc-1v-536" firstAttribute="width" secondItem="rZc-aR-ZoX" secondAttribute="width" multiplier="0.3" id="qMk-T0-zvm"/>
                                     <constraint firstItem="3D2-1f-1RP" firstAttribute="width" secondItem="rZc-aR-ZoX" secondAttribute="width" multiplier="0.3" id="t8w-JI-TIn"/>
                                     <constraint firstItem="0lc-1v-536" firstAttribute="top" secondItem="hk4-SJ-DhV" secondAttribute="bottom" constant="8" id="vWv-I4-BQt"/>
@@ -718,8 +725,10 @@
                     <connections>
                         <outlet property="cartItem" destination="HFM-01-qMy" id="yfV-Nz-488"/>
                         <outlet property="loggedInStack" destination="f4c-yA-bHL" id="hvn-mM-QEc"/>
+                        <outlet property="noOrderImage" destination="GPs-Y6-jIS" id="eBI-bA-Q7E"/>
                         <outlet property="orderTableView" destination="hk4-SJ-DhV" id="W2P-g0-JFi"/>
                         <outlet property="profileView" destination="rZc-aR-ZoX" id="nBX-QX-pmh"/>
+                        <outlet property="seeAllOrdersOutlet" destination="3D2-1f-1RP" id="3Za-nT-H6K"/>
                         <outlet property="settingsItem" destination="gDK-iW-Bmh" id="FBe-PN-9c9"/>
                         <outlet property="wishlistTableView" destination="E7Q-41-X2S" id="4cR-NX-pW6"/>
                     </connections>
@@ -1039,6 +1048,7 @@
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="noOrder" width="375" height="453"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="99"/>
         <image name="square.grid.3x3.fill" catalog="system" width="128" height="113"/>

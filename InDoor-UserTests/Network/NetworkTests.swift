@@ -104,7 +104,7 @@ final class NetworkTests: XCTestCase {
     
     func testPostDataPass(){
         
-        let address = Address(id: nil, customer_id: 7000574820639 , name: "lolo elsayedddd", first_name:"lolo", last_name:  "elsayedddd", phone: "9898-999-1199", address1: "zagazig", city: "Aswan", country: "Egypt", default: false)
+        let address = Address(id: nil, customer_id: 7000574820639 , name: "lolo elsayedddd", first_name:"lolo", last_name:  "elsayedddd", phone: "9898-999-1111", address1: "zagazig", city: "Aswan", country: "Egypt", default: false)
         
         let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil)
         

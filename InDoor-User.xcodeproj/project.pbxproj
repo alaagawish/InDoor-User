@@ -547,6 +547,8 @@
 			isa = PBXGroup;
 			children = (
 				613D3F312A3A23A400117F52 /* ReceiptViewController.swift */,
+				613D3F362A3A30E700117F52 /* OrderCollectionViewCell.xib */,
+				613D3F352A3A30E700117F52 /* OrderCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -686,8 +688,6 @@
 			isa = PBXGroup;
 			children = (
 				61B8845C2A34CFFC0085E614 /* ProfileViewController.swift */,
-				613D3F352A3A30E700117F52 /* OrderCollectionViewCell.swift */,
-				613D3F362A3A30E700117F52 /* OrderCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";

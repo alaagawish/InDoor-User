@@ -23,7 +23,7 @@ class OrdersViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func callingData(){
         ordersViewModel.bindResultToViewController = {[weak self] in
-                self?.orders = self?.ordersViewModel.result ?? []
+            self?.orders = self?.ordersViewModel.result?.filter{$0.customer?.id == UserDefault().getCustomerId()} ?? []
                 self?.orderTableView.reloadData()
         }
         ordersViewModel.getOrders()
