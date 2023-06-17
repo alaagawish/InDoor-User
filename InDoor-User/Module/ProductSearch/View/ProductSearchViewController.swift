@@ -11,22 +11,31 @@ import RxCocoa
 
 class ProductSearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
-    @IBOutlet weak var searchTextField: UITextField!
+ 
+    @IBOutlet weak var inputSearchBar: UISearchBar!
+    
+
     @IBOutlet weak var searchTableView: UITableView!
     var disposeBag: DisposeBag!
     var productSearchViewModel: ProductSearchViewModel!
     var products: [Product] = []
-    
+    var productList: [Product] = []
+    var defaults: UserDefaults!
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        defaults = UserDefaults.standard
         self.searchTableView.register(UINib(nibName: Constants.favoritesNibName, bundle: nil), forCellReuseIdentifier: Constants.favoritesCellIdentifier)
         disposeBag = DisposeBag()
-        productSearchViewModel = ProductSearchViewModel(networkManager: Network())
-        productSearchViewModel.bindResultToViewController = { [weak self] in
-            self?.search()
+        if defaults.string(forKey: Constants.comingToSearchFrom) == Constants.comingToSearchFromHome{
+            productSearchViewModel = ProductSearchViewModel(networkManager: Network())
+            productSearchViewModel.bindResultToViewController = { [weak self] in
+                self?.search()
+            }
+            productSearchViewModel.getItems()
+        } else {
+            productList = products
+            search()
         }
-        productSearchViewModel.getItems()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,7 +53,7 @@ class ProductSearchViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func search() {
-        searchTextField.rx.text.subscribe{[weak self] text in
+        inputSearchBar.rx.text.subscribe{[weak self] text in
             guard let self = self else {return}
             self.filter(searchText: text!)
         }.disposed(by: disposeBag)
@@ -52,26 +61,28 @@ class ProductSearchViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     func filter(searchText:String) {
-        if(!searchText.isEmpty){
-            products = productSearchViewModel.result.filter{(Splitter().splitName(text: $0.title!, delimiter: "| ").lowercased().contains(searchText.lowercased()))}
-            if products.isEmpty{
-                products = []
+        if defaults.string(forKey: Constants.comingToSearchFrom) == Constants.comingToSearchFromHome{
+            if(!searchText.isEmpty){
+                products = productSearchViewModel.result.filter{(Splitter().splitName(text: $0.title!, delimiter: "| ").lowercased().contains(searchText.lowercased()))}
+                if products.isEmpty{
+                    products = []
+                }
+            }else {
+                products = productSearchViewModel.result
             }
-        }else {
-            products = productSearchViewModel.result
+            self.searchTableView.reloadData()
         }
-        self.searchTableView.reloadData()
-    }
-    
-    func setupUI(){
-        setupUIView(uiView: searchTextField)
-    }
-    
-    func setupUIView(uiView: UIView){
-        uiView.layer.cornerRadius = 12
-        uiView.layer.borderWidth = 1.0
-        uiView.layer.borderColor = UIColor.black.cgColor
-        uiView.layer.masksToBounds = true
+        else{
+            if(!searchText.isEmpty){
+                products = productList.filter{(Splitter().splitName(text: $0.title!, delimiter: "| ").lowercased().contains(searchText.lowercased()))}
+                if products.isEmpty{
+                    products = []
+                }
+            } else {
+                products = productList
+            }
+            self.searchTableView.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
