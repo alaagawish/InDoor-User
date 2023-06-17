@@ -54,7 +54,7 @@ final class NetworkTests: XCTestCase {
     }
     
     
-    func testPutData(){
+    func testPutDataPass(){
         let address = Address(id: nil, customer_id: 7000574820639 , name: "lolo elsayedddd", first_name:"lolo", last_name:  "elsayedddd", phone: "0000-625-1199", address1: "zagazig", city: "Cairo", country: "Egypt", default: false)
         
         let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil)
@@ -102,10 +102,102 @@ final class NetworkTests: XCTestCase {
         
     }
     
-    func testPostData(){
+    func testPostDataPass(){
+        
+        let address = Address(id: nil, customer_id: 7000574820639 , name: "lolo elsayedddd", first_name:"lolo", last_name:  "elsayedddd", phone: "9898-999-1199", address1: "zagazig", city: "Aswan", country: "Egypt", default: false)
+        
+        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil)
+        
+        let params = JSONCoding().encodeToJson(objectClass: response) ?? [:]
+        
+        let myExpectation = expectation(description: "network")
+        network.postData(path: "customers/7000574820639/addresses", parameters: params) { response, code in
+            
+            guard code ?? 0 < 400 else{
+                XCTFail()
+                myExpectation.fulfill()
+                return
+            }
+            XCTAssertEqual(code!, 201)
+            XCTAssertNotNil(response?.customer_address)
+            myExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 15)
+    }
+    
+    func testPostDataFail(){
+        let address = Address(id: nil, customer_id: 7000574820639 , name: "lolo elsayedddd", first_name:"lolo", last_name:  "elsayedddd", phone: "0000-999-1199", address1: "zagazig", city: "Aswan", country: "mmm", default: false)
+        
+        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil)
+        
+        let params = JSONCoding().encodeToJson(objectClass: response) ?? [:]
+        
+        let myExpectation = expectation(description: "network")
+        network.postData(path: "customers/7000574820639/addresses", parameters: params) { response, code in
+            
+            guard code ?? 0 < 400 else{
+                XCTAssertEqual(code!, 422)
+                
+                myExpectation.fulfill()
+                return
+            }
+            XCTAssertEqual(code!, 200)
+            XCTAssertNotNil(response?.customer_address)
+            myExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 15)
+        
+    }
+    func testDeleteDataPass() {
+        
+        let myExpectation = expectation(description: "network")
+        network.deleteData(path: "customers/7000574820639/addresses/9236471644447", handler: { response in
+            guard response != nil else{
+                XCTFail()
+                myExpectation.fulfill()
+                return
+            }
+            XCTAssertNil(response?.customer_address)
+            myExpectation.fulfill()
+        })
+        
+        waitForExpectations(timeout: 15)
         
         
     }
     
+    //  func testDeleteDataFail() {
+    //        let myExpectation = expectation(description: "network")
+    //        network.deleteData(path: "customers/7000574820639/addresses/9233850564895", handler: { response in
+    //
+    //            guard response != nil else{
+    //                XCTFail()
+    //                myExpectation.fulfill()
+    //                return
+    //            }
+    //            myExpectation.fulfill()
+    //        })
+    //
+    //        waitForExpectations(timeout: 15)
+    //
+    //
+    //    }
     
+    func testGetEquivalentCurrency(){
+        
+        let myExpectation = expectation(description: "network")
+        network.getEquivalentCurrency { response in
+            guard response != nil else{
+                XCTFail()
+                return
+            }
+            XCTAssertNotNil(response)
+            
+            myExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 15)
+    }
 }
