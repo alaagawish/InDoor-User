@@ -27,9 +27,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var timer: Timer?
     var currentIndex = 0
     var brands:[SmartCollections] = []
+    var defaults: UserDefaults!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        defaults = UserDefaults.standard
         homeViewModel = HomeViewModel(netWorkingDataSource: Network())
         brandCollectionView.register(UINib(nibName: Constants.brandsNibFile, bundle: nil), forCellWithReuseIdentifier: Constants.brandCell)
         startSlider()
@@ -152,6 +154,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let storyboard = UIStoryboard(name: Constants.productSearchStoryboard, bundle: nil)
         let productSearch = storyboard.instantiateViewController(withIdentifier: Constants.productSearchStoryboard) as! ProductSearchViewController
         productSearch.modalPresentationStyle = .fullScreen
+        defaults.setValue(Constants.comingToSearchFromHome, forKey: Constants.comingToSearchFrom)
         present(productSearch, animated: true)
     }
 }
