@@ -38,6 +38,10 @@
 		049953642A363C39000C6146 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953632A363C39000C6146 /* User.swift */; };
 		049953662A363C4B000C6146 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953652A363C4B000C6146 /* Address.swift */; };
 		0499536A2A367E98000C6146 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953692A367E98000C6146 /* LoginViewModel.swift */; };
+		049C02102A3DF5B900488B67 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 049C020F2A3DF5B900488B67 /* FirebaseAuth */; };
+		049C02132A3DF6C500488B67 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 049C02122A3DF6C500488B67 /* GoogleSignIn */; };
+		049C02152A3DF6C500488B67 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 049C02142A3DF6C500488B67 /* GoogleSignInSwift */; };
+		049C02172A3DFA3800488B67 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 049C02162A3DFA3800488B67 /* GoogleService-Info.plist */; };
 		049C383A2A35FCC100639C7B /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C38392A35FCC100639C7B /* SignUpViewModel.swift */; };
 		049D4B6E2A34971300A9386F /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049D4B6D2A34971300A9386F /* DatabaseService.swift */; };
 		04A1567F2A2D178000189909 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A1567D2A2D178000189909 /* FavoritesCell.swift */; };
@@ -167,6 +171,7 @@
 		049953632A363C39000C6146 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		049953652A363C4B000C6146 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		049953692A367E98000C6146 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		049C02162A3DFA3800488B67 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		049C38392A35FCC100639C7B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		049D4B6D2A34971300A9386F /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		04A1567D2A2D178000189909 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
@@ -260,9 +265,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				049C02132A3DF6C500488B67 /* GoogleSignIn in Frameworks */,
 				9D1FD3989110A749C97AEEB6 /* Pods_InDoor_User.framework in Frameworks */,
 				04B247ED2A38757B00B447D2 /* ImageSlideshow/Kingfisher in Frameworks */,
+				049C02152A3DF6C500488B67 /* GoogleSignInSwift in Frameworks */,
 				04B154D02A3A08DE00B808E3 /* Lottie in Frameworks */,
+				049C02102A3DF5B900488B67 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,6 +777,7 @@
 				61E516072A2922EA004DAA1D /* ViewController.swift */,
 				61E516112A2922EB004DAA1D /* LaunchScreen.storyboard */,
 				61E5160F2A2922EB004DAA1D /* Assets.xcassets */,
+				049C02162A3DFA3800488B67 /* GoogleService-Info.plist */,
 				61E516142A2922EB004DAA1D /* Info.plist */,
 				61E5160C2A2922EA004DAA1D /* InDoor_User.xcdatamodeld */,
 			);
@@ -918,6 +927,9 @@
 			packageProductDependencies = (
 				04B247EC2A38757B00B447D2 /* ImageSlideshow/Kingfisher */,
 				04B154CF2A3A08DE00B808E3 /* Lottie */,
+				049C020F2A3DF5B900488B67 /* FirebaseAuth */,
+				049C02122A3DF6C500488B67 /* GoogleSignIn */,
+				049C02142A3DF6C500488B67 /* GoogleSignInSwift */,
 			);
 			productName = "InDoor-User";
 			productReference = 61E516002A2922EA004DAA1D /* InDoor-User.app */;
@@ -997,6 +1009,8 @@
 			packageReferences = (
 				04B247EB2A38757B00B447D2 /* XCRemoteSwiftPackageReference "ImageSlideshow" */,
 				04B154CE2A3A08DE00B808E3 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				049C020E2A3DF5B900488B67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				049C02112A3DF6C500488B67 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 61E516012A2922EA004DAA1D /* Products */;
 			projectDirPath = "";
@@ -1025,6 +1039,7 @@
 				044EB3462A338C83002A74F3 /* ShoppingCartTableViewCell.xib in Resources */,
 				044EB33F2A33786C002A74F3 /* Cart.storyboard in Resources */,
 				04E4F6FD2A2A639100566559 /* Settings.storyboard in Resources */,
+				049C02172A3DFA3800488B67 /* GoogleService-Info.plist in Resources */,
 				048C2F2A2A37C40B00D44A7A /* ProductDetailsStoryBoard.storyboard in Resources */,
 				048827972A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard in Resources */,
 				61E516102A2922EB004DAA1D /* Assets.xcassets in Resources */,
@@ -1590,6 +1605,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		049C020E2A3DF5B900488B67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		049C02112A3DF6C500488B67 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		04B154CE2A3A08DE00B808E3 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -1609,6 +1640,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		049C020F2A3DF5B900488B67 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 049C020E2A3DF5B900488B67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		049C02122A3DF6C500488B67 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 049C02112A3DF6C500488B67 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		049C02142A3DF6C500488B67 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 049C02112A3DF6C500488B67 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		04B154CF2A3A08DE00B808E3 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 04B154CE2A3A08DE00B808E3 /* XCRemoteSwiftPackageReference "lottie-ios" */;
