@@ -182,4 +182,12 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         present(favoritesStoryBoard, animated: true)
         
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == orderTableView {
+            let storyboard = self.storyboard?.instantiateViewController(withIdentifier: Constants.orderDetails) as! OrderDetailsViewController
+            storyboard.modalPresentationStyle = .fullScreen
+            storyboard.order = orders[indexPath.row]
+            present(storyboard, animated: true)
+        }
+    }
 }

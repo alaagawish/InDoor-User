@@ -24,7 +24,7 @@ class OrdersViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func callingData(){
         ordersViewModel.bindResultToViewController = {[weak self] in
             self?.orders = self?.ordersViewModel.result?.filter{$0.customer?.id == UserDefault().getCustomerId()} ?? []
-                self?.orderTableView.reloadData()
+            self?.orderTableView.reloadData()
         }
         ordersViewModel.getOrders()
     }
@@ -46,5 +46,11 @@ class OrdersViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Constants.orderCellHeight
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = self.storyboard?.instantiateViewController(withIdentifier: Constants.orderDetails) as! OrderDetailsViewController
+        storyboard.modalPresentationStyle = .fullScreen
+        storyboard.order = orders[indexPath.row]
+        present(storyboard, animated: true)
     }
 }

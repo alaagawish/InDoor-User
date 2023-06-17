@@ -64,6 +64,7 @@
 		613D3F372A3A30E700117F52 /* OrderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613D3F352A3A30E700117F52 /* OrderCollectionViewCell.swift */; };
 		613D3F382A3A30E700117F52 /* OrderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 613D3F362A3A30E700117F52 /* OrderCollectionViewCell.xib */; };
 		614798B92A2B755B009CCD30 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614798B82A2B755B009CCD30 /* Home.storyboard */; };
+		6160CAD82A3E19600010C283 /* OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6160CAD72A3E19600010C283 /* OrderDetailsViewController.swift */; };
 		6168AA282A2BDD8C00A8E33C /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6168AA272A2BDD8C00A8E33C /* NetworkProtocol.swift */; };
 		6168AA2A2A2BDDF400A8E33C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6168AA292A2BDDF400A8E33C /* Network.swift */; };
 		6168AA2E2A2BE05B00A8E33C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6168AA2D2A2BE05B00A8E33C /* Product.swift */; };
@@ -196,6 +197,7 @@
 		613D3F352A3A30E700117F52 /* OrderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCollectionViewCell.swift; sourceTree = "<group>"; };
 		613D3F362A3A30E700117F52 /* OrderCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderCollectionViewCell.xib; sourceTree = "<group>"; };
 		614798B82A2B755B009CCD30 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		6160CAD72A3E19600010C283 /* OrderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsViewController.swift; sourceTree = "<group>"; };
 		6168AA272A2BDD8C00A8E33C /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkProtocol.swift; path = "InDoor-User/Service/RemoteSource/NetworkProtocol.swift"; sourceTree = SOURCE_ROOT; };
 		6168AA292A2BDDF400A8E33C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Network.swift; path = "InDoor-User/Service/RemoteSource/Network.swift"; sourceTree = SOURCE_ROOT; };
 		6168AA2D2A2BE05B00A8E33C /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Product.swift; path = "InDoor-User/Model/Product.swift"; sourceTree = SOURCE_ROOT; };
@@ -580,6 +582,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		6160CAD62A3E193F0010C283 /* OrderDetails */ = {
+			isa = PBXGroup;
+			children = (
+				6160CAD72A3E19600010C283 /* OrderDetailsViewController.swift */,
+			);
+			path = OrderDetails;
+			sourceTree = "<group>";
+		};
 		6168AA372A2BE32F00A8E33C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,6 +618,7 @@
 		616BCEFD2A3504930021BDD9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6160CAD62A3E193F0010C283 /* OrderDetails */,
 				616BCF002A3504AD0021BDD9 /* OrdersViewController.swift */,
 				616BCF022A3517F10021BDD9 /* OrderTableViewCell.swift */,
 				616BCF032A3517F10021BDD9 /* OrderTableViewCell.xib */,
@@ -1201,6 +1212,7 @@
 				6168AA322A2BE0A700A8E33C /* Options.swift in Sources */,
 				61DDC2432A30E2460093A1DE /* BrandProductCollectionViewCell.swift in Sources */,
 				61E5160E2A2922EA004DAA1D /* InDoor_User.xcdatamodeld in Sources */,
+				6160CAD82A3E19600010C283 /* OrderDetailsViewController.swift in Sources */,
 				04935FB32A2D25C90093A73E /* AboutInDoorViewController.swift in Sources */,
 				61DDC23C2A30D0620093A1DE /* BrandViewController.swift in Sources */,
 				61E516042A2922EA004DAA1D /* AppDelegate.swift in Sources */,
