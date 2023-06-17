@@ -12,23 +12,28 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var shoppingCartTabelView: UITableView!
     @IBOutlet weak var proceedToCheckoutButton: UIButton!
     @IBOutlet weak var shoppingCartBottomView: UIView!
+    @IBOutlet weak var totalPriceLabel: UILabel!
     
     static var products: [Product] = []
     var allVariants: [Variants] = []
+    var totalPrice = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setShoppingCartCellNibFile()
         setupUI()
         prepareTableCount()
+        
     }
     
     func prepareTableCount(){
         for product in ShoppingCartViewController.products {
             for variants in product.variants ?? []{
                 allVariants.append(variants)
+                totalPrice += (Double(variants.price) ?? 0.0) * Double(variants.inventoryQuantity!)
             }
         }
+        totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) \(totalPrice)"
     }
     
     override func viewDidAppear(_ animated: Bool) {
