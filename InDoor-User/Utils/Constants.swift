@@ -103,7 +103,13 @@ class Constants {
     static let reviewCellIdentifier = "reviewCell"
     static let allReviewsIdentifier = "allReviews"
     static let selectColor = "Select color"
+    static let selectSize = "Select size"
     static let shouldChooseSizeAndColorFirst = "Please, choose size and color first."
+    static let removeCartItem = "This item will be removed from shopping cart"
+    static let minCartItem = "This item reaches its minimum amount, you can delete it if you don't want it anymore"
+    static let maxCartItem = "This item reaches its maximum amount that you can buy"
+    
+    
     static let goodReviews: [Review] = [
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Safiya Fikry", rate: 4, reviewMessage: "I liked this product, it also look like the picture."),
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Ahd Weal", rate: 4.5, reviewMessage: "It is very comfortable product with very high quality."),

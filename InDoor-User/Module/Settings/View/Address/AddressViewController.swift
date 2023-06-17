@@ -8,7 +8,7 @@
 import UIKit
 
 class AddressViewController: UIViewController {
-
+    
     
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var addressesTable: UITableView!
@@ -84,36 +84,36 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        true
-//    }
-//
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if(editingStyle == .delete){
-//
-//            if addressesList[indexPath.row].default ?? false {
-//                let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.defaultAddressMsg, positiveButtonTitle: Constants.ok)
-//                self.present(alert, animated: true)
-//            }else{
-//                let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.removeAddressTitle, msg: Constants.removeAddressMsg, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok, positiveHandler: { [weak self] action in
-//                    self?.settingsViewModel.deleteAddress(path: "\(Constants.addressPath)/\(self?.addressesList[indexPath.row].id ?? 0)")
-//                    self?.addressesList.remove(at: indexPath.row)
-//                    self?.addressesTable.reloadData()
-//                })
-//                self.present(alert, animated: true)
-//            }
-//        }
-//    }
+    //    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    //        true
+    //    }
+    //
+    //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    //        if(editingStyle == .delete){
+    //
+    //            if addressesList[indexPath.row].default ?? false {
+    //                let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.defaultAddressMsg, positiveButtonTitle: Constants.ok)
+    //                self.present(alert, animated: true)
+    //            }else{
+    //                let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.removeAddressTitle, msg: Constants.removeAddressMsg, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok, positiveHandler: { [weak self] action in
+    //                    self?.settingsViewModel.deleteAddress(path: "\(Constants.addressPath)/\(self?.addressesList[indexPath.row].id ?? 0)")
+    //                    self?.addressesList.remove(at: indexPath.row)
+    //                    self?.addressesTable.reloadData()
+    //                })
+    //                self.present(alert, animated: true)
+    //            }
+    //        }
+    //    }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let addAddress = self.storyboard?.instantiateViewController(withIdentifier: Constants.addAddressIdentifier) as! AddAddressViewController
-//
-//        addAddress.updateAddress = addressesList[indexPath.row]
-//        addAddress.toUpdateAddress = true
-//
-//        addAddress.modalPresentationStyle = .fullScreen
-//        present(addAddress, animated: true)
-//    }
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        let addAddress = self.storyboard?.instantiateViewController(withIdentifier: Constants.addAddressIdentifier) as! AddAddressViewController
+    //
+    //        addAddress.updateAddress = addressesList[indexPath.row]
+    //        addAddress.toUpdateAddress = true
+    //
+    //        addAddress.modalPresentationStyle = .fullScreen
+    //        present(addAddress, animated: true)
+    //    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
@@ -149,6 +149,7 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource{
             handler(true)
         }
         
+        editAction.backgroundColor = UIColor.black
         return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
 }
