@@ -69,6 +69,13 @@ class AddressViewController: UIViewController {
         addAddress.modalPresentationStyle = .fullScreen
         present(addAddress, animated: true)
     }
+    
+    @IBAction func continueToPaymentButton(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Payment", bundle: nil)
+        let pay = storyboard.instantiateViewController(withIdentifier: "payment") as! PaymentViewController
+        pay.modalPresentationStyle = .fullScreen
+        present(pay, animated: true)
+    }
 }
 
 extension AddressViewController: UITableViewDelegate, UITableViewDataSource{

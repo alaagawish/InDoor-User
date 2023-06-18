@@ -21,6 +21,8 @@
 		048344C82A2CB6D400D1B793 /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048344C72A2CB6D400D1B793 /* AddressViewController.swift */; };
 		048344CA2A2CC6E300D1B793 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048344C92A2CC6E300D1B793 /* CurrencyViewController.swift */; };
 		048344CC2A2CC70600D1B793 /* ConnectToUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048344CB2A2CC70600D1B793 /* ConnectToUsViewController.swift */; };
+		0486312D2A3E381B0082A844 /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0486312C2A3E381B0082A844 /* Payment.storyboard */; };
+		0486312F2A3E4C220082A844 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0486312E2A3E4C220082A844 /* PaymentViewController.swift */; };
 		0487D4BC2A3A2606006D9DAA /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0487D4BA2A3A2606006D9DAA /* AddressTableViewCell.swift */; };
 		0487D4BD2A3A2606006D9DAA /* AddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0487D4BB2A3A2606006D9DAA /* AddressTableViewCell.xib */; };
 		048827972A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048827962A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard */; };
@@ -147,6 +149,8 @@
 		048344C72A2CB6D400D1B793 /* AddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
 		048344C92A2CC6E300D1B793 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
 		048344CB2A2CC70600D1B793 /* ConnectToUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToUsViewController.swift; sourceTree = "<group>"; };
+		0486312C2A3E381B0082A844 /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
+		0486312E2A3E4C220082A844 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		0487D4BA2A3A2606006D9DAA /* AddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTableViewCell.swift; sourceTree = "<group>"; };
 		0487D4BB2A3A2606006D9DAA /* AddressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressTableViewCell.xib; sourceTree = "<group>"; };
 		048827962A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FavoritesStoryBoard.storyboard; sourceTree = "<group>"; };
@@ -313,6 +317,23 @@
 				044EB3412A3378B3002A74F3 /* ShoppingCartViewController.swift */,
 				044EB3432A338C83002A74F3 /* ShoppingCartTableViewCell.swift */,
 				044EB3442A338C83002A74F3 /* ShoppingCartTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0486312A2A3E37FE0082A844 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				0486312B2A3E38070082A844 /* View */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		0486312B2A3E38070082A844 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0486312C2A3E381B0082A844 /* Payment.storyboard */,
+				0486312E2A3E4C220082A844 /* PaymentViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -791,6 +812,7 @@
 		61E516372A2923DA004DAA1D /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				0486312A2A3E37FE0082A844 /* Payment */,
 				613D3F2E2A3A234800117F52 /* Receipt */,
 				04B1A3022A3BB5C9004AE0C4 /* AllReviews */,
 				04B154CA2A3A05D400B808E3 /* launchScreen */,
@@ -990,6 +1012,7 @@
 				614798B92A2B755B009CCD30 /* Home.storyboard in Resources */,
 				616BCF052A3517F10021BDD9 /* OrderTableViewCell.xib in Resources */,
 				044EB3462A338C83002A74F3 /* ShoppingCartTableViewCell.xib in Resources */,
+				0486312D2A3E381B0082A844 /* Payment.storyboard in Resources */,
 				044EB33F2A33786C002A74F3 /* Cart.storyboard in Resources */,
 				04E4F6FD2A2A639100566559 /* Settings.storyboard in Resources */,
 				048C2F2A2A37C40B00D44A7A /* ProductDetailsStoryBoard.storyboard in Resources */,
@@ -1132,6 +1155,7 @@
 				61E516082A2922EA004DAA1D /* ViewController.swift in Sources */,
 				6168AA362A2BE0D400A8E33C /* Image.swift in Sources */,
 				0455EA772A2CE9E30019C03C /* AddAddressViewController.swift in Sources */,
+				0486312F2A3E4C220082A844 /* PaymentViewController.swift in Sources */,
 				616BCF072A351BC50021BDD9 /* Orders.swift in Sources */,
 				048344CC2A2CC70600D1B793 /* ConnectToUsViewController.swift in Sources */,
 				049C383A2A35FCC100639C7B /* SignUpViewModel.swift in Sources */,
