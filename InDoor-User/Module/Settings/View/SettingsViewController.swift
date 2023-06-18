@@ -6,7 +6,8 @@
 //
 
 import UIKit
-
+import FirebaseAuth
+import FirebaseCore
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var logoutButton: UIButton!
@@ -80,12 +81,23 @@ class SettingsViewController: UIViewController {
         self.dismiss(animated: true)
     }
     @IBAction func logout(_ sender: Any) {
+        let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.warning, msg: Constants.logoutMessage, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok) {[weak self] _ in
+            UserDefault().logout()
+            if(UserDefaults.standard.bool(forKey: Constants.isGoogle) == true){
+                let firebaseAuth = Auth.auth()
+                do {
+                  try firebaseAuth.signOut()
+                } catch let signOutError as NSError {
+                  print("Error signing out: %@", signOutError)
+                }
+            }
+            let storyboard = UIStoryboard(name: Constants.mainStoryboard, bundle: nil)
+            let welcome = storyboard.instantiateViewController(identifier: Constants.welcomeIdentifier) as! WelcomeViewController
+            welcome.modalPresentationStyle = .fullScreen
+            self?.present(welcome, animated: true)
+        }
+        self.present(alert, animated: true)
         
-        UserDefault().logout()
-        let storyboard = UIStoryboard(name: Constants.mainStoryboard, bundle: nil)
-        let welcome = storyboard.instantiateViewController(identifier: Constants.welcomeIdentifier) as! WelcomeViewController
-        welcome.modalPresentationStyle = .fullScreen
-        self.present(welcome, animated: true)
     }
 }
 

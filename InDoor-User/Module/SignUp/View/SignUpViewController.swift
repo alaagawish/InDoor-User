@@ -11,9 +11,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var cityTextField: UITextField!
-    @IBOutlet weak var countryTextField: UITextField!
-    @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -34,6 +31,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
                     let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
                     self?.defaults.setValue(self?.signUpViewModel.user?.id, forKey: Constants.customerId)
+                    self?.defaults.setValue(false, forKey: Constants.isGoogle)
                     home.modalPresentationStyle = .fullScreen
                     self?.present(home, animated: true)
                 }
@@ -64,7 +62,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 self?.present(alert, animated: true)
                 
             } else if self?.registered == false {
-                let addresses = [Address(id: nil, customer_id: nil, name: "\(self?.firstNameTextField) \(self?.lastNameTextField)", first_name: self?.firstNameTextField.text, last_name: self?.lastNameTextField.text, phone: self?.phoneTextField.text, address1: self?.addressTextField.text, city: self?.cityTextField.text, country: self?.countryTextField.text, default: true)]
+                let addresses = [Address(id: nil, customer_id: nil, name: "\(self?.firstNameTextField) \(self?.lastNameTextField)", first_name: self?.firstNameTextField.text, last_name: self?.lastNameTextField.text,phone: nil,address1: nil,city: nil, country: self?.phoneTextField.text, default: true)]
                 let user = User(id: nil, firstName: self?.firstNameTextField.text, lastName: self?.lastNameTextField.text, email: self?.emailTextField.text, phone: self?.phoneTextField.text, addresses: addresses, tags: self?.passwordTextField.text)
                 
                 let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, orders: nil)
@@ -80,7 +78,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func SignUpUser(_ sender: UIButton) {
-        if(firstNameTextField.text == "" && lastNameTextField.text == "" && cityTextField.text == "" && countryTextField.text == "" && addressTextField.text == "" && phoneTextField.text == "" && emailTextField.text == "" && passwordTextField.text == "" && confirmPasswordTextField.text == "") {
+        if(firstNameTextField.text == "" && lastNameTextField.text == "" && phoneTextField.text == "" && emailTextField.text == "" && passwordTextField.text == "" && confirmPasswordTextField.text == "") {
             let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.enterAllData, positiveButtonTitle: Constants.ok, positiveHandler: nil)
             self.present(alert, animated: true)
         }
@@ -90,18 +88,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
         else if(lastNameTextField.text == "") {
             let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.lastNameIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
-            self.present(alert, animated: true)
-        }
-        else if(cityTextField.text == "") {
-            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.cityIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
-            self.present(alert, animated: true)
-        }
-        else if(countryTextField.text == "") {
-            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.postalCodeIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
-            self.present(alert, animated: true)
-        }
-        else if(addressTextField.text == "") {
-            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.addressIsEmpty, positiveButtonTitle: Constants.ok, positiveHandler: nil)
             self.present(alert, animated: true)
         }
         else if(phoneTextField.text == "") {
@@ -145,12 +131,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         setupUIView(uiView: firstNameTextField)
         setupUIView(uiView: lastNameTextField)
         setupUIView(uiView: phoneTextField)
-        setupUIView(uiView: cityTextField)
         setupUIView(uiView: passwordTextField)
         setupUIView(uiView: confirmPasswordTextField)
-        setupUIView(uiView: countryTextField)
         setupUIView(uiView: emailTextField)
-        setupUIView(uiView: addressTextField)
     }
     
     func setupUIView(uiView: UIView){
@@ -173,9 +156,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
         phoneTextField.delegate = self
-        cityTextField.delegate = self
-        countryTextField.delegate = self
-        addressTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
@@ -183,22 +163,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == firstNameTextField{
-            lastNameTextField.becomeFirstResponder()
+            firstNameTextField.becomeFirstResponder()
         }
         else if textField == lastNameTextField{
-            phoneTextField.becomeFirstResponder()
+            lastNameTextField.becomeFirstResponder()
         }
         else if textField == phoneTextField{
-            cityTextField.becomeFirstResponder()
-        }
-        else if textField == cityTextField{
-            cityTextField.becomeFirstResponder()
-        }
-        else if textField == countryTextField{
-            countryTextField.becomeFirstResponder()
-        }
-        else if textField == addressTextField{
-            addressTextField.becomeFirstResponder()
+            phoneTextField.becomeFirstResponder()
         }
         else if textField == emailTextField{
             emailTextField.becomeFirstResponder()
