@@ -22,7 +22,8 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var alphabetFloatingButton: UIButton!
     @IBOutlet weak var priceFloatingButton: UIButton!
     
-    @IBOutlet weak var close: UIButton!
+    @IBOutlet weak var bestSellerFloatingButton: UIButton!
+    
     var brandViewModel: BrandViewModel!
     var products: [Product] = []
     var orginList: [Product] = []
@@ -51,7 +52,7 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         if !sortingTypesFlag{
             alphabetFloatingButton.isHidden = true
             priceFloatingButton.isHidden = true
-            close.isHidden = true
+            bestSellerFloatingButton.isHidden = true
         }
         sortingButton.layer.shadowRadius = 10
         sortingButton.layer.shadowOpacity = 0.3
@@ -61,9 +62,9 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         alphabetFloatingButton.layer.shadowOpacity = 0.3
         alphabetFloatingButton.layer.cornerRadius = 30
         
-        close.layer.shadowRadius = 10
-        close.layer.shadowOpacity = 0.3
-        close.layer.cornerRadius = 30
+        bestSellerFloatingButton.layer.shadowRadius = 10
+        bestSellerFloatingButton.layer.shadowOpacity = 0.3
+        bestSellerFloatingButton.layer.cornerRadius = 30
         
         priceFloatingButton.layer.shadowRadius = 10
         priceFloatingButton.layer.shadowOpacity = 0.3
@@ -150,23 +151,33 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         filter()
     }
     
+    @IBAction func sortByBestSeller(_ sender: Any) {
+        sortingTypesFlag = false
+        alphabetFloatingButton.isHidden = true
+        priceFloatingButton.isHidden = true
+        bestSellerFloatingButton.isHidden = true
+        products = products.sorted(by:  {Float($0.templateSuffix ?? "") ?? 0 > Float($1.templateSuffix ?? "") ?? 0})
+        productsCollectionView.reloadData()
+    }
+    
     @IBAction func sorting(_ sender: Any) {
         sortingTypesFlag = !sortingTypesFlag
-        if sortingTypesFlag{
+        if sortingTypesFlag {
             alphabetFloatingButton.isHidden = false
             priceFloatingButton.isHidden = false
-            close.isHidden = false
-        }else{
+            bestSellerFloatingButton.isHidden = false
+        }else {
             alphabetFloatingButton.isHidden = true
             priceFloatingButton.isHidden = true
-            close.isHidden = true
+            bestSellerFloatingButton.isHidden = true
         }
+        
     }
     @IBAction func sortByPrice(_ sender: Any) {
         sortingTypesFlag = false
         alphabetFloatingButton.isHidden = true
         priceFloatingButton.isHidden = true
-        close.isHidden = true
+        bestSellerFloatingButton.isHidden = true
         products = products.sorted(by:  {Float($0.variants?[0].price ?? "") ?? 0 < Float($1.variants?[0].price ?? "") ?? 0})
         productsCollectionView.reloadData()
         
@@ -176,7 +187,7 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         sortingTypesFlag = false
         alphabetFloatingButton.isHidden = true
         priceFloatingButton.isHidden = true
-        close.isHidden = true
+        bestSellerFloatingButton.isHidden = true
         products = products.sorted(by:  {Splitter().splitName(text: $0.title ?? "", delimiter: "| ") < Splitter().splitName(text: $1.title ?? "", delimiter: "| ") })
         productsCollectionView.reloadData()
     }
@@ -195,7 +206,7 @@ extension BrandViewController {
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width/2 - 10, height: UIScreen.main.bounds.height/4 - 12)
+        return CGSize(width: UIScreen.main.bounds.width/2 - 10, height: UIScreen.main.bounds.height/4)
         
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

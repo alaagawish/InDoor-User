@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var seeAllOrdersOutlet: UIButton!
+    @IBOutlet weak var noOrderImage: UIImageView!
     @IBOutlet weak var cartItem: UIBarButtonItem!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var settingsItem: UIBarButtonItem!
@@ -34,7 +36,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     
     func callingData(){
         profileViewModel.bindOrdersToViewController = {[weak self] in
-            self?.orders = self?.profileViewModel.result ?? []
+            self?.orders = self?.profileViewModel.result?.filter{$0.customer?.id == UserDefault().getCustomerId()} ?? []
             self?.orderTableView.reloadData()
         }
         profileViewModel.getOrders()
@@ -43,6 +45,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         
     }
     override func viewWillAppear(_ animated: Bool) {
+        noOrderImage.isHidden = true
         if checkLogged() {
             loggedInStack.isHidden = true
             profileView.isHidden = false
@@ -61,9 +64,20 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == orderTableView{
             if orders.count > 1 {
+                noOrderImage.isHidden = true
+                orderTableView.isHidden = false
+                seeAllOrdersOutlet.isHidden = false
                 return 2
             }else if orders.count == 1 {
+                noOrderImage.isHidden = true
+                orderTableView.isHidden = false
+                seeAllOrdersOutlet.isHidden = false
                 return 1
+            }else if orders.count == 0 {
+                noOrderImage.isHidden = false
+                orderTableView.isHidden = true
+                seeAllOrdersOutlet.isHidden = true
+                
             }
         }else if tableView == wishlistTableView {
             if favoritesViewModel.allProductsList.count > 1 {
@@ -167,5 +181,13 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         favoritesStoryBoard.modalPresentationStyle = .fullScreen
         present(favoritesStoryBoard, animated: true)
         
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == orderTableView {
+            let storyboard = self.storyboard?.instantiateViewController(withIdentifier: Constants.orderDetails) as! OrderDetailsViewController
+            storyboard.modalPresentationStyle = .fullScreen
+            storyboard.order = orders[indexPath.row]
+            present(storyboard, animated: true)
+        }
     }
 }

@@ -11,18 +11,14 @@ class ProfileViewModel {
     
     var bindOrdersToViewController: (()->()) = {}
     var netWorkingDataSource: NetworkProtocol!
-    var service: DatabaseService!
-    var allProductsList = [LocalProduct]()
     
     var result: [Orders]? = [] {
         didSet{
-            DispatchQueue.main.async {[weak self] in
-                self?.bindOrdersToViewController()
-            }
+            self.bindOrdersToViewController()
         }
     }
     init(netWorkingDataSource: NetworkProtocol) {
-        //        self.service = service
+        
         self.netWorkingDataSource = netWorkingDataSource
     }
     

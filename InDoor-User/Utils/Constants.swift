@@ -103,6 +103,7 @@ class Constants {
     static let reviewCellIdentifier = "reviewCell"
     static let allReviewsIdentifier = "allReviews"
     static let selectColor = "Select color"
+    static let orderDetails = "orderDetails"
     static let shouldChooseSizeAndColorFirst = "Please, choose size and color first."
     static let goodReviews: [Review] = [
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Safiya Fikry", rate: 4, reviewMessage: "I liked this product, it also look like the picture."),
