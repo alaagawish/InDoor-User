@@ -124,4 +124,5 @@ class Constants {
     static let comingToSearchFromHome = "comingToSearchFromHome"
     static let comingToSearchFromCategory = "comingToSearchFromCategory"
     static let isGoogle = "isGoogle"
+    static let logoutMessage = "Are you sure to logout?"
 }
