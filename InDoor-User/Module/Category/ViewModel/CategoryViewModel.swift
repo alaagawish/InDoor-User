@@ -12,9 +12,7 @@ class CategoryViewModel{
     
     var result: [Product]? = [] {
         didSet{
-            DispatchQueue.main.async {[weak self] in
-                self?.bindResultToViewController()
-            }
+                self.bindResultToViewController()
         }
     }
     

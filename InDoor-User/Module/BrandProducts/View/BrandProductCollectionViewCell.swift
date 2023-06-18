@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Cosmos
 
 class BrandProductCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var rating: CosmosView!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet weak var productTitle: UILabel!
@@ -38,7 +40,8 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
         
     }
     func setValues(product:Product, isFav: Bool, viewController: UIViewController, view: String ) {
-        
+        rating.settings.updateOnTouch = false
+        rating.rating = Double(product.templateSuffix ?? "") ?? 0.0
         if UserDefault().getCustomerId() == -1 {
             favouriteButton.isHidden = true
         }else {
@@ -52,7 +55,7 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
             self.viewController = viewController as! CategoryViewController
         }
         self.product = product
-        self.productTitle.text = Splitter().splitName(text: product.title ?? "", delimiter: "|")
+        self.productTitle.text = Splitter().splitName(text: product.title ?? "", delimiter: "| ")
         self.productImage.kf.setImage(with: URL(string: product.image?.src ?? ""),
                                       placeholder: UIImage(named: Constants.noImage))
         self.currencySymbol.text = UserDefault().getCurrencySymbol()
