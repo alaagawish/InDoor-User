@@ -14,6 +14,11 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var shoppingCartBottomView: UIView!
     @IBOutlet weak var totalPriceLabel: UILabel!
     
+    var cartPrice  = 0.0{
+        didSet{
+            totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", cartPrice * UserDefault().getCurrencyRate())
+        }
+    }
     static var products: [Product] = []
     var allVariants: [Variants] = []
     var totalPrice = 0.0
@@ -33,7 +38,7 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
                 totalPrice += (Double(variants.price) ?? 0.0) * Double(variants.inventoryQuantity!)
             }
         }
-        totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) \(totalPrice)"
+        cartPrice = totalPrice
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -102,6 +107,7 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
                 for productIndex in ShoppingCartViewController.products.indices{
                     for variantIndex in ShoppingCartViewController.products[productIndex].variants!.indices{
                         if ShoppingCartViewController.products[productIndex].variants![variantIndex].id == self?.allVariants[indexPath.row].id{
+                            self?.cartPrice -= Double((self?.allVariants[variantIndex].inventoryQuantity!)!) * Double((self?.allVariants[variantIndex].price)!)!
                             ShoppingCartViewController.products[productIndex].variants?.remove(at: variantIndex)
                             break
                         }
@@ -118,7 +124,7 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let storyboard = UIStoryboard(name: Constants.productDetailsStoryboardName, bundle: nil)
 //        let productDetails = storyboard.instantiateViewController(withIdentifier: Constants.productDetailsStoryboardName) as! ProductDetailsViewController
-//        productDetails.product = ShoppingCartViewController.selectedProductList[indexPath.row].product
+//        productDetails.product = ShoppingCartViewController.products[indexPath.row]
 //        productDetails.modalPresentationStyle = .fullScreen
 //        present(productDetails, animated: true)
 //    }

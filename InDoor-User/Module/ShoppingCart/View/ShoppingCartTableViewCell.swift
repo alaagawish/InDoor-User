@@ -17,7 +17,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     
-    var viewController: UIViewController?
+    var viewController: ShoppingCartViewController?
     var productCount = 1
     var productVariant: Variants!
     var orderedProduct: Product!
@@ -60,16 +60,22 @@ class ShoppingCartTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setValues(product: Product, variant: Variants, viewController: UIViewController){
+    func setValues(product: Product, variant: Variants, viewController: ShoppingCartViewController){
         self.shoppingCartImage.kf.setImage(with: URL(string: product.image?.src ?? ""),placeholder: UIImage(named: Constants.noImage))
         self.shoppingCartProductNameLabel.text = product.title
         self.shoppingCartProductDescriptionLabel.text = "\(product.vendor ?? "") / \((variant.title)!)"
-        self.shoppingCartPriceLabel.text = "\(UserDefault().getCurrencySymbol()) \(variant.price)"
+        self.shoppingCartPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", Double(variant.price)! * UserDefault().getCurrencyRate()) + " / item"
         self.shoppingCartProductCountLabel.text = "\((variant.inventoryQuantity)!)"
         
         productCount = variant.inventoryQuantity!
         if productCount == 1 {
             minusButton.isEnabled = false
+        }
+        
+        if variant.oldInventoryQuantity! > 3 && productCount < variant.oldInventoryQuantity!/3 || variant.oldInventoryQuantity! <= 3 && productCount < variant.oldInventoryQuantity! {
+            
+        }else{
+            plusButton.isEnabled = false
         }
         
         self.viewController = viewController
@@ -79,32 +85,29 @@ class ShoppingCartTableViewCell: UITableViewCell {
     
     @IBAction func minusButton(_ sender: Any) {
         
-        productCount = Int(shoppingCartProductCountLabel.text!)!
         plusButton.isEnabled = true
-        if productCount == 1 {
-            minusButton.isEnabled = false
-        }else{
-            productCount -= 1
-            shoppingCartProductCountLabel.text = "\(productCount)"
-            
-            if productCount == 1 {
-                let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.minCartItem, positiveButtonTitle: Constants.ok)
-                viewController?.present(alert, animated: true)
-                minusButton.isEnabled = false
-            }
-        }
-        
+        viewController!.cartPrice = Double(viewController!.cartPrice) - Double(productCount) * Double(productVariant.price)!
+        productCount -= 1
+        viewController!.cartPrice = Double(viewController!.cartPrice) + Double(productCount) * Double(productVariant.price)!
+        shoppingCartProductCountLabel.text = "\(productCount)"
         updateInventoryCount()
+        
+        if productCount == 1 {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.minCartItem, positiveButtonTitle: Constants.ok)
+            viewController?.present(alert, animated: true)
+            minusButton.isEnabled = false
+        }
     }
     
     @IBAction func plusButton(_ sender: Any) {
         
-        productCount = Int(shoppingCartProductCountLabel.text!)!
         minusButton.isEnabled = true
         if productVariant.oldInventoryQuantity! > 3 && productCount < productVariant.oldInventoryQuantity!/3 || productVariant.oldInventoryQuantity! <= 3 && productCount < productVariant.oldInventoryQuantity!  {
-            
+            viewController!.cartPrice = Double(viewController!.cartPrice) - Double(productCount) * Double(productVariant.price)!
             productCount += 1
+            viewController!.cartPrice = Double(viewController!.cartPrice) + Double(productCount) * Double(productVariant.price)!
             shoppingCartProductCountLabel.text = "\(productCount)"
+            updateInventoryCount()
             
             if productVariant.oldInventoryQuantity! > 3 && productCount < productVariant.oldInventoryQuantity!/3 || productVariant.oldInventoryQuantity! <= 3 && productCount < productVariant.oldInventoryQuantity! {
                 
@@ -114,8 +117,6 @@ class ShoppingCartTableViewCell: UITableViewCell {
                 plusButton.isEnabled = false
             }
         }
-        
-        updateInventoryCount()
     }
     
     func updateInventoryCount(){

@@ -46,8 +46,8 @@
                                 <rect key="frame" x="0.0" y="724.33333333333337" width="393" height="127.66666666666663"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9W-P9-WSy">
-                                        <rect key="frame" x="50.000000000000007" y="16.000000000000004" width="115.66666666666669" height="44.333333333333343"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                        <rect key="frame" x="50.000000000000007" y="16.000000000000004" width="98.666666666666686" height="44.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -65,8 +65,8 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZe-c0-jg1">
-                                        <rect key="frame" x="285.33333333333331" y="16.000000000000004" width="57.666666666666686" height="44.333333333333343"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                        <rect key="frame" x="295" y="16.000000000000004" width="48" height="44.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
