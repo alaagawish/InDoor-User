@@ -14,9 +14,8 @@ class BrandViewModel{
     
     var result: [Product] = []  {
         didSet{
-            DispatchQueue.main.async {
-                self.bindResultToViewController()
-            }
+            self.bindResultToViewController()
+            
         }
     }
     

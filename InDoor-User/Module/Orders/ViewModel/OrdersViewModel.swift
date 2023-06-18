@@ -13,9 +13,9 @@ class OrdersViewModel {
     
     var result: [Orders]? = [] {
         didSet{
-            DispatchQueue.main.async {[weak self] in
-                self?.bindResultToViewController()
-            }
+            
+            self.bindResultToViewController()
+            
         }
     }
     init(netWorkingDataSource: NetworkProtocol) {
