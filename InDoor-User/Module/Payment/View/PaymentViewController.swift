@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import PassKit
 
 class PaymentViewController: UIViewController {
-
+    
     @IBOutlet weak var creditView: UIView!
     @IBOutlet weak var cashView: UIView!
     @IBOutlet weak var creditCheckMarkImage: UIImageView!
@@ -17,30 +18,59 @@ class PaymentViewController: UIViewController {
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var cantPayWithCashView: UIView!
     
+    var orderTotalPrice = 500
     var canPayWithCash = true
+    var payRequest: PKPaymentRequest!
+    
+    func getPaymentRequest() -> PKPaymentRequest{
+        let request = PKPaymentRequest()
+        
+        request.merchantIdentifier = "merchant.mad43team1.com"
+        request.supportedNetworks = [.visa, .masterCard, .vPay, .quicPay]
+        request.supportedCountries = ["US", "EG"]
+        request.merchantCapabilities = .capability3DS
+        request.countryCode = "US"
+        request.currencyCode = "\(UserDefault().getCurrencySymbol())"
+        
+        request.paymentSummaryItems = [PKPaymentSummaryItem(label: "Your order", amount: NSDecimalNumber(value: orderTotalPrice))]
+        
+        return request
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        payRequest = getPaymentRequest()
         setupUI()
         setupTapGesture()
         cantPayWithCashView.translatesAutoresizingMaskIntoConstraints = false
         checkCashPayment()
+        self.purchaseButton.addTarget(self, action: #selector(tapToPay), for: .touchUpInside)
+    }
+    
+    @objc func tapToPay(){
+        let paymentController = PKPaymentAuthorizationViewController(paymentRequest: payRequest)
+        guard let paymentController = paymentController else {
+            return
+        }
+        paymentController.delegate = self
+        present(paymentController, animated: true, completion: nil)
+        creditCheckMarkImage.isHidden = true
     }
     
     func checkCashPayment(){
-        if canPayWithCash{
+        if !canPayWithCash{
             cantPayWithCashView.isHidden = false
             if let heightConstraint = cantPayWithCashView.constraints.first(where: { $0.firstAttribute == .height }) {
                 heightConstraint.constant = UIScreen.main.bounds.height * 0.07
             }
         }
     }
-
+    
     func setupUI(){
         purchaseButton.layer.cornerRadius = 12
         creditCheckMarkImage.isHidden = true
         cashCheckMarkImage.isHidden = true
-        if canPayWithCash{
+        if !canPayWithCash{
             cashView.isHidden = true
         }
         setupUIView(uiView: creditView)
@@ -71,21 +101,28 @@ class PaymentViewController: UIViewController {
     
     @objc func cashTap(_ sender: UITapGestureRecognizer? = nil) {
         if canPayWithCash{
-            cashCheckMarkImage.isHidden = true
+            cashCheckMarkImage.isHidden = false
             creditCheckMarkImage.isHidden = true
             
-//            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "Your order exceeds our cash on delivery method, you can only pay with credit card", positiveButtonTitle: Constants.ok)
-//            present(alert, animated: true)
+            //            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "Your order exceeds our cash on delivery method, you can only pay with credit card", positiveButtonTitle: Constants.ok)
+            //            present(alert, animated: true)
         }else{
-            cashCheckMarkImage.isHidden = false
+            cashCheckMarkImage.isHidden = true
             creditCheckMarkImage.isHidden = true
         }
     }
     
-    @IBAction func purchaseButton(_ sender: UIButton) {
-    }
-    
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true)
+    }
+}
+
+extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate{
+    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
     }
 }
