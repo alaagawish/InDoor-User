@@ -24,9 +24,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         setupUI()
         setupDelegation()
         signUpViewModel = SignUpViewModel(service: Network())
-        
-        signUpViewModel.bindUserToSignUpController = { [weak self] in
-            if(self?.signUpViewModel.user?.id != nil){
+        signUpViewModel.bindUserWithDraftOrderToSignUpController = {[weak self] in
+            print("note: \(self?.signUpViewModel.userWithDraftOrder?.note)")
+            if(self?.signUpViewModel.userWithDraftOrder?.note ?? "" != nil ){
                 let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: Constants.registeredSuccessfully, positiveButtonTitle: Constants.ok){_ in
                     let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
                     let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
@@ -36,13 +36,41 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     self?.present(home, animated: true)
                 }
                 self?.present(alert, animated: true)
-            } else if self?.signUpViewModel.code == 422 {
+            }
+        }
+        signUpViewModel.bindDraftOrderToSignUpController = {[weak self] in
+            if(self?.signUpViewModel.cartDraftOrder?.id != nil && self?.signUpViewModel.favoritesDraftOrder?.id != nil){
+                guard let cartId = self?.signUpViewModel.cartDraftOrder?.id else {return}
+                guard let favoritesId = self?.signUpViewModel.favoritesDraftOrder?.id else {return}
+                self?.defaults.set(cartId, forKey: Constants.cartId)
+                self?.defaults.set(favoritesId, forKey: Constants.favoritesId)
+                var user = User()
+                user.note = "\(favoritesId),\(cartId)"
+                var response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil)
+                print("response: \(response)")
+                let params = JSONCoding().encodeToJson(objectClass: response)
+                print("params: \(params)")
+                self?.signUpViewModel.putUser(parameters: params ?? [:])
+            }
+        }
+        signUpViewModel.bindUserToSignUpController = { [weak self] in
+           
+            print(self?.signUpViewModel.user?.id)
+            if(self?.signUpViewModel.user?.id ?? 0 != nil && self?.signUpViewModel.user?.id ?? 0 != 0){
+                self?.defaults.setValue(self?.signUpViewModel.user?.id, forKey: Constants.customerId)
+                self?.createFavoriteDraftOrder()
+                self?.createCartDraftOrder()
+            } else if self?.signUpViewModel.code ?? 0 == 422 {
                 let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.phoneUsedbefore, positiveButtonTitle: Constants.ok, positiveHandler: nil)
                 self?.present(alert, animated: true)
             }
+            else{
+                print(self?.signUpViewModel.code)
+                print("here++++++++++++++++++++++++++++++++++")
+            }
         }
         
-        signUpViewModel.bindToUsersListSignUpController = { [weak self] in
+        signUpViewModel.bindUsersListToSignUpController = { [weak self] in
             if let list = self?.signUpViewModel.usersList{
                 for user in list {
                     if user.email == self?.emailTextField.text {
@@ -62,10 +90,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 self?.present(alert, animated: true)
                 
             } else if self?.registered == false {
-                let addresses = [Address(id: nil, customer_id: nil, name: "\(self?.firstNameTextField) \(self?.lastNameTextField)", first_name: self?.firstNameTextField.text, last_name: self?.lastNameTextField.text,phone: nil,address1: nil,city: nil, country: self?.phoneTextField.text, default: true)]
-                let user = User(id: nil, firstName: self?.firstNameTextField.text, lastName: self?.lastNameTextField.text, email: self?.emailTextField.text, phone: self?.phoneTextField.text, addresses: addresses, tags: self?.passwordTextField.text)
+                let addresses = [Address(id: nil, customer_id: nil, name: "\(self?.firstNameTextField.text ?? "") \(self?.lastNameTextField.text ?? "")", first_name: self?.firstNameTextField.text ?? "", last_name: self?.lastNameTextField.text ?? "",phone: self?.phoneTextField.text ?? "",address1: nil,city: nil, country: nil, default: true)]
+                let user = User(id: nil, firstName: self?.firstNameTextField.text ?? "", lastName: self?.lastNameTextField.text ?? "", email: self?.emailTextField.text ?? "", phone: self?.phoneTextField.text ?? "", addresses: addresses, tags: self?.passwordTextField.text ?? "")
                 
-                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, orders: nil)
+                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil)
                 
                 let params = JSONCoding().encodeToJson(objectClass: response)
                 self?.signUpViewModel.postUser(parameters: params ?? [:])
@@ -182,5 +210,65 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
         
         return true
+    }
+    
+    func createFavoriteDraftOrder(){
+        let properties = [Properties(image: "")]
+        let lineItems = [LineItems(id: nil, adminGraphqlApiId: nil, fulfillableQuantity: nil, fulfillmentService: nil, giftCard: nil, grams: nil, name: nil, price: "20.0", priceSet: nil, productExists: nil, productId: nil, quantity: 1, requiresShipping: nil, sku: nil, taxable: nil, title: "dummy", totalDiscount: nil, totalDiscountSet: nil, variantId: nil, variantInventoryManagement: nil, variantTitle: nil, vendor: nil, properties:properties)]
+//        let addresses = [Address(id: nil, customer_id: defaults.integer(forKey: Constants.customerId), name: "\(self.firstNameTextField.text) \(self.lastNameTextField.text)", first_name: self.firstNameTextField.text, last_name: self.lastNameTextField.text,phone: self.phoneTextField.text,address1: nil,city: nil, country: nil, default: true)]
+        let user = User(id: defaults.integer(forKey: Constants.customerId), firstName: self.firstNameTextField.text, lastName: self.lastNameTextField.text, email: self.emailTextField.text, phone: self.phoneTextField.text, addresses: nil, tags: self.passwordTextField.text)
+
+        let draft = DraftOrder(id: nil, note: "favorite", lineItems: lineItems, user: user)
+        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer:  nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draft, orders: nil)
+        let params = JSONCoding().encodeToJson(objectClass: response)
+        print("hellllllllllll")
+        
+//        let params = [
+//            "draft_order": [
+//                "note": "favorites",
+//                "line_items": [
+//                    [
+//                        "title": "dummy",
+//                        "quantity":1,
+//                        "properties": [],
+//                        "price": "20.00"
+//                    ] as [String : Any]
+//                ],
+//                "customer": [
+//                    "id": defaults.integer(forKey: Constants.customerId)
+//                ]
+//            ] as [String : Any]
+//        ]
+        print(params)
+        self.signUpViewModel.postDraftOrder(parameters: params ?? [:])
+    }
+    
+    func createCartDraftOrder(){
+                let properties = [Properties(image: "")]
+                let lineItems = [LineItems(id: nil, adminGraphqlApiId: nil, fulfillableQuantity: nil, fulfillmentService: nil, giftCard: nil, grams: nil, name: nil, price: "20.0", priceSet: nil, productExists: nil, productId: nil, quantity: 1, requiresShipping: nil, sku: nil, taxable: nil, title: "dummy", totalDiscount: nil, totalDiscountSet: nil, variantId: nil, variantInventoryManagement: nil, variantTitle: nil, vendor: nil, properties: properties)]
+//                let addresses = [Address(id: nil, customer_id: defaults.integer(forKey: Constants.customerId), name: "\(self.firstNameTextField.text) \(self.lastNameTextField.text)", first_name: self.firstNameTextField.text, last_name: self.lastNameTextField.text,phone: self.phoneTextField.text,address1: nil,city: nil, country: nil, default: true)]
+                let user = User(id: defaults.integer(forKey: Constants.customerId), firstName: self.firstNameTextField.text, lastName: self.lastNameTextField.text, email: self.emailTextField.text, phone: self.phoneTextField.text, addresses: nil, tags: self.passwordTextField.text)
+        
+                let draft = DraftOrder(id: nil, note: "cart", lineItems: lineItems, user: user)
+                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draft, orders: nil)
+                let params = JSONCoding().encodeToJson(objectClass: response)
+//        let params = [
+//            "draft_order": [
+//                "note": "cart",
+//                "line_items": [
+//                    [
+//                        "title": "dummy",
+//                        "quantity":1,
+//                         "properties": [],
+//                        "price": "20.00"
+//                    ] as [String : Any]
+//                ],
+//                "customer": [
+//                    "id": defaults.integer(forKey: Constants.customerId)
+//                ]
+//            ] as [String : Any]
+//        ]
+        print(params)
+        self.signUpViewModel.postDraftOrder(parameters: params ?? [:])
     }
 }
