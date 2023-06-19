@@ -84,7 +84,7 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         
         for product in ShoppingCartViewController.products{
             if allVariants[indexPath.row].productId == product.id{
-                cell.setValues(product: product, variant: allVariants[indexPath.row], viewController: self)
+                cell.setValues(product: product, variant: allVariants[indexPath.row], viewController: self, index:indexPath.row)
                 break
             }
         }

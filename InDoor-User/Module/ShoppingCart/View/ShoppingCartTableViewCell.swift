@@ -21,6 +21,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     var productCount = 1
     var productVariant: Variants!
     var orderedProduct: Product!
+    var cellIndex:Int!
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -60,12 +61,13 @@ class ShoppingCartTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setValues(product: Product, variant: Variants, viewController: ShoppingCartViewController){
+    func setValues(product: Product, variant: Variants, viewController: ShoppingCartViewController, index: Int){
         self.shoppingCartImage.kf.setImage(with: URL(string: product.image?.src ?? ""),placeholder: UIImage(named: Constants.noImage))
         self.shoppingCartProductNameLabel.text = product.title
         self.shoppingCartProductDescriptionLabel.text = "\(product.vendor ?? "") / \((variant.title)!)"
         self.shoppingCartPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", Double(variant.price)! * UserDefault().getCurrencyRate()) + " / item"
         self.shoppingCartProductCountLabel.text = "\((variant.inventoryQuantity)!)"
+        self.cellIndex = index
         
         productCount = variant.inventoryQuantity!
         if productCount == 1 {
@@ -124,7 +126,10 @@ class ShoppingCartTableViewCell: UITableViewCell {
             for variantsIndex in ShoppingCartViewController.products[index].variants!.indices {
                 if  ShoppingCartViewController.products[index].variants![variantsIndex].id == productVariant.id {
                     ShoppingCartViewController.products[index].variants![variantsIndex].inventoryQuantity = productCount
-                    productVariant.inventoryQuantity = productCount
+                    viewController?.allVariants = []
+                    viewController?.totalPrice = 0.0
+                    viewController?.prepareTableCount()
+                    print(productCount)
                 }
             }
         }

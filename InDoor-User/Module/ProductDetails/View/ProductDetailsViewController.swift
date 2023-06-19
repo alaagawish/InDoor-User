@@ -219,7 +219,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     func checkVariantIsInCart(variantName: String) -> Bool{
         for index in orderedProduct.variants!.indices {
             if orderedProduct.variants?[index].title == variantName {
-                if (orderedProduct.variants![index].oldInventoryQuantity)! > 3 && (orderedProduct.variants![index].inventoryQuantity)! + orderCount < (orderedProduct.variants![index].oldInventoryQuantity)!/3 || (orderedProduct.variants![index].oldInventoryQuantity)! <= 3 && (orderedProduct.variants![index].inventoryQuantity)! + orderCount <= (orderedProduct.variants![index].oldInventoryQuantity)!{
+                if (orderedProduct.variants![index].oldInventoryQuantity)! > 3 && (orderedProduct.variants![index].inventoryQuantity)! + orderCount <= (orderedProduct.variants![index].oldInventoryQuantity)!/3 || (orderedProduct.variants![index].oldInventoryQuantity)! <= 3 && (orderedProduct.variants![index].inventoryQuantity)! + orderCount <= (orderedProduct.variants![index].oldInventoryQuantity)!{
                     orderedProduct.variants?[index].inventoryQuantity! += orderCount
                     orderCount = 1
                     resetVariantsUI()
