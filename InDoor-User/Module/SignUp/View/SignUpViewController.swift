@@ -26,7 +26,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         signUpViewModel = SignUpViewModel(service: Network())
         signUpViewModel.bindUserWithDraftOrderToSignUpController = {[weak self] in
             print("note: \(self?.signUpViewModel.userWithDraftOrder?.note)")
-            if(self?.signUpViewModel.userWithDraftOrder?.note ?? "" != nil ){
+            if(self?.signUpViewModel.userWithDraftOrder?.note != nil ){
                 let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: Constants.registeredSuccessfully, positiveButtonTitle: Constants.ok){_ in
                     let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
                     let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
@@ -46,6 +46,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 self?.defaults.set(favoritesId, forKey: Constants.favoritesId)
                 var user = User()
                 user.note = "\(favoritesId),\(cartId)"
+                print(user.note)
+                print(favoritesId)
+                print(cartId)
                 var response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil)
                 print("response: \(response)")
                 let params = JSONCoding().encodeToJson(objectClass: response)

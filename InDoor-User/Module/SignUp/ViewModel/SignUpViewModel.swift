@@ -82,7 +82,7 @@ class SignUpViewModel{
     }
     
     func putUser(parameters: Parameters){
-        service.putData(path: Constants.putUserPath, parameters: [:], handler: { [weak self] response,code  in
+        service.putData(path: Constants.putUserPath, parameters: parameters, handler: { [weak self] response,code  in
             self?.userWithDraftOrder = response?.customer
             print("inside \(self?.userWithDraftOrder?.note)")
         })
