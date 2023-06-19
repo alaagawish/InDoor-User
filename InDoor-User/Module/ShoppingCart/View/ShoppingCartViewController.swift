@@ -13,7 +13,7 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var proceedToCheckoutButton: UIButton!
     @IBOutlet weak var shoppingCartBottomView: UIView!
     @IBOutlet weak var totalPriceLabel: UILabel!
-    
+    var viewModel = ShoppingCartViewModel(netWorkingDataSource: Network())
     var cartPrice  = 0.0{
         didSet{
             totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", cartPrice * UserDefault().getCurrencyRate())
@@ -26,12 +26,17 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setShoppingCartCellNibFile()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        allVariants = []
         setupUI()
         prepareTableCount()
         
     }
     
     func prepareTableCount(){
+        totalPrice = 0.0
         for product in ShoppingCartViewController.products {
             for variants in product.variants ?? []{
                 allVariants.append(variants)
@@ -39,6 +44,7 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
             }
         }
         cartPrice = totalPrice
+        shoppingCartTabelView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -121,13 +127,15 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
         }
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let storyboard = UIStoryboard(name: Constants.productDetailsStoryboardName, bundle: nil)
-//        let productDetails = storyboard.instantiateViewController(withIdentifier: Constants.productDetailsStoryboardName) as! ProductDetailsViewController
-//        productDetails.product = ShoppingCartViewController.products[indexPath.row]
-//        productDetails.modalPresentationStyle = .fullScreen
-//        present(productDetails, animated: true)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.getSpecificProduct(productId: allVariants[indexPath.row].productId!) { [weak self] product in
+            let storyboard = UIStoryboard(name: Constants.productDetailsStoryboardName, bundle: nil)
+            let productDetails = storyboard.instantiateViewController(withIdentifier: Constants.productDetailsStoryboardName) as! ProductDetailsViewController
+            productDetails.product = product
+            productDetails.modalPresentationStyle = .fullScreen
+            self?.present(productDetails, animated: true)
+        }
+    }
 }
 
 

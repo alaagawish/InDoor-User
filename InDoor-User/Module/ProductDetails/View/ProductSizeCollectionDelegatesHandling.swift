@@ -10,6 +10,7 @@ import UIKit
 class ProductSizeCollectionDelegatesHandling: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     var sizeArr:[String] = []
+    var deselectThis:Int!
     var viewController:ProductDetailsViewController!
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

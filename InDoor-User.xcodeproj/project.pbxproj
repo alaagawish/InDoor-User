@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040A0D3E2A406544005B5374 /* ShoppingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040A0D3D2A406544005B5374 /* ShoppingCartViewModel.swift */; };
 		0410DFC92A3CA0C20005114A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410DFC82A3CA0C20005114A /* Extensions.swift */; };
 		044EB3182A332845002A74F3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EB3172A332845002A74F3 /* SettingsViewModel.swift */; };
 		044EB33C2A333958002A74F3 /* Rates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044EB33B2A333958002A74F3 /* Rates.swift */; };
@@ -135,6 +136,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040A0D3D2A406544005B5374 /* ShoppingCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewModel.swift; sourceTree = "<group>"; };
 		0410DFC82A3CA0C20005114A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		044EB3172A332845002A74F3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		044EB33B2A333958002A74F3 /* Rates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rates.swift; sourceTree = "<group>"; };
@@ -283,6 +285,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040A0D3C2A40652B005B5374 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				040A0D3D2A406544005B5374 /* ShoppingCartViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		044EB3152A3323E9002A74F3 /* RemoteSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +315,7 @@
 		044EB33D2A336CB1002A74F3 /* ShoppingCart */ = {
 			isa = PBXGroup;
 			children = (
+				040A0D3C2A40652B005B5374 /* ViewModel */,
 				044EB3402A337877002A74F3 /* View */,
 			);
 			path = ShoppingCart;
@@ -1154,6 +1165,7 @@
 				0487D4BC2A3A2606006D9DAA /* AddressTableViewCell.swift in Sources */,
 				61E516082A2922EA004DAA1D /* ViewController.swift in Sources */,
 				6168AA362A2BE0D400A8E33C /* Image.swift in Sources */,
+				040A0D3E2A406544005B5374 /* ShoppingCartViewModel.swift in Sources */,
 				0455EA772A2CE9E30019C03C /* AddAddressViewController.swift in Sources */,
 				0486312F2A3E4C220082A844 /* PaymentViewController.swift in Sources */,
 				616BCF072A351BC50021BDD9 /* Orders.swift in Sources */,
