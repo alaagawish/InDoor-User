@@ -23,6 +23,9 @@ class UserDefault{
     }
     
     func getCurrencyRate() -> Double {
+        if userDefaults.double(forKey: Constants.ratesKey) == 0 {
+            return 1
+        }
         return userDefaults.double(forKey: Constants.ratesKey)
         
     }

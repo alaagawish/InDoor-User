@@ -8,10 +8,11 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
-
+    
     let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
+       
     }
     
     @IBAction func navigateToHomeAsGuest(_ sender: UIButton) {
@@ -20,7 +21,7 @@ class WelcomeViewController: UIViewController {
         defaults.setValue(-1, forKey: Constants.customerId)
         home.modalPresentationStyle = .fullScreen
         present(home, animated: true)
-
+        
     }
     
     @IBAction func NavigateToLogin(_ sender: UIButton) {

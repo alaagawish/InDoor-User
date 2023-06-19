@@ -14,7 +14,8 @@ class launchScreenViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+        UserDefault().setCoupon(couponCode: ("",""))
+        UserDefault().setCouponAmountAndSubtotal(amountAndSubTotal: ("",""))
         animatedView.contentMode = .scaleAspectFit
         animatedView.loopMode = .playOnce
         animatedView.animationSpeed = 1

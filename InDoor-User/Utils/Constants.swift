@@ -112,9 +112,6 @@ class Constants {
     static let couponType = "couponType"
     static let discountAmount = "discountAmount"
     static let minSubtotal = "minSubtotal"
-    static let shouldChooseSizeAndColorFirst = "Please, choose size and color first."
-    
-    
     static let goodReviews: [Review] = [
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Safiya Fikry", rate: 4, reviewMessage: "I liked this product, it also look like the picture."),
         Review(photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyrMLYoYCaldbCL4aBBfpvuxYRODSp2ty1fg&usqp=CAU", personName: "Ahd Weal", rate: 4.5, reviewMessage: "It is very comfortable product with very high quality."),

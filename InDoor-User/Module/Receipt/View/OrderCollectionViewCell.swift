@@ -18,10 +18,10 @@ class OrderCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func setValues(image: String, amount: String, title: String) {
-        self.itemTitle.text = title
-        self.itemAmount.text = amount
-        self.orderImage.kf.setImage(with: URL(string: image ),
+    func setValues(product: Product) {
+        self.itemTitle.text = product.title
+        self.itemAmount.text = "\(product.variants?.count ?? 0) Piece/s"
+        self.orderImage.kf.setImage(with: URL(string: product.image?.src ?? "" ),
                                     placeholder: UIImage(named: Constants.noImage))
         
     }

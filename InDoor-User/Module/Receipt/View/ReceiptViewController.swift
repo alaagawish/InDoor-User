@@ -23,11 +23,15 @@ class ReceiptViewController: UIViewController {
     var couponAmount: String = ""
     var couponMinimumSubTotal: String = ""
     var products: [Product] = []
-    var amountPerProduct: [Int] = []
     var allCoupons:[[DiscountCodes]] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         itemsCollectionView.register(UINib(nibName: Constants.orderCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.orderCellIdentifier)
+        subtotal.text = "\(UserDefault().getCurrencySymbol())"
+        subtotal.text! += String(format: "%.2f", (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())
+        totalMoney.text = "\(UserDefault().getCurrencySymbol())"
+        totalMoney.text! += String(format: "%.2f", (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())
+        
         setUpUI()
         getCouponsFromApi()
     }
@@ -63,11 +67,11 @@ class ReceiptViewController: UIViewController {
     }
     
     func applyCouponToPrice(){
-        if self.applyCouponButton.titleLabel?.text == "Apply" {
+        
+        if (self.applyCouponButton.titleLabel?.text)! == "Apply" {
             var valid = false
             if couponName != "" {
-                if couponTextField.text == couponName {
-                    
+                if couponTextField.text! == couponName {
                     valid = true
                 }else{
                     for index in allCoupons.indices {
@@ -92,26 +96,39 @@ class ReceiptViewController: UIViewController {
                         self.applyCouponButton.setTitle("Change", for: .normal)
                         self.applyCouponButton.setTitleColor(.green, for: .normal)
                         if couponType == "percentage"{
+                            
                             discountAmount = Double(subtotal.text!)! * Double(couponAmount)! / 100.0
+                            totalMoney.text = String(Double(subtotal.text!)! - discountAmount)
                         }
                         else {
-                            discountAmount = Double(subtotal.text!)! + Double(couponAmount)!
+                            discountAmount = Double(couponAmount)!
+                            
+                            totalMoney.text = "\(UserDefault().getCurrencySymbol())"
+                            totalMoney.text! += String(format: "%.2f", ((Double(subtotal.text!)! + discountAmount) * UserDefault().getCurrencyRate()))
+                            
                         }
                     }else{
                         let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "Minimum Amount for this coupon to be applicable is \(self.couponMinimumSubTotal)", positiveButtonTitle: Constants.ok)
                         present(alert, animated: true)
                     }
-                    self.discount.text =  "- \(discountAmount )"
-                    self.totalMoney.text = "\((subtotalPrice ?? 0) - discountAmount)"
+                    self.discount.text =  "\(discountAmount)"
+                    totalMoney.text = "\(UserDefault().getCurrencySymbol())"
+                    totalMoney.text! += String(format: "%.2f", ((subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate()))
+                    
+                    discount.text = "-0.0"
                 }else {
                     let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "Invalid coupon", positiveButtonTitle: Constants.ok)
                     present(alert, animated: true)
+                    totalMoney.text = "\(UserDefault().getCurrencySymbol())"
+                    totalMoney.text! += String(format: "%.2f", ((subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate()))
+                    
+                    discount.text = "-0.0"
                 }
-            }else{
-                self.couponTextField.isEnabled = true
-                self.applyCouponButton.setTitle("Apply", for: .normal)
-                self.applyCouponButton.setTitleColor(.white, for: .normal)
             }
+        }else{
+            self.couponTextField.isEnabled = true
+            self.applyCouponButton.setTitle("Apply", for: .normal)
+            self.applyCouponButton.setTitleColor(.white, for: .normal)
         }
     }
     
@@ -132,7 +149,7 @@ extension ReceiptViewController: UICollectionViewDelegate ,UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.orderCellIdentifier, for: indexPath) as! OrderCollectionViewCell
-        cell.setValues(image: products[indexPath.row].image?.src ?? "", amount: "\(amountPerProduct[indexPath.row])", title:  products[indexPath.row].title ?? "")
+        cell.setValues(product: products[indexPath.row])
         return cell
     }
     
@@ -149,5 +166,5 @@ extension ReceiptViewController: UICollectionViewDelegate ,UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
-      
+    
 }

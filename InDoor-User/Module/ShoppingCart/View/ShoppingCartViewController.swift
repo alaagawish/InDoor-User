@@ -48,7 +48,7 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-   
+        
     }
     
     func setShoppingCartCellNibFile(){
@@ -75,6 +75,7 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
         let orderStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.orderStoryID) as! ReceiptViewController
         orderStoryBoard.modalPresentationStyle = .fullScreen
         orderStoryBoard.products = ShoppingCartViewController.products
+        orderStoryBoard.subtotalPrice = totalPrice
         present(orderStoryBoard, animated: true)
     }
 }
@@ -82,6 +83,11 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
 extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if allVariants.count == 0 {
+            proceedToCheckoutButton.isHidden = true
+        }else {
+            proceedToCheckoutButton.isHidden = false
+        }
         return allVariants.count
     }
     
