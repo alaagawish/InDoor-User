@@ -36,7 +36,8 @@ class AddressViewController: UIViewController {
         checkSource()
         for index in 0 ..< addressesList.count {
             if addressesList[index].default ?? false {
-                tableView(addressesTable, didSelectRowAt: IndexPath(index: index) )
+                print(index)
+                tableView(addressesTable, didSelectRowAt: IndexPath(row: index, section: 0) )
             }
         }
     }
@@ -112,6 +113,12 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
+            for i in 0 ..< addressesList.count {
+                if i != indexPath.row {
+                    let celll = tableView.cellForRow(at: IndexPath(row: i, section: 0))
+                    celll?.elevateCellAndRemoveBorder()
+                }
+            }
             cell.addBorderAndRemoveShadow()
         }
         if !(addressesList[indexPath.row].default ?? false) {
@@ -121,7 +128,9 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource{
             
             let params = JSONCoding().encodeToJson(objectClass: response)
             
-            self.settingsViewModel.postAddress(parameters: params ?? [:])
+            self.settingsViewModel.putAddress(path: "\(Constants.addressPath)/\(addressesList[indexPath.row].id ?? 0)", parameters: params ?? [:])
+            self.settingsViewModel.getAddresses()
+            
         }
         
     }
