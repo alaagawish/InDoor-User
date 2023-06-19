@@ -12,6 +12,6 @@ protocol DatabaseService {
     func deleteAll()
     func deleteProduct(product: LocalProduct)
     func insertProduct(product: LocalProduct)
-    func isFavorite(productId: Int) -> Bool
+    func isFavorite(productId: Int, customerId: Int) -> Bool
     func fetchProduct(productId: Int) -> LocalProduct
 }
