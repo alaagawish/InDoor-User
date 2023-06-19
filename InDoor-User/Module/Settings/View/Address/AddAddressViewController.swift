@@ -152,7 +152,7 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
         else{
             let address = Address(id: nil, customer_id: UserDefault().getCustomerId(), name: "\(self.firstNameTextField.text ?? "") \(self.lastNameTextField.text ?? "")", first_name:firstNameTextField.text ?? "", last_name: lastNameTextField.text ?? "", phone: phoneTextField.text ?? "", address1: self.addressTextField.text ?? "", city: self.cityTextField.text ?? "", country: self.countryTextField.text ?? "", default: false)
             
-            let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil)
+            let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, draftOrder: nil, orders: nil)
             
             let params = JSONCoding().encodeToJson(objectClass: response)
             

@@ -86,7 +86,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                         self?.present(home, animated: true)
                     }
                 } else {
-                    let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: self?.user, customers: nil, addresses: nil, customer_address: nil, orders: nil)
+                    let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: self?.user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil)
                     
                     let params = JSONCoding().encodeToJson(objectClass: response)
                     self?.loginViewModel.postUser(parameters: params ?? [:])
