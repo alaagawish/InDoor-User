@@ -19,9 +19,7 @@ class SettingsViewModel{
     
     var address: Address?{
         didSet{
-            DispatchQueue.main.async {
                 self.bindViewControllerToAddress()
-            }
         }
     }
     

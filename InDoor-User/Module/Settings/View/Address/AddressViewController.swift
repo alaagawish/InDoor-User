@@ -37,7 +37,7 @@ class AddressViewController: UIViewController {
         for index in 0 ..< addressesList.count {
             if addressesList[index].default ?? false {
                 print(index)
-                tableView(addressesTable, didSelectRowAt: IndexPath(row: index, section: 0) )
+                tableView(addressesTable, didSelectRowAt: IndexPath(row: index-1, section: 0) )
             }
         }
     }
@@ -82,6 +82,12 @@ class AddressViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Payment", bundle: nil)
         let pay = storyboard.instantiateViewController(withIdentifier: "payment") as! PaymentViewController
         pay.modalPresentationStyle = .fullScreen
+        pay.order = order
+        if Double(order?.totalPrice ?? "") ?? 0 > 1000 {
+            pay.canPayWithCash = true
+        }else {
+            pay.canPayWithCash = false
+        }
         present(pay, animated: true)
     }
 }
@@ -124,7 +130,7 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource{
         if !(addressesList[indexPath.row].default ?? false) {
             let address = Address(id: addressesList[indexPath.row].id, customer_id: UserDefault().getCustomerId(),default: true)
             
-            let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil)
+            let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil,order: nil)
             
             let params = JSONCoding().encodeToJson(objectClass: response)
             

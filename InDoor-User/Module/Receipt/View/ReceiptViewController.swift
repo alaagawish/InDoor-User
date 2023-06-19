@@ -23,6 +23,7 @@ class ReceiptViewController: UIViewController {
     var couponAmount: String = ""
     var couponMinimumSubTotal: String = ""
     var products: [Product] = []
+    var total: Double = 0.0
     var allCoupons:[[DiscountCodes]] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,7 @@ class ReceiptViewController: UIViewController {
         if  couponName != "" {
             applyCouponToPrice()
         }
+        total = subtotalPrice ?? 0.0
         itemsCollectionView.reloadData()
     }
     
@@ -67,10 +69,14 @@ class ReceiptViewController: UIViewController {
         
         var lineItems: [LineItems] = []
         for item in products {
-            lineItems.append(LineItems(price: item.variants?[0].price, quantity: item.variants?.count, title: item.title))
+            if item.variants?.count ?? 0 > 0 {
+                lineItems.append(LineItems(price: item.variants?[0].price, quantity: item.variants?.count, title: item.title))
+            }else {
+                itemsCollectionView.reloadData()
+            }
         }
         let customer = Customer(id: UserDefault().getCustomerId())
-        let order = Orders(currency: UserDefault().getCurrencySymbol(), lineItems: lineItems, number: lineItems.count, customer: customer, totalPrice: totalMoney.text ?? "")
+        let order = Orders(currency: UserDefault().getCurrencySymbol(), lineItems: lineItems, number: lineItems.count, customer: customer, totalPrice: String(format: "%.2f", total ))
         
         let storyboard = UIStoryboard(name: Constants.settingsStoryboard, bundle: nil)
         let addressStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.addressIdentifier) as! AddressViewController
@@ -114,13 +120,14 @@ class ReceiptViewController: UIViewController {
                             
                             discountAmount = Double(subtotal.text!)! * Double(couponAmount)! / 100.0
                             totalMoney.text = String(Double(subtotal.text!)! - discountAmount)
+                            total = Double(subtotal.text!)! - discountAmount
                         }
                         else {
                             discountAmount = Double(couponAmount)!
                             
                             totalMoney.text = "\(UserDefault().getCurrencySymbol())"
                             totalMoney.text! += String(format: "%.2f", ((Double(subtotal.text!)! + discountAmount) * UserDefault().getCurrencyRate()))
-                            
+                            total = Double(subtotal.text!)! + discountAmount * UserDefault().getCurrencyRate()
                         }
                     }else{
                         let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "Minimum Amount for this coupon to be applicable is \(self.couponMinimumSubTotal)", positiveButtonTitle: Constants.ok)
@@ -129,14 +136,15 @@ class ReceiptViewController: UIViewController {
                     self.discount.text =  "\(discountAmount)"
                     totalMoney.text = "\(UserDefault().getCurrencySymbol())"
                     totalMoney.text! += String(format: "%.2f", ((subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate()))
-                    
+                    total = (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate()
                     discount.text = "-0.0"
                 }else {
                     let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "Invalid coupon", positiveButtonTitle: Constants.ok)
                     present(alert, animated: true)
                     totalMoney.text = "\(UserDefault().getCurrencySymbol())"
-                    totalMoney.text! += String(format: "%.2f", ((subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate()))
-                    
+                    totalMoney.text! += String(format: "%.2f", (((subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())))
+                                               
+                    total = (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate()
                     discount.text = "-0.0"
                 }
             }

@@ -65,7 +65,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 let addresses = [Address(id: nil, customer_id: nil, name: "\(self?.firstNameTextField) \(self?.lastNameTextField)", first_name: self?.firstNameTextField.text, last_name: self?.lastNameTextField.text,phone: nil,address1: nil,city: nil, country: self?.phoneTextField.text, default: true)]
                 let user = User(id: nil, firstName: self?.firstNameTextField.text, lastName: self?.lastNameTextField.text, email: self?.emailTextField.text, phone: self?.phoneTextField.text, addresses: addresses, tags: self?.passwordTextField.text)
                 
-                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, orders: nil)
+                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, orders: nil, order: nil)
                 
                 let params = JSONCoding().encodeToJson(objectClass: response)
                 self?.signUpViewModel.postUser(parameters: params ?? [:])
