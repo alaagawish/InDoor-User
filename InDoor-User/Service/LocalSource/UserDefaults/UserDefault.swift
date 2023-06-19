@@ -21,14 +21,28 @@ class UserDefault{
     func getCurrencySymbol() -> String {
         return userDefaults.string(forKey: Constants.newCurrencyKey) ?? "USD"
     }
+    
     func getCurrencyRate() -> Double {
         return userDefaults.double(forKey: Constants.ratesKey)
         
     }
     
-    func getCoupon() -> String {
-        return userDefaults.string(forKey: Constants.couponChosen) ?? "null"
-        
+    func getCoupon() -> (String , String) {
+        return (userDefaults.string(forKey: Constants.couponChosen) ?? "", userDefaults.string(forKey: Constants.couponType) ?? "")
+    }
+    
+    func setCoupon(couponCode: (String , String)) {
+        userDefaults.set(couponCode.0, forKey: Constants.couponChosen)
+        userDefaults.set(couponCode.1, forKey: Constants.couponType)
+    }
+    
+    func getCouponAmountAndSubtotal() -> (String , String) {
+        return (userDefaults.string(forKey: Constants.discountAmount) ?? "", userDefaults.string(forKey: Constants.minSubtotal) ?? "")
+    }
+    
+    func setCouponAmountAndSubtotal(amountAndSubTotal: (String ,String)) {
+        userDefaults.set(amountAndSubTotal.0, forKey: Constants.discountAmount)
+        userDefaults.set(amountAndSubTotal.1, forKey: Constants.minSubtotal)
     }
     
     func logout() {

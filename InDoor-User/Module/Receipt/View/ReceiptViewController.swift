@@ -16,55 +16,107 @@ class ReceiptViewController: UIViewController {
     @IBOutlet weak var discount: UILabel!
     @IBOutlet weak var totalMoney: UILabel!
     @IBOutlet weak var itemsCollectionView: UICollectionView!
+    var viewModel = ReceiptViewModel(netWorkingDataSource: Network())
     var subtotalPrice: Double?
-    var coupon: String = ""
+    var couponName: String = ""
+    var couponType: String = ""
+    var couponAmount: String = ""
+    var couponMinimumSubTotal: String = ""
     var products: [Product] = []
     var amountPerProduct: [Int] = []
+    var allCoupons:[[DiscountCodes]] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         itemsCollectionView.register(UINib(nibName: Constants.orderCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.orderCellIdentifier)
         setUpUI()
-        
+        getCouponsFromApi()
     }
+    
+    func getCouponsFromApi(){
+        viewModel.getAllPriceRules { priceRules in
+            for priceRule in priceRules {
+                self.viewModel.getAllDiscountCoupons(priceRule: priceRule) { [weak self] priceRuleCoupons in
+                    self?.allCoupons.append(priceRuleCoupons)
+                }
+            }
+        }
+    }
+    
     func setUpUI(){
         applyCouponButton.layer.cornerRadius = 12
         checkoutButton.layer.cornerRadius = 12
     }
     override func viewWillAppear(_ animated: Bool) {
-        if  UserDefaults().string(forKey: Constants.couponChosen) != "null" {
-            self.coupon = UserDefaults().string(forKey: Constants.couponChosen) ?? ""
-            couponTextField.text = self.coupon
-            applyCoupon(self.applyCouponButton)
+        couponName = UserDefault().getCoupon().0
+        couponType = UserDefault().getCoupon().1
+        couponAmount = UserDefault().getCouponAmountAndSubtotal().0
+        couponMinimumSubTotal = UserDefault().getCouponAmountAndSubtotal().1
+        couponTextField.text = couponName
+        if  couponName != "" {
+            applyCouponToPrice()
         }
-        
     }
     
     @IBAction func checkout(_ sender: Any) {
         
         
     }
-    @IBAction func applyCoupon(_ sender: Any) {
+    
+    func applyCouponToPrice(){
         if self.applyCouponButton.titleLabel?.text == "Apply" {
-            if coupon != "" {
-                if couponTextField.text == coupon {
-                    self.couponTextField.isEnabled = false
-                    self.applyCouponButton.setTitle("Change", for: .normal)
-                    self.applyCouponButton.setTitleColor(.green, for: .normal)
+            var valid = false
+            if couponName != "" {
+                if couponTextField.text == couponName {
                     
+                    valid = true
+                }else{
+                    for index in allCoupons.indices {
+                        for coupon in allCoupons[index] {
+                            if couponTextField.text == coupon.code {
+                                valid = true
+                                couponName = coupon.code!
+                                viewModel.getSpecificPriceRule(id: String(coupon.priceRuleId!)) {[weak self] priceRule in
+                                    self?.couponType = priceRule.valueType!
+                                    self?.couponAmount = priceRule.value!
+                                    self?.couponMinimumSubTotal = (priceRule.prerequisiteSubtotalRange?.greaterThanOrEqualTo!)!
+                                }
+                                break
+                            }
+                        }
+                    }
                 }
-                let discountAmount = (subtotalPrice ?? 0) * (Double(self.coupon ) ?? 0.0)
-                self.discount.text =  "- \(discountAmount )"
-                self.totalMoney.text = "\((subtotalPrice ?? 0) - discountAmount)"
+                if valid {
+                    var discountAmount = 0.0
+                    if Double(subtotal.text!)! >= Double(couponMinimumSubTotal)! {
+                        self.couponTextField.isEnabled = false
+                        self.applyCouponButton.setTitle("Change", for: .normal)
+                        self.applyCouponButton.setTitleColor(.green, for: .normal)
+                        if couponType == "percentage"{
+                            discountAmount = Double(subtotal.text!)! * Double(couponAmount)! / 100.0
+                        }
+                        else {
+                            discountAmount = Double(subtotal.text!)! + Double(couponAmount)!
+                        }
+                    }else{
+                        let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "Minimum Amount for this coupon to be applicable is \(self.couponMinimumSubTotal)", positiveButtonTitle: Constants.ok)
+                        present(alert, animated: true)
+                    }
+                    self.discount.text =  "- \(discountAmount )"
+                    self.totalMoney.text = "\((subtotalPrice ?? 0) - discountAmount)"
+                }else {
+                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "Invalid coupon", positiveButtonTitle: Constants.ok)
+                    present(alert, animated: true)
+                }
             }else{
-                //check if coupon text field contains coupon in list back from api
-                
-                
+                self.couponTextField.isEnabled = true
+                self.applyCouponButton.setTitle("Apply", for: .normal)
+                self.applyCouponButton.setTitleColor(.white, for: .normal)
             }
-            
-        }else {
-            self.couponTextField.isEnabled = true
-            
         }
+    }
+    
+    @IBAction func applyCoupon(_ sender: Any) {
+        applyCouponToPrice()
     }
     
     @IBAction func back(_ sender: Any) {

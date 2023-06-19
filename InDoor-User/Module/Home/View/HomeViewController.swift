@@ -18,12 +18,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var couponsSlider: ImageSlideshow!
     var homeViewModel: HomeViewModel!
     
-    let promoCodes = [ImageSource(image: UIImage(named: "discount5")!),
-                      ImageSource(image: UIImage(named: "discount1")!),
+    var promoCodes: [InputSource] = [ImageSource(image: UIImage(named: "discount5")!),
                       ImageSource(image: UIImage(named: "discount2")!),
-                      ImageSource(image: UIImage(named: "discount3")!)]
-    
-    
+                                     ImageSource(image: UIImage(named: "discount3")!)]{
+        didSet{
+            startSlider()
+        }
+    }
+    var tempPromoCodesArr: [InputSource] = []{
+        didSet{
+            if tempPromoCodesArr.count == homeViewModel.priceRules?.count{
+                promoCodes = tempPromoCodesArr
+            }
+        }
+    }
+    var selectedImageIndex = 0
+        
     var timer: Timer?
     var currentIndex = 0
     var brands:[SmartCollections] = []
@@ -56,6 +66,27 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
         homeViewModel.getItems()
+        
+        homeViewModel.bindDiscountToViewController = {[weak self] in
+            for discount in (self?.homeViewModel.priceRuleDiscounts)!{
+                if discount.usageCount! < (self?.homeViewModel.priceRules![self!.selectedImageIndex].usageLimit)!{
+                    UserDefault().setCoupon(couponCode: (discount.code!, (self?.homeViewModel.priceRules![self!.selectedImageIndex].valueType)!))
+                    UserDefault().setCouponAmountAndSubtotal(amountAndSubTotal:( ((self?.homeViewModel.priceRules![self!.selectedImageIndex].value)!), (self?.homeViewModel.priceRules![self!.selectedImageIndex].prerequisiteSubtotalRange?.greaterThanOrEqualTo)!))
+                }
+            }
+        }
+    
+        homeViewModel.bindPriceRulesToViewController = {[weak self] in
+            self?.addEquivelantImage()
+        }
+        homeViewModel.getAllPriceRules()
+    }
+    
+    func addEquivelantImage(){
+        for priceRule in homeViewModel.priceRules!{
+            let imageName = "\(priceRule.valueType!)_\(priceRule.value!)_\((priceRule.prerequisiteSubtotalRange?.greaterThanOrEqualTo)!)"
+            tempPromoCodesArr.append(ImageSource(image: UIImage(named: imageName)!))
+        }
     }
     
     func startSlider(){
@@ -63,7 +94,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         couponsSlider.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
         couponsSlider.isUserInteractionEnabled = true
         
-        couponsSlider.contentScaleMode = UIViewContentMode.scaleAspectFill
+        couponsSlider.contentScaleMode = UIViewContentMode.scaleToFill
         let pageControl = UIPageControl()
         pageControl.currentPageIndicatorTintColor = UIColor.black
         pageControl.pageIndicatorTintColor = UIColor.lightGray
@@ -77,10 +108,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @objc func imageTapped() {
-        let tappedImageIndex = couponsSlider.currentPage
+        selectedImageIndex = couponsSlider.currentPage
         
-        print("current page\(tappedImageIndex)")
-        
+        homeViewModel.getAllDiscountCoupons(priceRule: homeViewModel.priceRules![selectedImageIndex])
     }
     
     func imageSlideshow(_ imageSlideshow: ImageSlideshow, didTapAt index: Int) {
