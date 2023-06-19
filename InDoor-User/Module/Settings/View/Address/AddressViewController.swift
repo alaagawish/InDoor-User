@@ -14,7 +14,8 @@ class AddressViewController: UIViewController {
     @IBOutlet weak var addressesTable: UITableView!
     var settingsViewModel: SettingsViewModel!
     var addressesList: [Address] = []
-    
+    var orderFlag = false
+    var order: Orders?
     override func viewDidLoad() {
         super.viewDidLoad()
         settingsViewModel = SettingsViewModel(netWorkingDataSource: Network())
@@ -32,6 +33,12 @@ class AddressViewController: UIViewController {
         checkAddressListCount()
         setupUI()
         callingData()
+        checkSource()
+        for index in 0 ..< addressesList.count {
+            if addressesList[index].default ?? false {
+                tableView(addressesTable, didSelectRowAt: IndexPath(index: index) )
+            }
+        }
     }
     
     func setNibFile(){
@@ -91,39 +98,32 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    //    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    //        true
-    //    }
-    //
-    //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    //        if(editingStyle == .delete){
-    //
-    //            if addressesList[indexPath.row].default ?? false {
-    //                let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.defaultAddressMsg, positiveButtonTitle: Constants.ok)
-    //                self.present(alert, animated: true)
-    //            }else{
-    //                let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.removeAddressTitle, msg: Constants.removeAddressMsg, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok, positiveHandler: { [weak self] action in
-    //                    self?.settingsViewModel.deleteAddress(path: "\(Constants.addressPath)/\(self?.addressesList[indexPath.row].id ?? 0)")
-    //                    self?.addressesList.remove(at: indexPath.row)
-    //                    self?.addressesTable.reloadData()
-    //                })
-    //                self.present(alert, animated: true)
-    //            }
-    //        }
-    //    }
-    
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        let addAddress = self.storyboard?.instantiateViewController(withIdentifier: Constants.addAddressIdentifier) as! AddAddressViewController
-    //
-    //        addAddress.updateAddress = addressesList[indexPath.row]
-    //        addAddress.toUpdateAddress = true
-    //
-    //        addAddress.modalPresentationStyle = .fullScreen
-    //        present(addAddress, animated: true)
-    //    }
+    func checkSource() {
+        if orderFlag {
+            continueButton.isHidden = false
+        }else {
+            continueButton.isHidden = true
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.addBorderAndRemoveShadow()
+        }
+        if !(addressesList[indexPath.row].default ?? false) {
+            let address = Address(id: addressesList[indexPath.row].id, customer_id: UserDefault().getCustomerId(),default: true)
+            
+            let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil)
+            
+            let params = JSONCoding().encodeToJson(objectClass: response)
+            
+            self.settingsViewModel.postAddress(parameters: params ?? [:])
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -160,3 +160,4 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource{
         return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
     }
 }
+

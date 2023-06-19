@@ -9,6 +9,8 @@ import UIKit
 
 class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var priceView: UIView!
+    @IBOutlet weak var emptyCartImageView: UIImageView!
     @IBOutlet weak var shoppingCartTabelView: UITableView!
     @IBOutlet weak var proceedToCheckoutButton: UIButton!
     @IBOutlet weak var shoppingCartBottomView: UIView!
@@ -32,6 +34,9 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
         allVariants = []
         setupUI()
         prepareTableCount()
+        priceView.isHidden = false
+        emptyCartImageView.isHidden = true
+        shoppingCartTabelView.isHidden = false
         
     }
     
@@ -45,10 +50,6 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
         }
         cartPrice = totalPrice
         shoppingCartTabelView.reloadData()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
     }
     
     func setShoppingCartCellNibFile(){
@@ -84,9 +85,13 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if allVariants.count == 0 {
-            proceedToCheckoutButton.isHidden = true
+            priceView.isHidden = true
+            emptyCartImageView.isHidden = false
+            shoppingCartTabelView.isHidden = true
         }else {
-            proceedToCheckoutButton.isHidden = false
+            priceView.isHidden = false
+            emptyCartImageView.isHidden = true
+            shoppingCartTabelView.isHidden = false
         }
         return allVariants.count
     }
@@ -121,6 +126,9 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
                         if ShoppingCartViewController.products[productIndex].variants![variantIndex].id == self?.allVariants[indexPath.row].id{
                             self?.cartPrice -= Double((self?.allVariants[variantIndex].inventoryQuantity!)!) * Double((self?.allVariants[variantIndex].price)!)!
                             ShoppingCartViewController.products[productIndex].variants?.remove(at: variantIndex)
+                            if ShoppingCartViewController.products[productIndex].variants?.count == 0 {
+                                ShoppingCartViewController.products.remove(at: productIndex)
+                            }
                             break
                         }
                     }

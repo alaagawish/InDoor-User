@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -42,6 +41,9 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="tZu-zz-M0C"/>
                                 </connections>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyCart" translatesAutoresizingMaskIntoConstraints="NO" id="bYr-NG-hwh">
+                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Un-8r-ZnF">
                                 <rect key="frame" x="0.0" y="724.33333333333337" width="393" height="127.66666666666663"/>
                                 <subviews>
@@ -96,10 +98,14 @@
                             <constraint firstItem="8Un-8r-ZnF" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.15" id="NQs-2g-MX4"/>
                             <constraint firstItem="xkF-uk-EQR" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="8" id="Qiy-bC-DDU"/>
                             <constraint firstItem="ZQk-6f-ddU" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="TFc-QC-xHy"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bYr-NG-hwh" secondAttribute="trailing" id="WUZ-KM-B9F"/>
                             <constraint firstItem="ZQk-6f-ddU" firstAttribute="top" secondItem="xkF-uk-EQR" secondAttribute="bottom" constant="16" id="XcL-nC-lWH"/>
                             <constraint firstItem="8Un-8r-ZnF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="bc0-GX-rMU"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ZQk-6f-ddU" secondAttribute="trailing" id="ey9-hj-eCn"/>
+                            <constraint firstItem="bYr-NG-hwh" firstAttribute="top" secondItem="xkF-uk-EQR" secondAttribute="bottom" id="hqL-h1-9X7"/>
+                            <constraint firstItem="bYr-NG-hwh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="iA7-zc-h6E"/>
                             <constraint firstItem="CeF-uF-esF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="iZE-5o-jAg"/>
+                            <constraint firstAttribute="bottom" secondItem="bYr-NG-hwh" secondAttribute="bottom" id="ki0-g6-5cO"/>
                             <constraint firstItem="xkF-uk-EQR" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="luT-ET-1n2"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8Un-8r-ZnF" secondAttribute="trailing" id="qLS-DS-rxc"/>
                             <constraint firstItem="xkF-uk-EQR" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.480916" id="ty1-y1-bHe"/>
@@ -107,6 +113,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emptyCartImageView" destination="bYr-NG-hwh" id="553-O7-8HC"/>
+                        <outlet property="priceView" destination="8Un-8r-ZnF" id="5zl-lz-qb8"/>
                         <outlet property="proceedToCheckoutButton" destination="135-e9-IXz" id="FUv-Nr-wuw"/>
                         <outlet property="shoppingCartBottomView" destination="8Un-8r-ZnF" id="4uW-IR-iN8"/>
                         <outlet property="shoppingCartTabelView" destination="ZQk-6f-ddU" id="kwD-nb-7Mf"/>
@@ -121,6 +129,7 @@
     <resources>
         <image name="arrowshape.turn.up.right.fill" catalog="system" width="128" height="104"/>
         <image name="back" width="200" height="200"/>
+        <image name="emptyCart" width="736" height="552"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

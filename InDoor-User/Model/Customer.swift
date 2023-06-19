@@ -25,6 +25,42 @@ struct Customer: Codable {
     let adminGraphqlApiId: String?
     let defaultAddress: DefaultAddress?
     
+    init(id: Int, email: String?, acceptsMarketing: Bool?, createdAt: String?, updatedAt: String?, firstName: String?, lastName: String?, state: String?, verifiedEmail: Bool?, taxExempt: Bool?, phone: String?, tags: String?, currency: String?, acceptsMarketingUpdatedAt: String?, adminGraphqlApiId: String?, defaultAddress: DefaultAddress?) {
+        self.id = id
+        self.email = email
+        self.acceptsMarketing = acceptsMarketing
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.firstName = firstName
+        self.lastName = lastName
+        self.state = state
+        self.verifiedEmail = verifiedEmail
+        self.taxExempt = taxExempt
+        self.phone = phone
+        self.tags = tags
+        self.currency = currency
+        self.acceptsMarketingUpdatedAt = acceptsMarketingUpdatedAt
+        self.adminGraphqlApiId = adminGraphqlApiId
+        self.defaultAddress = defaultAddress
+    }
+    init(id: Int) {
+        self.id = id
+        self.email = nil
+        self.acceptsMarketing = nil
+        self.createdAt = nil
+        self.updatedAt = nil
+        self.firstName = nil
+        self.lastName = nil
+        self.state = nil
+        self.verifiedEmail = nil
+        self.taxExempt = nil
+        self.phone = nil
+        self.tags = nil
+        self.currency = nil
+        self.acceptsMarketingUpdatedAt = nil
+        self.adminGraphqlApiId = nil
+        self.defaultAddress = nil
+    }
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case email = "email"

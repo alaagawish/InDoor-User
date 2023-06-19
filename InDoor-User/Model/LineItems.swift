@@ -9,7 +9,7 @@ import Foundation
 
 struct LineItems: Codable {
     
-    let id: Int
+    let id: Int?
     let adminGraphqlApiId: String?
     let fulfillableQuantity: Int?
     let fulfillmentService: String?
@@ -32,6 +32,30 @@ struct LineItems: Codable {
     let variantTitle: String?
     let vendor: String?
     
+    init(price: String?, quantity: Int?, title: String?) {
+        self.id = nil
+        self.adminGraphqlApiId = nil
+        self.fulfillableQuantity = nil
+        self.fulfillmentService = nil
+        self.giftCard = nil
+        self.grams = nil
+        self.name = nil
+        self.price = price
+        self.priceSet = nil
+        self.productExists = nil
+        self.productId = nil
+        self.quantity = quantity
+        self.requiresShipping = nil
+        self.sku = nil
+        self.taxable = nil
+        self.title = title
+        self.totalDiscount = nil
+        self.totalDiscountSet = nil
+        self.variantId = nil
+        self.variantInventoryManagement = nil
+        self.variantTitle = nil
+        self.vendor = nil
+    }
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case adminGraphqlApiId = "admin_graphql_api_id"

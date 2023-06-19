@@ -27,14 +27,11 @@ class ReceiptViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         itemsCollectionView.register(UINib(nibName: Constants.orderCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: Constants.orderCellIdentifier)
-        subtotal.text = "\(UserDefault().getCurrencySymbol())"
-        subtotal.text! += String(format: "%.2f", (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())
-        totalMoney.text = "\(UserDefault().getCurrencySymbol())"
-        totalMoney.text! += String(format: "%.2f", (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())
         
         setUpUI()
         getCouponsFromApi()
     }
+    
     
     func getCouponsFromApi(){
         viewModel.getAllPriceRules { priceRules in
@@ -53,16 +50,34 @@ class ReceiptViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         couponName = UserDefault().getCoupon().0
         couponType = UserDefault().getCoupon().1
+        subtotal.text = "\(UserDefault().getCurrencySymbol())"
+        subtotal.text! += String(format: "%.2f", (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())
+        totalMoney.text = "\(UserDefault().getCurrencySymbol())"
+        totalMoney.text! += String(format: "%.2f", (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())
         couponAmount = UserDefault().getCouponAmountAndSubtotal().0
         couponMinimumSubTotal = UserDefault().getCouponAmountAndSubtotal().1
         couponTextField.text = couponName
         if  couponName != "" {
             applyCouponToPrice()
         }
+        itemsCollectionView.reloadData()
     }
     
     @IBAction func checkout(_ sender: Any) {
         
+        var lineItems: [LineItems] = []
+        for item in products {
+            lineItems.append(LineItems(price: item.variants?[0].price, quantity: item.variants?.count, title: item.title))
+        }
+        let customer = Customer(id: UserDefault().getCustomerId())
+        let order = Orders(currency: UserDefault().getCurrencySymbol(), lineItems: lineItems, number: lineItems.count, customer: customer, totalPrice: totalMoney.text ?? "")
+        
+        let storyboard = UIStoryboard(name: Constants.settingsStoryboard, bundle: nil)
+        let addressStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.addressIdentifier) as! AddressViewController
+        addressStoryboard.modalPresentationStyle = .fullScreen
+        addressStoryboard.orderFlag = true
+        addressStoryboard.order = order
+        present(addressStoryboard, animated: true)
         
     }
     
