@@ -56,6 +56,33 @@ struct LineItems: Codable {
         self.variantInventoryManagement = nil
         self.variantTitle = nil
         self.vendor = nil
+        self.properties = nil
+    }
+    
+    init(price: String?, quantity: Int?, title: String?, properties: [Properties]) {
+        self.id = nil
+        self.adminGraphqlApiId = nil
+        self.fulfillableQuantity = nil
+        self.fulfillmentService = nil
+        self.giftCard = nil
+        self.grams = nil
+        self.name = nil
+        self.price = price
+        self.priceSet = nil
+        self.productExists = nil
+        self.productId = nil
+        self.quantity = quantity
+        self.requiresShipping = nil
+        self.sku = nil
+        self.taxable = nil
+        self.title = title
+        self.totalDiscount = nil
+        self.totalDiscountSet = nil
+        self.variantId = nil
+        self.variantInventoryManagement = nil
+        self.variantTitle = nil
+        self.vendor = nil
+        self.properties = properties
     }
     private enum CodingKeys: String, CodingKey {
         case id = "id"

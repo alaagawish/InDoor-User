@@ -133,7 +133,7 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource{
         if !(addressesList[indexPath.row].default ?? false) {
             let address = Address(id: addressesList[indexPath.row].id, customer_id: UserDefault().getCustomerId(),default: true)
             
-            let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil,order: nil)
+            let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, draftOrder: nil, orders: nil,order: nil)
             
             let params = JSONCoding().encodeToJson(objectClass: response)
             

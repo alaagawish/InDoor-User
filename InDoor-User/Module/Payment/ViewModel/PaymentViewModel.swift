@@ -25,7 +25,7 @@ class PaymentViewModel {
     }
     
     func postOrder(order: Orders) {
-        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, orders: nil,order: order)
+        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil,order: order)
         
         let params = JSONCoding().encodeToJson(objectClass: response)
 
