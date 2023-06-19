@@ -8,10 +8,24 @@
 import Foundation
 class FavoritesViewModel{
     var service: DatabaseService!
-    var allProductsList = [LocalProduct]()
+    var network: NetworkProtocol!
+    var bindallProductsListToFavoritesController:(()->Void) = {}
+    var allProductsList = [LocalProduct](){
+        didSet{
+            bindallProductsListToFavoritesController()
+        }
+    }
+    var bindResultToViewController: (()->()) = {}
     
-    init(service: DatabaseService) {
+    var result: [Product] = []  {
+        didSet{
+            self.bindResultToViewController()
+        }
+    }
+    
+    init(service: DatabaseService, network: NetworkProtocol) {
         self.service = service
+        self.network = network
     }
     
     func addProduct(product: LocalProduct) {
@@ -26,11 +40,18 @@ class FavoritesViewModel{
         allProductsList = service.fetchAll()
     }
     
-    func checkIfProductIsFavorite(productId: Int) -> Bool {
-        return service.isFavorite(productId: productId)
+    func checkIfProductIsFavorite(productId: Int, customerId: Int) -> Bool {
+        return service.isFavorite(productId: productId,customerId: customerId)
     }
     
     func getProduct(productId: Int) -> LocalProduct {
         return service.fetchProduct(productId: productId)
+    }
+    
+    func getRemoteProducts(){
+        let path = "products"
+        network.getData(path: path, parameters: [:]){ [weak self] (response : Response?) in
+            self?.result = response?.products ?? []
+        }
     }
 }
