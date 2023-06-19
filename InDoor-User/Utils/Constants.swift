@@ -125,4 +125,8 @@ class Constants {
     static let comingToSearchFromCategory = "comingToSearchFromCategory"
     static let isGoogle = "isGoogle"
     static let logoutMessage = "Are you sure to logout?"
+    static let draftPath = "draft_orders"
+    static let cartId = "cart_id"
+    static let favoritesId = "favorites_id"
+    static let putUserPath = "customers/\(UserDefaults.standard.integer(forKey: Constants.customerId))"
 }
