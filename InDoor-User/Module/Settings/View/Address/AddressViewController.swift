@@ -28,7 +28,9 @@ class AddressViewController: UIViewController {
             self?.addressesTable.reloadData()
         }
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        callingData()
+    }
     override func viewDidAppear(_ animated: Bool) {
         checkAddressListCount()
         setupUI()
@@ -37,7 +39,7 @@ class AddressViewController: UIViewController {
         for index in 0 ..< addressesList.count {
             if addressesList[index].default ?? false {
                 print(index)
-                tableView(addressesTable, didSelectRowAt: IndexPath(row: index-1, section: 0) )
+                tableView(addressesTable, didSelectRowAt: IndexPath(row: index+1, section: 0) )
             }
         }
     }
@@ -84,9 +86,9 @@ class AddressViewController: UIViewController {
         pay.modalPresentationStyle = .fullScreen
         pay.order = order
         if Double(order?.totalPrice ?? "") ?? 0 > 1000 {
-            pay.canPayWithCash = true
-        }else {
             pay.canPayWithCash = false
+        }else {
+            pay.canPayWithCash = true
         }
         present(pay, animated: true)
     }
@@ -94,6 +96,7 @@ class AddressViewController: UIViewController {
 
 extension AddressViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return addressesList.count
     }
     

@@ -20,11 +20,7 @@ class PaymentViewController: UIViewController {
     var paymentViewModel: PaymentViewModel!
     var canPayWithCash = true
     var order: Orders!
-   
-       
-    
-    var orderTotalPrice = 500
-    var canPayWithCash = true
+    var orderTotalPrice = 500.0
     var payRequest: PKPaymentRequest!
     
     func getPaymentRequest() -> PKPaymentRequest{
@@ -45,23 +41,24 @@ class PaymentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         payRequest = getPaymentRequest()
- paymentViewModel = PaymentViewModel(netWorkingDataSource: Network())
+        paymentViewModel = PaymentViewModel(netWorkingDataSource: Network())
         setupUI()
         setupTapGesture()
+        orderTotalPrice = Double(order.totalPrice ?? "") ?? 0
         cantPayWithCashView.translatesAutoresizingMaskIntoConstraints = false
         checkCashPayment()
         self.purchaseButton.addTarget(self, action: #selector(tapToPay), for: .touchUpInside)
-           totalPriceLabel.text = order.totalPrice
+        totalPriceLabel.text = order.totalPrice
         paymentViewModel.bindOrderToViewController = {
             [weak self] in
             if self?.paymentViewModel.order?.id ?? 0 != 0 {
-            
+                
                 let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.congratulations, msg: "Order is done", negativeButtonTitle: Constants.ok, positiveButtonTitle: Constants.directHome) {[weak self] alert in
                     
                     let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
                     let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
                     home.modalPresentationStyle = .fullScreen
-                   
+                    
                     self?.dismiss(animated: true)
                     self?.present(home, animated: true)
                     
@@ -79,7 +76,7 @@ class PaymentViewController: UIViewController {
         paymentController.delegate = self
         present(paymentController, animated: true, completion: nil)
         creditCheckMarkImage.isHidden = true
-}
+    }
     override func viewWillAppear(_ animated: Bool) {
         purchaseButton.isEnabled = false
     }
@@ -139,7 +136,7 @@ class PaymentViewController: UIViewController {
     
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true)
-       
+        
     }
     
     
