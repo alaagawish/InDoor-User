@@ -18,8 +18,14 @@ struct Response: Codable {
     let customers: [User]?
     let addresses: [Address]?
     let customer_address: Address?
-
     let orders: [Orders]?
+    var priceRules: [PriceRule]?
+    var priceRule: PriceRule?
+    var discountCodes: [DiscountCodes]?
+    var discountCode: DiscountCodes?
+    var inventoryLevel: InventoryLevel?
+    var inventoryItem: InventoryItem?
+    
     private enum CodingKeys: String, CodingKey {
         case smartCollections = "smart_collections"
         case currencies = "currencies"
@@ -30,5 +36,11 @@ struct Response: Codable {
         case orders = "orders"
         case customCollections = "custom_collections"
         case customer,customers, addresses, customer_address
+        case inventoryItem = "inventory_item"
+        case inventoryLevel = "inventory_level"
+        case discountCode = "discount_code"
+        case discountCodes = "discount_codes"
+        case priceRules = "price_rules"
+        case priceRule = "price_rule"
     }
 }
