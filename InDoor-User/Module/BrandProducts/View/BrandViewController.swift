@@ -40,12 +40,15 @@ class BrandViewController: UIViewController, UICollectionViewDelegate, UICollect
         disposeBag = DisposeBag()
         brandViewModel = BrandViewModel(netWorkingDataSource: Network())
         callingData()
-        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance)
+        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance,network: Network())
         search()
         filterView.translatesAutoresizingMaskIntoConstraints = false
         
         setUpUI()
         
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        productsCollectionView.reloadData()
     }
     
     func setUpUI(){
@@ -201,7 +204,7 @@ extension BrandViewController {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.brandProduct, for: indexPath) as! BrandProductCollectionViewCell
-        cell.setValues(product: products[indexPath.row], isFav: favoritesViewModel.checkIfProductIsFavorite(productId: products[indexPath.row].id), viewController: self, view: Constants.brand)
+        cell.setValues(product: products[indexPath.row], isFav: favoritesViewModel.checkIfProductIsFavorite(productId: products[indexPath.row].id, customerId: UserDefaults.standard.integer(forKey: Constants.customerId)), viewController: self, view: Constants.brand)
         
         return cell
     }

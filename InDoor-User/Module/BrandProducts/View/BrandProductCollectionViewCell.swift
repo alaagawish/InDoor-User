@@ -20,6 +20,7 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
     var viewController: UIViewController?
     var product:Product!
     var categoryViewController: CategoryViewController?
+    let defaults = UserDefaults.standard
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -74,7 +75,7 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
     @IBAction func checkFavouriteProduct(_ sender: Any) {
         
         if favouriteButton.currentImage == UIImage(systemName: Constants.heart) {
-            let localProduct = LocalProduct(id: product.id, title: product.title ?? "", status: product.status ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
+            let localProduct = LocalProduct(id: product.id, customer_id: defaults.integer(forKey: Constants.customerId), title: product.title ?? "", status: product.status ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
             if self.view == Constants.brand {
                 ( viewController as! BrandViewController).favoritesViewModel.addProduct(product: localProduct)
             }else {
