@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PassKit
 
 class PaymentViewController: UIViewController {
     
@@ -19,14 +20,38 @@ class PaymentViewController: UIViewController {
     var paymentViewModel: PaymentViewModel!
     var canPayWithCash = true
     var order: Orders!
+   
+       
+    
+    var orderTotalPrice = 500
+    var canPayWithCash = true
+    var payRequest: PKPaymentRequest!
+    
+    func getPaymentRequest() -> PKPaymentRequest{
+        let request = PKPaymentRequest()
+        
+        request.merchantIdentifier = "merchant.mad43team1.com"
+        request.supportedNetworks = [.visa, .masterCard, .vPay, .quicPay]
+        request.supportedCountries = ["US", "EG"]
+        request.merchantCapabilities = .capability3DS
+        request.countryCode = "US"
+        request.currencyCode = "\(UserDefault().getCurrencySymbol())"
+        
+        request.paymentSummaryItems = [PKPaymentSummaryItem(label: "Your order", amount: NSDecimalNumber(value: orderTotalPrice))]
+        
+        return request
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        paymentViewModel = PaymentViewModel(netWorkingDataSource: Network())
+        payRequest = getPaymentRequest()
+ paymentViewModel = PaymentViewModel(netWorkingDataSource: Network())
         setupUI()
         setupTapGesture()
         cantPayWithCashView.translatesAutoresizingMaskIntoConstraints = false
         checkCashPayment()
-        totalPriceLabel.text = order.totalPrice
+        self.purchaseButton.addTarget(self, action: #selector(tapToPay), for: .touchUpInside)
+           totalPriceLabel.text = order.totalPrice
         paymentViewModel.bindOrderToViewController = {
             [weak self] in
             if self?.paymentViewModel.order?.id ?? 0 != 0 {
@@ -45,11 +70,21 @@ class PaymentViewController: UIViewController {
             }
         }
     }
+    
+    @objc func tapToPay(){
+        let paymentController = PKPaymentAuthorizationViewController(paymentRequest: payRequest)
+        guard let paymentController = paymentController else {
+            return
+        }
+        paymentController.delegate = self
+        present(paymentController, animated: true, completion: nil)
+        creditCheckMarkImage.isHidden = true
+}
     override func viewWillAppear(_ animated: Bool) {
         purchaseButton.isEnabled = false
     }
     func checkCashPayment(){
-        if canPayWithCash{
+        if !canPayWithCash{
             cantPayWithCashView.isHidden = false
             if let heightConstraint = cantPayWithCashView.constraints.first(where: { $0.firstAttribute == .height }) {
                 heightConstraint.constant = UIScreen.main.bounds.height * 0.07
@@ -61,7 +96,7 @@ class PaymentViewController: UIViewController {
         purchaseButton.layer.cornerRadius = 12
         creditCheckMarkImage.isHidden = true
         cashCheckMarkImage.isHidden = true
-        if canPayWithCash{
+        if !canPayWithCash{
             cashView.isHidden = true
         }
         setupUIView(uiView: creditView)
@@ -112,5 +147,15 @@ class PaymentViewController: UIViewController {
         paymentViewModel.postOrder(order: order)
         
         
+    }
+}
+
+extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate{
+    func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+        completion(PKPaymentAuthorizationResult(status: .success, errors: nil))
     }
 }
