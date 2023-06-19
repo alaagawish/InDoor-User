@@ -10,32 +10,29 @@ import Foundation
 
 struct Variants:Hashable,Codable {
 
-    
-    let id: Int?
-    let productId: Int?
-    let title: String?
-
-    let price: String
-
-    let sku: String?
-    let position: Int?
-    let inventoryPolicy: String?
-    let compareAtPrice: String?
-    let fulfillmentService: String?
-    let inventoryManagement: String?
-    let option1: String?
-    let option2: String?
-    let createdAt: String?
-    let updatedAt: String?
-    let taxable: Bool?
-    let grams: Int?
-    let weight: Int?
-    let weightUnit: String?
-    let inventoryItemId: Int?
-    let inventoryQuantity: Int?
-    let oldInventoryQuantity: Int?
-    let requiresShipping: Bool?
-    let adminGraphqlApiId: String?
+    var id: Int?
+    var productId: Int?
+    var title: String?
+    var price: String
+    var sku: String?
+    var position: Int?
+    var inventoryPolicy: String?
+    var compareAtPrice: String?
+    var fulfillmentService: String?
+    var inventoryManagement: String?
+    var option1: String?
+    var option2: String?
+    var createdAt: String?
+    var updatedAt: String?
+    var taxable: Bool?
+    var grams: Int?
+    var weight: Int?
+    var weightUnit: String?
+    var inventoryItemId: Int?
+    var inventoryQuantity: Int?
+    var oldInventoryQuantity: Int?
+    var requiresShipping: Bool?
+    var adminGraphqlApiId: String?
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"

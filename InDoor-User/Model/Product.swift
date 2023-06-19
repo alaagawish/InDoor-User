@@ -10,24 +10,24 @@ import Foundation
 
 struct Product: Hashable, Codable {
 
-    let id: Int
-    let title: String?
-    let bodyHtml: String?
-    let vendor: String?
-    let productType: String?
-    let createdAt: String?
-    let handle: String?
-    let updatedAt: String?
-    let publishedAt: String?
-    let status: String?
-    let publishedScope: String?
-    let tags: String?
-    let adminGraphqlApiId: String?
-    let variants: [Variants]?
-    let options: [Options]?
-    let images: [Image]?
-    let image: Image?
-    let templateSuffix: String?
+    var id: Int
+    var title: String?
+    var bodyHtml: String?
+    var vendor: String?
+    var productType: String?
+    var createdAt: String?
+    var handle: String?
+    var updatedAt: String?
+    var publishedAt: String?
+    var status: String?
+    var publishedScope: String?
+    var tags: String?
+    var adminGraphqlApiId: String?
+    var variants: [Variants]?
+    var options: [Options]?
+    var images: [Image]?
+    var image: Image?
+    var templateSuffix: String?
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"

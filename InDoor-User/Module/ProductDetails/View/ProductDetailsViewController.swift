@@ -27,13 +27,21 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     
     var productImagesArr: [InputSource] = []
     var product:Product!
+    var orderedProduct: Product!
+    var orderCount = 1{
+        didSet{
+            //label = orderCount
+            //check minus button -> count < 1
+        }
+    }
+    var productInCart = false
     var sizeCollectionHandler = ProductSizeCollectionDelegatesHandling()
     var colorCollectionHandler = ProductColorCollectionDelegatesHandling()
     var reviewTableHandler = ReviewsTableViewDelegatesHandling()
     var selectedSize: String!{
         didSet{
             var tempColorArr:[String] = []
-                        for variant in product.variants! {
+            for variant in product.variants! {
                 if variant.option1 == selectedSize{
                     tempColorArr.append(variant.option2!)
                 }
@@ -62,6 +70,9 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         reviewTableView.register(UINib(nibName:Constants.reviewNibFileName , bundle: nil), forCellReuseIdentifier: Constants.reviewCellIdentifier)
         prepareProductImagesArr()
         initializeUI()
+        orderedProduct = product
+        orderedProduct.variants = []
+        checkCart()
     }
     
     func prepareProductImagesArr(){
@@ -75,10 +86,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         }else {
             favouriteButtonOutlet.isHidden = false
         }
-        addToCartOutlet.isHidden = true
-        selectedSize = nil
-        selectedColor = nil
-        colorCollectionHandler.colorArr = product.options?[1].values ?? []
+        resetVariantsUI()
     }
     func initializeUI(){
         prepareSizeCollection()
@@ -141,7 +149,6 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
                 let variantName = "\(selectedSize!) / \(selectedColor!)"
                 if variant.title! == variantName{
                     price.text = String(format: "%.2f", (Double(variant.price) ?? 0 ) *  UserDefault().getCurrencyRate()) + " \(UserDefault().getCurrencySymbol())"
- 
                     if variant.inventoryQuantity == nil || variant.inventoryQuantity == 0 {
                         stockCount.text = "Not Available"
                     }else{
@@ -179,5 +186,83 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     
     @IBAction func addToCart(_ sender: UIButton) {
         
+        let variantName = "\(selectedSize!) / \(selectedColor!)"
+        
+        if !checkVariantIsInCart(variantName: variantName){
+            addVariantToOrders(variantName: variantName)
+        }
+    }
+    
+    func checkCart(){
+        for cartProduct in ShoppingCartViewController.products{
+            if cartProduct.id == orderedProduct.id {
+                orderedProduct = cartProduct
+                productInCart = true
+                break
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if productInCart {
+            for index in ShoppingCartViewController.products.indices {
+                if ShoppingCartViewController.products[index].id == orderedProduct.id {
+                    ShoppingCartViewController.products[index] = orderedProduct
+                    break
+                }
+            }
+        }else{
+            ShoppingCartViewController.products.append(orderedProduct)
+        }
+    }
+    
+    func checkVariantIsInCart(variantName: String) -> Bool{
+        for index in orderedProduct.variants!.indices {
+            if orderedProduct.variants?[index].title == variantName {
+                if (orderedProduct.variants![index].oldInventoryQuantity)! > 3 && (orderedProduct.variants![index].inventoryQuantity)! + orderCount <= (orderedProduct.variants![index].oldInventoryQuantity)!/3 || (orderedProduct.variants![index].oldInventoryQuantity)! <= 3 && (orderedProduct.variants![index].inventoryQuantity)! + orderCount <= (orderedProduct.variants![index].oldInventoryQuantity)!{
+                    orderedProduct.variants?[index].inventoryQuantity! += orderCount
+                    orderCount = 1
+                    resetVariantsUI()
+                    
+                }else{
+                    var cartCount = 0
+                    if (orderedProduct.variants?[index].oldInventoryQuantity)! <= 3{
+                        cartCount = (orderedProduct.variants?[index].oldInventoryQuantity)!
+                    }else{
+                        cartCount = (orderedProduct.variants?[index].oldInventoryQuantity)! / 3
+                    }
+                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "\((orderedProduct.variants?[index].inventoryQuantity)!) of this varient already in your cart and you can't order more than \(cartCount)", positiveButtonTitle: Constants.ok)
+                    present(alert, animated: true)
+                }
+                return true
+            }
+        }
+        return false
+    }
+    
+    func addVariantToOrders(variantName: String){
+        for variant in product.variants! {
+            if variant.title == variantName {
+                if variant.inventoryQuantity! > 3 && orderCount < variant.inventoryQuantity!/3 || variant.inventoryQuantity! <= 3 && orderCount <= variant.inventoryQuantity! {
+                    let orderedVariant = Variants(id: variant.id, productId:product.id ,title: variant.title, price: variant.price, option1: variant.option1, option2: variant.option2, inventoryQuantity: orderCount, oldInventoryQuantity: variant.inventoryQuantity)
+                    orderedProduct.variants?.append(orderedVariant)
+                    orderCount = 1
+                    resetVariantsUI()
+                }else{
+                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "you can't order more than \(variant.inventoryQuantity!/3)", positiveButtonTitle: Constants.ok)
+                    present(alert, animated: true)
+                }
+            }
+        }
+    }
+    
+    func resetVariantsUI(){
+        addToCartOutlet.isHidden = true
+        selectedSize = nil
+        selectedColor = nil
+        colorCollectionHandler.colorArr = product.options?[1].values ?? []
+        sizeCollectionView.reloadData()
+        price.text = Constants.selectSize
+        stockCount.text = Constants.selectSize
     }
 }

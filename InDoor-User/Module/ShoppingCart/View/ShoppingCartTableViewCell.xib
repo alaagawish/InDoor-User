@@ -17,21 +17,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="131"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6a-3L-2cV">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6a-3L-2cV">
                         <rect key="frame" x="224.33333333333334" y="98.666666666666671" width="30" height="24.333333333333329"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" title="-">
+                        <state key="normal" image="minus.circle.fill" catalog="system">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <connections>
+                            <action selector="minusButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="znw-qw-OMP"/>
+                        </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zu-vh-mBJ">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zu-vh-mBJ">
                         <rect key="frame" x="282" y="98.666666666666671" width="30" height="24.333333333333329"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" title="+">
+                        <state key="normal" image="plus.circle.fill" catalog="system">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <connections>
+                            <action selector="plusButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MzL-ee-oXY"/>
+                        </connections>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoes" translatesAutoresizingMaskIntoConstraints="NO" id="e9Y-IS-dfq">
                         <rect key="frame" x="0.0" y="0.0" width="128" height="131"/>
@@ -55,8 +61,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RK-Lc-Itl">
-                        <rect key="frame" x="136" y="98.666666666666671" width="31" height="24.333333333333329"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="136" y="98.666666666666671" width="26" height="24.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -92,12 +98,20 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="minusButton" destination="d6a-3L-2cV" id="Iyg-pw-XKx"/>
+                <outlet property="plusButton" destination="7zu-vh-mBJ" id="cL4-Pr-6t0"/>
+                <outlet property="shoppingCartImage" destination="e9Y-IS-dfq" id="5Zd-vk-UBY"/>
+                <outlet property="shoppingCartPriceLabel" destination="4RK-Lc-Itl" id="4GK-cR-faj"/>
                 <outlet property="shoppingCartProductCountLabel" destination="rE4-Tn-kNX" id="fqi-co-8CD"/>
+                <outlet property="shoppingCartProductDescriptionLabel" destination="Z3S-1y-RsH" id="7jZ-tg-Mkt"/>
+                <outlet property="shoppingCartProductNameLabel" destination="nlc-pq-rhT" id="PWv-Ae-I6Z"/>
             </connections>
             <point key="canvasLocation" x="77.862595419847324" y="19.366197183098592"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="minus.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
         <image name="shoes" width="1880" height="1880"/>
     </resources>
 </document>
