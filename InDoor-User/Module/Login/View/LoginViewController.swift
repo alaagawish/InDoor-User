@@ -45,6 +45,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                         if user.email == self?.emailTextField.text && user.tags == self?.passwordTextField.text {
                             self?.found = true
                             self?.customerId = user.id
+                            let splitNote = user.note?.components(separatedBy: ",")
+                            print("outside \(user.note)")
+                            self?.defaults.set(splitNote?[1], forKey: Constants.cartId)
+                            self?.defaults.set(splitNote?[0], forKey: Constants.favoritesId)
+                            print("inside cart \(splitNote?[1])")
+                            print("inside fav \(splitNote?[0])")
                             break
                         }
                     }

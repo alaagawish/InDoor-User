@@ -31,6 +31,7 @@ struct LineItems: Codable {
     let variantInventoryManagement: String?
     let variantTitle: String?
     let vendor: String?
+    let properties: [Properties]?
     
     init(price: String?, quantity: Int?, title: String?) {
         self.id = nil
@@ -79,6 +80,7 @@ struct LineItems: Codable {
         case variantInventoryManagement = "variant_inventory_management"
         case variantTitle = "variant_title"
         case vendor = "vendor"
+        case properties
     }
     
 }

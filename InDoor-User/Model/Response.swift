@@ -18,6 +18,7 @@ struct Response: Codable {
     let customers: [User]?
     let addresses: [Address]?
     let customer_address: Address?
+    let draftOrder: DraftOrder?
     let orders: [Orders]?
     let order: Orders?
     var priceRules: [PriceRule]?
@@ -37,6 +38,7 @@ struct Response: Codable {
         case orders = "orders"
         case order = "order"
         case customCollections = "custom_collections"
+        case draftOrder = "draft_order"
         case customer,customers, addresses, customer_address
         case inventoryItem = "inventory_item"
         case inventoryLevel = "inventory_level"

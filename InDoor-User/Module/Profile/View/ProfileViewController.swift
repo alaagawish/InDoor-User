@@ -26,7 +26,7 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         profileViewModel = ProfileViewModel(netWorkingDataSource: Network())
-        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance)
+        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance,network: Network())
         self.orderTableView.register(UINib(nibName: Constants.orderNibFile, bundle: nil), forCellReuseIdentifier: Constants.orderCellIdentifier)
         self.wishlistTableView.register(UINib(nibName: Constants.favoritesNibName, bundle: nil), forCellReuseIdentifier: Constants.favoritesCellIdentifier)
         callingData()

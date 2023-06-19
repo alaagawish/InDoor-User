@@ -25,6 +25,8 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var stockCount: UILabel!
     
+    var productDetailsViewModel: ProductDetailsViewModel!
+    var defaults: UserDefaults!
     var productImagesArr: [InputSource] = []
     var product:Product!
     var orderedProduct: Product!
@@ -67,6 +69,8 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        productDetailsViewModel = ProductDetailsViewModel(service: DatabaseManager.instance)
+        defaults = UserDefaults.standard
         reviewTableView.register(UINib(nibName:Constants.reviewNibFileName , bundle: nil), forCellReuseIdentifier: Constants.reviewCellIdentifier)
         prepareProductImagesArr()
         initializeUI()
@@ -88,6 +92,10 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         }
         resetVariantsUI()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        colorCollectionView.reloadData()
+        sizeCollectionView.reloadData()
+    }
     func initializeUI(){
         prepareSizeCollection()
         prepareColorCollection()
@@ -98,6 +106,12 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         descriptionLabel.text = product.bodyHtml
         rating.settings.updateOnTouch = false
         rating.rating = Double(product.templateSuffix ?? "0.0") ?? 0.0
+        let isFav = productDetailsViewModel.checkIfProductIsFavorite(productId: product.id, customerId: defaults.integer(forKey: Constants.customerId))
+        if isFav {
+            self.favouriteButtonOutlet.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
+        } else {
+            self.favouriteButtonOutlet.setImage(UIImage(systemName: Constants.heart), for: .normal)
+        }
     }
     
     func prepareSizeCollection(){
@@ -182,6 +196,21 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         self.present(allReviews, animated: true)
     }
     @IBAction func addOrRemoveFromFavorites(_ sender: UIButton) {
+        if favouriteButtonOutlet.currentImage == UIImage(systemName: Constants.heart) {
+            let localProduct = LocalProduct(id: product.id, customer_id: defaults.integer(forKey: Constants.customerId), title: product.title ?? "", status: product.status ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
+            productDetailsViewModel.addProduct(product: localProduct)
+            favouriteButtonOutlet.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
+            
+        } else {
+                let retrievedProduct = productDetailsViewModel.getProduct(productId: self.product.id )
+                
+                let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) { [weak self] action in
+                    self?.productDetailsViewModel.removeProduct(product: retrievedProduct)
+                    self?.favouriteButtonOutlet.setImage(UIImage(systemName: Constants.heart), for: .normal)
+                }
+                present(alert, animated: true, completion: nil)
+            
+        }
     }
     
     @IBAction func addToCart(_ sender: UIButton) {

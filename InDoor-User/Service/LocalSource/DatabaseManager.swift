@@ -49,11 +49,11 @@ class DatabaseManager: DatabaseService {
         }
     }
     
-    func isFavorite(productId: Int) -> Bool {
+    func isFavorite(productId: Int, customerId: Int) -> Bool {
         let allProductsList = fetchAll()
         
         for product in allProductsList {
-            if(product.id == productId) {
+            if(product.id == productId && product.customer_id == customerId) {
                 return true
             }
         }
