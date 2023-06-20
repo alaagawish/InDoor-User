@@ -138,8 +138,8 @@ class Constants {
     static let putUserPath = "customers/\(UserDefaults.standard.integer(forKey: Constants.customerId))"
     static let putFavoriteDraftPath = "draft_orders/\(UserDefaults.standard.integer(forKey: Constants.favoritesId))"
     static let putCartDraftPath = "draft_orders/\(UserDefaults.standard.integer(forKey: Constants.cartId))"
-    static let getFavoriteDraftPath = "draft_orders/\(UserDefaults.standard.integer(forKey: Constants.favoritesId))"
-    static let getCartDraftPath = "draft_orders/\(UserDefaults.standard.integer(forKey: Constants.cartId))"
+    static let getFavoriteDraftPath = "draft_orders/\(UserDefaults.standard.string(forKey: Constants.favoritesId) ?? "")"
+    static let getCartDraftPath = "draft_orders/\(UserDefaults.standard.string(forKey: Constants.cartId) ?? "")"
     static let directHome = "Go Home"
     static let ordersPath = "orders"
 }
