@@ -21,12 +21,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     var customerId: Int? = 0
     var isGoogle = false
     var user: User!
+    var favoritesViewModel: FavoritesViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
+        favoritesViewModel.bindGetfavoriteDraftOrderToController = {[weak self] in
+            guard let lineItemsList = self?.favoritesViewModel.getFavoriteDraftOrder?.lineItems else {return}
+            let list = lineItemsList.filter{$0.title != "dummy"}
+            print("list:\(list)")
+            for item in list {
+                let localProduct = LocalProduct(id: item.id!, customer_id: (self?.defaults.integer(forKey: Constants.customerId))!, title: item.title!, price: item.price!, image: item.properties![0].value!)
+                print("Local Product: \(localProduct)")
+                self?.favoritesViewModel.addProduct(product: localProduct)
+            }
+        }
         loginViewModel = LoginViewModel(service: Network())
         loginViewModel.bindUserToLoginController = { [weak self] in
             if(self?.loginViewModel.user?.id != nil){
+                self?.getFavoritesDraftOrderFromRemoteToLocal()
+                self?.getFavoritesDraftOrderFromRemoteToLocal()
                 let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: Constants.registeredSuccessfully, positiveButtonTitle: Constants.ok){_ in
                     let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
                     let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
@@ -45,19 +59,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                         if user.email == self?.emailTextField.text && user.tags == self?.passwordTextField.text {
                             self?.found = true
                             self?.customerId = user.id
+                            self?.defaults.setValue(self?.customerId, forKey: Constants.customerId)
                             let splitNote = user.note?.components(separatedBy: ",")
-                            print("outside \(user.note)")
                             self?.defaults.set(splitNote?[1], forKey: Constants.cartId)
                             self?.defaults.set(splitNote?[0], forKey: Constants.favoritesId)
-                            print("inside cart \(splitNote?[1])")
-                            print("inside fav \(splitNote?[0])")
+                            self?.getFavoritesDraftOrderFromRemoteToLocal()
                             break
                         }
                     }
                 }
                 
                 if self?.found == true {
-                    DispatchQueue.main.async {
+                    
+                    print("customerId: \(self?.defaults.integer(forKey: Constants.customerId))")
+                    print("favId: \(self?.defaults.string(forKey: Constants.favoritesId))")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2){
                         let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
                         let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
                         self?.defaults.setValue(self?.customerId, forKey: Constants.customerId)
@@ -76,7 +92,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                     for user in list {
                         if user.email == self?.user.email {
                             self?.found = true
-                            self?.customerId = user.id
+                            self?.defaults.setValue(self?.customerId, forKey: Constants.customerId)
+                            self?.getFavoritesDraftOrderFromRemoteToLocal()
                             break
                         }
                     }
@@ -86,7 +103,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                     DispatchQueue.main.async {
                         let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
                         let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
-                        self?.defaults.setValue(self?.customerId, forKey: Constants.customerId)
+                        //self?.defaults.setValue(self?.customerId, forKey: Constants.customerId)
                         self?.defaults.setValue(self?.isGoogle, forKey: Constants.isGoogle)
                         home.modalPresentationStyle = .fullScreen
                         self?.present(home, animated: true)
@@ -174,5 +191,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                 self?.loginViewModel.getUsers()
             }
         }
+    }
+    func getFavoritesDraftOrderFromRemoteToLocal(){
+        self.favoritesViewModel.removeAllProduct()
+        self.favoritesViewModel.getFavoriteDraftOrderFromAPI()
     }
 }

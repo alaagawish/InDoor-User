@@ -16,8 +16,42 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var connectToUsView: UIView!
     @IBOutlet weak var aboutInDoorView: UIView!
     
+    var favoritesViewModel: FavoritesViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
+        var lineItems:[LineItems] = []
+        favoritesViewModel.bindPutfavoriteDraftOrderToController = {[weak self] in
+            let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.warning, msg: Constants.logoutMessage, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok) {[weak self] _ in
+                UserDefault().logout()
+                if(UserDefaults.standard.bool(forKey: Constants.isGoogle) == true){
+                    let firebaseAuth = Auth.auth()
+                    do {
+                      try firebaseAuth.signOut()
+                    } catch let signOutError as NSError {
+                      print("Error signing out: %@", signOutError)
+                    }
+                }
+                let storyboard = UIStoryboard(name: Constants.mainStoryboard, bundle: nil)
+                let welcome = storyboard.instantiateViewController(identifier: Constants.welcomeIdentifier) as! WelcomeViewController
+                welcome.modalPresentationStyle = .fullScreen
+                self?.present(welcome, animated: true)
+            }
+            self?.present(alert, animated: true)
+        }
+        favoritesViewModel.bindallProductsListToController = {[weak self] in
+            guard let list = self?.favoritesViewModel.allProductsList else {return}
+            for product in list {
+                lineItems.append(LineItems(productId: product.id , price: product.price, quantity: 1 , title: product.title, properties: [Properties(name: "image_url", value: product.image )]))
+            }
+          let params = [
+              "draft_order": [
+                  "line_items":lineItems
+              ]
+          ]
+        print("params: \(params)")
+            self?.favoritesViewModel.putFavoriteDraftOrderFromAPI(parameters: params ?? [:])
+        }
         setupUI()
         setupTapGesture()
     }
@@ -81,23 +115,27 @@ class SettingsViewController: UIViewController {
         self.dismiss(animated: true)
     }
     @IBAction func logout(_ sender: Any) {
-        let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.warning, msg: Constants.logoutMessage, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok) {[weak self] _ in
-            UserDefault().logout()
-            if(UserDefaults.standard.bool(forKey: Constants.isGoogle) == true){
-                let firebaseAuth = Auth.auth()
-                do {
-                  try firebaseAuth.signOut()
-                } catch let signOutError as NSError {
-                  print("Error signing out: %@", signOutError)
-                }
-            }
-            let storyboard = UIStoryboard(name: Constants.mainStoryboard, bundle: nil)
-            let welcome = storyboard.instantiateViewController(identifier: Constants.welcomeIdentifier) as! WelcomeViewController
-            welcome.modalPresentationStyle = .fullScreen
-            self?.present(welcome, animated: true)
-        }
-        self.present(alert, animated: true)
+        self.postFavoritesDraftOrderFromLocalToRemote()
+//        let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.warning, msg: Constants.logoutMessage, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok) {[weak self] _ in
+//            UserDefault().logout()
+//            if(UserDefaults.standard.bool(forKey: Constants.isGoogle) == true){
+//                let firebaseAuth = Auth.auth()
+//                do {
+//                  try firebaseAuth.signOut()
+//                } catch let signOutError as NSError {
+//                  print("Error signing out: %@", signOutError)
+//                }
+//            }
+//            let storyboard = UIStoryboard(name: Constants.mainStoryboard, bundle: nil)
+//            let welcome = storyboard.instantiateViewController(identifier: Constants.welcomeIdentifier) as! WelcomeViewController
+//            welcome.modalPresentationStyle = .fullScreen
+//            self?.present(welcome, animated: true)
+//        }
+//        self.present(alert, animated: true)
         
+    }
+    func postFavoritesDraftOrderFromLocalToRemote(){
+        self.favoritesViewModel.getAllProducts()
     }
 }
 

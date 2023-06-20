@@ -216,7 +216,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func createFavoriteDraftOrder(){
-        let properties = [Properties(image: "")]
+        let properties = [Properties(name: "image", value: "")]
         let lineItems = [LineItems(price: "20.0", quantity: 1, title: "dummy", properties:properties)]
 
         let user = User(id: defaults.integer(forKey: Constants.customerId), firstName: self.firstNameTextField.text, lastName: self.lastNameTextField.text, email: self.emailTextField.text, phone: self.phoneTextField.text, addresses: nil, tags: self.passwordTextField.text)
@@ -229,12 +229,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     func createCartDraftOrder(){
-                let properties = [Properties(image: "")]
-                let lineItems = [LineItems(price: "20.0",  quantity: 1,  title: "dummy",  properties: properties)]
+        let properties = [Properties(name: "image", value: "")]
+        let lineItems = [LineItems(price: "20.0",  quantity: 1,  title: "dummy",  properties: properties)]
 
-                let user = User(id: defaults.integer(forKey: Constants.customerId), firstName: self.firstNameTextField.text, lastName: self.lastNameTextField.text, email: self.emailTextField.text, phone: self.phoneTextField.text, addresses: nil, tags: self.passwordTextField.text)
-        
-                let draft = DraftOrder(id: nil, note: "cart", lineItems: lineItems, user: user)
+        let user = User(id: defaults.integer(forKey: Constants.customerId), firstName: self.firstNameTextField.text, lastName: self.lastNameTextField.text, email: self.emailTextField.text, phone: self.phoneTextField.text, addresses: nil, tags: self.passwordTextField.text)
+
+        let draft = DraftOrder(id: nil, note: "cart", lineItems: lineItems, user: user)
         let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draft, orders: nil, order: nil)
                 let params = JSONCoding().encodeToJson(objectClass: response)
 
