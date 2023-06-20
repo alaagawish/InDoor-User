@@ -6,13 +6,27 @@
 //
 
 import Foundation
+import Alamofire
 class FavoritesViewModel{
     var service: DatabaseService!
     var network: NetworkProtocol!
-    var bindallProductsListToFavoritesController:(()->Void) = {}
+    var bindallProductsListToController:(()->Void) = {}
+    var bindPutfavoriteDraftOrderToController:(()->Void) = {}
+    var bindGetfavoriteDraftOrderToController:(()->Void) = {}
+    var putFavoriteDraftOrder: DraftOrder?{
+        didSet{
+            bindPutfavoriteDraftOrderToController()
+        }
+    }
+    
+    var getFavoriteDraftOrder: DraftOrder?{
+        didSet{
+            bindGetfavoriteDraftOrderToController()
+        }
+    }
     var allProductsList = [LocalProduct](){
         didSet{
-            bindallProductsListToFavoritesController()
+            bindallProductsListToController()
         }
     }
     var bindResultToViewController: (()->()) = {}
@@ -40,6 +54,10 @@ class FavoritesViewModel{
         allProductsList = service.fetchAll()
     }
     
+    func removeAllProduct(){
+        service.deleteAll()
+    }
+    
     func checkIfProductIsFavorite(productId: Int, customerId: Int) -> Bool {
         return service.isFavorite(productId: productId,customerId: customerId)
     }
@@ -53,5 +71,19 @@ class FavoritesViewModel{
         network.getData(path: path, parameters: [:]){ [weak self] (response : Response?) in
             self?.result = response?.products ?? []
         }
+    }
+    func putFavoriteDraftOrderFromAPI(parameters: Parameters){
+        network.putData(path: Constants.getFavoriteDraftPath, parameters: parameters, handler: { [weak self] response,code  in
+            self?.putFavoriteDraftOrder = response?.draftOrder
+            print("draft:\(self?.putFavoriteDraftOrder)")
+        })
+    }
+    
+    func getFavoriteDraftOrderFromAPI(){
+        print("path: \(Constants.getFavoriteDraftPath)")
+        network.getData(path: Constants.getFavoriteDraftPath, parameters: [:], handler: { [weak self] response in
+            self?.getFavoriteDraftOrder = response?.draftOrder
+            print("draft:\(self?.getFavoriteDraftOrder)")
+        })
     }
 }
