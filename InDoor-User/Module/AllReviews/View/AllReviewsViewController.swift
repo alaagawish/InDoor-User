@@ -28,4 +28,8 @@ class AllReviewsViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func navigateBack(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        120
+    }
 }
