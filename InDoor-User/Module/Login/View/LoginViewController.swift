@@ -29,10 +29,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         favoritesViewModel.bindGetfavoriteDraftOrderToController = {[weak self] in
             guard let lineItemsList = self?.favoritesViewModel.getFavoriteDraftOrder?.lineItems else {return}
             let list = lineItemsList.filter{$0.title != "dummy"}
-            print("list:\(list)")
+        
             for item in list {
                 let localProduct = LocalProduct(id: item.id!, customer_id: (self?.defaults.integer(forKey: Constants.customerId))!, title: item.title!, price: item.price!, image: item.properties![0].value!)
-                print("Local Product: \(localProduct)")
+              
                 self?.favoritesViewModel.addProduct(product: localProduct)
             }
         }
@@ -70,9 +70,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                 }
                 
                 if self?.found == true {
-                    
-                    print("customerId: \(self?.defaults.integer(forKey: Constants.customerId))")
-                    print("favId: \(self?.defaults.string(forKey: Constants.favoritesId))")
+             
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2){
                         let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
                         let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController

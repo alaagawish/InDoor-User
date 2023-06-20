@@ -49,13 +49,9 @@ class SettingsViewController: UIViewController {
             let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draftOrder, orders: nil,order: nil)
             
             let params = JSONCoding().encodeToJson(objectClass: response)!
-            //          let params = [
-            //              "draft_order": [
-            //                  "line_items":lineItems
-            //              ]
-            //          ]
+           
             print("params: \(params)")
-            self?.favoritesViewModel.putFavoriteDraftOrderFromAPI(parameters: params ?? [:])
+            self?.favoritesViewModel.putFavoriteDraftOrderFromAPI(parameters: params )
         }
         setupUI()
         setupTapGesture()

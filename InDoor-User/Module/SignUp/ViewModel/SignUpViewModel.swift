@@ -58,10 +58,7 @@ class SignUpViewModel{
     
     func postDraftOrder(parameters: Parameters){
         service.postData(path: Constants.draftPath ,parameters: parameters) { [weak self] (response,code) in
-            print("dddsasw")
-            print(code)
-            print(response)
-            print(response?.draftOrder?.note)
+        
             if(response?.draftOrder?.note == "favorite"){
                 self?.favoritesDraftOrder = response?.draftOrder
                 print("inside \(self?.favoritesDraftOrder?.note)")

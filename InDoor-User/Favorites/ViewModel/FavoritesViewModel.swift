@@ -76,15 +76,15 @@ class FavoritesViewModel{
        
         network.putData(path: Constants.getFavoriteDraftPath, parameters: parameters, handler: { [weak self] response,code  in
             self?.putFavoriteDraftOrder = response?.draftOrder
-            print("draft:\(self?.putFavoriteDraftOrder)")
+           
         })
     }
     
     func getFavoriteDraftOrderFromAPI(){
-        print("path: \(Constants.getFavoriteDraftPath)")
+      
         network.getData(path: Constants.getFavoriteDraftPath, parameters: [:], handler: { [weak self] response in
             self?.getFavoriteDraftOrder = response?.draftOrder
-            print("draft:\(self?.getFavoriteDraftOrder)")
+            
         })
     }
 }

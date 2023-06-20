@@ -190,7 +190,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     }
     
     func imageSlideshow(_ imageSlideshow: ImageSlideshow, didTapAt index: Int) {
-        print(index)
+    
         let currentImage = productImagesSlider.currentSlideshowItem?.imageView.image
         if let imageString = currentImage?.description {
             print("Image String: \(imageString)")

@@ -128,7 +128,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
                     viewController?.allVariants = []
                     viewController?.totalPrice = 0.0
                     viewController?.prepareTableCount()
-                    print(productCount)
+                    
                 }
             }
         }

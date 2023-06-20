@@ -46,20 +46,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 self?.defaults.set(favoritesId, forKey: Constants.favoritesId)
                 var user = User()
                 user.note = "\(favoritesId),\(cartId)"
-                print(user.note)
-                print(favoritesId)
-                print(cartId)
+              
                 var response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil, order: nil)
                 print("response: \(response)")
                 let params = JSONCoding().encodeToJson(objectClass: response)
-                print("params: \(params)")
+             
                 self?.signUpViewModel.putUser(parameters: params ?? [:])
             }
         }
         signUpViewModel.bindUserToSignUpController = { [weak self] in
            
-            print(self?.signUpViewModel.user?.id)
-            if(self?.signUpViewModel.user?.id ?? 0 != nil && self?.signUpViewModel.user?.id ?? 0 != 0){
+            
+            if( self?.signUpViewModel.user?.id ?? 0 != 0){
                 self?.defaults.setValue(self?.signUpViewModel.user?.id, forKey: Constants.customerId)
                 self?.createFavoriteDraftOrder()
                 self?.createCartDraftOrder()
@@ -68,8 +66,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 self?.present(alert, animated: true)
             }
             else{
-                print(self?.signUpViewModel.code)
-                print("here++++++++++++++++++++++++++++++++++")
+               
             }
         }
         
