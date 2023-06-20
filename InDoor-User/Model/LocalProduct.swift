@@ -11,16 +11,14 @@ class LocalProduct: Object {
     @Persisted var id: Int
     @Persisted var customer_id: Int
     @Persisted var title: String
-    @Persisted var status: String
     @Persisted var price: String
     @Persisted var image: String
    
-    convenience init(id: Int, customer_id:Int, title: String, status: String, price: String, image: String) {
+    convenience init(id: Int, customer_id:Int, title: String, price: String, image: String) {
         self.init()
         self.id = id
         self.customer_id = customer_id
         self.title = title
-        self.status = status
         self.price = price
         self.image = image
     }

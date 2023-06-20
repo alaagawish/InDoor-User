@@ -7,5 +7,6 @@
 
 import Foundation
 struct Properties: Codable {
-    let image: String?
+    let name: String?
+    let value: String?
 }
