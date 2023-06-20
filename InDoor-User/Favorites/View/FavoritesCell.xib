@@ -33,29 +33,18 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mEd-Bj-ayt">
-                        <rect key="frame" x="180" y="44.333333333333336" width="148" height="36.000000000000007"/>
-                        <string key="text">Confortable shoe 
-with fashionable look</string>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="W0x-1X-3o5" secondAttribute="bottom" constant="6" id="2El-gz-F0e"/>
                     <constraint firstAttribute="bottom" secondItem="XVe-7w-MaQ" secondAttribute="bottom" constant="8" id="2Ms-9E-ArD"/>
                     <constraint firstItem="6GP-zj-Hyw" firstAttribute="leading" secondItem="W0x-1X-3o5" secondAttribute="trailing" constant="6" id="6zY-J0-fSC"/>
-                    <constraint firstItem="mEd-Bj-ayt" firstAttribute="top" secondItem="6GP-zj-Hyw" secondAttribute="bottom" constant="8" id="LYi-x3-RcF"/>
                     <constraint firstItem="W0x-1X-3o5" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.5" id="MjR-bX-wh0"/>
                     <constraint firstItem="W0x-1X-3o5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="OOn-qZ-xqQ"/>
-                    <constraint firstItem="mEd-Bj-ayt" firstAttribute="leading" secondItem="W0x-1X-3o5" secondAttribute="trailing" constant="6" id="UEe-ph-gBu"/>
                     <constraint firstAttribute="trailing" secondItem="6GP-zj-Hyw" secondAttribute="trailing" constant="8" id="UFa-u5-rAf"/>
                     <constraint firstAttribute="trailing" secondItem="XVe-7w-MaQ" secondAttribute="trailing" constant="8" id="ZZI-4b-wed"/>
                     <constraint firstItem="XVe-7w-MaQ" firstAttribute="leading" secondItem="W0x-1X-3o5" secondAttribute="trailing" constant="6" id="Zmh-N7-eIA"/>
                     <constraint firstItem="6GP-zj-Hyw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="gpW-2e-nDo"/>
-                    <constraint firstAttribute="trailing" secondItem="mEd-Bj-ayt" secondAttribute="trailing" constant="8" id="mHm-qd-Q5j"/>
                     <constraint firstItem="W0x-1X-3o5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="tcm-gw-Jcd"/>
                 </constraints>
             </tableViewCellContentView>
@@ -64,7 +53,6 @@ with fashionable look</string>
             <connections>
                 <outlet property="productImageView" destination="W0x-1X-3o5" id="G7O-Sh-hej"/>
                 <outlet property="productPriceLabel" destination="XVe-7w-MaQ" id="gwG-T4-TL9"/>
-                <outlet property="productStatusLabel" destination="mEd-Bj-ayt" id="Qk2-S4-NEn"/>
                 <outlet property="productTitleLabel" destination="6GP-zj-Hyw" id="AfR-qO-jaU"/>
             </connections>
             <point key="canvasLocation" x="61.068702290076331" y="16.901408450704228"/>

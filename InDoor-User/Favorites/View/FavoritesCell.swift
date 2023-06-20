@@ -53,7 +53,6 @@ class FavoritesCell: UITableViewCell {
         self.localProduct = product
         productImageView.kf.setImage(with: URL(string: localProduct.image ))
         productTitleLabel.text = Splitter().splitName(text: localProduct.title, delimiter: "| ")
-        productStatusLabel.text = localProduct.status
         productPriceLabel.text = localProduct.price
     }
     

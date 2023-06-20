@@ -34,7 +34,7 @@ class FavoritesViewController: UIViewController {
                 }
             }
         }
-        favoritesViewModel.bindallProductsListToFavoritesController = {[weak self] in
+        favoritesViewModel.bindallProductsListToController = {[weak self] in
             guard let list = self?.favoritesViewModel.allProductsList else {return}
             for product in list {
                 if(product.customer_id == self?.defaults.integer(forKey: Constants.customerId)){
