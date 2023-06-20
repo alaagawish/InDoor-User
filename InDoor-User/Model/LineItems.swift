@@ -68,7 +68,7 @@ struct LineItems: Codable {
         self.name = nil
         self.priceSet = nil
         self.productExists = nil
-        self.quantity = nil
+        self.quantity = quantity
         self.price = price
         self.productId = productId
         self.variantId = nil

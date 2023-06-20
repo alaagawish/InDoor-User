@@ -27,9 +27,9 @@ class SettingsViewController: UIViewController {
                 if(UserDefaults.standard.bool(forKey: Constants.isGoogle) == true){
                     let firebaseAuth = Auth.auth()
                     do {
-                      try firebaseAuth.signOut()
+                        try firebaseAuth.signOut()
                     } catch let signOutError as NSError {
-                      print("Error signing out: %@", signOutError)
+                        print("Error signing out: %@", signOutError)
                     }
                 }
                 let storyboard = UIStoryboard(name: Constants.mainStoryboard, bundle: nil)
@@ -44,12 +44,17 @@ class SettingsViewController: UIViewController {
             for product in list {
                 lineItems.append(LineItems(productId: product.id , price: product.price, quantity: 1 , title: product.title, properties: [Properties(name: "image_url", value: product.image )]))
             }
-          let params = [
-              "draft_order": [
-                  "line_items":lineItems
-              ]
-          ]
-        print("params: \(params)")
+            let draftOrder = DraftOrder(id: nil, note: nil, lineItems: lineItems, user: nil)
+            
+            let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draftOrder, orders: nil,order: nil)
+            
+            let params = JSONCoding().encodeToJson(objectClass: response)!
+            //          let params = [
+            //              "draft_order": [
+            //                  "line_items":lineItems
+            //              ]
+            //          ]
+            print("params: \(params)")
             self?.favoritesViewModel.putFavoriteDraftOrderFromAPI(parameters: params ?? [:])
         }
         setupUI()
@@ -116,22 +121,6 @@ class SettingsViewController: UIViewController {
     }
     @IBAction func logout(_ sender: Any) {
         self.postFavoritesDraftOrderFromLocalToRemote()
-//        let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.warning, msg: Constants.logoutMessage, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok) {[weak self] _ in
-//            UserDefault().logout()
-//            if(UserDefaults.standard.bool(forKey: Constants.isGoogle) == true){
-//                let firebaseAuth = Auth.auth()
-//                do {
-//                  try firebaseAuth.signOut()
-//                } catch let signOutError as NSError {
-//                  print("Error signing out: %@", signOutError)
-//                }
-//            }
-//            let storyboard = UIStoryboard(name: Constants.mainStoryboard, bundle: nil)
-//            let welcome = storyboard.instantiateViewController(identifier: Constants.welcomeIdentifier) as! WelcomeViewController
-//            welcome.modalPresentationStyle = .fullScreen
-//            self?.present(welcome, animated: true)
-//        }
-//        self.present(alert, animated: true)
         
     }
     func postFavoritesDraftOrderFromLocalToRemote(){

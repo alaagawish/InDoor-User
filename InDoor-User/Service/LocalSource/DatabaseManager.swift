@@ -12,9 +12,10 @@ class DatabaseManager: DatabaseService {
     static let instance = DatabaseManager()
     let realm: Realm
     private init() {
+        
         realm = try! Realm()
+        
     }
-    
     func fetchAll() -> [LocalProduct] {
         return Array(realm.objects(LocalProduct.self))
     }
