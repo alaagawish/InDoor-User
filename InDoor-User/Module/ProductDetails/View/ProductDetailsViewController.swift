@@ -302,7 +302,8 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     }
     
     func resetVariantsUI(){
-        addToCartOutlet.isHidden = true
+       // addToCartOutlet.isHidden = true
+        addToCartView.isHidden = true
         selectedSize = nil
         selectedColor = nil
         colorCollectionHandler.colorArr = product.options?[1].values ?? []

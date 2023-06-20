@@ -37,9 +37,9 @@
 		048344C82A2CB6D400D1B793 /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048344C72A2CB6D400D1B793 /* AddressViewController.swift */; };
 		048344CA2A2CC6E300D1B793 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048344C92A2CC6E300D1B793 /* CurrencyViewController.swift */; };
 		048344CC2A2CC70600D1B793 /* ConnectToUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048344CB2A2CC70600D1B793 /* ConnectToUsViewController.swift */; };
-		04865F0C2A3FCFE1005787E2 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04865F0B2A3FCFE1005787E2 /* ProductDetailsViewModel.swift */; };
 		0486312D2A3E381B0082A844 /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0486312C2A3E381B0082A844 /* Payment.storyboard */; };
 		0486312F2A3E4C220082A844 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0486312E2A3E4C220082A844 /* PaymentViewController.swift */; };
+		04865F0C2A3FCFE1005787E2 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04865F0B2A3FCFE1005787E2 /* ProductDetailsViewModel.swift */; };
 		0487D4BC2A3A2606006D9DAA /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0487D4BA2A3A2606006D9DAA /* AddressTableViewCell.swift */; };
 		0487D4BD2A3A2606006D9DAA /* AddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0487D4BB2A3A2606006D9DAA /* AddressTableViewCell.xib */; };
 		048827972A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048827962A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard */; };
@@ -51,6 +51,7 @@
 		048C56592A323A100016AE06 /* LocalProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C56582A323A100016AE06 /* LocalProduct.swift */; };
 		048C565B2A3241CA0016AE06 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C565A2A3241CA0016AE06 /* FavoritesViewModel.swift */; };
 		04935FB32A2D25C90093A73E /* AboutInDoorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04935FB22A2D25C90093A73E /* AboutInDoorViewController.swift */; };
+		04960DEB2A42449F005E39C9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 04960DEA2A42449F005E39C9 /* Alamofire */; };
 		049953642A363C39000C6146 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953632A363C39000C6146 /* User.swift */; };
 		049953662A363C4B000C6146 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953652A363C4B000C6146 /* Address.swift */; };
 		0499536A2A367E98000C6146 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953692A367E98000C6146 /* LoginViewModel.swift */; };
@@ -331,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				049C02132A3DF6C500488B67 /* GoogleSignIn in Frameworks */,
+				04960DEB2A42449F005E39C9 /* Alamofire in Frameworks */,
 				9D1FD3989110A749C97AEEB6 /* Pods_InDoor_User.framework in Frameworks */,
 				04B247ED2A38757B00B447D2 /* ImageSlideshow/Kingfisher in Frameworks */,
 				049C02152A3DF6C500488B67 /* GoogleSignInSwift in Frameworks */,
@@ -439,14 +441,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		04865F0A2A3FCFB7005787E2 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				04865F0B2A3FCFE1005787E2 /* ProductDetailsViewModel.swift */,
-			);
-			path = ViewModel;
-	sourceTree = "<group>";
-		};
 		046AEE072A3FD5F900C6F6AA /* Coupons */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +499,14 @@
 				0486312E2A3E4C220082A844 /* PaymentViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		04865F0A2A3FCFB7005787E2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				04865F0B2A3FCFE1005787E2 /* ProductDetailsViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		048827912A2D0CCF009DFD9B /* Favorites */ = {
@@ -1156,6 +1158,7 @@
 				049C020F2A3DF5B900488B67 /* FirebaseAuth */,
 				049C02122A3DF6C500488B67 /* GoogleSignIn */,
 				049C02142A3DF6C500488B67 /* GoogleSignInSwift */,
+				04960DEA2A42449F005E39C9 /* Alamofire */,
 			);
 			productName = "InDoor-User";
 			productReference = 61E516002A2922EA004DAA1D /* InDoor-User.app */;
@@ -1237,6 +1240,7 @@
 				04B154CE2A3A08DE00B808E3 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				049C020E2A3DF5B900488B67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				049C02112A3DF6C500488B67 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				04960DE92A42449F005E39C9 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 61E516012A2922EA004DAA1D /* Products */;
 			projectDirPath = "";
@@ -1863,6 +1867,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		04960DE92A42449F005E39C9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		049C020E2A3DF5B900488B67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1898,6 +1910,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		04960DEA2A42449F005E39C9 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04960DE92A42449F005E39C9 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		049C020F2A3DF5B900488B67 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 049C020E2A3DF5B900488B67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
