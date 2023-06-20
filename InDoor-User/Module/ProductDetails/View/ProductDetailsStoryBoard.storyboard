@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aIW-Z5-OKN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aIW-Z5-OKN">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -279,12 +279,11 @@
                                 <buttonConfiguration key="configuration" style="plain">
                                     <imageReference key="image" image="heart" catalog="system" symbolScale="large" renderingMode="hierarchical" variableValue="1">
                                         <hierarchicalColors>
-                                            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color name="pink"/>
                                             <color systemColor="secondaryLabelColor"/>
                                             <color systemColor="tertiaryLabelColor"/>
                                         </hierarchicalColors>
                                     </imageReference>
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="33"/>
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -298,7 +297,7 @@
                                         <rect key="frame" x="32" y="56.666666666666629" width="329" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" image="cart" catalog="system" title="   Add to cart">
-                                            <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="baseBackgroundColor" name="pink"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="addToCart:" destination="aIW-Z5-OKN" eventType="touchUpInside" id="TpI-hd-Hf4"/>
@@ -312,8 +311,8 @@
                                             <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="large" renderingMode="hierarchical">
                                                 <hierarchicalColors>
                                                     <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color name="pink"/>
+                                                    <color name="pink"/>
                                                 </hierarchicalColors>
                                             </imageReference>
                                         </state>
@@ -328,8 +327,8 @@
                                             <imageReference key="image" image="minus.circle.fill" catalog="system" symbolScale="large" renderingMode="hierarchical">
                                                 <hierarchicalColors>
                                                     <color systemColor="tertiarySystemBackgroundColor"/>
-                                                    <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color name="pink"/>
+                                                    <color name="pink"/>
                                                 </hierarchicalColors>
                                             </imageReference>
                                         </state>
@@ -481,11 +480,14 @@
         </designable>
     </designables>
     <resources>
-        <image name="back" width="200" height="200"/>
+        <image name="back" width="512" height="512"/>
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="minus.circle.fill" catalog="system" width="128" height="123"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+        <namedColor name="pink">
+            <color red="0.77254901960784317" green="0.21176470588235294" blue="0.51372549019607838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

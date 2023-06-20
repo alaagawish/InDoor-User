@@ -12,7 +12,7 @@ class CategoryViewModel{
     
     var result: [Product]? = [] {
         didSet{
-                self.bindResultToViewController()
+            self.bindResultToViewController()
         }
     }
     
@@ -21,7 +21,6 @@ class CategoryViewModel{
     }
     
     func getItems(id: Int) {
-        
         let path = "collections/\(id)/products"
         netWorkingDataSource.getData(path: path, parameters: [:]){ [weak self] (response : Response?) in
             self?.result = response?.products
@@ -31,7 +30,6 @@ class CategoryViewModel{
     func getPrice(i: Product, completionHandler: @escaping (Product) -> Void){
         
         netWorkingDataSource.getData(path: "products/\(i.id)",parameters: [:]) { product in
-            
             completionHandler(product?.product ?? i)
         }
     }

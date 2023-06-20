@@ -39,7 +39,7 @@ class AddressViewController: UIViewController {
         for index in 0 ..< addressesList.count {
             if addressesList[index].default ?? false {
                 print(index)
-                tableView(addressesTable, didSelectRowAt: IndexPath(row: index+1, section: 0) )
+                tableView(addressesTable, didSelectRowAt: IndexPath(row: index, section: 0) )
             }
         }
     }
@@ -130,6 +130,8 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource{
             }
             cell.addBorderAndRemoveShadow()
         }
+        print("fjjffjjjjjjjjjj")
+        print(indexPath.row)
         if !(addressesList[indexPath.row].default ?? false) {
             let address = Address(id: addressesList[indexPath.row].id, customer_id: UserDefault().getCustomerId(),default: true)
             

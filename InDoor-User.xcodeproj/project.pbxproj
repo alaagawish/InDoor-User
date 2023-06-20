@@ -1059,6 +1059,7 @@
 		61E516372A2923DA004DAA1D /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				614798BA2A2B770D009CCD30 /* Home */,
 				0486312A2A3E37FE0082A844 /* Payment */,
 				043477B72A3CDF0100FC72B6 /* ProductSearch */,
 				613D3F2E2A3A234800117F52 /* Receipt */,
@@ -1074,7 +1075,6 @@
 				6106CDD02A33300C00627234 /* Category */,
 				048827912A2D0CCF009DFD9B /* Favorites */,
 				61DDC2382A30D01C0093A1DE /* BrandProducts */,
-				614798BA2A2B770D009CCD30 /* Home */,
 				04E4F6F92A2A631900566559 /* Settings */,
 			);
 			path = Module;

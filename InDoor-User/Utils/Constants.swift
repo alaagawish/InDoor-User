@@ -21,10 +21,10 @@ class Constants {
     static let tShirt = "T-SHIRTS"
     static let shoes = "SHOES"
     static let accessories = "ACCESSORIES"
-    static let womenID = 448451248415
-    static let menID = 448451215647
-    static let kidID = 448451281183
-    static let saleID = 448451313951
+    static let womenID = 450784461087
+    static let menID = 450784428319
+    static let kidID = 450784493855
+    static let saleID = 450784526623
     static let smartCollections = "smart_collections"
     static let brandProductCollectionViewCell = "BrandProductCollectionViewCell"
     static let favoritesNibName = "FavoritesCell"

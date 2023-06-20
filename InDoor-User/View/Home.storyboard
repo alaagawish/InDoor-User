@@ -24,7 +24,7 @@
                                     <barButtonItem title="Item" id="1Yw-m5-yFL">
                                         <imageReference key="image" image="magnifyingglass" catalog="system" renderingMode="hierarchical">
                                             <hierarchicalColors>
-                                                <color systemColor="labelColor"/>
+                                                <color name="pink"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -37,7 +37,7 @@
                                     <barButtonItem id="nHv-Z3-YFc">
                                         <imageReference key="image" image="cart" catalog="system" renderingMode="hierarchical">
                                             <hierarchicalColors>
-                                                <color systemColor="labelColor"/>
+                                                <color name="pink"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -47,9 +47,9 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem id="hwX-DR-ypO">
-                                        <imageReference key="image" image="heart.fill" catalog="system" renderingMode="hierarchical">
+                                        <imageReference key="image" image="heart" catalog="system" renderingMode="hierarchical">
                                             <hierarchicalColors>
-                                                <color systemColor="labelColor"/>
+                                                <color name="pink"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -122,7 +122,7 @@
                     <tabBarItem key="tabBarItem" title="Shop" id="UC7-WF-bT1">
                         <imageReference key="image" image="house" catalog="system" renderingMode="hierarchical">
                             <hierarchicalColors>
-                                <color systemColor="labelColor"/>
+                                <color name="pink"/>
                                 <color systemColor="labelColor"/>
                                 <color systemColor="labelColor"/>
                             </hierarchicalColors>
@@ -169,27 +169,30 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzp-lw-1iu">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzp-lw-1iu">
                                 <rect key="frame" x="16" y="58.999999999999993" width="27.666666666666671" height="27.666666666666664"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gzp-lw-1iu" secondAttribute="height" multiplier="1:1" id="Pmi-kh-xir"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="labelColor"/>
+                                <color key="tintColor" name="pink"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="back">
-                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="back:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="akZ-xo-vds"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wum-E1-GbR">
-                                <rect key="frame" x="349.33333333333331" y="58.999999999999993" width="27.666666666666686" height="27.666666666666664"/>
+                                <rect key="frame" x="351.33333333333331" y="58.999999999999993" width="25.666666666666686" height="25.666666666666664"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Wum-E1-GbR" secondAttribute="height" id="8IR-zb-9yA"/>
                                 </constraints>
+                                <color key="tintColor" name="pink"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="dollarsign.circle.fill" catalog="system"/>
+                                <state key="normal" image="dollarsign.circle.fill" catalog="system">
+                                    <color key="titleColor" name="pink"/>
+                                </state>
                                 <connections>
                                     <action selector="startFilter:" destination="WSL-u9-4Hj" eventType="touchUpInside" id="hGO-TY-TXx"/>
                                 </connections>
@@ -211,7 +214,7 @@
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wi5-ay-jM3">
                                 <rect key="frame" x="223" y="650" width="60" height="60"/>
-                                <color key="backgroundColor" name="main"/>
+                                <color key="backgroundColor" name="pink"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="d1p-o7-7E0"/>
                                     <constraint firstAttribute="height" constant="60" id="hfP-9f-Som"/>
@@ -226,7 +229,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Vj-Up-a3x">
                                 <rect key="frame" x="209" y="726" width="60" height="60"/>
-                                <color key="backgroundColor" name="main"/>
+                                <color key="backgroundColor" name="pink"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Ean-Uf-QuN"/>
                                     <constraint firstAttribute="width" constant="60" id="Edd-oQ-2qb"/>
@@ -256,6 +259,7 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="tintColor" name="pink"/>
                                 <constraints>
                                     <constraint firstItem="o8W-kt-wjO" firstAttribute="leading" secondItem="YJ0-2G-3Sc" secondAttribute="trailing" constant="8" id="ENQ-Yc-HGL"/>
                                     <constraint firstItem="YJ0-2G-3Sc" firstAttribute="leading" secondItem="23m-zT-VJv" secondAttribute="leading" id="MYH-g2-Def"/>
@@ -269,7 +273,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAL-YA-t1H">
                                 <rect key="frame" x="301" y="726" width="60" height="60"/>
-                                <color key="backgroundColor" name="main"/>
+                                <color key="backgroundColor" name="pink"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="7Z8-2l-3ZM"/>
                                     <constraint firstAttribute="width" constant="60" id="xpn-qe-Xce"/>
@@ -286,7 +290,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Gn-7v-IQe">
                                 <rect key="frame" x="301" y="634" width="60" height="60"/>
-                                <color key="backgroundColor" name="main"/>
+                                <color key="backgroundColor" name="pink"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Nu6-Xm-F6b"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="acB-jQ-WyA"/>
@@ -331,7 +335,6 @@
                             <constraint firstItem="ieg-dO-A5r" firstAttribute="width" secondItem="8Oq-e1-L7W" secondAttribute="width" multiplier="0.5" id="qfn-HI-A1Q"/>
                             <constraint firstItem="8Vj-Up-a3x" firstAttribute="top" secondItem="wi5-ay-jM3" secondAttribute="bottom" constant="16" id="sUm-XC-GRN"/>
                             <constraint firstItem="Rxf-Jy-OJL" firstAttribute="trailing" secondItem="wi5-ay-jM3" secondAttribute="trailing" constant="110" id="swH-Q0-kSE"/>
-                            <constraint firstItem="Wum-E1-GbR" firstAttribute="width" secondItem="gzp-lw-1iu" secondAttribute="width" id="vJO-bd-vLI"/>
                             <constraint firstItem="Rxf-Jy-OJL" firstAttribute="bottom" secondItem="cMf-6u-ccq" secondAttribute="bottom" id="wmm-gA-u2C"/>
                             <constraint firstItem="gzp-lw-1iu" firstAttribute="width" secondItem="ieg-dO-A5r" secondAttribute="width" multiplier="0.09" constant="10" id="znD-KZ-GpJ"/>
                         </constraints>
@@ -360,15 +363,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXL-QQ-uDa">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXL-QQ-uDa">
                                 <rect key="frame" x="16" y="58.999999999999993" width="27.666666666666671" height="27.666666666666664"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CXL-QQ-uDa" secondAttribute="height" multiplier="1:1" id="rbQ-Ji-5m7"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="labelColor"/>
+                                <color key="tintColor" systemColor="linkColor"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="back">
-                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="back:" destination="ajv-8G-58b" eventType="touchUpInside" id="wOR-cq-JHG"/>
@@ -649,7 +652,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QO-vD-DIc">
                                 <rect key="frame" x="16" y="736" width="361" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="pink"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="AAm-Ua-94E"/>
                                 </constraints>
@@ -663,15 +666,15 @@
                                     <action selector="checkout:" destination="EcP-k2-Fds" eventType="touchUpInside" id="Q7q-p5-rR1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3f7-4i-kGy">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3f7-4i-kGy">
                                 <rect key="frame" x="16" y="59" width="34" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3f7-4i-kGy" secondAttribute="height" multiplier="1:1" id="ufQ-Hm-PxR"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="labelColor"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="back">
-                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <color key="titleColor" name="pink"/>
                                 </state>
                                 <connections>
                                     <action selector="back:" destination="EcP-k2-Fds" eventType="touchUpInside" id="Wvq-8y-Li6"/>
@@ -746,7 +749,7 @@
                                     <barButtonItem id="HFM-01-qMy">
                                         <imageReference key="image" image="cart" catalog="system" renderingMode="hierarchical">
                                             <hierarchicalColors>
-                                                <color systemColor="labelColor"/>
+                                                <color name="pink"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -758,7 +761,7 @@
                                     <barButtonItem id="gDK-iW-Bmh">
                                         <imageReference key="image" image="gearshape" catalog="system" renderingMode="hierarchical">
                                             <hierarchicalColors>
-                                                <color systemColor="labelColor"/>
+                                                <color name="pink"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -814,8 +817,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZc-aR-ZoX">
                                 <rect key="frame" x="0.0" y="84.666666666666686" width="393" height="684.33333333333326"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fge-lX-sYg">
-                                        <rect key="frame" x="16.000000000000007" y="0.0" width="98.666666666666686" height="26.333333333333332"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fge-lX-sYg">
+                                        <rect key="frame" x="16" y="0.0" width="93" height="26.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -926,7 +929,7 @@
                     <tabBarItem key="tabBarItem" title="Me" id="cPZ-CQ-5tM">
                         <imageReference key="image" image="person" catalog="system" renderingMode="hierarchical">
                             <hierarchicalColors>
-                                <color systemColor="labelColor"/>
+                                <color name="pink"/>
                                 <color systemColor="secondaryLabelColor"/>
                                 <color systemColor="tertiaryLabelColor"/>
                             </hierarchicalColors>
@@ -1023,7 +1026,7 @@
                                     <barButtonItem title="Item" id="Ap3-Th-rDv">
                                         <imageReference key="image" image="magnifyingglass" catalog="system" renderingMode="hierarchical">
                                             <hierarchicalColors>
-                                                <color systemColor="labelColor"/>
+                                                <color name="pink"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -1036,7 +1039,7 @@
                                     <barButtonItem id="Jwy-Ko-5Px">
                                         <imageReference key="image" image="cart" catalog="system" renderingMode="hierarchical">
                                             <hierarchicalColors>
-                                                <color systemColor="labelColor"/>
+                                                <color name="pink"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -1046,9 +1049,9 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem id="5TT-sc-n3F">
-                                        <imageReference key="image" image="heart.fill" catalog="system" renderingMode="hierarchical">
+                                        <imageReference key="image" image="heart" catalog="system" renderingMode="hierarchical">
                                             <hierarchicalColors>
-                                                <color systemColor="labelColor"/>
+                                                <color name="pink"/>
                                                 <color systemColor="secondaryLabelColor"/>
                                                 <color systemColor="tertiaryLabelColor"/>
                                             </hierarchicalColors>
@@ -1172,19 +1175,19 @@
                     <tabBarItem key="tabBarItem" title="Category" id="YUp-lv-E1u">
                         <imageReference key="image" image="square.grid.3x3.topright.fill" catalog="system" renderingMode="hierarchical">
                             <hierarchicalColors>
-                                <color systemColor="labelColor"/>
-                                <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color name="pink"/>
+                                <color name="pink"/>
+                                <color name="pink"/>
                             </hierarchicalColors>
                         </imageReference>
                         <imageReference key="largeContentSizeImage" image="square.grid.3x3.fill" catalog="system" renderingMode="hierarchical">
                             <hierarchicalColors>
-                                <color systemColor="labelColor"/>
-                                <color systemColor="labelColor"/>
-                                <color systemColor="labelColor"/>
+                                <color name="pink"/>
+                                <color name="pink"/>
+                                <color name="pink"/>
                             </hierarchicalColors>
                         </imageReference>
-                        <color key="badgeColor" systemColor="labelColor"/>
+                        <color key="badgeColor" name="pink"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="accBarItem" destination="Zrw-UF-9pk" id="8N7-t1-2dI"/>
@@ -1216,7 +1219,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" name="main"/>
+                        <color key="tintColor" name="pink"/>
+                        <color key="selectedImageTintColor" name="pink"/>
                     </tabBar>
                     <connections>
                         <segue destination="Y6W-OH-hqX" kind="relationship" relationship="viewControllers" destinationCreationSelector="brandImageView:" id="pgn-Mw-BvW"/>
@@ -1250,13 +1254,13 @@
     <color key="tintColor" systemColor="labelColor"/>
     <resources>
         <image name="abc" catalog="system" width="128" height="50"/>
-        <image name="back" width="200" height="200"/>
+        <image name="back" width="512" height="512"/>
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="checkmark.circle.badge.questionmark.fill" catalog="system" width="128" height="114"/>
         <image name="dollarsign" catalog="system" width="89" height="128"/>
         <image name="dollarsign.circle.fill" catalog="system" width="128" height="123"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
-        <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="noOrder" width="375" height="453"/>
@@ -1268,8 +1272,14 @@
         <namedColor name="main">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="pink">
+            <color red="0.77254901960784317" green="0.21176470588235294" blue="0.51372549019607838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

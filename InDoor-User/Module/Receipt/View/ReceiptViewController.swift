@@ -112,7 +112,7 @@ class ReceiptViewController: UIViewController {
                 }
                 if valid {
                     var discountAmount = 0.0
-                    if Double(subtotal.text!)! >= Double(couponMinimumSubTotal)! {
+                    if Double(subtotal.text!) ?? 0 >= Double(couponMinimumSubTotal) ?? 0 {
                         self.couponTextField.isEnabled = false
                         self.applyCouponButton.setTitle("Change", for: .normal)
                         self.applyCouponButton.setTitleColor(.green, for: .normal)
@@ -143,7 +143,7 @@ class ReceiptViewController: UIViewController {
                     present(alert, animated: true)
                     totalMoney.text = "\(UserDefault().getCurrencySymbol())"
                     totalMoney.text! += String(format: "%.2f", (((subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())))
-                                               
+                    
                     total = (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate()
                     discount.text = "-0.0"
                 }

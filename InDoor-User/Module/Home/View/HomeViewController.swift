@@ -19,7 +19,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var homeViewModel: HomeViewModel!
     
     var promoCodes: [InputSource] = [ImageSource(image: UIImage(named: "discount5")!),
-                      ImageSource(image: UIImage(named: "discount2")!),
+                                     ImageSource(image: UIImage(named: "discount2")!),
                                      ImageSource(image: UIImage(named: "discount3")!)]{
         didSet{
             startSlider()
@@ -33,7 +33,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     var selectedImageIndex = 0
-        
+    
     var timer: Timer?
     var currentIndex = 0
     var brands:[SmartCollections] = []
@@ -75,7 +75,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 }
             }
         }
-    
+        
         homeViewModel.bindPriceRulesToViewController = {[weak self] in
             self?.addEquivelantImage()
         }
@@ -111,14 +111,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         selectedImageIndex = couponsSlider.currentPage
         
         homeViewModel.getAllDiscountCoupons(priceRule: homeViewModel.priceRules![selectedImageIndex])
+        let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: "Enjoy your discount", positiveButtonTitle: Constants.ok)
+        self.present(alert, animated: true)
     }
     
     func imageSlideshow(_ imageSlideshow: ImageSlideshow, didTapAt index: Int) {
-        print(index)
-        //        let currentImage = couponsSlider.currentSlideshowItem?.imageView.image
-        //        if let imageString = currentImage?.description {
-        //
-        //        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
