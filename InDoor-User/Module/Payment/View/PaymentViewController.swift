@@ -20,7 +20,7 @@ class PaymentViewController: UIViewController {
     var paymentViewModel: PaymentViewModel!
     var canPayWithCash = true
     var order: Orders!
-    var orderTotalPrice = 0.0
+    var orderTotalPrice:Double = 0.0
     var payRequest: PKPaymentRequest!
     var creditTappedFlag = false
     
@@ -33,7 +33,7 @@ class PaymentViewController: UIViewController {
         request.supportedCountries = ["US", "EG"]
         request.merchantCapabilities = .capability3DS
         request.countryCode = "US"
-        request.currencyCode = "\(UserDefault().getCurrencySymbol())"
+        request.currencyCode = "USD"
 
         request.paymentSummaryItems = [PKPaymentSummaryItem(label: "Your order", amount: NSDecimalNumber(value: orderTotalPrice))]
         
@@ -154,7 +154,7 @@ class PaymentViewController: UIViewController {
     }
     
     func navigateToHomeAfterPay(){
-        let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "Successful payment done", positiveButtonTitle: Constants.ok) { action in
+        let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: "Successful payment done", positiveButtonTitle: Constants.ok) { action in
             let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
             let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
             home.modalPresentationStyle = .fullScreen

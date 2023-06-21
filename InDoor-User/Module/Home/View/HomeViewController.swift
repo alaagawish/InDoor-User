@@ -60,7 +60,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             guard let list = self?.favoritesViewModel.allProductsList else {return}
             for product in list {
                 if(self?.defaults.integer(forKey: Constants.customerId) == product.customer_id){
-                    lineItems.append(LineItems(productId: product.id , price: product.price, quantity: 1 , title: product.title, properties: [Properties(name: "image_url", value: product.image )]))
+                    lineItems.append(LineItems(price: product.price, productId: product.id, quantity: 1 , title: product.title, properties: [Properties(name: "image_url", value: product.image )]))
                 }
             }
             var user = User()
