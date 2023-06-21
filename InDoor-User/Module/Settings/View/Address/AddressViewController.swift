@@ -8,8 +8,7 @@
 import UIKit
 
 class AddressViewController: UIViewController {
-    
-    
+       
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var addressesTable: UITableView!
     var settingsViewModel: SettingsViewModel!
@@ -36,6 +35,7 @@ class AddressViewController: UIViewController {
         setupUI()
         callingData()
         checkSource()
+        addressesList = addressesList.filter{$0.city?.count ?? 0 > 0}
         for index in 0 ..< addressesList.count {
             if addressesList[index].default ?? false {
            
@@ -86,7 +86,7 @@ class AddressViewController: UIViewController {
         pay.modalPresentationStyle = .fullScreen
         pay.order = order
         pay.orderTotalPrice = Double(order?.totalPrice ?? "") ?? 0
-        print("------------\(Double(order?.totalPrice ?? "") ?? 0)")
+        
         if Double(order?.totalPrice ?? "") ?? 0 > 1000 {
             pay.canPayWithCash = false
         }else {
@@ -98,7 +98,8 @@ class AddressViewController: UIViewController {
 
 extension AddressViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        addressesList = addressesList.filter{$0.city?.count ?? 0 > 0}
+        checkAddressListCount()
         return addressesList.count
     }
     

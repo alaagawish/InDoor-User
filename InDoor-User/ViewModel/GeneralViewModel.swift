@@ -36,11 +36,14 @@ class GeneralViewModel {
     }
     
     func convertLineItemsToProducts(){
+        print("line items \(lineItems.count)  \(lineItems)")
         for (index, lineItem) in lineItems.enumerated() {
-            getSpecificProduct(productId: lineItem.productId!) { [weak self] product in
-                self?.productSet.insert(product)
-                if index == (self?.lineItems.count)!-1 {
-                    self?.done = true
+            if lineItem.title != "dummy"{
+                getSpecificProduct(productId: lineItem.productId ?? 0) { [weak self] product in
+                    self?.productSet.insert(product)
+                    if index == (self?.lineItems.count)!-1 {
+                        self?.done = true
+                    }
                 }
             }
         }
