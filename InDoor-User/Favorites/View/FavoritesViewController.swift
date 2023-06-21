@@ -18,13 +18,19 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         favoritesProducts = []
         defaults = UserDefaults.standard
+        print("----f-customerId: \(self.defaults.integer(forKey: Constants.customerId) )")
+        print("----f-favId: \(self.defaults.integer(forKey: Constants.favoritesId))")
+        print("----f-cartId: \(self.defaults.integer(forKey: Constants.cartId) )")
+        print("----f-isgoogle: \(self.defaults.integer(forKey: Constants.isGoogle))")
+        
         self.favoritesTable.register(UINib(nibName: Constants.favoritesNibName, bundle: nil), forCellReuseIdentifier: Constants.favoritesCellIdentifier)
         favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
         favoritesViewModel.bindResultToViewController = {[weak self] in
             guard let list = self?.favoritesViewModel.result else {return}
             guard let index = self?.index else {return}
             for product in list {
-                if(product.id == self?.favoritesProducts[index].id){
+                print("\(self?.favoritesProducts[index].id)    ++++++  \(product.id)")
+                if(product.id == self?.favoritesProducts[index].id ?? 0){
                     let storyboard = UIStoryboard(name: Constants.productDetailsStoryboardName, bundle: nil)
                     let productDetails = storyboard.instantiateViewController(withIdentifier: Constants.productDetailsStoryboardName) as! ProductDetailsViewController
                     productDetails.product = product

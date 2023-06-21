@@ -74,7 +74,6 @@ class SignUpViewModel{
     func getUsers(){
         service.getData(path: Constants.customersPath, parameters: [:], handler: { [weak self] response in
             self?.usersList = response?.customers
-            
         })
     }
     

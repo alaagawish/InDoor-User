@@ -13,6 +13,7 @@ class FavoritesViewModel{
     var bindallProductsListToController:(()->Void) = {}
     var bindPutfavoriteDraftOrderToController:(()->Void) = {}
     var bindGetfavoriteDraftOrderToController:(()->Void) = {}
+    let defaults = UserDefaults.standard
     var putFavoriteDraftOrder: DraftOrder?{
         didSet{
             bindPutfavoriteDraftOrderToController()
@@ -73,16 +74,16 @@ class FavoritesViewModel{
         }
     }
     func putFavoriteDraftOrderFromAPI(parameters: Parameters){
-       
-        network.putData(path: Constants.getFavoriteDraftPath, parameters: parameters, handler: { [weak self] response,code  in
+       print("path: \(Constants.putFavoriteDraftPath)")
+        network.putData(path: Constants.putFavoriteDraftPath , parameters: parameters, handler: { [weak self] response,code  in
             self?.putFavoriteDraftOrder = response?.draftOrder
            
         })
     }
     
     func getFavoriteDraftOrderFromAPI(){
-      
-        network.getData(path: Constants.getFavoriteDraftPath, parameters: [:], handler: { [weak self] response in
+        print("path: \(Constants.putFavoriteDraftPath)")
+        network.getData(path: Constants.putFavoriteDraftPath, parameters: [:], handler: { [weak self] response in
             self?.getFavoriteDraftOrder = response?.draftOrder
             
         })
