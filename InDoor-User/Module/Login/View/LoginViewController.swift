@@ -25,21 +25,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        loginViewModel = LoginViewModel(service: Network())
         favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
         favoritesViewModel.bindGetfavoriteDraftOrderToController = {[weak self] in
             guard let lineItemsList = self?.favoritesViewModel.getFavoriteDraftOrder?.lineItems else {return}
             let list = lineItemsList.filter{$0.title != "dummy"}
-        
             for item in list {
                 let localProduct = LocalProduct(id: item.id!, customer_id: (self?.defaults.integer(forKey: Constants.customerId))!, title: item.title!, price: item.price!, image: item.properties![0].value!)
               
                 self?.favoritesViewModel.addProduct(product: localProduct)
             }
         }
-        loginViewModel = LoginViewModel(service: Network())
-        loginViewModel.bindUserToLoginController = { [weak self] in
-            if(self?.loginViewModel.user?.id != nil){
-                self?.getFavoritesDraftOrderFromRemoteToLocal()
+        loginViewModel.bindUserWithDraftOrderToController = {[weak self] in
+            print("note: \(self?.loginViewModel.userWithDraftOrder?.note)")
+            if(self?.loginViewModel.userWithDraftOrder?.note != nil ){
                 self?.getFavoritesDraftOrderFromRemoteToLocal()
                 let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: Constants.registeredSuccessfully, positiveButtonTitle: Constants.ok){_ in
                     let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
@@ -50,6 +49,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                     self?.present(home, animated: true)
                 }
                 self?.present(alert, animated: true)
+            }
+        }
+        
+        loginViewModel.bindDraftOrderToController = {[weak self] in
+            if(self?.loginViewModel.cartDraftOrder?.id != nil && self?.loginViewModel.favoritesDraftOrder?.id != nil){
+                guard let cartId = self?.loginViewModel.cartDraftOrder?.id else {return}
+                guard let favoritesId = self?.loginViewModel.favoritesDraftOrder?.id else {return}
+                self?.defaults.set(cartId, forKey: Constants.cartId)
+                self?.defaults.set(favoritesId, forKey: Constants.favoritesId)
+                var user = User()
+                user.note = "\(favoritesId),\(cartId)"
+                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil, order: nil)
+                print("response: \(response)")
+                let params = JSONCoding().encodeToJson(objectClass: response)
+             
+                self?.loginViewModel.putUser(parameters: params ?? [:])
+            }
+        }
+       
+        loginViewModel.bindUserToLoginController = { [weak self] in
+            if(self?.loginViewModel.user?.id != nil){
+                self?.defaults.setValue(self?.loginViewModel.user?.id, forKey: Constants.customerId)
+                self?.createFavoriteDraftOrder()
+                self?.createCartDraftOrder()
             }
         }
         loginViewModel.bindToUsersListLoginController = { [weak self] in
@@ -90,7 +113,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                     for user in list {
                         if user.email == self?.user.email {
                             self?.found = true
+                            self?.customerId = user.id
                             self?.defaults.setValue(self?.customerId, forKey: Constants.customerId)
+                            let splitNote = user.note?.components(separatedBy: ",")
+                            self?.defaults.set(Int((splitNote?[1])!), forKey: Constants.cartId)
+                            self?.defaults.set(Int((splitNote?[0])!), forKey: Constants.favoritesId)
                             self?.getFavoritesDraftOrderFromRemoteToLocal()
                             break
                         }
@@ -101,7 +128,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                     DispatchQueue.main.async {
                         let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
                         let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
-                        //self?.defaults.setValue(self?.customerId, forKey: Constants.customerId)
                         self?.defaults.setValue(self?.isGoogle, forKey: Constants.isGoogle)
                         home.modalPresentationStyle = .fullScreen
                         self?.present(home, animated: true)
@@ -193,5 +219,36 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     func getFavoritesDraftOrderFromRemoteToLocal(){
         self.favoritesViewModel.removeAllProduct()
         self.favoritesViewModel.getFavoriteDraftOrderFromAPI()
+    }
+    func createFavoriteDraftOrder(){
+        let properties = [Properties(name: "image", value: "")]
+        let lineItems = [LineItems(price: "20.0", quantity: 1, title: "dummy", properties:properties)]
+
+        var user = User()
+        user.id = defaults.integer(forKey: Constants.customerId)
+        user.email = self.emailTextField.text
+        user.tags = self.passwordTextField.text
+
+        let draft = DraftOrder(id: nil, note: "favorite", lineItems: lineItems, user: user)
+        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer:  nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draft, orders: nil, order: nil)
+        let params = JSONCoding().encodeToJson(objectClass: response)
+    
+        self.loginViewModel.postDraftOrder(parameters: params ?? [:])
+    }
+    
+    func createCartDraftOrder(){
+        let properties = [Properties(name: "image", value: "")]
+        let lineItems = [LineItems(price: "20.0",  quantity: 1,  title: "dummy",  properties: properties)]
+
+        var user = User()
+        user.id = defaults.integer(forKey: Constants.customerId)
+        user.email = self.emailTextField.text
+        user.tags = self.passwordTextField.text
+
+        let draft = DraftOrder(id: nil, note: "cart", lineItems: lineItems, user: user)
+        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draft, orders: nil, order: nil)
+                let params = JSONCoding().encodeToJson(objectClass: response)
+
+        self.loginViewModel.postDraftOrder(parameters: params ?? [:])
     }
 }

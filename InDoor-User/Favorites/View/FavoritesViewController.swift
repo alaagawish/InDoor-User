@@ -29,7 +29,8 @@ class FavoritesViewController: UIViewController {
             guard let list = self?.favoritesViewModel.result else {return}
             guard let index = self?.index else {return}
             for product in list {
-                if(product.id == self?.favoritesProducts[index].id){
+                print("\(self?.favoritesProducts[index].id)    ++++++  \(product.id)")
+                if(product.id == self?.favoritesProducts[index].id ?? 0){
                     let storyboard = UIStoryboard(name: Constants.productDetailsStoryboardName, bundle: nil)
                     let productDetails = storyboard.instantiateViewController(withIdentifier: Constants.productDetailsStoryboardName) as! ProductDetailsViewController
                     productDetails.product = product
