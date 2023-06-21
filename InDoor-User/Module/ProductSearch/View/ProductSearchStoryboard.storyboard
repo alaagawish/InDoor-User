@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,6 +25,68 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="IwP-Lo-2hh"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jpC-Iy-tLa">
+                                <rect key="frame" x="225" y="650" width="60" height="60"/>
+                                <color key="backgroundColor" name="pink"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="CgE-V9-TdI"/>
+                                    <constraint firstAttribute="width" constant="60" id="YYc-YH-1uX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="dollarsign" catalog="system"/>
+                                <connections>
+                                    <action selector="filterByPrice:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ddi-vq-snu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mag-8z-rIv">
+                                <rect key="frame" x="301" y="726" width="60" height="60"/>
+                                <color key="backgroundColor" name="pink"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="v1E-ST-DsR"/>
+                                    <constraint firstAttribute="width" constant="60" id="zF4-XI-fgN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="slider.horizontal.3" catalog="system">
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="filter:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="YEW-mr-Vhn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBe-hm-DIq">
+                                <rect key="frame" x="209" y="726" width="60" height="60"/>
+                                <color key="backgroundColor" name="pink"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="HCf-rQ-NwF"/>
+                                    <constraint firstAttribute="width" constant="60" id="Hbr-EW-uOl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="abc" catalog="system"/>
+                                <connections>
+                                    <action selector="filterAlphabetically:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="HrZ-4G-euB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PB9-uV-ZlW">
+                                <rect key="frame" x="301" y="634" width="60" height="60"/>
+                                <color key="backgroundColor" name="pink"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="9oL-56-T4G"/>
+                                    <constraint firstAttribute="height" constant="60" id="KJ1-Qp-jY5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="star.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="filterByRatting:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="VKI-D4-b4U"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRe-Mk-eF7">
                                 <rect key="frame" x="16" y="58.999999999999993" width="31.666666666666671" height="31.666666666666664"/>
                                 <constraints>
@@ -37,7 +99,7 @@
                                 </connections>
                             </button>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="hBJ-1a-7ST">
-                                <rect key="frame" x="0.0" y="105" width="393" height="38"/>
+                                <rect key="frame" x="0.0" y="105" width="393" height="38.333333333333343"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hf-Or-K2s">
@@ -52,23 +114,35 @@
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8hf-Or-K2s" secondAttribute="trailing" id="1SA-Md-r2S"/>
                             <constraint firstItem="hBJ-1a-7ST" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.045" id="D1h-Dp-vvk"/>
+                            <constraint firstItem="uBe-hm-DIq" firstAttribute="top" secondItem="jpC-Iy-tLa" secondAttribute="bottom" constant="16" id="GMB-Ev-aVC"/>
                             <constraint firstItem="qYw-Cs-oE8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="GvY-Dk-ANT"/>
                             <constraint firstItem="8hf-Or-K2s" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="HNA-5F-tG8"/>
+                            <constraint firstItem="PB9-uV-ZlW" firstAttribute="leading" secondItem="jpC-Iy-tLa" secondAttribute="trailing" constant="16" id="Hnz-Nf-KK7"/>
                             <constraint firstItem="hBJ-1a-7ST" firstAttribute="top" secondItem="8hf-Or-K2s" secondAttribute="bottom" constant="10" id="JvO-Y8-rST"/>
                             <constraint firstItem="mRe-Mk-eF7" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="16" id="K7U-bh-MMh"/>
+                            <constraint firstItem="Mag-8z-rIv" firstAttribute="top" secondItem="PB9-uV-ZlW" secondAttribute="bottom" constant="32" id="LFy-nf-Nmm"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="qYw-Cs-oE8" secondAttribute="bottom" id="LMj-FA-Hod"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="uBe-hm-DIq" secondAttribute="bottom" constant="32" id="S8l-d8-hvh"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="PB9-uV-ZlW" secondAttribute="trailing" constant="32" id="TED-VF-a16"/>
                             <constraint firstItem="mRe-Mk-eF7" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.037" id="W5a-2K-LPM"/>
                             <constraint firstItem="mRe-Mk-eF7" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="boa-fy-dE7"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="qYw-Cs-oE8" secondAttribute="trailing" id="lno-DY-mN5"/>
                             <constraint firstItem="hBJ-1a-7ST" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="n8I-Pc-nOQ"/>
                             <constraint firstItem="hBJ-1a-7ST" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="o7m-CU-tnl"/>
                             <constraint firstItem="8hf-Or-K2s" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="pgD-gV-IRj"/>
+                            <constraint firstItem="Mag-8z-rIv" firstAttribute="leading" secondItem="uBe-hm-DIq" secondAttribute="trailing" constant="32" id="uqB-ec-2NT"/>
                             <constraint firstItem="qYw-Cs-oE8" firstAttribute="top" secondItem="hBJ-1a-7ST" secondAttribute="bottom" constant="7.6699999999999999" id="wOK-zP-IsS"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Mag-8z-rIv" secondAttribute="bottom" constant="32" id="xei-pn-xTY"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Mag-8z-rIv" secondAttribute="trailing" constant="32" id="yA2-Jj-V1b"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="alphabetFloatingButton" destination="uBe-hm-DIq" id="tfO-l2-hmH"/>
+                        <outlet property="bestSellerFloatingButton" destination="PB9-uV-ZlW" id="u9y-Ru-4wC"/>
                         <outlet property="inputSearchBar" destination="hBJ-1a-7ST" id="RxY-b0-Xby"/>
+                        <outlet property="priceFloatingButton" destination="jpC-Iy-tLa" id="NjA-6a-bmL"/>
                         <outlet property="searchTableView" destination="qYw-Cs-oE8" id="OZt-tI-y5C"/>
+                        <outlet property="sortingButton" destination="Mag-8z-rIv" id="jL5-M1-bvM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -77,7 +151,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back" width="200" height="200"/>
+        <image name="abc" catalog="system" width="128" height="50"/>
+        <image name="back" width="512" height="512"/>
+        <image name="dollarsign" catalog="system" width="89" height="128"/>
+        <image name="slider.horizontal.3" catalog="system" width="128" height="99"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <namedColor name="pink">
+            <color red="0.77300000190734863" green="0.21199999749660492" blue="0.51399999856948853" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
