@@ -6,7 +6,8 @@
 //
 
 import UIKit
-
+import FirebaseAuth
+import FirebaseCore
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -24,21 +25,58 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         setupUI()
         setupDelegation()
         signUpViewModel = SignUpViewModel(service: Network())
+        Auth.auth().addIDTokenDidChangeListener { auth, user in
+              guard let currentUser = user else {
+                  // User not signed in
+                  return
+              }
+              
+              if currentUser.isEmailVerified {
+                  // Email verified
+                  print("Email verified")
+                  // Proceed with app flow, e.g., show the main screen
+                  let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: Constants.registeredSuccessfully, positiveButtonTitle: Constants.ok){_ in
+                      let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
+                      let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
+                      self.defaults.setValue(false, forKey: Constants.isGoogle)
+                      print("----customerId: \(self.defaults.integer(forKey: Constants.customerId) ?? 000)")
+                      print("----favId: \(self.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
+                      print("----cartId: \(self.defaults.integer(forKey: Constants.cartId) ?? 000)")
+                      print("----isgoogle: \(self.defaults.integer(forKey: Constants.isGoogle) ?? 000)")
+                      home.modalPresentationStyle = .fullScreen
+                      self.present(home, animated: true)
+                  }
+                  self.present(alert, animated: true)
+              } else {
+                  // Email not verified
+                  print("Email not verified")
+                  // Optionally, you can prompt the user to verify their email or provide a way to resend the verification email
+              }
+          }
         signUpViewModel.bindUserWithDraftOrderToSignUpController = {[weak self] in
             print("note: \(self?.signUpViewModel.userWithDraftOrder?.note)")
             if(self?.signUpViewModel.userWithDraftOrder?.note != nil ){
-                let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: Constants.registeredSuccessfully, positiveButtonTitle: Constants.ok){_ in
-                    let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
-                    let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
-                    self?.defaults.setValue(false, forKey: Constants.isGoogle)
-                    print("----customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
-                    print("----favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
-                    print("----cartId: \(self?.defaults.integer(forKey: Constants.cartId) ?? 000)")
-                    print("----isgoogle: \(self?.defaults.integer(forKey: Constants.isGoogle) ?? 000)")
-                    home.modalPresentationStyle = .fullScreen
-                    self?.present(home, animated: true)
+                Auth.auth().createUser(withEmail: self?.emailTextField.text ?? "", password: self?.passwordTextField.text ?? ""){result, error in
+                    if let error = error {
+                        print(error)
+                        return
+                    }
+                    guard let currentUser = Auth.auth().currentUser else {
+                        // User not signed in
+                        return
+                    }
+                        
+                    currentUser.sendEmailVerification { error in
+                        guard let error = error else {
+                            // Handle error
+                            print("Error sending verification email: \(error?.localizedDescription)")
+                            return
+                        }
+    //alert check email
+                        // Verification email sent successfully
+                        print("Verification email sent")
+                    }
                 }
-                self?.present(alert, animated: true)
             }
         }
         signUpViewModel.bindDraftOrderToSignUpController = {[weak self] in
