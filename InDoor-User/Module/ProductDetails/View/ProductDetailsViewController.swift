@@ -69,6 +69,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
             if selectedSize != nil && selectedColor != nil {
                 addToCartView.isHidden = false
                 bottomSpace.constant = 85
+                
             }
         }
     }
@@ -188,7 +189,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     }
     
     func imageSlideshow(_ imageSlideshow: ImageSlideshow, didTapAt index: Int) {
-    
+        
         let currentImage = productImagesSlider.currentSlideshowItem?.imageView.image
         if let imageString = currentImage?.description {
             print("Image String: \(imageString)")
@@ -216,23 +217,28 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
             favouriteButtonOutlet.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
             
         } else {
-                let retrievedProduct = productDetailsViewModel.getProduct(productId: self.product.id )
-                
-                let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) { [weak self] action in
-                    self?.productDetailsViewModel.removeProduct(product: retrievedProduct)
-                    self?.favouriteButtonOutlet.setImage(UIImage(systemName: Constants.heart), for: .normal)
-                }
-                present(alert, animated: true, completion: nil)
+            let retrievedProduct = productDetailsViewModel.getProduct(productId: self.product.id )
+            
+            let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) { [weak self] action in
+                self?.productDetailsViewModel.removeProduct(product: retrievedProduct)
+                self?.favouriteButtonOutlet.setImage(UIImage(systemName: Constants.heart), for: .normal)
+            }
+            present(alert, animated: true, completion: nil)
             
         }
     }
     
     @IBAction func addToCart(_ sender: UIButton) {
-        orderCount = Int(counterTextField.text!)!
-        let variantName = "\(selectedSize!) / \(selectedColor!)"
-        
-        if !checkVariantIsInCart(variantName: variantName){
-            addVariantToOrders(variantName: variantName)
+        if UserDefault().getCustomerId() != -1{
+            orderCount = Int(counterTextField.text!)!
+            let variantName = "\(selectedSize!) / \(selectedColor!)"
+            
+            if !checkVariantIsInCart(variantName: variantName){
+                addVariantToOrders(variantName: variantName)
+            }
+        }else {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.alert, msg: "You must login first", positiveButtonTitle: Constants.ok)
+            self.present(alert, animated: true)
         }
         
     }
@@ -303,7 +309,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     }
     
     func resetVariantsUI(){
-       // addToCartOutlet.isHidden = true
+        // addToCartOutlet.isHidden = true
         addToCartView.isHidden = true
         selectedSize = nil
         selectedColor = nil

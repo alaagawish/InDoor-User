@@ -33,6 +33,12 @@
                                             <action selector="NavigateToSearch:" destination="Y6W-OH-hqX" id="jsW-xK-zWb"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Item" image="arrow.clockwise" catalog="system" id="XIc-y7-7b7">
+                                        <color key="tintColor" name="pink"/>
+                                        <connections>
+                                            <action selector="refresh:" destination="Y6W-OH-hqX" id="xl3-Va-Og5"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="sLy-LX-lj8"/>
                                     <barButtonItem id="nHv-Z3-YFc">
                                         <imageReference key="image" image="cart" catalog="system" renderingMode="hierarchical">
@@ -94,6 +100,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noInternet" translatesAutoresizingMaskIntoConstraints="NO" id="o4W-YE-aj1">
+                                <rect key="frame" x="0.0" y="76.666666666666686" width="393" height="692.33333333333326"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -106,16 +115,20 @@
                             <constraint firstItem="bk0-Xa-PaW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="O09-Pn-fco"/>
                             <constraint firstItem="JaG-nU-Lzc" firstAttribute="top" secondItem="dUl-Em-Bnx" secondAttribute="bottom" id="Q95-98-b4C"/>
                             <constraint firstItem="dUl-Em-Bnx" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.0422535" id="RcI-bI-p1f"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="o4W-YE-aj1" secondAttribute="bottom" id="ShL-jE-SSj"/>
                             <constraint firstItem="dUl-Em-Bnx" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.5" id="YQb-gl-yPc"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LXS-RZ-aQX" secondAttribute="trailing" id="cFr-If-vri"/>
                             <constraint firstItem="zZO-vQ-w2T" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="f3P-SJ-vZD"/>
+                            <constraint firstItem="o4W-YE-aj1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fix-dH-RSI"/>
                             <constraint firstItem="dUl-Em-Bnx" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="ghq-BS-Foi"/>
                             <constraint firstAttribute="trailing" secondItem="zZO-vQ-w2T" secondAttribute="trailing" id="hyf-O5-I2m"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="JaG-nU-Lzc" secondAttribute="trailing" id="iL5-rJ-l8g"/>
                             <constraint firstItem="JaG-nU-Lzc" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.29" id="ihM-CG-ZJM"/>
+                            <constraint firstItem="o4W-YE-aj1" firstAttribute="top" secondItem="dUl-Em-Bnx" secondAttribute="bottom" id="lIQ-z0-Ln1"/>
                             <constraint firstItem="zZO-vQ-w2T" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.09" id="meN-Nl-cSk"/>
                             <constraint firstItem="LXS-RZ-aQX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="3" id="p0Q-b9-EFC"/>
                             <constraint firstItem="JaG-nU-Lzc" firstAttribute="top" secondItem="zZO-vQ-w2T" secondAttribute="bottom" id="pMF-5g-cVl"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="o4W-YE-aj1" secondAttribute="trailing" id="vYc-Wn-aXj"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="LXS-RZ-aQX" secondAttribute="bottom" constant="8" id="xyT-IR-GaS"/>
                         </constraints>
                     </view>
@@ -134,11 +147,13 @@
                         <outlet property="cartOutlet" destination="nHv-Z3-YFc" id="M5m-FW-LKQ"/>
                         <outlet property="couponsSlider" destination="JaG-nU-Lzc" id="1Fa-aT-dhZ"/>
                         <outlet property="favouriteOutlet" destination="hwX-DR-ypO" id="Tf2-pQ-Aln"/>
+                        <outlet property="noInternet" destination="o4W-YE-aj1" id="gFj-M6-Jae"/>
+                        <outlet property="refreshOutLet" destination="XIc-y7-7b7" id="uhg-7K-O2d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="907.63358778625945" y="-570.42253521126759"/>
+            <point key="canvasLocation" x="908" y="-587"/>
         </scene>
         <!--Brand View Controller-->
         <scene sceneID="3R3-j0-B1w">
@@ -745,6 +760,12 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xjZ-8q-bHa">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="76.666666666666671"/>
                                 <items>
+                                    <barButtonItem image="arrow.clockwise" catalog="system" landscapeImage="arrow.clockwise" id="llX-0M-1X8">
+                                        <color key="tintColor" name="pink"/>
+                                        <connections>
+                                            <action selector="refresh:" destination="2uB-ev-aaP" id="IUK-lG-gh9"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="cdp-j7-XQ8"/>
                                     <barButtonItem id="HFM-01-qMy">
                                         <imageReference key="image" image="cart" catalog="system" renderingMode="hierarchical">
@@ -773,34 +794,34 @@
                                 </items>
                             </toolbar>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="f4c-yA-bHL">
-                                <rect key="frame" x="16" y="357.66666666666669" width="361" height="137"/>
+                                <rect key="frame" x="100.33333333333333" y="357.66666666666669" width="192.66666666666669" height="137"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahlan! Nice to meet you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEQ-tD-e9w">
-                                        <rect key="frame" x="84.333333333333329" y="0.0" width="192.66666666666669" height="20.333333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="192.66666666666666" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eC1-4x-Zzd">
-                                        <rect key="frame" x="32" y="44.333333333333314" width="297" height="34.333333333333343"/>
+                                        <rect key="frame" x="32.000000000000014" y="44.333333333333314" width="128.66666666666669" height="34.333333333333343"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Sign In" cornerStyle="capsule">
-                                            <color key="baseBackgroundColor" name="main"/>
+                                            <color key="baseBackgroundColor" name="pink"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="goSignIn:" destination="2uB-ev-aaP" eventType="touchUpInside" id="qzI-v1-dsb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzw-vg-ygp">
-                                        <rect key="frame" x="32" y="102.66666666666663" width="297" height="34.333333333333343"/>
+                                        <rect key="frame" x="32.000000000000014" y="102.66666666666663" width="128.66666666666669" height="34.333333333333343"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Sign Up"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Sign Up" cornerStyle="capsule">
-                                            <color key="baseBackgroundColor" name="main"/>
+                                            <color key="baseBackgroundColor" name="pink"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="goSignUp:" destination="2uB-ev-aaP" eventType="touchUpInside" id="Nbg-jZ-vOL"/>
@@ -906,22 +927,28 @@
                                     <constraint firstItem="Y4f-CZ-5GO" firstAttribute="width" secondItem="rZc-aR-ZoX" secondAttribute="width" multiplier="0.3" id="zL7-sg-Jgd"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noInternet" translatesAutoresizingMaskIntoConstraints="NO" id="F56-ZZ-lHH">
+                                <rect key="frame" x="0.0" y="76.666666666666686" width="393" height="692.33333333333326"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oH2-br-aGm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="xjZ-8q-bHa" secondAttribute="trailing" id="0oa-WQ-53R"/>
-                            <constraint firstItem="oH2-br-aGm" firstAttribute="trailing" secondItem="f4c-yA-bHL" secondAttribute="trailing" constant="16" id="3pa-uA-WXo"/>
                             <constraint firstItem="rZc-aR-ZoX" firstAttribute="top" secondItem="xjZ-8q-bHa" secondAttribute="bottom" constant="8" id="4lo-Wt-PhK"/>
+                            <constraint firstItem="oH2-br-aGm" firstAttribute="trailing" secondItem="F56-ZZ-lHH" secondAttribute="trailing" id="529-4P-0v2"/>
+                            <constraint firstItem="f4c-yA-bHL" firstAttribute="centerX" secondItem="hbL-oa-msf" secondAttribute="centerX" id="5Gf-OJ-cay"/>
                             <constraint firstItem="oH2-br-aGm" firstAttribute="trailing" secondItem="rZc-aR-ZoX" secondAttribute="trailing" id="6bt-PO-f4V"/>
                             <constraint firstItem="xjZ-8q-bHa" firstAttribute="top" secondItem="hbL-oa-msf" secondAttribute="top" id="8hi-J1-TFc"/>
+                            <constraint firstItem="F56-ZZ-lHH" firstAttribute="leading" secondItem="oH2-br-aGm" secondAttribute="leading" id="9mC-wq-eE7"/>
+                            <constraint firstItem="F56-ZZ-lHH" firstAttribute="top" secondItem="xjZ-8q-bHa" secondAttribute="bottom" id="9ng-bh-MTV"/>
                             <constraint firstItem="xjZ-8q-bHa" firstAttribute="height" secondItem="hbL-oa-msf" secondAttribute="height" multiplier="0.09" id="HB0-Wo-44L"/>
                             <constraint firstItem="oH2-br-aGm" firstAttribute="trailing" secondItem="rZc-aR-ZoX" secondAttribute="trailing" id="JwO-z6-rtl"/>
-                            <constraint firstItem="f4c-yA-bHL" firstAttribute="leading" secondItem="oH2-br-aGm" secondAttribute="leading" constant="16" id="Q7W-Qg-Y63"/>
                             <constraint firstItem="oH2-br-aGm" firstAttribute="bottom" secondItem="rZc-aR-ZoX" secondAttribute="bottom" id="SQ7-HO-XDM"/>
-                            <constraint firstItem="f4c-yA-bHL" firstAttribute="centerX" secondItem="hbL-oa-msf" secondAttribute="centerX" id="UsM-Ix-zLx"/>
-                            <constraint firstItem="f4c-yA-bHL" firstAttribute="centerY" secondItem="hbL-oa-msf" secondAttribute="centerY" id="fWi-7c-Dwf"/>
                             <constraint firstItem="rZc-aR-ZoX" firstAttribute="leading" secondItem="oH2-br-aGm" secondAttribute="leading" id="pYO-WN-KEA"/>
+                            <constraint firstItem="f4c-yA-bHL" firstAttribute="centerY" secondItem="hbL-oa-msf" secondAttribute="centerY" id="q87-dF-mAd"/>
+                            <constraint firstItem="oH2-br-aGm" firstAttribute="bottom" secondItem="F56-ZZ-lHH" secondAttribute="bottom" id="qh9-70-4Ns"/>
                             <constraint firstItem="xjZ-8q-bHa" firstAttribute="leading" secondItem="hbL-oa-msf" secondAttribute="leading" id="qlT-Im-djd"/>
                             <constraint firstItem="oH2-br-aGm" firstAttribute="bottom" secondItem="rZc-aR-ZoX" secondAttribute="bottom" id="rcz-ti-IZ2"/>
                         </constraints>
@@ -939,9 +966,11 @@
                     <connections>
                         <outlet property="cartItem" destination="HFM-01-qMy" id="yfV-Nz-488"/>
                         <outlet property="loggedInStack" destination="f4c-yA-bHL" id="hvn-mM-QEc"/>
+                        <outlet property="noInternetImage" destination="F56-ZZ-lHH" id="EQU-7c-Qfw"/>
                         <outlet property="noOrderImage" destination="GPs-Y6-jIS" id="eBI-bA-Q7E"/>
                         <outlet property="orderTableView" destination="hk4-SJ-DhV" id="W2P-g0-JFi"/>
                         <outlet property="profileView" destination="rZc-aR-ZoX" id="nBX-QX-pmh"/>
+                        <outlet property="refreshOutLet" destination="llX-0M-1X8" id="rck-nF-Ga3"/>
                         <outlet property="seeAllOrdersOutlet" destination="3D2-1f-1RP" id="3Za-nT-H6K"/>
                         <outlet property="settingsItem" destination="gDK-iW-Bmh" id="FBe-PN-9c9"/>
                         <outlet property="wishlistTableView" destination="E7Q-41-X2S" id="4cR-NX-pW6"/>
@@ -1035,6 +1064,12 @@
                                             <action selector="NavigateToSearch:" destination="bTV-LK-jel" id="vQV-iz-Z0o"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Item" image="arrow.clockwise" catalog="system" id="iy3-UR-IUU">
+                                        <color key="tintColor" name="pink"/>
+                                        <connections>
+                                            <action selector="refresh:" destination="bTV-LK-jel" id="CVj-Ym-7tE"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jQt-7G-jjM"/>
                                     <barButtonItem id="Jwy-Ko-5Px">
                                         <imageReference key="image" image="cart" catalog="system" renderingMode="hierarchical">
@@ -1099,21 +1134,6 @@
                                 </items>
                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qi1-Cx-Sz0">
-                                <rect key="frame" x="0.0" y="164.66666666666669" width="393" height="604.33333333333326"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Stn-6G-tKr">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <connections>
-                                    <outlet property="dataSource" destination="bTV-LK-jel" id="8Dk-Sp-eKO"/>
-                                    <outlet property="delegate" destination="bTV-LK-jel" id="kSW-b3-Uo8"/>
-                                </connections>
-                            </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djB-Em-8Pt">
                                 <rect key="frame" x="0.0" y="76.666666666666671" width="393" height="44"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
@@ -1150,19 +1170,48 @@
                                 </items>
                                 <color key="tintColor" red="1" green="0.84609584729999998" blue="0.25085485800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noInternet" translatesAutoresizingMaskIntoConstraints="NO" id="vkW-9E-UTa">
+                                <rect key="frame" x="0.0" y="76.666666666666686" width="393" height="692.33333333333326"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qi1-Cx-Sz0">
+                                <rect key="frame" x="0.0" y="164.66666666666669" width="393" height="604.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Stn-6G-tKr">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="bTV-LK-jel" id="8Dk-Sp-eKO"/>
+                                    <outlet property="delegate" destination="bTV-LK-jel" id="kSW-b3-Uo8"/>
+                                </connections>
+                            </collectionView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noData" translatesAutoresizingMaskIntoConstraints="NO" id="LsJ-EX-gdx">
+                                <rect key="frame" x="71.666666666666686" y="301" width="250" height="250"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AVW-uJ-aWd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="djB-Em-8Pt" firstAttribute="top" secondItem="sPN-cW-8xw" secondAttribute="bottom" id="3El-8I-7UI"/>
                             <constraint firstItem="AVW-uJ-aWd" firstAttribute="trailing" secondItem="rY8-VE-xM1" secondAttribute="trailing" id="4bz-IJ-299"/>
+                            <constraint firstItem="vkW-9E-UTa" firstAttribute="leading" secondItem="AVW-uJ-aWd" secondAttribute="leading" id="AQv-fh-9TP"/>
+                            <constraint firstItem="vkW-9E-UTa" firstAttribute="top" secondItem="sPN-cW-8xw" secondAttribute="bottom" id="AUh-sm-iwg"/>
                             <constraint firstItem="sPN-cW-8xw" firstAttribute="height" secondItem="vQu-es-BF3" secondAttribute="height" multiplier="0.09" id="C3a-qR-TbE"/>
                             <constraint firstItem="djB-Em-8Pt" firstAttribute="top" secondItem="2fL-Cj-88L" secondAttribute="bottom" id="EiY-Tg-M2S"/>
                             <constraint firstItem="sPN-cW-8xw" firstAttribute="leading" secondItem="AVW-uJ-aWd" secondAttribute="leading" id="G9x-Ec-1hL"/>
+                            <constraint firstItem="AVW-uJ-aWd" firstAttribute="trailing" secondItem="vkW-9E-UTa" secondAttribute="trailing" id="KkP-hF-bOY"/>
                             <constraint firstItem="AVW-uJ-aWd" firstAttribute="trailing" secondItem="Qi1-Cx-Sz0" secondAttribute="trailing" id="PEh-i4-Rgm"/>
                             <constraint firstItem="2fL-Cj-88L" firstAttribute="centerX" secondItem="vQu-es-BF3" secondAttribute="centerX" id="RtA-jD-HNI"/>
+                            <constraint firstItem="LsJ-EX-gdx" firstAttribute="centerY" secondItem="vQu-es-BF3" secondAttribute="centerY" id="UEf-F2-fxo"/>
                             <constraint firstItem="djB-Em-8Pt" firstAttribute="leading" secondItem="AVW-uJ-aWd" secondAttribute="leading" id="WKr-pW-Hzq"/>
                             <constraint firstItem="AVW-uJ-aWd" firstAttribute="bottom" secondItem="Qi1-Cx-Sz0" secondAttribute="bottom" id="YGi-Os-y2e"/>
+                            <constraint firstItem="LsJ-EX-gdx" firstAttribute="centerX" secondItem="vQu-es-BF3" secondAttribute="centerX" id="Ygw-0L-EEl"/>
+                            <constraint firstItem="AVW-uJ-aWd" firstAttribute="bottom" secondItem="vkW-9E-UTa" secondAttribute="bottom" id="af6-tA-gPz"/>
                             <constraint firstItem="rY8-VE-xM1" firstAttribute="leading" secondItem="AVW-uJ-aWd" secondAttribute="leading" id="eUk-f7-9df"/>
                             <constraint firstItem="sPN-cW-8xw" firstAttribute="top" secondItem="vQu-es-BF3" secondAttribute="top" id="jhU-Yb-pI4"/>
                             <constraint firstItem="rY8-VE-xM1" firstAttribute="top" secondItem="djB-Em-8Pt" secondAttribute="bottom" id="ntL-79-zjl"/>
@@ -1197,7 +1246,11 @@
                         <outlet property="favouriteOutlet" destination="5TT-sc-n3F" id="03B-6Q-L6m"/>
                         <outlet property="kidsBarItem" destination="APh-X2-yDk" id="Tk1-tv-qoe"/>
                         <outlet property="menBarItem" destination="2re-OK-LFu" id="7KU-UG-rug"/>
+                        <outlet property="noDataImage" destination="LsJ-EX-gdx" id="FVq-se-LhD"/>
+                        <outlet property="noInternetImage" destination="vkW-9E-UTa" id="nZ8-gr-hdG"/>
                         <outlet property="productsCollectionView" destination="Qi1-Cx-Sz0" id="pix-Yh-9E7"/>
+                        <outlet property="refreshOutLet" destination="iy3-UR-IUU" id="GlH-Iv-psl"/>
+                        <outlet property="refreshOutlet" destination="iy3-UR-IUU" id="LJm-ET-glZ"/>
                         <outlet property="saleBarItem" destination="S4b-jM-2P0" id="KFX-Ho-dHB"/>
                         <outlet property="shirtBarItem" destination="b5p-ba-zh1" id="Saf-gC-jcj"/>
                         <outlet property="shoesBarItem" destination="phC-Vr-tpF" id="ZQC-3A-dxL"/>
@@ -1254,6 +1307,7 @@
     <color key="tintColor" systemColor="labelColor"/>
     <resources>
         <image name="abc" catalog="system" width="128" height="50"/>
+        <image name="arrow.clockwise" catalog="system" width="113" height="128"/>
         <image name="back" width="512" height="512"/>
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="checkmark.circle.badge.questionmark.fill" catalog="system" width="128" height="114"/>
@@ -1263,15 +1317,14 @@
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="noData" width="250" height="250"/>
+        <image name="noInternet" width="572" height="404"/>
         <image name="noOrder" width="375" height="453"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="99"/>
         <image name="square.grid.3x3.fill" catalog="system" width="128" height="113"/>
         <image name="square.grid.3x3.topright.fill" catalog="system" width="128" height="113"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <namedColor name="main">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="pink">
             <color red="0.77254901960784317" green="0.21176470588235294" blue="0.51372549019607838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -49,7 +49,7 @@ class Constants {
     static let signUpIdentifier = "signup"
     static let loginIdentifier = "login"
     static let no = "NO"
-    static let warning = "Warning !!"
+    static let warning = "Warning!"
     static let invalidEmail = "Invalid Email."
     static let emailUsedBefore = "Sorry, You used this email before in registeration.\nDo you want to login?"
     static let enterAllData = "Please, Enter your data to register."
@@ -143,4 +143,5 @@ class Constants {
     static let getCartDraftPath = "draft_orders/\(UserDefaults.standard.integer(forKey: Constants.cartId) )"
     static let directHome = "Go Home"
     static let ordersPath = "orders"
+    static let alert = "Alert"
 }

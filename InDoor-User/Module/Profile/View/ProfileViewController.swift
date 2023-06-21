@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var refreshOutLet: UIBarButtonItem!
+    @IBOutlet weak var noInternetImage: UIImageView!
     @IBOutlet weak var seeAllOrdersOutlet: UIButton!
     @IBOutlet weak var noOrderImage: UIImageView!
     @IBOutlet weak var cartItem: UIBarButtonItem!
@@ -45,22 +47,49 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
         
     }
     override func viewWillAppear(_ animated: Bool) {
+        if Connectivity.sharedInstance.isConnectedToInternet() == true {
+            noInternetImage.isHidden = true
+            refreshOutLet.isHidden = true
+            settingsItem.isEnabled = true
+            cartItem.isEnabled = true
+            
+        }else {
+            noInternetImage.isHidden = false
+            refreshOutLet.isHidden = false
+            settingsItem.isEnabled = false
+            cartItem.isEnabled = false
+        }
         noOrderImage.isHidden = true
         if checkLogged() {
             loggedInStack.isHidden = true
             profileView.isHidden = false
-            cartItem.isHidden = false
-            settingsItem.isHidden = false
+            //            cartItem.isHidden = false
+            //            settingsItem.isHidden = false
         }else{
             loggedInStack.isHidden = false
-            cartItem.isHidden = true
+            //            cartItem.isHidden = true
             profileView.isHidden = true
-            settingsItem.isHidden = true
+            //            settingsItem.isHidden = true
         }
         callingData()
         wishlistTableView.reloadData()
     }
     
+    @IBAction func refresh(_ sender: Any) {
+        
+        if Connectivity.sharedInstance.isConnectedToInternet() == true {
+            noInternetImage.isHidden = true
+            refreshOutLet.isHidden = true
+            cartItem.isEnabled = true
+            settingsItem.isEnabled = true
+        }else {
+            noInternetImage.isHidden = false
+            refreshOutLet.isHidden = false
+            cartItem.isEnabled = false
+            settingsItem.isEnabled = false
+        }
+        
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == orderTableView{
             if orders.count > 1 {
@@ -148,17 +177,28 @@ class ProfileViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func goSettings(_ sender: Any) {
-        let storyboard = UIStoryboard(name: Constants.settingsStoryboard, bundle: nil)
-        let settingsStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.settingsStoryboardID) as! SettingsViewController
-        settingsStoryboard.modalPresentationStyle = .fullScreen
-        present(settingsStoryboard, animated: true)
+        if checkLogged() {
+            
+            let storyboard = UIStoryboard(name: Constants.settingsStoryboard, bundle: nil)
+            let settingsStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.settingsStoryboardID) as! SettingsViewController
+            settingsStoryboard.modalPresentationStyle = .fullScreen
+            present(settingsStoryboard, animated: true)
+        }else {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.alert, msg: "You must login first", positiveButtonTitle: Constants.ok)
+            self.present(alert, animated: true)
+        }
     }
     
     @IBAction func goCart(_ sender: Any) {
-        let storyboard = UIStoryboard(name: Constants.cartStoryboard, bundle: nil)
-        let cartStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.cartIdentifier) as! ShoppingCartViewController
-        cartStoryboard.modalPresentationStyle = .fullScreen
-        present(cartStoryboard, animated: true)
+        if checkLogged(){
+            let storyboard = UIStoryboard(name: Constants.cartStoryboard, bundle: nil)
+            let cartStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.cartIdentifier) as! ShoppingCartViewController
+            cartStoryboard.modalPresentationStyle = .fullScreen
+            present(cartStoryboard, animated: true)
+        }else {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.alert, msg: "You must login first", positiveButtonTitle: Constants.ok)
+            self.present(alert, animated: true)
+        }
     }
     
     func checkLogged() -> Bool{
