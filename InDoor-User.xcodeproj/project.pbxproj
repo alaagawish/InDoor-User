@@ -52,6 +52,7 @@
 		048C565B2A3241CA0016AE06 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C565A2A3241CA0016AE06 /* FavoritesViewModel.swift */; };
 		04935FB32A2D25C90093A73E /* AboutInDoorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04935FB22A2D25C90093A73E /* AboutInDoorViewController.swift */; };
 		04960DEB2A42449F005E39C9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 04960DEA2A42449F005E39C9 /* Alamofire */; };
+		049837D62A42ED21001A2F15 /* GeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049837D52A42ED21001A2F15 /* GeneralViewModel.swift */; };
 		049953642A363C39000C6146 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953632A363C39000C6146 /* User.swift */; };
 		049953662A363C4B000C6146 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953652A363C4B000C6146 /* Address.swift */; };
 		0499536A2A367E98000C6146 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953692A367E98000C6146 /* LoginViewModel.swift */; };
@@ -218,6 +219,7 @@
 		048C56582A323A100016AE06 /* LocalProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalProduct.swift; path = "InDoor-User/Model/LocalProduct.swift"; sourceTree = SOURCE_ROOT; };
 		048C565A2A3241CA0016AE06 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		04935FB22A2D25C90093A73E /* AboutInDoorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutInDoorViewController.swift; sourceTree = "<group>"; };
+		049837D52A42ED21001A2F15 /* GeneralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewModel.swift; sourceTree = "<group>"; };
 		049953632A363C39000C6146 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		049953652A363C4B000C6146 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		049953692A367E98000C6146 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -559,6 +561,14 @@
 				04B247F02A3877D000B447D2 /* ProductColorCollectionDelegatesHandling.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		049837D42A42ECDB001A2F15 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				049837D52A42ED21001A2F15 /* GeneralViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		04A8AB792A351A3F00E80636 /* SignUp */ = {
@@ -983,6 +993,7 @@
 		61E516022A2922EA004DAA1D /* InDoor-User */ = {
 			isa = PBXGroup;
 			children = (
+				049837D42A42ECDB001A2F15 /* ViewModel */,
 				040A0D3F2A40924A005B5374 /* InDoor-User.entitlements */,
 				61A19C992A327D4F0067D2F2 /* Utils */,
 				61E5163E2A292404004DAA1D /* Service */,
@@ -1472,6 +1483,7 @@
 				61DDC23C2A30D0620093A1DE /* BrandViewController.swift in Sources */,
 				61E516042A2922EA004DAA1D /* AppDelegate.swift in Sources */,
 				04A8AB802A3536F700E80636 /* WelcomeViewController.swift in Sources */,
+				049837D62A42ED21001A2F15 /* GeneralViewModel.swift in Sources */,
 				6168AA302A2BE07A00A8E33C /* Variants.swift in Sources */,
 				616BCF2A2A354F830021BDD9 /* BrandsCollectionViewCell.swift in Sources */,
 				616BCF1B2A351E7A0021BDD9 /* BillingAddress.swift in Sources */,
