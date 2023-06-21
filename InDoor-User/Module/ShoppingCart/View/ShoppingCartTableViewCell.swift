@@ -64,7 +64,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
         self.shoppingCartImage.kf.setImage(with: URL(string: product.image?.src ?? ""),placeholder: UIImage(named: Constants.noImage))
         self.shoppingCartProductNameLabel.text = product.title
         self.shoppingCartProductDescriptionLabel.text = "\(product.vendor ?? "") / \((variant.title)!)"
-        self.shoppingCartPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", Double(variant.price)! * UserDefault().getCurrencyRate()) + " / item"
+        self.shoppingCartPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", Double(variant.price ?? "")! * UserDefault().getCurrencyRate()) + " / item"
         self.shoppingCartProductCountLabel.text = "\((variant.inventoryQuantity)!)"
         self.cellIndex = index
         
@@ -87,9 +87,9 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBAction func minusButton(_ sender: Any) {
         
         plusButton.isEnabled = true
-        viewController!.cartPrice = Double(viewController!.cartPrice) - Double(productCount) * Double(productVariant.price)!
+        viewController!.cartPrice = Double(viewController!.cartPrice) - Double(productCount) * Double(productVariant.price ?? "")!
         productCount -= 1
-        viewController!.cartPrice = Double(viewController!.cartPrice) + Double(productCount) * Double(productVariant.price)!
+        viewController!.cartPrice = Double(viewController!.cartPrice) + Double(productCount) * Double(productVariant.price ?? "")!
         shoppingCartProductCountLabel.text = "\(productCount)"
         updateInventoryCount()
         
@@ -104,9 +104,9 @@ class ShoppingCartTableViewCell: UITableViewCell {
         
         minusButton.isEnabled = true
         if productVariant.oldInventoryQuantity! > 3 && productCount < productVariant.oldInventoryQuantity!/3 || productVariant.oldInventoryQuantity! <= 3 && productCount < productVariant.oldInventoryQuantity!  {
-            viewController!.cartPrice = Double(viewController!.cartPrice) - Double(productCount) * Double(productVariant.price)!
+            viewController!.cartPrice = Double(viewController!.cartPrice) - Double(productCount) * Double(productVariant.price ?? "")!
             productCount += 1
-            viewController!.cartPrice = Double(viewController!.cartPrice) + Double(productCount) * Double(productVariant.price)!
+            viewController!.cartPrice = Double(viewController!.cartPrice) + Double(productCount) * Double(productVariant.price ?? "")!
             shoppingCartProductCountLabel.text = "\(productCount)"
             updateInventoryCount()
             

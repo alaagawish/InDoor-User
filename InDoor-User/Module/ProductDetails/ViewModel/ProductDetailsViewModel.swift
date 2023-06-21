@@ -6,9 +6,18 @@
 //
 
 import Foundation
+import Alamofire
 class ProductDetailsViewModel {
     var service: DatabaseService!
-    init(service: DatabaseService) {
+    var network: NetworkProtocol!
+    var bindPutCartDraftOrderToController:(()->Void) = {}
+    var cartDraftOrder: DraftOrder?{
+        didSet{
+            bindPutCartDraftOrderToController()
+        }
+    }
+    init(service: DatabaseService, netWorkingDataSource: NetworkProtocol) {
+        self.network = netWorkingDataSource
         self.service = service
     }
     
@@ -26,5 +35,13 @@ class ProductDetailsViewModel {
     
     func getProduct(productId: Int) -> LocalProduct {
         return service.fetchProduct(productId: productId)
+    }
+    
+    func putShippingCartDraftOrder(parameters: Parameters){
+        
+        network.putData(path: Constants.getCartDraftPath, parameters: parameters, handler: { [weak self] response,code  in
+            self?.cartDraftOrder = response?.draftOrder
+            
+        })
     }
 }

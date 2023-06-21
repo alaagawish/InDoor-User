@@ -45,7 +45,7 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
         for product in ShoppingCartViewController.products {
             for variants in product.variants ?? []{
                 allVariants.append(variants)
-                totalPrice += (Double(variants.price) ?? 0.0) * Double(variants.inventoryQuantity!)
+                totalPrice += (Double(variants.price ?? "") ?? 0.0) * Double(variants.inventoryQuantity!)
             }
         }
         cartPrice = totalPrice

@@ -59,4 +59,13 @@ class HomeViewModel{
             self.priceRules = priceRuleCountainer?.priceRules
         })
     }
+    func getCartDraftOrder(){
+        netWorkingDataSource.getData(path: Constants.getCartDraftPath, parameters: [:]) { [weak self] response in
+            print("data back \(response)")
+            for item in 0 ..< (response?.draftOrder?.lineItems?.count ?? 0) {
+                ShoppingCartViewController.products.append(Product(id: response?.draftOrder?.lineItems?[item].productId,title: response?.draftOrder?.lineItems?[item].title, variants:[Variants(productId:response?.draftOrder?.lineItems?[item].productId,title: response?.draftOrder?.lineItems?[item].title, price: response?.draftOrder?.lineItems?[item].price ?? "" ,inventoryQuantity: response?.draftOrder?.lineItems?[item].quantity,oldInventoryQuantity: response?.draftOrder?.lineItems?[item].grams)] ,image:Image(src: response?.draftOrder?.lineItems?[item].properties?[0].value)))
+            }
+            
+        }
+    }
 }

@@ -66,7 +66,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
         homeViewModel.getItems()
-        
+        homeViewModel.getCartDraftOrder()
         homeViewModel.bindDiscountToViewController = {[weak self] in
             for discount in (self?.homeViewModel.priceRuleDiscounts)!{
                 if discount.usageCount! < (self?.homeViewModel.priceRules![self!.selectedImageIndex].usageLimit)!{

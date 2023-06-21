@@ -220,7 +220,7 @@ extension CategoryViewController{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.brandProduct, for: indexPath) as! BrandProductCollectionViewCell
         
-        cell.setValues(product: products[indexPath.row], isFav: favoritesViewModel.checkIfProductIsFavorite(productId: products[indexPath.row].id, customerId: defaults.integer(forKey: Constants.customerId)), viewController: self, view: Constants.category)
+        cell.setValues(product: products[indexPath.row], isFav: favoritesViewModel.checkIfProductIsFavorite(productId: products[indexPath.row].id ?? 0, customerId: defaults.integer(forKey: Constants.customerId)), viewController: self, view: Constants.category)
         return cell
     }
     

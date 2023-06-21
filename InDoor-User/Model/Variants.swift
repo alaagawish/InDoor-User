@@ -9,11 +9,11 @@ import Foundation
 
 
 struct Variants:Hashable,Codable {
-
+    
     var id: Int?
     var productId: Int?
     var title: String?
-    var price: String
+    var price: String?
     var sku: String?
     var position: Int?
     var inventoryPolicy: String?
@@ -59,5 +59,54 @@ struct Variants:Hashable,Codable {
         case requiresShipping = "requires_shipping"
         case adminGraphqlApiId = "admin_graphql_api_id"
     }
-    
+    init(id: Int? = nil, productId: Int? = nil, title: String? = nil, price: String, sku: String? = nil, position: Int? = nil, inventoryPolicy: String? = nil, compareAtPrice: String? = nil, fulfillmentService: String? = nil, inventoryManagement: String? = nil, option1: String? = nil, option2: String? = nil, createdAt: String? = nil, updatedAt: String? = nil, taxable: Bool? = nil, grams: Int? = nil, weight: Int? = nil, weightUnit: String? = nil, inventoryItemId: Int? = nil, inventoryQuantity: Int? = nil, oldInventoryQuantity: Int? = nil, requiresShipping: Bool? = nil, adminGraphqlApiId: String? = nil) {
+        self.id = id
+        self.productId = productId
+        self.title = title
+        self.price = price
+        self.sku = sku
+        self.position = position
+        self.inventoryPolicy = inventoryPolicy
+        self.compareAtPrice = compareAtPrice
+        self.fulfillmentService = fulfillmentService
+        self.inventoryManagement = inventoryManagement
+        self.option1 = option1
+        self.option2 = option2
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.taxable = taxable
+        self.grams = grams
+        self.weight = weight
+        self.weightUnit = weightUnit
+        self.inventoryItemId = inventoryItemId
+        self.inventoryQuantity = inventoryQuantity
+        self.oldInventoryQuantity = oldInventoryQuantity
+        self.requiresShipping = requiresShipping
+        self.adminGraphqlApiId = adminGraphqlApiId
+    }
+    init( productId: Int? ,title: String?,  price: String,  inventoryQuantity: Int? , oldInventoryQuantity: Int) {
+        self.id = nil
+        self.productId = productId
+        self.title = title
+        self.price = price
+        self.sku = nil
+        self.position = nil
+        self.inventoryPolicy = nil
+        self.compareAtPrice = nil
+        self.fulfillmentService = nil
+        self.inventoryManagement = nil
+        self.option1 = nil
+        self.option2 = nil
+        self.createdAt = nil
+        self.updatedAt = nil
+        self.taxable = nil
+        self.grams = nil
+        self.weight = nil
+        self.weightUnit = nil
+        self.inventoryItemId = nil
+        self.inventoryQuantity = inventoryQuantity
+        self.oldInventoryQuantity = oldInventoryQuantity
+        self.requiresShipping = nil
+        self.adminGraphqlApiId = nil
+    }
 }

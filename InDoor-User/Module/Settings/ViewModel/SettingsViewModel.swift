@@ -22,6 +22,7 @@ class SettingsViewModel{
                 self.bindViewControllerToAddress()
         }
     }
+  
     
     var deleteAddress: Address?{
         didSet{
@@ -76,4 +77,5 @@ class SettingsViewModel{
             self?.updateAddress = response?.customer_address
         }
     }
+   
 }

@@ -68,14 +68,14 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
         
         if product.variants?.count ?? 0 > 0{
             
-            self.price.text = String(format: "%.2f", Double(product.variants![0].price)! *  UserDefault().getCurrencyRate())
+            self.price.text = String(format: "%.2f", Double(product.variants![0].price ?? "")! *  UserDefault().getCurrencyRate())
         }
     }
 
     @IBAction func checkFavouriteProduct(_ sender: Any) {
         
         if favouriteButton.currentImage == UIImage(systemName: Constants.heart) {
-            let localProduct = LocalProduct(id: product.id, customer_id: defaults.integer(forKey: Constants.customerId), title: product.title ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
+            let localProduct = LocalProduct(id: product.id ?? 0, customer_id: defaults.integer(forKey: Constants.customerId), title: product.title ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
             if self.view == Constants.brand {
                 ( viewController as! BrandViewController).favoritesViewModel.addProduct(product: localProduct)
             }else {
@@ -85,7 +85,7 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
             
         } else {
             if self.view == Constants.brand {
-                let retrievedProduct = ( self.viewController as! BrandViewController).favoritesViewModel.getProduct(productId: self.product.id )
+                let retrievedProduct = ( self.viewController as! BrandViewController).favoritesViewModel.getProduct(productId: self.product.id ?? 0 )
                 
                 let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) { [weak self] action in
                     ( self?.viewController as! BrandViewController).favoritesViewModel.removeProduct(product: retrievedProduct)
@@ -93,7 +93,7 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
                 }
                 viewController?.present(alert, animated: true, completion: nil)
             }else {
-                let retrievedProduct = ( self.viewController as! CategoryViewController).favoritesViewModel.getProduct(productId: self.product.id )
+                let retrievedProduct = ( self.viewController as! CategoryViewController).favoritesViewModel.getProduct(productId: self.product.id ?? 0 )
                 
                 let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) { [weak self] action in
                     ( self?.viewController as! CategoryViewController).favoritesViewModel.removeProduct(product: retrievedProduct)

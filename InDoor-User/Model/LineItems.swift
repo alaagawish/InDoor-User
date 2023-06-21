@@ -58,13 +58,13 @@ struct LineItems: Codable {
         self.vendor = nil
         self.properties = nil
     }
-    init(productId: Int?,price: String?, quantity: Int?,title: String?, properties: [Properties]?) {
+    init(productId: Int?,price: String?, quantity: Int?,title: String?, properties: [Properties]?, vendor: String?,grams: Int?) {
         self.id = nil
         self.adminGraphqlApiId = nil
         self.fulfillableQuantity = nil
         self.fulfillmentService = nil
         self.giftCard = nil
-        self.grams = nil
+        self.grams = grams
         self.name = nil
         self.priceSet = nil
         self.productExists = nil
@@ -80,7 +80,7 @@ struct LineItems: Codable {
         self.totalDiscountSet = nil
         self.variantInventoryManagement = nil
         self.variantTitle = nil
-        self.vendor = nil
+        self.vendor = vendor
         self.properties = properties
     }
     init(price: String?, quantity: Int?, title: String?, properties: [Properties]) {

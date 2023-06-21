@@ -49,7 +49,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     var selectedSize: String!{
         didSet{
             var tempColorArr:[String] = []
-            for variant in product.variants! {
+            for variant in product.variants ?? [] {
                 if variant.option1 == selectedSize{
                     tempColorArr.append(variant.option2!)
                 }
@@ -79,7 +79,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        productDetailsViewModel = ProductDetailsViewModel(service: DatabaseManager.instance)
+        productDetailsViewModel = ProductDetailsViewModel(service: DatabaseManager.instance, netWorkingDataSource: Network())
         defaults = UserDefaults.standard
         reviewTableView.register(UINib(nibName:Constants.reviewNibFileName , bundle: nil), forCellReuseIdentifier: Constants.reviewCellIdentifier)
         prepareProductImagesArr()
@@ -87,6 +87,12 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         orderedProduct = product
         orderedProduct.variants = []
         checkCart()
+        
+        productDetailsViewModel.bindPutCartDraftOrderToController = {[weak self] in
+            print("item added to card")
+            print(self?.productDetailsViewModel.cartDraftOrder)
+        }
+        
     }
     
     func prepareProductImagesArr(){
@@ -122,7 +128,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         descriptionLabel.text = product.bodyHtml
         rating.settings.updateOnTouch = false
         rating.rating = Double(product.templateSuffix ?? "0.0") ?? 0.0
-        let isFav = productDetailsViewModel.checkIfProductIsFavorite(productId: product.id, customerId: defaults.integer(forKey: Constants.customerId))
+        let isFav = productDetailsViewModel.checkIfProductIsFavorite(productId: product.id ?? 0, customerId: defaults.integer(forKey: Constants.customerId))
         if isFav {
             self.favouriteButtonOutlet.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
         } else {
@@ -178,7 +184,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
             for variant in product.variants!{
                 let variantName = "\(selectedSize!) / \(selectedColor!)"
                 if variant.title! == variantName{
-                    price.text = String(format: "%.2f", (Double(variant.price) ?? 0 ) *  UserDefault().getCurrencyRate()) + " \(UserDefault().getCurrencySymbol())"
+                    price.text = String(format: "%.2f", (Double(variant.price ?? "") ?? 0 ) *  UserDefault().getCurrencyRate()) + " \(UserDefault().getCurrencySymbol())"
                     if variant.inventoryQuantity == nil || variant.inventoryQuantity == 0 {
                         stockCount.text = "Not Available"
                     }else{
@@ -213,12 +219,12 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     }
     @IBAction func addOrRemoveFromFavorites(_ sender: UIButton) {
         if favouriteButtonOutlet.currentImage == UIImage(systemName: Constants.heart) {
-            let localProduct = LocalProduct(id: product.id, customer_id: defaults.integer(forKey: Constants.customerId), title: product.title ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
+            let localProduct = LocalProduct(id: product.id ?? 0, customer_id: defaults.integer(forKey: Constants.customerId), title: product.title ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
             productDetailsViewModel.addProduct(product: localProduct)
             favouriteButtonOutlet.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
             
         } else {
-                let retrievedProduct = productDetailsViewModel.getProduct(productId: self.product.id )
+            let retrievedProduct = productDetailsViewModel.getProduct(productId: self.product.id ?? 0 )
                 
                 let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) { [weak self] action in
                     self?.productDetailsViewModel.removeProduct(product: retrievedProduct)
@@ -259,6 +265,22 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         }else{
             ShoppingCartViewController.products.append(orderedProduct)
         }
+        
+        var lineItems: [LineItems] = []
+        for product in ShoppingCartViewController.products {
+            for varient in 0 ..< (product.variants?.count ?? 0){
+                lineItems.append(LineItems(productId: product.variants?[varient].id , price: product.variants?[varient].price, quantity: product.variants?[varient].inventoryQuantity , title: product.variants?[varient].title, properties: [Properties(name: "image_url", value: product.image?.src )],vendor: product.vendor ?? "", grams: product.variants?[varient].oldInventoryQuantity))
+            }
+        }
+        let draftOrder = DraftOrder(id: nil, note: nil, lineItems: lineItems, user: nil)
+        
+        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draftOrder, orders: nil,order: nil)
+        
+        let params = JSONCoding().encodeToJson(objectClass: response)!
+       
+        print("params: \(params)")
+        productDetailsViewModel.putShippingCartDraftOrder(parameters: params)
+        
     }
     
     func checkVariantIsInCart(variantName: String) -> Bool{
@@ -289,7 +311,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         for variant in product.variants! {
             if variant.title == variantName {
                 if variant.inventoryQuantity! > 3 && orderCount < variant.inventoryQuantity!/3 || variant.inventoryQuantity! <= 3 && orderCount <= variant.inventoryQuantity! {
-                    let orderedVariant = Variants(id: variant.id, productId:product.id ,title: variant.title, price: variant.price, option1: variant.option1, option2: variant.option2, inventoryQuantity: orderCount, oldInventoryQuantity: variant.inventoryQuantity)
+                    let orderedVariant = Variants(id: variant.id, productId:product.id ,title: variant.title, price: variant.price ?? "", option1: variant.option1, option2: variant.option2, inventoryQuantity: orderCount, oldInventoryQuantity: variant.inventoryQuantity)
                     orderedProduct.variants?.append(orderedVariant)
                     orderCount = 1
                     resetVariantsUI()
