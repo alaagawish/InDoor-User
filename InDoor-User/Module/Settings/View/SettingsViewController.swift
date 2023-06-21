@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
         favoritesViewModel.bindallProductsListToController = {[weak self] in
             guard let list = self?.favoritesViewModel.allProductsList else {return}
             for product in list {
-                lineItems.append(LineItems(productId: product.id , price: product.price, quantity: 1 , title: product.title, properties: [Properties(name: "image_url", value: product.image )]))
+                lineItems.append(LineItems( price: product.price, productId: product.id, quantity: 1 , title: product.title, properties: [Properties(name: "image_url", value: product.image )]))
             }
             let draftOrder = DraftOrder(id: nil, note: nil, lineItems: lineItems, user: nil)
             

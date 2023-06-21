@@ -36,12 +36,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     var productImagesArr: [InputSource] = []
     var product:Product!
     var orderedProduct: Product!
-    var orderCount = 1{
-        didSet{
-            //label = orderCount
-            //check minus button -> count < 1
-        }
-    }
+    var orderCount = 1
     var productInCart = false
     var sizeCollectionHandler = ProductSizeCollectionDelegatesHandling()
     var colorCollectionHandler = ProductColorCollectionDelegatesHandling()
@@ -230,7 +225,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     }
     
     @IBAction func addToCart(_ sender: UIButton) {
-        
+        orderCount = Int(counterTextField.text!)!
         let variantName = "\(selectedSize!) / \(selectedColor!)"
         
         if !checkVariantIsInCart(variantName: variantName){
@@ -288,7 +283,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     func addVariantToOrders(variantName: String){
         for variant in product.variants! {
             if variant.title == variantName {
-                if variant.inventoryQuantity! > 3 && orderCount < variant.inventoryQuantity!/3 || variant.inventoryQuantity! <= 3 && orderCount <= variant.inventoryQuantity! {
+                if variant.inventoryQuantity! > 3 && orderCount <= variant.inventoryQuantity!/3 || variant.inventoryQuantity! <= 3 && orderCount <= variant.inventoryQuantity! {
                     let orderedVariant = Variants(id: variant.id, productId:product.id ,title: variant.title, price: variant.price, option1: variant.option1, option2: variant.option2, inventoryQuantity: orderCount, oldInventoryQuantity: variant.inventoryQuantity)
                     orderedProduct.variants?.append(orderedVariant)
                     orderCount = 1
@@ -315,19 +310,14 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     @IBAction func increaseCounter(_ sender: UIButton) {
         let count = Int(counterTextField.text ?? "1")
         counterTextField.text = String((count ?? 1) + 1)
-        if Int(counterTextField.text ?? "1") != 1 {
-            minusButton.isEnabled = true
-        }
+        minusButton.isEnabled = true
     }
     
     @IBAction func decreaseCounter(_ sender: Any) {
-        let count = Int(counterTextField.text ?? "1")
+        let count = Int(counterTextField.text ?? "1")! - 1
+        counterTextField.text = String(count)
         if count != 1 {
-            counterTextField.text = String((count ?? 0) - 1)
             minusButton.isEnabled = true
-        }
-        if Int(counterTextField.text ?? "1") == 1{
-            minusButton.isEnabled = false
         }
     }
 }

@@ -561,6 +561,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		049837D32A42C606001A2F15 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		04A8AB792A351A3F00E80636 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -983,6 +990,7 @@
 		61E516022A2922EA004DAA1D /* InDoor-User */ = {
 			isa = PBXGroup;
 			children = (
+				049837D32A42C606001A2F15 /* New Group */,
 				040A0D3F2A40924A005B5374 /* InDoor-User.entitlements */,
 				61A19C992A327D4F0067D2F2 /* Utils */,
 				61E5163E2A292404004DAA1D /* Service */,
