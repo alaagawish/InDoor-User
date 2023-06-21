@@ -32,6 +32,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     @IBOutlet weak var bottomSpace: NSLayoutConstraint!
     
     var productDetailsViewModel: ProductDetailsViewModel!
+    var generalViewModel: GeneralViewModel!
     var defaults: UserDefaults!
     var productImagesArr: [InputSource] = []
     var product:Product!
@@ -78,11 +79,13 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         productDetailsViewModel = ProductDetailsViewModel(service: DatabaseManager.instance)
         defaults = UserDefaults.standard
         reviewTableView.register(UINib(nibName:Constants.reviewNibFileName , bundle: nil), forCellReuseIdentifier: Constants.reviewCellIdentifier)
+        generalViewModel = GeneralViewModel(network: Network())
         prepareProductImagesArr()
         initializeUI()
         orderedProduct = product
         orderedProduct.variants = []
         checkCart()
+      
     }
     
     func prepareProductImagesArr(){
@@ -237,6 +240,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
             let alert = Alert().showAlertWithPositiveButtons(title: Constants.alert, msg: "You must login first", positiveButtonTitle: Constants.ok)
             self.present(alert, animated: true)
         }
+        
     }
     
     func checkCart(){
@@ -260,6 +264,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         }else{
             ShoppingCartViewController.products.append(orderedProduct)
         }
+        generalViewModel.putShippingCartDraftOrder()
     }
     
     func checkVariantIsInCart(variantName: String) -> Bool{
@@ -300,6 +305,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
                 }
             }
         }
+      
     }
     
     func resetVariantsUI(){

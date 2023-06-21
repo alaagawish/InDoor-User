@@ -15,6 +15,7 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var proceedToCheckoutButton: UIButton!
     @IBOutlet weak var shoppingCartBottomView: UIView!
     @IBOutlet weak var totalPriceLabel: UILabel!
+    var generalViewModel: GeneralViewModel = GeneralViewModel(network: Network())
     var viewModel = ShoppingCartViewModel(netWorkingDataSource: Network())
     var cartPrice  = 0.0{
         didSet{

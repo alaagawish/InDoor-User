@@ -20,6 +20,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var couponsSlider: ImageSlideshow!
     var homeViewModel: HomeViewModel!
     var favoritesViewModel: FavoritesViewModel!
+    var generalViewModel = GeneralViewModel(network: Network())
     var internetConnectivity: Connectivity?
     var promoCodes: [InputSource] = [ImageSource(image: UIImage(named: "discount5")!),
                                      ImageSource(image: UIImage(named: "discount2")!),
@@ -52,9 +53,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         callingData()
         favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
         var lineItems:[LineItems] = []
-        //        favoritesViewModel.bindPutfavoriteDraftOrderToController = {[weak self] in
-        //
-        //        }
+        generalViewModel.getShippingCartDraftOrder()
+//        favoritesViewModel.bindPutfavoriteDraftOrderToController = {[weak self] in
+//            
+//        }
         favoritesViewModel.bindallProductsListToController = {[weak self] in
             print("----h-customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
             print("----h-favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
