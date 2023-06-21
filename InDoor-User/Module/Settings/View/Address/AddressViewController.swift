@@ -85,6 +85,7 @@ class AddressViewController: UIViewController {
         let pay = storyboard.instantiateViewController(withIdentifier: "payment") as! PaymentViewController
         pay.modalPresentationStyle = .fullScreen
         pay.order = order
+        pay.orderTotalPrice = Double(order?.totalPrice ?? "") ?? 0
         if Double(order?.totalPrice ?? "") ?? 0 > 1000 {
             pay.canPayWithCash = false
         }else {

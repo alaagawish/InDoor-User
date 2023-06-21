@@ -11,7 +11,7 @@ import Kingfisher
 class FavoritesCell: UITableViewCell {
     
     @IBOutlet weak var productPriceLabel: UILabel!
-    @IBOutlet weak var productStatusLabel: UILabel!
+    
     @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var productImageView: UIImageView!
     var localProduct: LocalProduct!
@@ -60,7 +60,7 @@ class FavoritesCell: UITableViewCell {
         self.product = product
         productImageView.kf.setImage(with: URL(string: product.image?.src ?? ""))
         productTitleLabel.text = Splitter().splitName(text: product.title ?? "", delimiter: "| ")
-        productStatusLabel.text = product.status
+       
         productPriceLabel.text = product.variants?[0].price
     }
     

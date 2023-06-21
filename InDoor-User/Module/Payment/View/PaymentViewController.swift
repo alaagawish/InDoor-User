@@ -20,8 +20,10 @@ class PaymentViewController: UIViewController {
     var paymentViewModel: PaymentViewModel!
     var canPayWithCash = true
     var order: Orders!
-    var orderTotalPrice = 500.0
+    var orderTotalPrice = 0.0
     var payRequest: PKPaymentRequest!
+    var creditTappedFlag = false
+    
     
     func getPaymentRequest() -> PKPaymentRequest{
         let request = PKPaymentRequest()
@@ -32,7 +34,7 @@ class PaymentViewController: UIViewController {
         request.merchantCapabilities = .capability3DS
         request.countryCode = "US"
         request.currencyCode = "\(UserDefault().getCurrencySymbol())"
-        
+
         request.paymentSummaryItems = [PKPaymentSummaryItem(label: "Your order", amount: NSDecimalNumber(value: orderTotalPrice))]
         
         return request
@@ -44,11 +46,12 @@ class PaymentViewController: UIViewController {
         paymentViewModel = PaymentViewModel(netWorkingDataSource: Network())
         setupUI()
         setupTapGesture()
-        orderTotalPrice = Double(order.totalPrice ?? "") ?? 0
+        orderTotalPrice = Double(order.totalPrice ?? "") ?? 0 
         cantPayWithCashView.translatesAutoresizingMaskIntoConstraints = false
         checkCashPayment()
         self.purchaseButton.addTarget(self, action: #selector(tapToPay), for: .touchUpInside)
-        totalPriceLabel.text = order.totalPrice
+        
+        totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", orderTotalPrice * UserDefault().getCurrencyRate())
         paymentViewModel.bindOrderToViewController = {
             [weak self] in
             if self?.paymentViewModel.order?.id ?? 0 != 0 {
@@ -121,17 +124,18 @@ class PaymentViewController: UIViewController {
         creditCheckMarkImage.isHidden = false
         cashCheckMarkImage.isHidden = true
         purchaseButton.isEnabled = true
+        creditTappedFlag = true
     }
     
     @objc func cashTap(_ sender: UITapGestureRecognizer? = nil) {
         if canPayWithCash{
-            cashCheckMarkImage.isHidden = true
-        }else{
             cashCheckMarkImage.isHidden = false
-            
+        }else{
+            cashCheckMarkImage.isHidden = true
         }
         creditCheckMarkImage.isHidden = true
         purchaseButton.isEnabled = true
+        creditTappedFlag = false
     }
     
     @IBAction func backButton(_ sender: Any) {
@@ -139,17 +143,35 @@ class PaymentViewController: UIViewController {
         
     }
     
-    
     @IBAction func doneOrder(_ sender: Any) {
         paymentViewModel.postOrder(order: order)
-        
-        
+        orderTotalPrice = 0.0
+        ShoppingCartViewController.products = []
+        if creditTappedFlag{
+            tapToPay()
+        }
+        navigateToHomeAfterPay()
+    }
+    
+    func navigateToHomeAfterPay(){
+        let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "Successful payment done", positiveButtonTitle: Constants.ok) { action in
+            let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
+            let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
+            home.modalPresentationStyle = .fullScreen
+            self.present(home, animated: true)
+        }
+        self.present(alert, animated: true)
     }
 }
 
 extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate{
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
-        controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true) {
+            self.orderTotalPrice = 0.0
+            self.totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) \(0.0)"
+            ShoppingCartViewController.products = []
+            self.navigateToHomeAfterPay()
+        }
     }
     
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
