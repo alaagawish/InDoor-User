@@ -19,6 +19,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var homeViewModel: HomeViewModel!
     var favoritesViewModel: FavoritesViewModel!
     var generalViewModel = GeneralViewModel(network: Network())
+    var couponAmount = ""
+    var couponSubTotal = ""
     var promoCodes: [InputSource] = [ImageSource(image: UIImage(named: "discount5")!),
                                      ImageSource(image: UIImage(named: "discount2")!),
                                      ImageSource(image: UIImage(named: "discount3")!)]{
@@ -102,6 +104,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 if discount.usageCount! < (self?.homeViewModel.priceRules![self!.selectedImageIndex].usageLimit)!{
                     UserDefault().setCoupon(couponCode: (discount.code!, (self?.homeViewModel.priceRules![self!.selectedImageIndex].valueType)!))
                     UserDefault().setCouponAmountAndSubtotal(amountAndSubTotal:( ((self?.homeViewModel.priceRules![self!.selectedImageIndex].value)!), (self?.homeViewModel.priceRules![self!.selectedImageIndex].prerequisiteSubtotalRange?.greaterThanOrEqualTo)!))
+                    
+                    self?.couponAmount = String((Double((self?.homeViewModel.priceRules![self!.selectedImageIndex].value)!) ?? 0.0) * UserDefault().getCurrencyRate())
+                    self?.couponSubTotal = String((Double((self?.homeViewModel.priceRules![self!.selectedImageIndex].prerequisiteSubtotalRange?.greaterThanOrEqualTo)!) ?? 0.0) * UserDefault().getCurrencyRate())
+                    
+                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: "Enjoy your discount \((self?.couponAmount)!) \(UserDefault().getCurrencySymbol()) after \((self?.couponSubTotal)!) \(UserDefault().getCurrencySymbol())", positiveButtonTitle: Constants.ok)
+                    self?.present(alert, animated: true)
                 }
             }
         }
@@ -141,8 +149,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         selectedImageIndex = couponsSlider.currentPage
         
         homeViewModel.getAllDiscountCoupons(priceRule: homeViewModel.priceRules![selectedImageIndex])
-        let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: "Enjoy your discount", positiveButtonTitle: Constants.ok)
-        self.present(alert, animated: true)
     }
     
     func imageSlideshow(_ imageSlideshow: ImageSlideshow, didTapAt index: Int) {

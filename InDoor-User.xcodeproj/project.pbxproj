@@ -53,6 +53,7 @@
 		04935FB32A2D25C90093A73E /* AboutInDoorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04935FB22A2D25C90093A73E /* AboutInDoorViewController.swift */; };
 		04960DEB2A42449F005E39C9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 04960DEA2A42449F005E39C9 /* Alamofire */; };
 		049837D62A42ED21001A2F15 /* GeneralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049837D52A42ED21001A2F15 /* GeneralViewModel.swift */; };
+		049837D82A432C81001A2F15 /* animation_lj3s8db4.json in Resources */ = {isa = PBXBuildFile; fileRef = 049837D72A432C81001A2F15 /* animation_lj3s8db4.json */; };
 		049953642A363C39000C6146 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953632A363C39000C6146 /* User.swift */; };
 		049953662A363C4B000C6146 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953652A363C4B000C6146 /* Address.swift */; };
 		0499536A2A367E98000C6146 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049953692A367E98000C6146 /* LoginViewModel.swift */; };
@@ -220,6 +221,7 @@
 		048C565A2A3241CA0016AE06 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		04935FB22A2D25C90093A73E /* AboutInDoorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutInDoorViewController.swift; sourceTree = "<group>"; };
 		049837D52A42ED21001A2F15 /* GeneralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewModel.swift; sourceTree = "<group>"; };
+		049837D72A432C81001A2F15 /* animation_lj3s8db4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = animation_lj3s8db4.json; sourceTree = "<group>"; };
 		049953632A363C39000C6146 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		049953652A363C4B000C6146 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		049953692A367E98000C6146 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 		04B154CB2A3A05E300B808E3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				049837D72A432C81001A2F15 /* animation_lj3s8db4.json */,
 				04B154D72A3A0F3900B808E3 /* animation_livuicgk.json */,
 				04B154CC2A3A060700B808E3 /* launchScreenViewController.swift */,
 			);
@@ -1285,6 +1288,7 @@
 				048C2F2A2A37C40B00D44A7A /* ProductDetailsStoryBoard.storyboard in Resources */,
 				048827972A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard in Resources */,
 				61E516102A2922EB004DAA1D /* Assets.xcassets in Resources */,
+				049837D82A432C81001A2F15 /* animation_lj3s8db4.json in Resources */,
 				616BCF2B2A354F830021BDD9 /* BrandsCollectionViewCell.xib in Resources */,
 				043477BA2A3CDF7300FC72B6 /* ProductSearchStoryboard.storyboard in Resources */,
 				04B154D82A3A0F3900B808E3 /* animation_livuicgk.json in Resources */,

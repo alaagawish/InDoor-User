@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="animation_livuicgk"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="animation_lj3s8db4"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -440,7 +440,7 @@
         <image name="google.png" width="18" height="18"/>
         <image name="logo-no-background" width="2000" height="2250"/>
         <namedColor name="pink">
-            <color red="0.77254901960784317" green="0.21176470588235294" blue="0.51372549019607838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77300000190734863" green="0.21199999749660492" blue="0.51399999856948853" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
