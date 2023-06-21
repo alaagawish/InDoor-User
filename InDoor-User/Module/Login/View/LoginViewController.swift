@@ -61,8 +61,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                             self?.customerId = user.id
                             self?.defaults.setValue(self?.customerId, forKey: Constants.customerId)
                             let splitNote = user.note?.components(separatedBy: ",")
-                            self?.defaults.set(splitNote?[1], forKey: Constants.cartId)
-                            self?.defaults.set(splitNote?[0], forKey: Constants.favoritesId)
+                            self?.defaults.set(Int((splitNote?[1])!), forKey: Constants.cartId)
+                            self?.defaults.set(Int((splitNote?[0])!), forKey: Constants.favoritesId)
                             self?.getFavoritesDraftOrderFromRemoteToLocal()
                             break
                         }

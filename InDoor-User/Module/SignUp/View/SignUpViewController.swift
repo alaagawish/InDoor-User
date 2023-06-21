@@ -30,8 +30,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: Constants.registeredSuccessfully, positiveButtonTitle: Constants.ok){_ in
                     let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
                     let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
-                    self?.defaults.setValue(self?.signUpViewModel.user?.id, forKey: Constants.customerId)
                     self?.defaults.setValue(false, forKey: Constants.isGoogle)
+                    print("----customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
+                    print("----favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
+                    print("----cartId: \(self?.defaults.integer(forKey: Constants.cartId) ?? 000)")
+                    print("----isgoogle: \(self?.defaults.integer(forKey: Constants.isGoogle) ?? 000)")
                     home.modalPresentationStyle = .fullScreen
                     self?.present(home, animated: true)
                 }
@@ -46,8 +49,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 self?.defaults.set(favoritesId, forKey: Constants.favoritesId)
                 var user = User()
                 user.note = "\(favoritesId),\(cartId)"
-              
-                var response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil, order: nil)
+                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil, order: nil)
                 print("response: \(response)")
                 let params = JSONCoding().encodeToJson(objectClass: response)
              
@@ -55,18 +57,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             }
         }
         signUpViewModel.bindUserToSignUpController = { [weak self] in
-           
-            
-            if( self?.signUpViewModel.user?.id ?? 0 != 0){
+            if( self?.signUpViewModel.user?.id != nil){
                 self?.defaults.setValue(self?.signUpViewModel.user?.id, forKey: Constants.customerId)
                 self?.createFavoriteDraftOrder()
                 self?.createCartDraftOrder()
             } else if self?.signUpViewModel.code ?? 0 == 422 {
                 let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.phoneUsedbefore, positiveButtonTitle: Constants.ok, positiveHandler: nil)
                 self?.present(alert, animated: true)
-            }
-            else{
-               
             }
         }
         
@@ -91,6 +88,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 
             } else if self?.registered == false {
                 let addresses = [Address(id: nil, customer_id: nil, name: "\(self?.firstNameTextField.text ?? "") \(self?.lastNameTextField.text ?? "")", first_name: self?.firstNameTextField.text ?? "", last_name: self?.lastNameTextField.text ?? "",phone: self?.phoneTextField.text ?? "",address1: nil,city: nil, country: nil, default: true)]
+                
                 let user = User(id: nil, firstName: self?.firstNameTextField.text ?? "", lastName: self?.lastNameTextField.text ?? "", email: self?.emailTextField.text ?? "", phone: self?.phoneTextField.text ?? "", addresses: addresses, tags: self?.passwordTextField.text ?? "")
                 
                 let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil, order: nil)

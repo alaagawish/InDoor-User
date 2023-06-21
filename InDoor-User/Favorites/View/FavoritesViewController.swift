@@ -18,6 +18,11 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         favoritesProducts = []
         defaults = UserDefaults.standard
+        print("----f-customerId: \(self.defaults.integer(forKey: Constants.customerId) )")
+        print("----f-favId: \(self.defaults.integer(forKey: Constants.favoritesId))")
+        print("----f-cartId: \(self.defaults.integer(forKey: Constants.cartId) )")
+        print("----f-isgoogle: \(self.defaults.integer(forKey: Constants.isGoogle))")
+        
         self.favoritesTable.register(UINib(nibName: Constants.favoritesNibName, bundle: nil), forCellReuseIdentifier: Constants.favoritesCellIdentifier)
         favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
         favoritesViewModel.bindResultToViewController = {[weak self] in

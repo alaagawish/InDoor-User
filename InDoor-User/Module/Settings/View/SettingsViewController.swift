@@ -15,16 +15,17 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var currencyView: UIView!
     @IBOutlet weak var connectToUsView: UIView!
     @IBOutlet weak var aboutInDoorView: UIView!
-    
+    var defaults :UserDefaults!
     var favoritesViewModel: FavoritesViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        defaults = UserDefaults.standard
         favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
         var lineItems:[LineItems] = []
         favoritesViewModel.bindPutfavoriteDraftOrderToController = {[weak self] in
             let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.warning, msg: Constants.logoutMessage, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok) {[weak self] _ in
                 UserDefault().logout()
-                if(UserDefaults.standard.bool(forKey: Constants.isGoogle) == true){
+                if(self?.defaults.bool(forKey: Constants.isGoogle) == true){
                     let firebaseAuth = Auth.auth()
                     do {
                         try firebaseAuth.signOut()
@@ -40,10 +41,19 @@ class SettingsViewController: UIViewController {
             self?.present(alert, animated: true)
         }
         favoritesViewModel.bindallProductsListToController = {[weak self] in
+            print("----s-customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
+            print("----s-favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
+            print("----s-cartId: \(self?.defaults.integer(forKey: Constants.cartId) ?? 000)")
+            print("----s-isgoogle: \(self?.defaults.integer(forKey: Constants.isGoogle) ?? 000)")
             guard let list = self?.favoritesViewModel.allProductsList else {return}
             for product in list {
-                lineItems.append(LineItems(productId: product.id , price: product.price, quantity: 1 , title: product.title, properties: [Properties(name: "image_url", value: product.image )]))
+                if(self?.defaults.integer(forKey: Constants.customerId) == product.customer_id){
+                    lineItems.append(LineItems(productId: product.id , price: product.price, quantity: 1 , title: product.title, properties: [Properties(name: "image_url", value: product.image )]))
+                }
             }
+            var user = User()
+            user.id = self?.defaults.integer(forKey: Constants.customerId)
+            
             let draftOrder = DraftOrder(id: nil, note: nil, lineItems: lineItems, user: nil)
             
             let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draftOrder, orders: nil,order: nil)
