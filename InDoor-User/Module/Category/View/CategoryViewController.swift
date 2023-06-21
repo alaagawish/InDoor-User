@@ -9,6 +9,9 @@ import UIKit
 
 class CategoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var noDataImage: UIImageView!
+    @IBOutlet weak var refreshOutlet: UIBarButtonItem!
+    @IBOutlet weak var noInternetImage: UIImageView!
     @IBOutlet weak var favouriteOutlet: UIBarButtonItem!
     @IBOutlet weak var cartOutlet: UIBarButtonItem!
     @IBOutlet weak var saleBarItem: UIBarButtonItem!
@@ -22,7 +25,9 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBOutlet weak var subCategoriesToolbar: UIToolbar!
     @IBOutlet weak var womenBarItem: UIBarButtonItem!
     @IBOutlet weak var categoriesToolbar: UIToolbar!
+    @IBOutlet weak var refreshOutLet: UIBarButtonItem!
     var products: [Product] = []
+    var internetConnectivity: Connectivity?
     var allProducts: [Product] = [] {
         didSet{
             if Array(Set(allProducts)).count == products.count  && allProducts.count != 0 {
@@ -65,16 +70,19 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        internetConnectivity = Connectivity.sharedInstance
+        if internetConnectivity?.isConnectedToInternet() == true {
+            noInternetImage.isHidden = true
+            refreshOutLet.isHidden = true
+        }else {
+            noInternetImage.isHidden = false
+            refreshOutLet.isHidden = false
+        }
         womenProducts(womenBarItem!)
+        noDataImage.isHidden = true
         allProducts(allproducts!)
         disableToolbarItems(status: true)
-        if UserDefault().getCustomerId() == -1 {
-            favouriteOutlet.isHidden = true
-            cartOutlet.isHidden = true
-        }else {
-            favouriteOutlet.isHidden = false
-            cartOutlet.isHidden = false
-        }
+        
     }
     
     func tintCurrentItem(_ sender: Any,_ id: Int) {
@@ -88,6 +96,7 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
             }
         }
     }
+    
     
     @IBAction func womenProducts(_ sender: Any) {
         tintCurrentItem(sender,0)
@@ -162,16 +171,28 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     
     @IBAction func moveToFavourites(_ sender: Any) {
-        let storyboard = UIStoryboard(name: Constants.favoritesStoryboardName, bundle: nil)
-        let favoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.favoritesStoryboardName) as! FavoritesViewController
-        favoritesStoryBoard.modalPresentationStyle = .fullScreen
-        present(favoritesStoryBoard, animated: true)
+        if UserDefault().getCustomerId() != -1{
+            let storyboard = UIStoryboard(name: Constants.favoritesStoryboardName, bundle: nil)
+            let favoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.favoritesStoryboardName) as! FavoritesViewController
+            favoritesStoryBoard.modalPresentationStyle = .fullScreen
+            present(favoritesStoryBoard, animated: true)
+        }else {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.alert, msg: "You must login first", positiveButtonTitle: Constants.ok)
+            self.present(alert, animated: true)
+        }
     }
     @IBAction func moveToShoppingCart(_ sender: Any) {
-        let storyboard = UIStoryboard(name: Constants.cartStoryboard, bundle: nil)
-        let cartStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.cartIdentifier) as! ShoppingCartViewController
-        cartStoryboard.modalPresentationStyle = .fullScreen
-        present(cartStoryboard, animated: true)
+        if UserDefault().getCustomerId() != -1{
+            let storyboard = UIStoryboard(name: Constants.cartStoryboard, bundle: nil)
+            let cartStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.cartIdentifier) as! ShoppingCartViewController
+            cartStoryboard.modalPresentationStyle = .fullScreen
+            present(cartStoryboard, animated: true)
+        }else{
+            
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.alert, msg: "You must login first", positiveButtonTitle: Constants.ok)
+            self.present(alert, animated: true)
+            
+        }
         
     }
     func disableToolbarItems(status: Bool) {
@@ -209,11 +230,32 @@ class CategoryViewController: UIViewController, UICollectionViewDelegate, UIColl
         productSearch.products = Array(Set(allProducts))
         present(productSearch, animated: true)
     }
+    
+    @IBAction func refresh(_ sender: Any) {
+        if internetConnectivity?.isConnectedToInternet() == true {
+            noInternetImage.isHidden = true
+            refreshOutLet.isHidden = true
+            favouriteOutlet.isEnabled = true
+            cartOutlet.isEnabled = true
+            
+        }else {
+            noInternetImage.isHidden = false
+            refreshOutLet.isHidden = false
+            favouriteOutlet.isEnabled = false
+            cartOutlet.isEnabled = false
+        }
+    }
 }
 extension CategoryViewController{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         products = Array(Set(products))
+        if Array(Set(products)).count == 0{
+            noDataImage.isHidden = false
+            
+        }else{
+            noDataImage.isHidden = true
+        }
         return Array(Set(products)).count
     }
     

@@ -32,9 +32,9 @@ class PaymentViewController: UIViewController {
         request.supportedNetworks = [.visa, .masterCard, .vPay, .quicPay]
         request.supportedCountries = ["US", "EG"]
         request.merchantCapabilities = .capability3DS
-        request.countryCode = "US"
-        request.currencyCode = "USD"
-
+        request.countryCode = String(UserDefault().getCurrencySymbol().dropLast(1))
+        request.currencyCode = UserDefault().getCurrencySymbol()
+        orderTotalPrice = Double(String(format: "%.1f", orderTotalPrice * UserDefault().getCurrencyRate())) ?? 0.0
         request.paymentSummaryItems = [PKPaymentSummaryItem(label: "Your order", amount: NSDecimalNumber(value: orderTotalPrice))]
         
         return request

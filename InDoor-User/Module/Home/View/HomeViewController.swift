@@ -10,15 +10,17 @@ import ImageSlideshow
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ImageSlideshowDelegate {
     
+    @IBOutlet weak var noInternet: UIImageView!
     @IBOutlet weak var cartOutlet: UIBarButtonItem!
     
+    @IBOutlet weak var refreshOutLet: UIBarButtonItem!
     @IBOutlet weak var favouriteOutlet: UIBarButtonItem!
     
     @IBOutlet weak var brandCollectionView: UICollectionView!
     @IBOutlet weak var couponsSlider: ImageSlideshow!
     var homeViewModel: HomeViewModel!
     var favoritesViewModel: FavoritesViewModel!
-    
+    var internetConnectivity: Connectivity?
     var promoCodes: [InputSource] = [ImageSource(image: UIImage(named: "discount5")!),
                                      ImageSource(image: UIImage(named: "discount2")!),
                                      ImageSource(image: UIImage(named: "discount3")!)]{
@@ -42,6 +44,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         defaults = UserDefaults.standard
         homeViewModel = HomeViewModel(netWorkingDataSource: Network())
         brandCollectionView.register(UINib(nibName: Constants.brandsNibFile, bundle: nil), forCellWithReuseIdentifier: Constants.brandCell)
@@ -49,9 +52,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         callingData()
         favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
         var lineItems:[LineItems] = []
-//        favoritesViewModel.bindPutfavoriteDraftOrderToController = {[weak self] in
-//            
-//        }
+        //        favoritesViewModel.bindPutfavoriteDraftOrderToController = {[weak self] in
+        //
+        //        }
         favoritesViewModel.bindallProductsListToController = {[weak self] in
             print("----h-customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
             print("----h-favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
@@ -71,20 +74,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draftOrder, orders: nil,order: nil)
             
             let params = JSONCoding().encodeToJson(objectClass: response)!
-           
+            
             print("params: \(params)")
             self?.favoritesViewModel.putFavoriteDraftOrderFromAPI(parameters: params )
         }
         self.favoritesViewModel.getAllProducts()
     }
     override func viewWillAppear(_ animated: Bool) {
-        if UserDefault().getCustomerId() == -1 {
-            favouriteOutlet.isHidden = true
-            cartOutlet.isHidden = true
+        internetConnectivity = Connectivity.sharedInstance
+        if internetConnectivity?.isConnectedToInternet() == true {
+            noInternet.isHidden = true
+            refreshOutLet.isHidden = true
         }else {
-            favouriteOutlet.isHidden = false
-            cartOutlet.isHidden = false
+            noInternet.isHidden = false
+            refreshOutLet.isHidden = false
         }
+
     }
     func callingData(){
         homeViewModel.bindResultToViewController = {[weak self] in
@@ -138,10 +143,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @objc func imageTapped() {
         selectedImageIndex = couponsSlider.currentPage
-        
-        homeViewModel.getAllDiscountCoupons(priceRule: homeViewModel.priceRules![selectedImageIndex])
-        let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: "Enjoy your discount", positiveButtonTitle: Constants.ok)
-        self.present(alert, animated: true)
+        if UserDefault().getCustomerId() != -1 {
+            homeViewModel.getAllDiscountCoupons(priceRule: homeViewModel.priceRules![selectedImageIndex])
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: "Enjoy your discount", positiveButtonTitle: Constants.ok)
+            self.present(alert, animated: true)
+        }
     }
     
     func imageSlideshow(_ imageSlideshow: ImageSlideshow, didTapAt index: Int) {
@@ -193,17 +199,27 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func navigateToFavoritesScreen(_ sender: UIBarButtonItem) {
+        if UserDefault().getCustomerId() != -1 {
         let storyboard = UIStoryboard(name: Constants.favoritesStoryboardName, bundle: nil)
         let favoritesStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.favoritesStoryboardName) as! FavoritesViewController
         favoritesStoryBoard.modalPresentationStyle = .fullScreen
         present(favoritesStoryBoard, animated: true)
+        }else {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.alert, msg: "You must have an account", positiveButtonTitle: Constants.ok)
+            self.present(alert, animated: true)
+        }
     }
+    
     @IBAction func moveToShoppingCart(_ sender: Any) {
-        
-        let storyboard = UIStoryboard(name: Constants.cartStoryboard, bundle: nil)
-        let cartStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.cartIdentifier) as! ShoppingCartViewController
-        cartStoryboard.modalPresentationStyle = .fullScreen
-        present(cartStoryboard, animated: true)
+        if UserDefault().getCustomerId() != -1 {
+            let storyboard = UIStoryboard(name: Constants.cartStoryboard, bundle: nil)
+            let cartStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.cartIdentifier) as! ShoppingCartViewController
+            cartStoryboard.modalPresentationStyle = .fullScreen
+            present(cartStoryboard, animated: true)
+        }else {
+            let alert = Alert().showAlertWithPositiveButtons(title: Constants.alert, msg: "You must have an account", positiveButtonTitle: Constants.ok)
+            self.present(alert, animated: true)
+        }
     }
     
     
@@ -213,5 +229,19 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         productSearch.modalPresentationStyle = .fullScreen
         defaults.setValue(Constants.comingToSearchFromHome, forKey: Constants.comingToSearchFrom)
         present(productSearch, animated: true)
+    }
+    
+    @IBAction func refresh(_ sender: Any) {
+        if internetConnectivity?.isConnectedToInternet() == true {
+            noInternet.isHidden = true
+            refreshOutLet.isHidden = true
+            favouriteOutlet.isEnabled = true
+            cartOutlet.isEnabled = true
+        }else {
+            noInternet.isHidden = false
+            refreshOutLet.isHidden = false
+            favouriteOutlet.isEnabled = false
+            cartOutlet.isEnabled = false
+        }
     }
 }
