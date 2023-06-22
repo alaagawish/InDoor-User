@@ -18,6 +18,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak var plusButton: UIButton!
     
     var viewController: ShoppingCartViewController?
+    var generalViewModel: GeneralViewModel = GeneralViewModel(network: Network())
     var productCount = 1
     var productVariant: Variants!
     var orderedProduct: Product!
@@ -125,10 +126,10 @@ class ShoppingCartTableViewCell: UITableViewCell {
             for variantsIndex in ShoppingCartViewController.products[index].variants!.indices {
                 if  ShoppingCartViewController.products[index].variants![variantsIndex].id == productVariant.id {
                     ShoppingCartViewController.products[index].variants![variantsIndex].inventoryQuantity = productCount
+                    generalViewModel.putShippingCartDraftOrder(useConverterMethod: true, lineItems: [])
                     viewController?.allVariants = []
                     viewController?.totalPrice = 0.0
                     viewController?.prepareTableCount()
-                    
                 }
             }
         }

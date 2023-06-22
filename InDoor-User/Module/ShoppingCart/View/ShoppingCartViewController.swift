@@ -122,14 +122,25 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
             
             let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.warning, msg: Constants.removeCartItem, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok, positiveHandler: { [weak self] action in
                 
+                self?.allVariants = []
+                self?.prepareTableCount()
+                
                 for productIndex in ShoppingCartViewController.products.indices{
                     for variantIndex in ShoppingCartViewController.products[productIndex].variants!.indices{
+                        print("+++++++++\(variantIndex)")
+                        print("++++++++++\(ShoppingCartViewController.products[productIndex].variants![variantIndex].title)")
                         if ShoppingCartViewController.products[productIndex].variants![variantIndex].id == self?.allVariants[indexPath.row].id{
                             self?.cartPrice -= Double((self?.allVariants[variantIndex].inventoryQuantity!)!) * Double((self?.allVariants[variantIndex].price)!)!
                             ShoppingCartViewController.products[productIndex].variants?.remove(at: variantIndex)
+                            var fakeLineItemArr: [LineItems] = []
                             if ShoppingCartViewController.products[productIndex].variants?.count == 0 {
                                 ShoppingCartViewController.products.remove(at: productIndex)
+                                if ShoppingCartViewController.products.count == 0{
+                                    let lineItem = LineItems(price: "20.0", quantity: 1 ,title: "dummy",properties: [Properties(name: "", value: "")])
+                                    fakeLineItemArr.append(lineItem)
+                                }
                             }
+                            self?.generalViewModel.putShippingCartDraftOrder(useConverterMethod: false, lineItems: fakeLineItemArr)
                             break
                         }
                     }

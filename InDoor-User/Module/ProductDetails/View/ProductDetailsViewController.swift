@@ -264,7 +264,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
         }else{
             ShoppingCartViewController.products.append(orderedProduct)
         }
-        generalViewModel.putShippingCartDraftOrder()
+        generalViewModel.putShippingCartDraftOrder(useConverterMethod: true, lineItems: [])
     }
     
     func checkVariantIsInCart(variantName: String) -> Bool{

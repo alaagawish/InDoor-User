@@ -27,7 +27,7 @@ class GeneralViewModel {
         var lineItems: [LineItems] = []
         for product in ShoppingCartViewController.products {
             for variant in product.variants! {
-                let lineItem = LineItems(productId: variant.productId, quantity: variant.inventoryQuantity ,variantId: variant.id)
+                let lineItem = LineItems(productId: variant.productId,quantity: variant.inventoryQuantity, title: variant.title ,variantId: variant.id)
                 lineItems.append(lineItem)
                 print(lineItem)
             }
@@ -37,10 +37,12 @@ class GeneralViewModel {
     
     func convertLineItemsToProducts(){
         for (index, lineItem) in lineItems.enumerated() {
-            getSpecificProduct(productId: lineItem.productId!) { [weak self] product in
-                self?.productSet.insert(product)
-                if index == (self?.lineItems.count)!-1 {
-                    self?.done = true
+            if lineItem.title != "dummy" {
+                getSpecificProduct(productId: lineItem.productId ?? 0) { [weak self] product in
+                    self?.productSet.insert(product)
+                    if index == (self?.lineItems.count)!-1 {
+                        self?.done = true
+                    }
                 }
             }
         }
@@ -73,8 +75,14 @@ class GeneralViewModel {
         }
     }
     
-    func putShippingCartDraftOrder(){
-        let draftOrder = DraftOrder(id: nil, note: nil, lineItems: convertProductToLineItem(), user: nil)
+    func putShippingCartDraftOrder(useConverterMethod: Bool , lineItems: [LineItems] ){
+        var lineItemsArr:[LineItems] = []
+        if useConverterMethod {
+            lineItemsArr = convertProductToLineItem()
+        }else {
+            lineItemsArr = lineItems
+        }
+        let draftOrder = DraftOrder(id: nil, note: nil, lineItems: lineItemsArr, user: nil)
         let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draftOrder, orders: nil,order: nil)
         let params = JSONCoding().encodeToJson(objectClass: response)!
         network.putData(path: Constants.getCartDraftPath, parameters: params, handler: { [weak self] response,code  in
