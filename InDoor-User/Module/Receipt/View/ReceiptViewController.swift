@@ -22,7 +22,7 @@ class ReceiptViewController: UIViewController {
     var couponType: String = ""
     var couponAmount: String = ""
     var couponMinimumSubTotal: String = ""
-    var products: [Product] = []
+    var lineItmes: [LineItems] = []
     var total: Double = 0.0
     var allCoupons:[[DiscountCodes]] = []
     override func viewDidLoad() {
@@ -32,7 +32,6 @@ class ReceiptViewController: UIViewController {
         setUpUI()
         getCouponsFromApi()
     }
-    
     
     func getCouponsFromApi(){
         viewModel.getAllPriceRules { priceRules in
@@ -48,6 +47,7 @@ class ReceiptViewController: UIViewController {
         applyCouponButton.layer.cornerRadius = 12
         checkoutButton.layer.cornerRadius = 12
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         couponName = UserDefault().getCoupon().0
         couponType = UserDefault().getCoupon().1
@@ -66,17 +66,8 @@ class ReceiptViewController: UIViewController {
     }
     
     @IBAction func checkout(_ sender: Any) {
-        
-        var lineItems: [LineItems] = []
-        for item in products {
-            if item.variants?.count ?? 0 > 0 {
-                lineItems.append(LineItems(price: item.variants?[0].price, quantity: item.variants?.count, title: item.title))
-            }else {
-                itemsCollectionView.reloadData()
-            }
-        }
         let customer = Customer(id: UserDefault().getCustomerId())
-        let order = Orders(currency: UserDefault().getCurrencySymbol(), lineItems: lineItems, number: lineItems.count, customer: customer, totalPrice: String(format: "%.2f", total ))
+        let order = Orders(currency: UserDefault().getCurrencySymbol(), lineItems: lineItmes, number: lineItmes.count, customer: customer, totalPrice: String(format: "%.2f", total ))
         
         let storyboard = UIStoryboard(name: Constants.settingsStoryboard, bundle: nil)
         let addressStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.addressIdentifier) as! AddressViewController
@@ -84,11 +75,9 @@ class ReceiptViewController: UIViewController {
         addressStoryboard.orderFlag = true
         addressStoryboard.order = order
         present(addressStoryboard, animated: true)
-        
     }
     
     func applyCouponToPrice(){
-        
         if (self.applyCouponButton.titleLabel?.text)! == "Apply" {
             var valid = false
             if couponName != "" {
@@ -167,12 +156,12 @@ class ReceiptViewController: UIViewController {
 
 extension ReceiptViewController: UICollectionViewDelegate ,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return products.count
+        return ShoppingCartViewController.cartItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.orderCellIdentifier, for: indexPath) as! OrderCollectionViewCell
-        cell.setValues(product: products[indexPath.row])
+        cell.setValues(cartItem: ShoppingCartViewController.cartItems[indexPath.row])
         return cell
     }
     

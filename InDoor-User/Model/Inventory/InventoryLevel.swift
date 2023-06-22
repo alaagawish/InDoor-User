@@ -1,14 +1,13 @@
 //
 //  InventoryLevel.swift
-//  InDoor-Admin
+//  InDoor-User
 //
-//  Created by Ahmed on 18/06/2023.
+//  Created by Mac on 22/06/2023.
 //
 
 import Foundation
 
-struct InventoryLevel: Codable {
-
+struct InventoryLevel: Codable{
     var inventoryItemId: Int?
     var locationId: Int?
     var available: Int?
@@ -22,5 +21,4 @@ struct InventoryLevel: Codable {
         case updatedAt = "updated_at"
         case adminGraphqlApiId = "admin_graphql_api_id"
     }
-
 }

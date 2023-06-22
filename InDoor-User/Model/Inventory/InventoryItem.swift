@@ -1,8 +1,8 @@
 //
 //  InventoryItem.swift
-//  InDoor-Admin
+//  InDoor-User
 //
-//  Created by Ahmed on 18/06/2023.
+//  Created by Mac on 22/06/2023.
 //
 
 import Foundation

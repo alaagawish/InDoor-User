@@ -23,7 +23,7 @@ class PaymentViewController: UIViewController {
     var orderTotalPrice:Double = 0.0
     var payRequest: PKPaymentRequest!
     var creditTappedFlag = false
-    var generalViewModel: GeneralViewModel = GeneralViewModel(network: Network())
+    var generalViewModel = GeneralViewModel(network: Network())
     
     func getPaymentRequest() -> PKPaymentRequest{
         let request = PKPaymentRequest()
@@ -46,7 +46,7 @@ class PaymentViewController: UIViewController {
         paymentViewModel = PaymentViewModel(netWorkingDataSource: Network())
         setupUI()
         setupTapGesture()
-        orderTotalPrice = Double(order.totalPrice ?? "") ?? 0 
+        orderTotalPrice = Double(order.totalPrice ?? "") ?? 0
         cantPayWithCashView.translatesAutoresizingMaskIntoConstraints = false
         checkCashPayment()
         self.purchaseButton.addTarget(self, action: #selector(tapToPay), for: .touchUpInside)
@@ -146,7 +146,9 @@ class PaymentViewController: UIViewController {
     @IBAction func doneOrder(_ sender: Any) {
         paymentViewModel.postOrder(order: order)
         orderTotalPrice = 0.0
-        emptyCartAfterPayment()
+        paymentViewModel.decreaseVariantCountByOrderAmount()
+        ShoppingCartViewController.cartItems = []
+        generalViewModel.putShoppingCartDraftOrder()
         if creditTappedFlag{
             tapToPay()
         }
@@ -162,16 +164,6 @@ class PaymentViewController: UIViewController {
         }
         self.present(alert, animated: true)
     }
-    
-    func emptyCartAfterPayment(){
-        ShoppingCartViewController.products = []
-        var fakeLineItemArr: [LineItems] = []
-        if ShoppingCartViewController.products.count == 0{
-            let lineItem = LineItems(price: "20.0", quantity: 1 ,title: "dummy",properties: [Properties(name: "", value: "")])
-            fakeLineItemArr.append(lineItem)
-        }
-        generalViewModel.putShippingCartDraftOrder(useConverterMethod: false, lineItems: fakeLineItemArr)
-    }
 }
 
 extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate{
@@ -179,7 +171,9 @@ extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate{
         controller.dismiss(animated: true) {
             self.orderTotalPrice = 0.0
             self.totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) \(0.0)"
-            self.emptyCartAfterPayment()
+            self.paymentViewModel.decreaseVariantCountByOrderAmount()
+            ShoppingCartViewController.cartItems = []
+            self.generalViewModel.putShoppingCartDraftOrder()
             self.navigateToHomeAfterPay()
         }
     }

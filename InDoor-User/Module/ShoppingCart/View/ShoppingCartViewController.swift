@@ -22,8 +22,7 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
             totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", cartPrice * UserDefault().getCurrencyRate())
         }
     }
-    static var products: [Product] = []
-    var allVariants: [Variants] = []
+    static var cartItems: [LineItems] = []
     var totalPrice = 0.0
     
     override func viewDidLoad() {
@@ -32,22 +31,18 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        allVariants = []
         setupUI()
-        prepareTableCount()
+        prepareCartPrice()
         priceView.isHidden = false
         emptyCartImageView.isHidden = true
         shoppingCartTabelView.isHidden = false
         
     }
     
-    func prepareTableCount(){
+    func prepareCartPrice(){
         totalPrice = 0.0
-        for product in ShoppingCartViewController.products {
-            for variants in product.variants ?? []{
-                allVariants.append(variants)
-                totalPrice += (Double(variants.price) ?? 0.0) * Double(variants.inventoryQuantity!)
-            }
+        for item in ShoppingCartViewController.cartItems {
+            totalPrice += (Double(item.price!) ?? 0.0) * Double(item.quantity!)
         }
         cartPrice = totalPrice
         shoppingCartTabelView.reloadData()
@@ -72,11 +67,9 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func continueToOrder(_ sender: Any) {
-        
         let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
         let orderStoryBoard = storyboard.instantiateViewController(withIdentifier: Constants.orderStoryID) as! ReceiptViewController
         orderStoryBoard.modalPresentationStyle = .fullScreen
-        orderStoryBoard.products = ShoppingCartViewController.products
         orderStoryBoard.subtotalPrice = totalPrice
         present(orderStoryBoard, animated: true)
     }
@@ -85,7 +78,7 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
 extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if allVariants.count == 0 {
+        if ShoppingCartViewController.cartItems.count == 0 {
             priceView.isHidden = true
             emptyCartImageView.isHidden = false
             shoppingCartTabelView.isHidden = true
@@ -94,18 +87,13 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
             emptyCartImageView.isHidden = true
             shoppingCartTabelView.isHidden = false
         }
-        return allVariants.count
+        return ShoppingCartViewController.cartItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cartCellIdentifier, for: indexPath) as! ShoppingCartTableViewCell
         
-        for product in ShoppingCartViewController.products{
-            if allVariants[indexPath.row].productId == product.id{
-                cell.setValues(product: product, variant: allVariants[indexPath.row], viewController: self, index:indexPath.row)
-                break
-            }
-        }
+        cell.setCartItemValues(lineItem: ShoppingCartViewController.cartItems[indexPath.row], viewController: self, index: indexPath.row)
         return cell
     }
     
@@ -119,34 +107,10 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if(editingStyle == .delete){
-            
             let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.warning, msg: Constants.removeCartItem, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok, positiveHandler: { [weak self] action in
-                
-                self?.allVariants = []
-                self?.prepareTableCount()
-                
-                for productIndex in ShoppingCartViewController.products.indices{
-                    for variantIndex in ShoppingCartViewController.products[productIndex].variants!.indices{
-                        print("+++++++++\(variantIndex)")
-                        print("++++++++++\(ShoppingCartViewController.products[productIndex].variants![variantIndex].title)")
-                        if ShoppingCartViewController.products[productIndex].variants![variantIndex].id == self?.allVariants[indexPath.row].id{
-                            self?.cartPrice -= Double((self?.allVariants[variantIndex].inventoryQuantity!)!) * Double((self?.allVariants[variantIndex].price)!)!
-                            ShoppingCartViewController.products[productIndex].variants?.remove(at: variantIndex)
-                            var fakeLineItemArr: [LineItems] = []
-                            if ShoppingCartViewController.products[productIndex].variants?.count == 0 {
-                                ShoppingCartViewController.products.remove(at: productIndex)
-                                if ShoppingCartViewController.products.count == 0{
-                                    let lineItem = LineItems(price: "20.0", quantity: 1 ,title: "dummy",properties: [Properties(name: "", value: "")])
-                                    fakeLineItemArr.append(lineItem)
-                                }
-                            }
-                            self?.generalViewModel.putShippingCartDraftOrder(useConverterMethod: false, lineItems: fakeLineItemArr)
-                            break
-                        }
-                    }
-                }
-                
-                self?.allVariants.remove(at: indexPath.row)
+                self?.cartPrice -= Double(ShoppingCartViewController.cartItems[indexPath.row].price!)! * Double(ShoppingCartViewController.cartItems[indexPath.row].quantity!)
+                ShoppingCartViewController.cartItems.remove(at: indexPath.row)
+                self?.generalViewModel.putShoppingCartDraftOrder()
                 self?.shoppingCartTabelView.reloadData()
             })
             self.present(alert, animated: true)
@@ -154,7 +118,7 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.getSpecificProduct(productId: allVariants[indexPath.row].productId!) { [weak self] product in
+        viewModel.getSpecificProduct(productId: ShoppingCartViewController.cartItems[indexPath.row].productId!) { [weak self] product in
             let storyboard = UIStoryboard(name: Constants.productDetailsStoryboardName, bundle: nil)
             let productDetails = storyboard.instantiateViewController(withIdentifier: Constants.productDetailsStoryboardName) as! ProductDetailsViewController
             productDetails.product = product

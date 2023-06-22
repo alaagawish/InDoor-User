@@ -27,6 +27,7 @@ struct Response: Codable {
     var discountCode: DiscountCodes?
     var inventoryLevel: InventoryLevel?
     var inventoryItem: InventoryItem?
+    var variant:Variants?
     
     private enum CodingKeys: String, CodingKey {
         case smartCollections = "smart_collections"
@@ -46,5 +47,6 @@ struct Response: Codable {
         case discountCodes = "discount_codes"
         case priceRules = "price_rules"
         case priceRule = "price_rule"
+        case variant = "variant"
     }
 }
