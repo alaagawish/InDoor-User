@@ -22,7 +22,7 @@ class SettingsViewController: UIViewController {
         defaults = UserDefaults.standard
         favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
         var lineItems:[LineItems] = []
-        favoritesViewModel.bindPutfavoriteDraftOrderToController = {[weak self] in
+        favoritesViewModel.bindPutFavoriteDraftOrderToController = {[weak self] in
             let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.warning, msg: Constants.logoutMessage, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok) {[weak self] _ in
                 UserDefault().logout()
                 if(self?.defaults.bool(forKey: Constants.isGoogle) == true){
@@ -48,13 +48,15 @@ class SettingsViewController: UIViewController {
             guard let list = self?.favoritesViewModel.allProductsList else {return}
             for product in list {
                 if(self?.defaults.integer(forKey: Constants.customerId) == product.customer_id){
-                    lineItems.append(LineItems(price: product.price, productId: product.id, quantity: 1 , title: product.title, properties: [Properties(name: "image_url", value: product.image )]))
+                    print("---s-productId: \(product.id)")
+                    print("---s-variantId: \(product.variant_id)")
+                    lineItems.append(LineItems(price: product.price, productId: product.id,quantity: 1, title: product.title, variantId: product.variant_id, properties: [Properties(name: "image_url", value: product.image )]))
                 }
             }
             var user = User()
             user.id = self?.defaults.integer(forKey: Constants.customerId)
             
-            let draftOrder = DraftOrder(id: nil, note: nil, lineItems: lineItems, user: nil)
+            let draftOrder = DraftOrder(id: nil, note: nil, lineItems: lineItems, user: user)
             
             let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draftOrder, orders: nil,order: nil)
             

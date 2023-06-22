@@ -11,18 +11,18 @@ class FavoritesViewModel{
     var service: DatabaseService!
     var network: NetworkProtocol!
     var bindallProductsListToController:(()->Void) = {}
-    var bindPutfavoriteDraftOrderToController:(()->Void) = {}
-    var bindGetfavoriteDraftOrderToController:(()->Void) = {}
+    var bindPutFavoriteDraftOrderToController:(()->Void) = {}
+    var bindGetFavoriteDraftOrderToController:(()->Void) = {}
     let defaults = UserDefaults.standard
     var putFavoriteDraftOrder: DraftOrder?{
         didSet{
-            bindPutfavoriteDraftOrderToController()
+            bindPutFavoriteDraftOrderToController()
         }
     }
     
     var getFavoriteDraftOrder: DraftOrder?{
         didSet{
-            bindGetfavoriteDraftOrderToController()
+            bindGetFavoriteDraftOrderToController()
         }
     }
     var allProductsList = [LocalProduct](){
@@ -77,7 +77,6 @@ class FavoritesViewModel{
        print("path: \(Constants.putFavoriteDraftPath)")
         network.putData(path: Constants.putFavoriteDraftPath , parameters: parameters, handler: { [weak self] response,code  in
             self?.putFavoriteDraftOrder = response?.draftOrder
-           
         })
     }
     

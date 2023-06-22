@@ -212,7 +212,8 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     }
     @IBAction func addOrRemoveFromFavorites(_ sender: UIButton) {
         if favouriteButtonOutlet.currentImage == UIImage(systemName: Constants.heart) {
-            let localProduct = LocalProduct(id: product.id, customer_id: defaults.integer(forKey: Constants.customerId), title: product.title ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
+            print("---B-productId: \(product.id)")
+            let localProduct = LocalProduct(id: product.id, customer_id: defaults.integer(forKey: Constants.customerId), variant_id: product.variants?[0].id ?? 0, title: product.title ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
             productDetailsViewModel.addProduct(product: localProduct)
             favouriteButtonOutlet.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
             

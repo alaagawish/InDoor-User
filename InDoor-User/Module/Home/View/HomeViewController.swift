@@ -47,42 +47,42 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         defaults = UserDefaults.standard
         homeViewModel = HomeViewModel(netWorkingDataSource: Network())
+        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
         brandCollectionView.register(UINib(nibName: Constants.brandsNibFile, bundle: nil), forCellWithReuseIdentifier: Constants.brandCell)
         startSlider()
         callingData()
-        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
-        var lineItems:[LineItems] = []
-        generalViewModel.getShippingCartDraftOrder()
-//        favoritesViewModel.bindPutfavoriteDraftOrderToController = {[weak self] in
-//            
+//
+//        var lineItems:[LineItems] = []
+//        generalViewModel.getShippingCartDraftOrder()
+//        favoritesViewModel.bindallProductsListToController = {[weak self] in
+//            if(self?.favoritesViewModel.allProductsList != []){
+//                print("----h-customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
+//                print("----h-favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
+//                print("----h-cartId: \(self?.defaults.integer(forKey: Constants.cartId) ?? 000)")
+//                print("----h-isgoogle: \(self?.defaults.integer(forKey: Constants.isGoogle) ?? 000)")
+//                guard let list = self?.favoritesViewModel.allProductsList else {return}
+//                for product in list {
+//                    if(self?.defaults.integer(forKey: Constants.customerId) == product.customer_id){
+//                        print("---h-productId: \(product.id)")
+//                        lineItems.append(LineItems(price: product.price, productId: product.id, quantity: 1 , title: product.title,variantId: product.variant_id, properties: [Properties(name: "image_url", value: product.image)]))
+//                    }
+//                }
+//                var user = User()
+//                user.id = self?.defaults.integer(forKey: Constants.customerId)
+//
+//                let draftOrder = DraftOrder(id: nil, note: nil, lineItems: lineItems, user: nil)
+//
+//                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draftOrder, orders: nil,order: nil)
+//
+//                let params = JSONCoding().encodeToJson(objectClass: response)!
+//
+//                print("params: \(params)")
+//                self?.favoritesViewModel.putFavoriteDraftOrderFromAPI(parameters: params )
+//            }
 //        }
-        favoritesViewModel.bindallProductsListToController = {[weak self] in
-            print("----h-customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
-            print("----h-favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
-            print("----h-cartId: \(self?.defaults.integer(forKey: Constants.cartId) ?? 000)")
-            print("----h-isgoogle: \(self?.defaults.integer(forKey: Constants.isGoogle) ?? 000)")
-            guard let list = self?.favoritesViewModel.allProductsList else {return}
-            for product in list {
-                if(self?.defaults.integer(forKey: Constants.customerId) == product.customer_id){
-                    lineItems.append(LineItems(price: product.price, productId: product.id, quantity: 1 , title: product.title, properties: [Properties(name: "image_url", value: product.image )]))
-                }
-            }
-            var user = User()
-            user.id = self?.defaults.integer(forKey: Constants.customerId)
-            
-            let draftOrder = DraftOrder(id: nil, note: nil, lineItems: lineItems, user: nil)
-            
-            let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draftOrder, orders: nil,order: nil)
-            
-            let params = JSONCoding().encodeToJson(objectClass: response)!
-            
-            print("params: \(params)")
-            self?.favoritesViewModel.putFavoriteDraftOrderFromAPI(parameters: params )
-        }
-        self.favoritesViewModel.getAllProducts()
+//        self.favoritesViewModel.getAllProducts()
     }
     override func viewWillAppear(_ animated: Bool) {
         internetConnectivity = Connectivity.sharedInstance
@@ -93,7 +93,38 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             noInternet.isHidden = false
             refreshOutLet.isHidden = false
         }
+        
 
+        var lineItems:[LineItems] = []
+        generalViewModel.getShippingCartDraftOrder()
+        favoritesViewModel.bindallProductsListToController = {[weak self] in
+            print("----h-customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
+            print("----h-favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
+            print("----h-cartId: \(self?.defaults.integer(forKey: Constants.cartId) ?? 000)")
+            print("----h-isgoogle: \(self?.defaults.integer(forKey: Constants.isGoogle) ?? 000)")
+            guard let list = self?.favoritesViewModel.allProductsList else {return}
+            for product in list {
+                if(self?.defaults.integer(forKey: Constants.customerId) == product.customer_id){
+                    print("---h-productId: \(product.id)")
+                    print("---h-variantId: \(product.variant_id)")
+                    lineItems.append(LineItems(price: product.price, productId: product.id, quantity: 1 , title: product.title,variantId: product.variant_id, properties: [Properties(name: "image_url", value: product.image)]))
+                }
+            }
+            if(!lineItems.isEmpty){
+                var user = User()
+                user.id = self?.defaults.integer(forKey: Constants.customerId)
+                
+                let draftOrder = DraftOrder(id: nil, note: nil, lineItems: lineItems, user: user)
+                
+                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draftOrder, orders: nil,order: nil)
+                
+                let params = JSONCoding().encodeToJson(objectClass: response)!
+                
+                print("params: \(params)")
+                self?.favoritesViewModel.putFavoriteDraftOrderFromAPI(parameters: params )
+            }
+        }
+        self.favoritesViewModel.getAllProducts()
     }
     func callingData(){
         homeViewModel.bindResultToViewController = {[weak self] in

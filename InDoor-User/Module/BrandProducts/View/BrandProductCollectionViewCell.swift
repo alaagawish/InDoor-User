@@ -75,7 +75,8 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
     @IBAction func checkFavouriteProduct(_ sender: Any) {
         
         if favouriteButton.currentImage == UIImage(systemName: Constants.heart) {
-            let localProduct = LocalProduct(id: product.id, customer_id: defaults.integer(forKey: Constants.customerId), title: product.title ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
+            let localProduct = LocalProduct(id: product.id, customer_id: defaults.integer(forKey: Constants.customerId), variant_id: product.variants?[0].id ?? 0, title: product.title ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
+            print("product id: \(product.id)")
             if self.view == Constants.brand {
                 ( viewController as! BrandViewController).favoritesViewModel.addProduct(product: localProduct)
             }else {
@@ -102,7 +103,6 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
                 viewController?.present(alert, animated: true, completion: nil)
             }
         }
-             
     }
     
     override var frame: CGRect {

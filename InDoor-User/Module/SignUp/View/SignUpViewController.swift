@@ -24,21 +24,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         setupUI()
         setupDelegation()
         signUpViewModel = SignUpViewModel(service: Network())
+        
         signUpViewModel.bindUserWithDraftOrderToSignUpController = {[weak self] in
-            print("note: \(self?.signUpViewModel.userWithDraftOrder?.note)")
             if(self?.signUpViewModel.userWithDraftOrder?.note != nil ){
-                let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: Constants.registeredSuccessfully, positiveButtonTitle: Constants.ok){_ in
-                    let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
-                    let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
-                    self?.defaults.setValue(false, forKey: Constants.isGoogle)
-                    print("----customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
-                    print("----favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
-                    print("----cartId: \(self?.defaults.integer(forKey: Constants.cartId) ?? 000)")
-                    print("----isgoogle: \(self?.defaults.integer(forKey: Constants.isGoogle) ?? 000)")
-                    home.modalPresentationStyle = .fullScreen
-                    self?.present(home, animated: true)
-                }
-                self?.present(alert, animated: true)
+                let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
+                let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
+                print("----u-customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
+                print("----u-favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
+                print("----u-cartId: \(self?.defaults.integer(forKey: Constants.cartId) ?? 000)")
+                print("----u-isgoogle: \(self?.defaults.integer(forKey: Constants.isGoogle) ?? 000)")
+                home.modalPresentationStyle = .fullScreen
+                self?.present(home, animated: true)
             }
         }
         signUpViewModel.bindDraftOrderToSignUpController = {[weak self] in
@@ -59,8 +55,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         signUpViewModel.bindUserToSignUpController = { [weak self] in
             if( self?.signUpViewModel.user?.id != nil){
                 self?.defaults.setValue(self?.signUpViewModel.user?.id, forKey: Constants.customerId)
-                self?.createFavoriteDraftOrder()
-                self?.createCartDraftOrder()
+                self?.createDraftOrder(note: "favorite")
+                self?.createDraftOrder(note: "cart")
             } else if self?.signUpViewModel.code ?? 0 == 422 {
                 let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.phoneUsedbefore, positiveButtonTitle: Constants.ok, positiveHandler: nil)
                 self?.present(alert, animated: true)
@@ -210,29 +206,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func createFavoriteDraftOrder(){
-        let properties = [Properties(name: "image", value: "")]
+    func createDraftOrder(note: String){
+        let properties = [Properties(name: "image_url", value: "")]
         let lineItems = [LineItems(price: "20.0", quantity: 1, title: "dummy", properties:properties)]
 
         let user = User(id: defaults.integer(forKey: Constants.customerId), firstName: self.firstNameTextField.text, lastName: self.lastNameTextField.text, email: self.emailTextField.text, phone: self.phoneTextField.text, addresses: nil, tags: self.passwordTextField.text)
 
-        let draft = DraftOrder(id: nil, note: "favorite", lineItems: lineItems, user: user)
+        let draft = DraftOrder(id: nil, note: note, lineItems: lineItems, user: user)
         let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer:  nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draft, orders: nil, order: nil)
         let params = JSONCoding().encodeToJson(objectClass: response)
     
-        self.signUpViewModel.postDraftOrder(parameters: params ?? [:])
-    }
-    
-    func createCartDraftOrder(){
-        let properties = [Properties(name: "image", value: "")]
-        let lineItems = [LineItems(price: "20.0",  quantity: 1,  title: "dummy",  properties: properties)]
-
-        let user = User(id: defaults.integer(forKey: Constants.customerId), firstName: self.firstNameTextField.text, lastName: self.lastNameTextField.text, email: self.emailTextField.text, phone: self.phoneTextField.text, addresses: nil, tags: self.passwordTextField.text)
-
-        let draft = DraftOrder(id: nil, note: "cart", lineItems: lineItems, user: user)
-        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draft, orders: nil, order: nil)
-                let params = JSONCoding().encodeToJson(objectClass: response)
-
         self.signUpViewModel.postDraftOrder(parameters: params ?? [:])
     }
 }

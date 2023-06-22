@@ -144,4 +144,5 @@ class Constants {
     static let directHome = "Go Home"
     static let ordersPath = "orders"
     static let alert = "Alert"
+    static let isSignUp = "isSignUp"
 }

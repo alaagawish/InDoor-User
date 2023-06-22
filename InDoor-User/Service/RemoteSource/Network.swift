@@ -51,7 +51,6 @@ class Network: NetworkProtocol{
             case .success(let data):
                 do {
                     let result = try JSONDecoder().decode(Response.self, from: data)
-                    print("after decode \(result)")
                     handler(result,response.response?.statusCode)
                 } catch {
                     print("Error: Trying to convert JSON data to string")
@@ -94,7 +93,6 @@ class Network: NetworkProtocol{
             case .success(let data):
                 do {
                     let result = try JSONDecoder().decode(Response.self, from: data)
-                    print("after decode \(result)")
                     handler(result,response.response?.statusCode)
                 } catch {
                     print("Error: Trying to convert JSON data to string")
