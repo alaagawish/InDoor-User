@@ -32,6 +32,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     @IBOutlet weak var bottomSpace: NSLayoutConstraint!
     
     var productDetailsViewModel: ProductDetailsViewModel!
+    var favoritesViewModel: FavoritesViewModel!
     var generalViewModel: GeneralViewModel!
     var defaults: UserDefaults!
     var productImagesArr: [InputSource] = []
@@ -77,6 +78,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         productDetailsViewModel = ProductDetailsViewModel(service: DatabaseManager.instance)
+        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
         defaults = UserDefaults.standard
         reviewTableView.register(UINib(nibName:Constants.reviewNibFileName , bundle: nil), forCellReuseIdentifier: Constants.reviewCellIdentifier)
         generalViewModel = GeneralViewModel(network: Network())
@@ -225,8 +227,8 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
                 self?.favouriteButtonOutlet.setImage(UIImage(systemName: Constants.heart), for: .normal)
             }
             present(alert, animated: true, completion: nil)
-            
         }
+        self.favoritesViewModel.getAllProducts()
     }
     
     @IBAction func addToCart(_ sender: UIButton) {
