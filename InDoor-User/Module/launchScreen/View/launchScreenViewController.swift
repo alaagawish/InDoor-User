@@ -20,7 +20,7 @@ class launchScreenViewController: UIViewController {
         animatedView.loopMode = .playOnce
         animatedView.animationSpeed = 1
         animatedView.play(){[weak self] _ in
-            if(self?.defaults.integer(forKey: Constants.customerId) == -1){
+            if(self?.defaults.integer(forKey: Constants.customerId) == -1 || self?.defaults.integer(forKey: Constants.customerId) == 0){
                 let welcome = self?.storyboard?.instantiateViewController(identifier: Constants.welcomeIdentifier) as! WelcomeViewController
                 welcome.modalPresentationStyle = .fullScreen
                 self?.present(welcome, animated: true)

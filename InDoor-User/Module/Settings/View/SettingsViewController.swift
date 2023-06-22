@@ -17,11 +17,14 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var aboutInDoorView: UIView!
     var defaults :UserDefaults!
     var favoritesViewModel: FavoritesViewModel!
+    var dbLineItems:[LineItems]!
+    var apiLineItems:[LineItems]!
     override func viewDidLoad() {
         super.viewDidLoad()
+        dbLineItems = []
+        apiLineItems = []
         defaults = UserDefaults.standard
         favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
-        var lineItems:[LineItems] = []
         favoritesViewModel.bindPutFavoriteDraftOrderToController = {[weak self] in
             let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.warning, msg: Constants.logoutMessage, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok) {[weak self] _ in
                 UserDefault().logout()
@@ -40,30 +43,46 @@ class SettingsViewController: UIViewController {
             }
             self?.present(alert, animated: true)
         }
-        favoritesViewModel.bindallProductsListToController = {[weak self] in
-            print("----s-customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
-            print("----s-favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
-            print("----s-cartId: \(self?.defaults.integer(forKey: Constants.cartId) ?? 000)")
-            print("----s-isgoogle: \(self?.defaults.integer(forKey: Constants.isGoogle) ?? 000)")
-            guard let list = self?.favoritesViewModel.allProductsList else {return}
-            for product in list {
-                if(self?.defaults.integer(forKey: Constants.customerId) == product.customer_id){
-                    print("---s-productId: \(product.id)")
-                    print("---s-variantId: \(product.variant_id)")
-                    lineItems.append(LineItems(price: product.price, productId: product.id,quantity: 1, title: product.title, variantId: product.variant_id, properties: [Properties(name: "image_url", value: product.image )]))
+        favoritesViewModel.bindGetFavoriteDraftOrderToController = {[weak self] in
+            guard let list = self?.favoritesViewModel.getFavoriteDraftOrder?.lineItems else {return}
+            guard let dbLineItems = self?.dbLineItems else {return}
+            guard let apiLineItems = self?.apiLineItems else {return}
+            for item in list{
+                if(item.title != "dummy"){
+                    self?.apiLineItems.append(item)
+                }
+            }
+            for dbItem in dbLineItems{
+                for apiItem in apiLineItems{
+                    if(dbItem.id != apiItem.id){
+                        self?.apiLineItems.append(dbItem)
+                    }
                 }
             }
             var user = User()
             user.id = self?.defaults.integer(forKey: Constants.customerId)
-            
-            let draftOrder = DraftOrder(id: nil, note: nil, lineItems: lineItems, user: user)
-            
+
+            let draftOrder = DraftOrder(id: nil, note: nil, lineItems: self?.apiLineItems, user: user)
+
             let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draftOrder, orders: nil,order: nil)
-            
+
             let params = JSONCoding().encodeToJson(objectClass: response)!
-           
+
             print("params: \(params)")
             self?.favoritesViewModel.putFavoriteDraftOrderFromAPI(parameters: params )
+        }
+        favoritesViewModel.bindallProductsListToController = {[weak self] in
+            print("----h-customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
+            print("----h-favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
+            print("----h-cartId: \(self?.defaults.integer(forKey: Constants.cartId) ?? 000)")
+            print("----h-isgoogle: \(self?.defaults.integer(forKey: Constants.isGoogle) ?? 000)")
+            guard let list = self?.favoritesViewModel.allProductsList else {return}
+            for product in list {
+                if(self?.defaults.integer(forKey: Constants.customerId) == product.customer_id){
+                    self?.dbLineItems.append(LineItems(price: product.price, productId: product.id, quantity: 1 , title: product.title,variantId: product.variant_id, properties: [Properties(name: "image_url", value: product.image)]))
+                }
+            }
+            self?.favoritesViewModel.getFavoriteDraftOrderFromAPI()
         }
         setupUI()
         setupTapGesture()

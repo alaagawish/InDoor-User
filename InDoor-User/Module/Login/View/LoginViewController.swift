@@ -71,9 +71,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             guard let lineItemsList = self?.favoritesViewModel.getFavoriteDraftOrder?.lineItems else {return}
             let list = lineItemsList.filter{$0.title != "dummy"}
             for item in list {
-                let localProduct = LocalProduct(id: item.productId ?? 0, customer_id: (self?.defaults.integer(forKey: Constants.customerId))!, variant_id: item.variantId!, title: item.title!, price: item.price!, image: item.properties![0].value!)
-              
-                self?.favoritesViewModel.addProduct(product: localProduct)
+                //if(item.productId == self?.defaults.integer(forKey: Constants.customerId)){
+                    let localProduct = LocalProduct(id: item.productId ?? 0, customer_id: (self?.defaults.integer(forKey: Constants.customerId))!, variant_id: item.variantId!, title: item.title!, price: item.price!, image: item.properties![0].value!)
+                    
+                    self?.favoritesViewModel.addProduct(product: localProduct)
+                //}
             }
         }
         

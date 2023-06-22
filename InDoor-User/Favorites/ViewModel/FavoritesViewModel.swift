@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+
 class FavoritesViewModel{
     var service: DatabaseService!
     var network: NetworkProtocol!
@@ -74,15 +75,16 @@ class FavoritesViewModel{
         }
     }
     func putFavoriteDraftOrderFromAPI(parameters: Parameters){
-       print("path: \(Constants.putFavoriteDraftPath)")
-        network.putData(path: Constants.putFavoriteDraftPath , parameters: parameters, handler: { [weak self] response,code  in
+       print("path: draft_orders/\(UserDefaults.standard.integer(forKey: Constants.favoritesId))")
+        print("draft_orders/\(defaults.integer(forKey: Constants.favoritesId))")
+        network.putData(path: "draft_orders/\(defaults.integer(forKey: Constants.favoritesId))" , parameters: parameters, handler: { [weak self] response,code  in
             self?.putFavoriteDraftOrder = response?.draftOrder
         })
     }
     
     func getFavoriteDraftOrderFromAPI(){
         print("path: \(Constants.putFavoriteDraftPath)")
-        network.getData(path: Constants.putFavoriteDraftPath, parameters: [:], handler: { [weak self] response in
+        network.getData(path: "draft_orders/\(defaults.integer(forKey: Constants.favoritesId))", parameters: [:], handler: { [weak self] response in
             self?.getFavoriteDraftOrder = response?.draftOrder
             
         })
