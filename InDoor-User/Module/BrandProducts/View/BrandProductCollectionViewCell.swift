@@ -103,6 +103,7 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
                 viewController?.present(alert, animated: true, completion: nil)
             }
         }
+        (self.viewController as! BrandViewController).favoritesViewModel.getAllProducts()
     }
     
     override var frame: CGRect {

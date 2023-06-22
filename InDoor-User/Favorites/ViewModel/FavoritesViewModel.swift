@@ -54,6 +54,7 @@ class FavoritesViewModel{
     
     func getAllProducts() {
         allProductsList = service.fetchAll()
+        FavoritesViewController.staticFavoriteList = service.fetchAll()
     }
     
     func removeAllProduct(){

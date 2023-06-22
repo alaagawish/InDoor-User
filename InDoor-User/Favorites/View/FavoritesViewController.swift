@@ -14,6 +14,7 @@ class FavoritesViewController: UIViewController {
     var favoritesProducts: [LocalProduct]!
     var defaults: UserDefaults!
     var index: Int = 0
+    static var staticFavoriteList: [LocalProduct] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         favoritesProducts = []
@@ -84,6 +85,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
                 self?.favoritesViewModel.removeProduct(product: (self?.favoritesProducts[indexPath.row])!)
                 self?.favoritesProducts.remove(at: indexPath.row)
                 self?.favoritesTable.reloadData()
+                self?.favoritesViewModel.getAllProducts()
                 self?.checkIfThereAreFavoriteProducts(allProductsList: (self?.favoritesProducts)!)
             }
             self.present(alert, animated: true)
