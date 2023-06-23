@@ -17,7 +17,7 @@ struct Address: Codable {
     let address1: String?
     let city: String?
     let country: String?
-    let `default`: Bool?
+    var `default`: Bool?
     init(id: Int?, customer_id: Int?, name: String?, first_name: String?, last_name: String?, phone: String?, address1: String?, city: String?, country: String?, `default`: Bool) {
         self.id = id
         self.customer_id = customer_id

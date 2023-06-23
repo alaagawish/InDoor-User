@@ -125,7 +125,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     self?.couponAmount = String((Double((self?.homeViewModel.priceRules![self!.selectedImageIndex].value)!) ?? 0.0) * UserDefault().getCurrencyRate())
                     self?.couponSubTotal = String((Double((self?.homeViewModel.priceRules![self!.selectedImageIndex].prerequisiteSubtotalRange?.greaterThanOrEqualTo)!) ?? 0.0) * UserDefault().getCurrencyRate())
                     
-                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: "Enjoy your discount \((self?.couponAmount)!) \(UserDefault().getCurrencySymbol()) after \((self?.couponSubTotal)!) \(UserDefault().getCurrencySymbol())", positiveButtonTitle: Constants.ok)
+                    var sign = ""
+                    if self?.homeViewModel.priceRules![self!.selectedImageIndex].valueType == "percentage"{
+                        sign = "%"
+                    }else{
+                        sign = UserDefault().getCurrencySymbol()
+                    }
+                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: "Enjoy your discount \((self?.couponAmount)!) \(sign) after \((self?.couponSubTotal)!) \(UserDefault().getCurrencySymbol())", positiveButtonTitle: Constants.ok)
                     self?.present(alert, animated: true)
                 }
             }

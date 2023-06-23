@@ -18,10 +18,10 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBOutlet weak var plusButton: UIButton!
     
     var viewController: ShoppingCartViewController?
+    var totalAvailableVariantInStock: Int = 0
     var productCount = 1
-    var productVariant: Variants!
-    var orderedProduct: Product!
-    var cellIndex:Int!
+    var itemInCart: LineItems!
+    var generalViewModel = GeneralViewModel(network: Network())
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -60,38 +60,40 @@ class ShoppingCartTableViewCell: UITableViewCell {
         
     }
     
-    func setValues(product: Product, variant: Variants, viewController: ShoppingCartViewController, index: Int){
-        self.shoppingCartImage.kf.setImage(with: URL(string: product.image?.src ?? ""),placeholder: UIImage(named: Constants.noImage))
-        self.shoppingCartProductNameLabel.text = product.title
-        self.shoppingCartProductDescriptionLabel.text = "\(product.vendor ?? "") / \((variant.title)!)"
-        self.shoppingCartPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", Double(variant.price)! * UserDefault().getCurrencyRate()) + " / item"
-        self.shoppingCartProductCountLabel.text = "\((variant.inventoryQuantity)!)"
-        self.cellIndex = index
+    func setCartItemValues(lineItem: LineItems, viewController: ShoppingCartViewController){
+        print("---------\(lineItem.properties?[0].value)")
+        let imageUrl = (lineItem.properties?[0].value?.split(separator: "$")[0])!
         
-        productCount = variant.inventoryQuantity!
+       print("+++++++++ \(imageUrl)")
+        
+        self.shoppingCartImage.kf.setImage(with: URL(string: String(imageUrl)),placeholder: UIImage(named: Constants.noImage))
+        self.shoppingCartProductNameLabel.text = lineItem.name
+        self.shoppingCartProductDescriptionLabel.text = "\(lineItem.vendor ?? "") / \((lineItem.variantTitle)!)"
+        self.shoppingCartPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", Double(lineItem.price ?? "0.0")! * UserDefault().getCurrencyRate()) + " / item"
+        self.shoppingCartProductCountLabel.text = "\((lineItem.quantity)!)"
+        productCount = lineItem.quantity!
         if productCount == 1 {
             minusButton.isEnabled = false
         }
-        
-        if variant.oldInventoryQuantity! > 3 && productCount < variant.oldInventoryQuantity!/3 || variant.oldInventoryQuantity! <= 3 && productCount < variant.oldInventoryQuantity! {
+        totalAvailableVariantInStock = Int(lineItem.properties?[0].name ?? "1") ?? 1
+        if totalAvailableVariantInStock > 3 && productCount < totalAvailableVariantInStock/3 || totalAvailableVariantInStock <= 3 && productCount < totalAvailableVariantInStock {
             
         }else{
             plusButton.isEnabled = false
         }
         
         self.viewController = viewController
-        self.productVariant = variant
-        self.orderedProduct = product
+        self.itemInCart = lineItem
     }
-    
+        
     @IBAction func minusButton(_ sender: Any) {
         
         plusButton.isEnabled = true
-        viewController!.cartPrice = Double(viewController!.cartPrice) - Double(productCount) * Double(productVariant.price)!
+        viewController!.cartPrice = Double(viewController!.cartPrice) - Double(productCount) * Double(itemInCart.price!)!
         productCount -= 1
-        viewController!.cartPrice = Double(viewController!.cartPrice) + Double(productCount) * Double(productVariant.price)!
+        viewController!.cartPrice = Double(viewController!.cartPrice) + Double(productCount) * Double(itemInCart.price!)!
         shoppingCartProductCountLabel.text = "\(productCount)"
-        updateInventoryCount()
+        updateItemsQuantityInShoppingCartList()
         
         if productCount == 1 {
             let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.minCartItem, positiveButtonTitle: Constants.ok)
@@ -103,14 +105,14 @@ class ShoppingCartTableViewCell: UITableViewCell {
     @IBAction func plusButton(_ sender: Any) {
         
         minusButton.isEnabled = true
-        if productVariant.oldInventoryQuantity! > 3 && productCount < productVariant.oldInventoryQuantity!/3 || productVariant.oldInventoryQuantity! <= 3 && productCount < productVariant.oldInventoryQuantity!  {
-            viewController!.cartPrice = Double(viewController!.cartPrice) - Double(productCount) * Double(productVariant.price)!
+        if totalAvailableVariantInStock > 3 && productCount < totalAvailableVariantInStock/3 || totalAvailableVariantInStock <= 3 && productCount < totalAvailableVariantInStock {
+            viewController!.cartPrice = Double(viewController!.cartPrice) - Double(productCount) * Double(itemInCart.price!)!
             productCount += 1
-            viewController!.cartPrice = Double(viewController!.cartPrice) + Double(productCount) * Double(productVariant.price)!
+            viewController!.cartPrice = Double(viewController!.cartPrice) + Double(productCount) * Double(itemInCart.price!)!
             shoppingCartProductCountLabel.text = "\(productCount)"
-            updateInventoryCount()
+            updateItemsQuantityInShoppingCartList()
             
-            if productVariant.oldInventoryQuantity! > 3 && productCount < productVariant.oldInventoryQuantity!/3 || productVariant.oldInventoryQuantity! <= 3 && productCount < productVariant.oldInventoryQuantity! {
+            if totalAvailableVariantInStock > 3 && productCount < totalAvailableVariantInStock/3 || totalAvailableVariantInStock <= 3 && productCount < totalAvailableVariantInStock {
                 
             }else{
                 let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.maxCartItem, positiveButtonTitle: Constants.ok)
@@ -120,17 +122,13 @@ class ShoppingCartTableViewCell: UITableViewCell {
         }
     }
     
-    func updateInventoryCount(){
-        for index in ShoppingCartViewController.products.indices {
-            for variantsIndex in ShoppingCartViewController.products[index].variants!.indices {
-                if  ShoppingCartViewController.products[index].variants![variantsIndex].id == productVariant.id {
-                    ShoppingCartViewController.products[index].variants![variantsIndex].inventoryQuantity = productCount
-                    viewController?.allVariants = []
-                    viewController?.totalPrice = 0.0
-                    viewController?.prepareTableCount()
-                    
-                }
+    func updateItemsQuantityInShoppingCartList (){
+        for (index , item) in CartList.cartItems.enumerated() {
+            if item.variantId == itemInCart.variantId {
+                CartList.cartItems[index].quantity = productCount
             }
         }
+        generalViewModel.putShoppingCartDraftOrder()
+        
     }
 }

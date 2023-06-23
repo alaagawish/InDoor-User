@@ -11,82 +11,33 @@ import Alamofire
 class GeneralViewModel {
     
     var network:NetworkProtocol
-    var productSet: Set<Product> = []
-    var lineItems:[LineItems] = []
-    var done = false {
-        didSet{
-            compareVariantsAndPrepareCartArr()
-        }
-    }
     
     init(network: NetworkProtocol) {
         self.network = network
     }
-    
-    func convertProductToLineItem() -> [LineItems] {
-        var lineItems: [LineItems] = []
-        for product in ShoppingCartViewController.products {
-            for variant in product.variants! {
-                let lineItem = LineItems(productId: variant.productId, quantity: variant.inventoryQuantity ,variantId: variant.id)
-                lineItems.append(lineItem)
-                print(lineItem)
-            }
+
+    func putShoppingCartDraftOrder(){
+        var tempArr = CartList.cartItems
+        if tempArr.isEmpty {
+            let lineItem = LineItems(price: "20.0", quantity: 1, title: "dummy")
+            tempArr.append(lineItem)
         }
-        return lineItems
-    }
-    
-    func convertLineItemsToProducts(){
-        print("line items \(lineItems.count)  \(lineItems)")
-        for (index, lineItem) in lineItems.enumerated() {
-            if lineItem.title != "dummy"{
-                getSpecificProduct(productId: lineItem.productId ?? 0) { [weak self] product in
-                    self?.productSet.insert(product)
-                    if index == (self?.lineItems.count)!-1 {
-                        self?.done = true
-                    }
-                }
-            }
-        }
-    }
-    
-    func compareVariantsAndPrepareCartArr(){
-        let tempProductArr:[Product] = Array(productSet)
-        ShoppingCartViewController.products = []
-        for (index, product) in tempProductArr.enumerated() {
-            ShoppingCartViewController.products.append(product)
-            ShoppingCartViewController.products[index].variants = []
-            for lineItem in lineItems {
-                if lineItem.productId == tempProductArr[index].id{
-                    for variant in tempProductArr[index].variants! {
-                        if variant.id == lineItem.variantId {
-                            var tempVariant = variant
-                            tempVariant.inventoryQuantity = lineItem.quantity
-                            ShoppingCartViewController.products[index].variants?.append(tempVariant)
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    func getSpecificProduct(productId: Int, completionHandler:@escaping (Product) -> Void){
-        let path = "products/\(productId)"
-        network.getData(path: path, parameters: [:]){ (response : Response?) in
-            completionHandler((response?.product)!)
-        }
-    }
-    
-    func putShippingCartDraftOrder(){
-        let draftOrder = DraftOrder(id: nil, note: nil, lineItems: convertProductToLineItem(), user: nil)
+        let draftOrder = DraftOrder(id: nil, note: nil, lineItems: tempArr, user: nil)
         let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draftOrder, orders: nil,order: nil)
         let params = JSONCoding().encodeToJson(objectClass: response)!
-        network.putData(path: Constants.getCartDraftPath, parameters: params, handler: { [weak self] response,code  in
-        })
+        network.putData(path: Constants.getCartDraftPath, parameters: params, handler: {response,code  in })
     }
     
     func getShippingCartDraftOrder(){
-        network.getData(path: Constants.getCartDraftPath, parameters: [:], handler: { [weak self] response  in
-            self?.lineItems = (response?.draftOrder?.lineItems)!
-            self?.convertLineItemsToProducts()
+        network.getData(path: Constants.getCartDraftPath, parameters: [:], handler: { response  in
+            var lineItems = (response?.draftOrder?.lineItems)!
+            for (index,lineItem) in lineItems.enumerated() {
+                if lineItem.title == "dummy" {
+                    lineItems.remove(at: index)
+                    break
+                }
+            }
+            CartList.cartItems = lineItems
         })
-    }}
+    }
+}
