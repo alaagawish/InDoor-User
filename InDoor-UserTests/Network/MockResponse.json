@@ -455,5 +455,28 @@
                     "src": "https://cdn.shopify.com/s/files/1/0766/9583/0815/collections/97a3b1227876bf099d279fd38290e567.jpg?v=1685538048"
                 }
             }
+        ],
+    {
+        "addresses": [
+            {
+                "id": 9244122677535,
+                "customer_id": 7016302674207,
+                "first_name": "laila",
+                "last_name": "mohamed",
+                "company": null,
+                "address1": null,
+                "address2": null,
+                "city": null,
+                "province": null,
+                "country": null,
+                "zip": null,
+                "phone": "01067381074",
+                "name": "laila mohamed",
+                "province_code": null,
+                "country_code": null,
+                "country_name": null,
+                "default": true
+            }
         ]
+    }
 }

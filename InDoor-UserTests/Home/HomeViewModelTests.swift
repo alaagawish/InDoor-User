@@ -10,9 +10,9 @@ import XCTest
 
 final class HomeViewModelTests: XCTestCase {
 
-    var network: NetworkProtocol!
+   
     var homeViewModel: HomeViewModel!
-    
+    var network: NetworkProtocol!
     override func setUpWithError() throws {
         network = NetworkMock(isSuccess: true)
         homeViewModel = HomeViewModel(netWorkingDataSource: network)

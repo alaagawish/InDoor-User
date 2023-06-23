@@ -16,19 +16,14 @@ target 'InDoor-User' do
     # Pods for testing
   end
 pod 'Cosmos'
-pod 'RxSwift'
-pod 'RxCocoa'
+#pod 'RxSwift'
+#pod 'RxCocoa'
 pod 'Kingfisher'
 #pod 'ImageSlideshow'
 pod 'Alamofire'
 pod 'lottie-ios'
 pod 'ReachabilitySwift'
-#pod 'Firebase/Core'
-#pod 'Firebase/Database'
-#pod 'Firebase/Auth'
-#pod 'Firebase/Storage'
-#pod 'FirebaseFirestore'
+
 pod 'RealmSwift'
-pod 'MaterialComponents/Buttons'
 
 end

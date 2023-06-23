@@ -9,9 +9,22 @@ import Foundation
 @testable import InDoor_User
 
 class LocalSource: DatabaseService {
+ 
+    
     var favouriteItems: [LocalProduct] = []
     func fetchAll() -> [LocalProduct] {
         return favouriteItems
+    }
+    
+    func isFavorite(productId: Int, customerId: Int) -> Bool {
+        let allProductsList = fetchAll()
+        
+        for product in allProductsList {
+            if(product.id == productId && product.customer_id == customerId) {
+                return true
+            }
+        }
+        return false
     }
     
     func deleteAll() {
@@ -31,14 +44,7 @@ class LocalSource: DatabaseService {
         favouriteItems.append(product)
     }
     
-    func isFavorite(productId: Int) -> Bool {
-        for i in favouriteItems {
-            if i.id == productId {
-                return true
-            }
-        }
-        return false
-    }
+    
     
     func fetchProduct(productId: Int) -> LocalProduct {
         

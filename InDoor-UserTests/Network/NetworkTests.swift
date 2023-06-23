@@ -57,7 +57,7 @@ final class NetworkTests: XCTestCase {
     func testPutDataPass(){
         let address = Address(id: nil, customer_id: 7000574820639 , name: "lolo elsayedddd", first_name:"lolo", last_name:  "elsayedddd", phone: "0000-625-1199", address1: "zagazig", city: "Cairo", country: "Egypt", default: false)
         
-        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil)
+        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, draftOrder: nil, orders: nil, order: nil)
         
         let params = JSONCoding().encodeToJson(objectClass: response) ?? [:]
         
@@ -81,7 +81,7 @@ final class NetworkTests: XCTestCase {
     func testPutDataFail(){
         let address = Address(id: nil, customer_id: 7000574820639 , name: "lolo elsayedddd", first_name:"lolo", last_name:  "elsayedddd", phone: "0000-625-1199", address1: "zagazig", city: "Cairo", country: "Cairo", default: false)
         
-        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil)
+        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, draftOrder: nil, orders: nil, order: nil)
         
         let params = JSONCoding().encodeToJson(objectClass: response) ?? [:]
         
@@ -106,7 +106,7 @@ final class NetworkTests: XCTestCase {
         
         let address = Address(id: nil, customer_id: 7000574820639 , name: "lolo elsayedddd", first_name:"lolo", last_name:  "elsayedddd", phone: "9898-999-1111", address1: "zagazig", city: "Aswan", country: "Egypt", default: false)
         
-        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil)
+        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, draftOrder: nil, orders: nil, order: nil)
         
         let params = JSONCoding().encodeToJson(objectClass: response) ?? [:]
         
@@ -129,7 +129,7 @@ final class NetworkTests: XCTestCase {
     func testPostDataFail(){
         let address = Address(id: nil, customer_id: 7000574820639 , name: "lolo elsayedddd", first_name:"lolo", last_name:  "elsayedddd", phone: "0000-999-1199", address1: "zagazig", city: "Aswan", country: "mmm", default: false)
         
-        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, orders: nil)
+        let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, draftOrder: nil, orders: nil, order: nil)
         
         let params = JSONCoding().encodeToJson(objectClass: response) ?? [:]
         
