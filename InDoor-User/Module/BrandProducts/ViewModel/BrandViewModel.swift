@@ -54,13 +54,13 @@ class BrandViewModel{
     }
     
     func putFavoriteDraftOrderFromAPI(parameters: Parameters){
-        netWorkingDataSource.putData(path: Constants.putUserPath, parameters: parameters, handler: { [weak self] response,code  in
+        netWorkingDataSource.putData(path: "draft_orders/\(UserDefaults.standard.integer(forKey: Constants.favoritesId))", parameters: parameters, handler: { [weak self] response,code  in
             self?.putFavoriteDraftOrder = response?.draftOrder
         })
     }
     
     func getFavoriteDraftOrderFromAPI(){
-        netWorkingDataSource.getData(path: Constants.getFavoriteDraftPath, parameters: [:], handler: { [weak self] response in
+        netWorkingDataSource.getData(path:  "draft_orders/\(UserDefaults.standard.integer(forKey: Constants.favoritesId))", parameters: [:], handler: { [weak self] response in
             self?.getFavoriteDraftOrder = response?.draftOrder
         })
     }

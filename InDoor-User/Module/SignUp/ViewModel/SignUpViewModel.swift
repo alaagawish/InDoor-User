@@ -78,7 +78,7 @@ class SignUpViewModel{
     }
     
     func putUser(parameters: Parameters){
-        service.putData(path: Constants.putUserPath, parameters: parameters, handler: { [weak self] response,code  in
+        service.putData(path: "customers/\(UserDefaults.standard.integer(forKey: Constants.customerId))", parameters: parameters, handler: { [weak self] response,code  in
             self?.userWithDraftOrder = response?.customer
             print("inside \(self?.userWithDraftOrder?.note)")
         })
