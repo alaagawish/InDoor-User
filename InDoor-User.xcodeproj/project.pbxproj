@@ -81,6 +81,7 @@
 		04B397D62A3B958700D50B37 /* ReviewsTableViewDelegatesHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B397D52A3B958700D50B37 /* ReviewsTableViewDelegatesHandling.swift */; };
 		04E46E672A30D931002DB72B /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E46E662A30D931002DB72B /* CurrencyTableViewCell.swift */; };
 		04E4F6FD2A2A639100566559 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E4F6FC2A2A639100566559 /* Settings.storyboard */; };
+		04E6C64F2A45711C00F3CF7C /* CartList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E6C64E2A45711C00F3CF7C /* CartList.swift */; };
 		04F371C02A448779003820C4 /* InventoryLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F371BF2A448779003820C4 /* InventoryLevel.swift */; };
 		04F371C22A448813003820C4 /* InventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F371C12A448813003820C4 /* InventoryItem.swift */; };
 		04F978FA2A3C968B00CC7FAA /* AllReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F978F92A3C968B00CC7FAA /* AllReviewsViewController.swift */; };
@@ -245,6 +246,7 @@
 		04B397D52A3B958700D50B37 /* ReviewsTableViewDelegatesHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewDelegatesHandling.swift; sourceTree = "<group>"; };
 		04E46E662A30D931002DB72B /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		04E4F6FC2A2A639100566559 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		04E6C64E2A45711C00F3CF7C /* CartList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartList.swift; sourceTree = "<group>"; };
 		04F371BF2A448779003820C4 /* InventoryLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryLevel.swift; sourceTree = "<group>"; };
 		04F371C12A448813003820C4 /* InventoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItem.swift; sourceTree = "<group>"; };
 		04F978F92A3C968B00CC7FAA /* AllReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewsViewController.swift; sourceTree = "<group>"; };
@@ -1105,6 +1107,7 @@
 				04B1A3072A3BB79D004AE0C4 /* ReviewTableViewCell.xib */,
 				61E516092A2922EA004DAA1D /* Main.storyboard */,
 				61E5163C2A2923FF004DAA1D /* Alerts.swift */,
+				04E6C64E2A45711C00F3CF7C /* CartList.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1499,6 +1502,7 @@
 				616BCF012A3504AD0021BDD9 /* OrdersViewController.swift in Sources */,
 				046AEE1B2A3FD67C00C6F6AA /* PrerequisiteQuantityRange.swift in Sources */,
 				61E516062A2922EA004DAA1D /* SceneDelegate.swift in Sources */,
+				04E6C64F2A45711C00F3CF7C /* CartList.swift in Sources */,
 				6168AA282A2BDD8C00A8E33C /* NetworkProtocol.swift in Sources */,
 				6168AA3F2A2BE50300A8E33C /* Rules.swift in Sources */,
 				046AEE1C2A3FD67C00C6F6AA /* PrerequisiteShippingPriceRange.swift in Sources */,

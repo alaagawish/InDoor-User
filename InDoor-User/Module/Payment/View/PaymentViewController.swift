@@ -51,7 +51,7 @@ class PaymentViewController: UIViewController {
         orderTotalPrice = Double(order.totalPrice ?? "") ?? 0
         cantPayWithCashView.translatesAutoresizingMaskIntoConstraints = false
         checkCashPayment()
-        self.purchaseButton.addTarget(self, action: #selector(tapToPay), for: .touchUpInside)
+        //self.purchaseButton.addTarget(self, action: #selector(tapToPay), for: .touchUpInside)
         
         totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", orderTotalPrice * UserDefault().getCurrencyRate())
         paymentViewModel.bindOrderToViewController = {
@@ -73,18 +73,10 @@ class PaymentViewController: UIViewController {
         }
     }
     
-    @objc func tapToPay(){
-        let paymentController = PKPaymentAuthorizationViewController(paymentRequest: payRequest)
-        guard let paymentController = paymentController else {
-            return
-        }
-        paymentController.delegate = self
-        present(paymentController, animated: true, completion: nil)
-        creditCheckMarkImage.isHidden = true
-    }
     override func viewWillAppear(_ animated: Bool) {
         purchaseButton.isEnabled = false
     }
+    
     func checkCashPayment(){
         if !canPayWithCash{
             cantPayWithCashView.isHidden = false
@@ -132,17 +124,16 @@ class PaymentViewController: UIViewController {
     @objc func cashTap(_ sender: UITapGestureRecognizer? = nil) {
         if canPayWithCash{
             cashCheckMarkImage.isHidden = false
+            creditCheckMarkImage.isHidden = true
+            purchaseButton.isEnabled = true
+            creditTappedFlag = false
         }else{
             cashCheckMarkImage.isHidden = true
         }
-        creditCheckMarkImage.isHidden = true
-        purchaseButton.isEnabled = true
-        creditTappedFlag = false
     }
     
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true)
-        
     }
     
     @IBAction func doneOrder(_ sender: Any) {
@@ -151,8 +142,21 @@ class PaymentViewController: UIViewController {
         paymentViewModel.decreaseVariantCountByOrderAmount()
         if creditTappedFlag{
             tapToPay()
+        }else{
+            animateDone()
         }
-        animateDone()
+        CartList.cartItems = []
+        generalViewModel.putShoppingCartDraftOrder()
+    }
+    
+    func tapToPay(){
+        let paymentController = PKPaymentAuthorizationViewController(paymentRequest: payRequest)
+        guard let paymentController = paymentController else {
+            return
+        }
+        paymentController.delegate = self
+        present(paymentController, animated: true, completion: nil)
+        creditCheckMarkImage.isHidden = true
     }
     
     func animateDone(){
@@ -169,9 +173,10 @@ class PaymentViewController: UIViewController {
         let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: "Successful payment done", positiveButtonTitle: Constants.ok) { action in
             let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
             let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
-            HomeViewController.donePayment = true
             home.modalPresentationStyle = .fullScreen
             self.present(home, animated: true)
+            
+            //self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
         }
         self.present(alert, animated: true)
     }

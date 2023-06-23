@@ -24,7 +24,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var internetConnectivity: Connectivity?
     var couponAmount = ""
     var couponSubTotal = ""
-    static var donePayment = false
     var promoCodes: [InputSource] = [ImageSource(image: UIImage(named: "discount5")!),
                                      ImageSource(image: UIImage(named: "discount2")!),
                                      ImageSource(image: UIImage(named: "discount3")!)]{
@@ -54,13 +53,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         brandCollectionView.register(UINib(nibName: Constants.brandsNibFile, bundle: nil), forCellWithReuseIdentifier: Constants.brandCell)
         startSlider()
         callingData()
-        if HomeViewController.donePayment {
-            ShoppingCartViewController.cartItems = []
-            generalViewModel.putShoppingCartDraftOrder()
-            HomeViewController.donePayment = false
-        }else {
-            generalViewModel.getShippingCartDraftOrder()
-        }
         favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
         var lineItems:[LineItems] = []
         
@@ -93,6 +85,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.favoritesViewModel.getAllProducts()
     }
     override func viewWillAppear(_ animated: Bool) {
+        generalViewModel.getShippingCartDraftOrder()
         internetConnectivity = Connectivity.sharedInstance
         if internetConnectivity?.isConnectedToInternet() == true {
             noInternet.isHidden = true
@@ -101,7 +94,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             noInternet.isHidden = false
             refreshOutLet.isHidden = false
         }
-
     }
     func callingData(){
         homeViewModel.bindResultToViewController = {[weak self] in

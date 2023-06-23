@@ -159,7 +159,7 @@
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8yO-DX-tS6" customClass="LottieAnimationView" customModule="Lottie">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="done"/>
                                 </userDefinedRuntimeAttributes>
@@ -209,7 +209,7 @@
                         <outlet property="creditCheckMarkImage" destination="h6K-Hc-RL0" id="sWz-Su-dXW"/>
                         <outlet property="creditView" destination="0aO-Qd-9Fp" id="YbM-vp-Smf"/>
                         <outlet property="doneAnimation" destination="8yO-DX-tS6" id="KQf-Y5-bUQ"/>
-                        <outlet property="purchaseButton" destination="aj6-Tm-AO8" id="f4T-cl-FXx"/>
+                        <outlet property="purchaseButton" destination="aj6-Tm-AO8" id="G45-ae-ky5"/>
                         <outlet property="totalPriceLabel" destination="cWR-5f-Cza" id="dme-dE-yaN"/>
                     </connections>
                 </viewController>
@@ -220,6 +220,9 @@
             <point key="canvasLocation" x="-153.43511450381678" y="-27.464788732394368"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="8yO-DX-tS6"/>
+    </designables>
     <resources>
         <image name="back" width="512" height="512"/>
         <image name="cash" width="259" height="194"/>

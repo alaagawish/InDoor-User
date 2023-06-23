@@ -47,7 +47,7 @@ class PaymentViewModel {
     }
     
     func decreaseVariantCountByOrderAmount(){
-        let items = ShoppingCartViewController.cartItems
+        let items = CartList.cartItems
         let url = "inventory_levels/set"
         for item in items {
             var inventoryItemId = (item.properties?[0].value?.split(separator: "_")[1])!

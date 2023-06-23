@@ -255,7 +255,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     }
     
     func checkVariantIsInCart(variantId: Int) -> (Bool, Int){
-        for (index, item) in ShoppingCartViewController.cartItems.enumerated(){
+        for (index, item) in CartList.cartItems.enumerated(){
             if item.variantId == variantId {
                 return (true , index)
             }
@@ -265,8 +265,8 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     
     
     func canUpdateCartAmount(variantIndex: Int) -> Bool{
-        let currentAmountInCart = ShoppingCartViewController.cartItems[variantIndex].quantity!
-        let totalAmountInStock = Int(ShoppingCartViewController.cartItems[variantIndex].properties?[0].name ?? "1") ?? 1
+        let currentAmountInCart = CartList.cartItems[variantIndex].quantity!
+        let totalAmountInStock = Int(CartList.cartItems[variantIndex].properties?[0].name ?? "1") ?? 1
         if (totalAmountInStock > 3 && currentAmountInCart + orderCount <= totalAmountInStock/3) || (totalAmountInStock <= 3 && currentAmountInCart + orderCount <= totalAmountInStock){
             return true
         }else {
@@ -275,14 +275,14 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
     }
     
     func updateCartAmountAndResetCounter(variantIndex: Int){
-        ShoppingCartViewController.cartItems[variantIndex].quantity! += orderCount
+        CartList.cartItems[variantIndex].quantity! += orderCount
         orderCount = 1
         resetVariantsUI()
     }
     
     func presentAmountErrorAlert(variantIndex: Int){
-        let currentAmountInCart = ShoppingCartViewController.cartItems[variantIndex].quantity!
-        let totalAmountInStock = Int(ShoppingCartViewController.cartItems[variantIndex].properties?[0].name ?? "1") ?? 1
+        let currentAmountInCart = CartList.cartItems[variantIndex].quantity!
+        let totalAmountInStock = Int(CartList.cartItems[variantIndex].properties?[0].name ?? "1") ?? 1
         var cartCount = 0
         if totalAmountInStock <= 3{
             cartCount = totalAmountInStock
@@ -298,7 +298,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
             if variant.title == variantName {
                 if variant.inventoryQuantity! > 3 && orderCount <= variant.inventoryQuantity!/3 || variant.inventoryQuantity! <= 3 && orderCount <= variant.inventoryQuantity! {
                     let lineItem = LineItems(name: product.title,price: variant.price, productId: product.id , quantity: orderCount, variantId: variant.id, variantTitle: variantName ,vendor: product.vendor, properties: [Properties(name: String(variant.inventoryQuantity!), value: "\((product.image?.src)!)_\(variant.inventoryItemId!)")])
-                    ShoppingCartViewController.cartItems.append(lineItem)
+                    CartList.cartItems.append(lineItem)
                     orderCount = 1
                     resetVariantsUI()
                 }else{

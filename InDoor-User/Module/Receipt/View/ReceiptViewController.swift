@@ -156,12 +156,12 @@ class ReceiptViewController: UIViewController {
 
 extension ReceiptViewController: UICollectionViewDelegate ,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ShoppingCartViewController.cartItems.count
+        return CartList.cartItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.orderCellIdentifier, for: indexPath) as! OrderCollectionViewCell
-        cell.setValues(cartItem: ShoppingCartViewController.cartItems[indexPath.row])
+        cell.setValues(cartItem: CartList.cartItems[indexPath.row])
         return cell
     }
     

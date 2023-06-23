@@ -17,11 +17,12 @@ class GeneralViewModel {
     }
 
     func putShoppingCartDraftOrder(){
-        if ShoppingCartViewController.cartItems.isEmpty {
+        var tempArr = CartList.cartItems
+        if tempArr.isEmpty {
             let lineItem = LineItems(price: "20.0", quantity: 1, title: "dummy")
-            ShoppingCartViewController.cartItems.append(lineItem)
+            tempArr.append(lineItem)
         }
-        let draftOrder = DraftOrder(id: nil, note: nil, lineItems: ShoppingCartViewController.cartItems, user: nil)
+        let draftOrder = DraftOrder(id: nil, note: nil, lineItems: tempArr, user: nil)
         let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: nil, draftOrder: draftOrder, orders: nil,order: nil)
         let params = JSONCoding().encodeToJson(objectClass: response)!
         network.putData(path: Constants.getCartDraftPath, parameters: params, handler: {response,code  in })
@@ -36,7 +37,7 @@ class GeneralViewModel {
                     break
                 }
             }
-            ShoppingCartViewController.cartItems = lineItems
+            CartList.cartItems = lineItems
         })
     }
 }
