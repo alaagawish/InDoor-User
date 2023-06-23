@@ -23,7 +23,7 @@ extension UICollectionViewCell {
         layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
         layer.shadowOpacity = 0.0
         contentView.layer.borderWidth = 4
-        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.layer.borderColor = UIColor(named: "pink")?.cgColor
     }
 }
 
