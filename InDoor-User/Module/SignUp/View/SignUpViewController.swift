@@ -220,6 +220,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 }
                 self.present(alert, animated: true)
             }
+            if(isValidPhone(phone: phoneTextField.text ?? "") == false){
+                let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.invalidPhone, positiveButtonTitle: Constants.ok){_ in
+                    self.phoneTextField.text = ""
+                }
+                self.present(alert, animated: true)
+            }
             else{
                 signUpViewModel.getUsers()
             }
@@ -265,6 +271,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     func isValidPassword(password: String) -> Bool{
         let passwordRegex = NSPredicate(format: Constants.passwordFormat, Constants.passwordRegEx)
         return passwordRegex.evaluate(with: password)
+    }
+    
+    func isValidPhone(phone: String) -> Bool{
+        let phoneRegex = NSPredicate(format: Constants.phoneFormat, Constants.phoneRegEx)
+        return phoneRegex.evaluate(with: phone)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

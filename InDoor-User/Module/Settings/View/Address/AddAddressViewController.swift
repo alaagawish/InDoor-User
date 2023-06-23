@@ -150,17 +150,29 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
             self.present(alert, animated: true)
         }
         else{
-            let address = Address(id: nil, customer_id: UserDefault().getCustomerId(), name: "\(self.firstNameTextField.text ?? "") \(self.lastNameTextField.text ?? "")", first_name:firstNameTextField.text ?? "", last_name: lastNameTextField.text ?? "", phone: phoneTextField.text ?? "", address1: self.addressTextField.text ?? "", city: self.cityTextField.text ?? "", country: self.countryTextField.text ?? "", default: false)
-            
-            let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, draftOrder: nil, orders: nil,order: nil)
-            
-            let params = JSONCoding().encodeToJson(objectClass: response)
-            
-            if !toUpdateAddress{
-                self.settingsViewModel.postAddress(parameters: params ?? [:])
+            if(isValidPhone(phone: phoneTextField.text ?? "") == false){
+                let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.invalidPhone, positiveButtonTitle: Constants.ok){_ in
+                    self.phoneTextField.text = ""
+                }
+                self.present(alert, animated: true)
             }else{
-                self.settingsViewModel.putAddress(path: "\(Constants.addressPath)/\(updateAddress.id ?? 0)", parameters: params ?? [:])
+                let address = Address(id: nil, customer_id: UserDefault().getCustomerId(), name: "\(self.firstNameTextField.text ?? "") \(self.lastNameTextField.text ?? "")", first_name:firstNameTextField.text ?? "", last_name: lastNameTextField.text ?? "", phone: phoneTextField.text ?? "", address1: self.addressTextField.text ?? "", city: self.cityTextField.text ?? "", country: self.countryTextField.text ?? "", default: false)
+                
+                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: nil, customers: nil, addresses: nil, customer_address: address, draftOrder: nil, orders: nil,order: nil)
+                
+                let params = JSONCoding().encodeToJson(objectClass: response)
+                
+                if !toUpdateAddress{
+                    self.settingsViewModel.postAddress(parameters: params ?? [:])
+                }else{
+                    self.settingsViewModel.putAddress(path: "\(Constants.addressPath)/\(updateAddress.id ?? 0)", parameters: params ?? [:])
+                }
             }
         }
+    }
+    
+    func isValidPhone(phone: String) -> Bool{
+        let phoneRegex = NSPredicate(format: Constants.phoneFormat, Constants.phoneRegEx)
+        return phoneRegex.evaluate(with: phone)
     }
 }
