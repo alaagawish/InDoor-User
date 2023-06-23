@@ -53,9 +53,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         brandCollectionView.register(UINib(nibName: Constants.brandsNibFile, bundle: nil), forCellWithReuseIdentifier: Constants.brandCell)
         startSlider()
         callingData()
-        generalViewModel.getShippingCartDraftOrder()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
+        generalViewModel.getShippingCartDraftOrder()
         lineItems = []
         internetConnectivity = Connectivity.sharedInstance
         if internetConnectivity?.isConnectedToInternet() == true {
@@ -65,12 +66,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             noInternet.isHidden = false
             refreshOutLet.isHidden = false
         }
-       
+        self.favoritesViewModel.getAllProducts()
         favoritesViewModel.bindallProductsListToController = {[weak self] in
             print("----h-customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
             print("----h-favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
             print("----h-cartId: \(self?.defaults.integer(forKey: Constants.cartId) ?? 000)")
             print("----h-isgoogle: \(self?.defaults.integer(forKey: Constants.isGoogle) ?? 000)")
+            print("static: \(FavoritesViewController.staticFavoriteList)")
             for product in FavoritesViewController.staticFavoriteList {
                 if(self?.defaults.integer(forKey: Constants.customerId) == product.customer_id){
                     self?.lineItems.append(LineItems(price: product.price, productId: product.id, quantity: 1 , title: product.title,variantId: product.variant_id, properties: [Properties(name: "image_url", value: product.image)]))
@@ -102,7 +104,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self?.favoritesViewModel.putFavoriteDraftOrderFromAPI(parameters: params ?? [:] )
             }
         }
-        self.favoritesViewModel.getAllProducts()
+        
     }
     func callingData(){
         homeViewModel.bindResultToViewController = {[weak self] in

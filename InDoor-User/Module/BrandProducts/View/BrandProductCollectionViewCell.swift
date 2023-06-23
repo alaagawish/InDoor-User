@@ -79,8 +79,10 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
             print("product id: \(product.id)")
             if self.view == Constants.brand {
                 ( viewController as! BrandViewController).favoritesViewModel.addProduct(product: localProduct)
+                ( viewController as! BrandViewController).favoritesViewModel.getAllProducts()
             }else {
                 ( viewController as! CategoryViewController).favoritesViewModel.addProduct(product: localProduct)
+                ( viewController as! CategoryViewController).favoritesViewModel.getAllProducts()
             }
             favouriteButton.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
             
@@ -90,6 +92,7 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
                 
                 let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) { [weak self] action in
                     ( self?.viewController as! BrandViewController).favoritesViewModel.removeProduct(product: retrievedProduct)
+                    ( self?.viewController as! BrandViewController).favoritesViewModel.getAllProducts()
                     self?.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
                 }
                 viewController?.present(alert, animated: true, completion: nil)
@@ -98,12 +101,13 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
                 
                 let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) { [weak self] action in
                     ( self?.viewController as! CategoryViewController).favoritesViewModel.removeProduct(product: retrievedProduct)
+                    ( self?.viewController as! CategoryViewController).favoritesViewModel.getAllProducts()
                     self?.favouriteButton.setImage(UIImage(systemName: Constants.heart), for: .normal)
                 }
                 viewController?.present(alert, animated: true, completion: nil)
             }
         }
-        (self.viewController as! BrandViewController).favoritesViewModel.getAllProducts()
+        
     }
     
     override var frame: CGRect {

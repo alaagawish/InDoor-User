@@ -217,6 +217,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
             print("---B-productId: \(product.id)")
             let localProduct = LocalProduct(id: product.id, customer_id: defaults.integer(forKey: Constants.customerId), variant_id: product.variants?[0].id ?? 0, title: product.title ?? "", price: product.variants?[0].price ?? "", image: product.image?.src ?? "")
             productDetailsViewModel.addProduct(product: localProduct)
+            self.favoritesViewModel.getAllProducts()
             favouriteButtonOutlet.setImage(UIImage(systemName: Constants.fillHeart), for: .normal)
             
         } else {
@@ -224,11 +225,12 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
             
             let alert = Alert().showRemoveProductFromFavoritesAlert(title: Constants.removeAlertTitle, msg: Constants.removeAlertMessage) { [weak self] action in
                 self?.productDetailsViewModel.removeProduct(product: retrievedProduct)
+                self?.favoritesViewModel.getAllProducts()
                 self?.favouriteButtonOutlet.setImage(UIImage(systemName: Constants.heart), for: .normal)
             }
             present(alert, animated: true, completion: nil)
         }
-        self.favoritesViewModel.getAllProducts()
+       // self.favoritesViewModel.getAllProducts()
     }
     
     @IBAction func addToCart(_ sender: UIButton) {

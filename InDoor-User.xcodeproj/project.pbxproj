@@ -42,6 +42,7 @@
 		04865F0C2A3FCFE1005787E2 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04865F0B2A3FCFE1005787E2 /* ProductDetailsViewModel.swift */; };
 		0487D4BC2A3A2606006D9DAA /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0487D4BA2A3A2606006D9DAA /* AddressTableViewCell.swift */; };
 		0487D4BD2A3A2606006D9DAA /* AddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0487D4BB2A3A2606006D9DAA /* AddressTableViewCell.xib */; };
+		048809FA2A459671005EC9D9 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 048809F92A459671005EC9D9 /* Reachability */; };
 		048827972A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048827962A2D0D85009DFD9B /* FavoritesStoryBoard.storyboard */; };
 		048C2F2A2A37C40B00D44A7A /* ProductDetailsStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048C2F292A37C40B00D44A7A /* ProductDetailsStoryBoard.storyboard */; };
 		048C2F2C2A37C46300D44A7A /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C2F2B2A37C46300D44A7A /* ProductDetailsViewController.swift */; };
@@ -340,6 +341,7 @@
 				9D1FD3989110A749C97AEEB6 /* Pods_InDoor_User.framework in Frameworks */,
 				04B247ED2A38757B00B447D2 /* ImageSlideshow/Kingfisher in Frameworks */,
 				049C02152A3DF6C500488B67 /* GoogleSignInSwift in Frameworks */,
+				048809FA2A459671005EC9D9 /* Reachability in Frameworks */,
 				04B154D02A3A08DE00B808E3 /* Lottie in Frameworks */,
 				049C02102A3DF5B900488B67 /* FirebaseAuth in Frameworks */,
 			);
@@ -1173,6 +1175,7 @@
 				049C02122A3DF6C500488B67 /* GoogleSignIn */,
 				049C02142A3DF6C500488B67 /* GoogleSignInSwift */,
 				04960DEA2A42449F005E39C9 /* Alamofire */,
+				048809F92A459671005EC9D9 /* Reachability */,
 			);
 			productName = "InDoor-User";
 			productReference = 61E516002A2922EA004DAA1D /* InDoor-User.app */;
@@ -1255,6 +1258,7 @@
 				049C020E2A3DF5B900488B67 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				049C02112A3DF6C500488B67 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				04960DE92A42449F005E39C9 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				048809F82A459671005EC9D9 /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 61E516012A2922EA004DAA1D /* Products */;
 			projectDirPath = "";
@@ -1883,6 +1887,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		048809F82A459671005EC9D9 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		04960DE92A42449F005E39C9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -1926,6 +1938,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		048809F92A459671005EC9D9 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 048809F82A459671005EC9D9 /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
 		04960DEA2A42449F005E39C9 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 04960DE92A42449F005E39C9 /* XCRemoteSwiftPackageReference "Alamofire" */;
