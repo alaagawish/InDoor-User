@@ -94,7 +94,6 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cartCellIdentifier, for: indexPath) as! ShoppingCartTableViewCell
-        print("index \(indexPath.row)")
         cell.setCartItemValues(lineItem: tableArr[indexPath.row], viewController: self)
         return cell
     }

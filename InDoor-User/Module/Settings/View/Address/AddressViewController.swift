@@ -142,9 +142,7 @@ extension AddressViewController: UITableViewDelegate, UITableViewDataSource{
             
             self.settingsViewModel.putAddress(path: "\(Constants.addressPath)/\(addressesList[indexPath.row].id ?? 0)", parameters: params ?? [:])
             self.settingsViewModel.getAddresses()
-            
         }
-        
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

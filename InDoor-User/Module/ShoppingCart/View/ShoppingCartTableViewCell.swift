@@ -61,9 +61,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
     }
     
     func setCartItemValues(lineItem: LineItems, viewController: ShoppingCartViewController){
-        print("--------\(lineItem.properties?[0].value)")
         let imageUrl = (lineItem.properties?[0].value?.split(separator: "_")[0])!
-        print("+++++++++\(imageUrl)")
         shoppingCartImage.kf.setImage(with: URL(string: String(imageUrl)),placeholder: UIImage(named: Constants.noImage))
         self.shoppingCartProductNameLabel.text = lineItem.name
         self.shoppingCartProductDescriptionLabel.text = "\(lineItem.vendor ?? "") / \((lineItem.variantTitle)!)"

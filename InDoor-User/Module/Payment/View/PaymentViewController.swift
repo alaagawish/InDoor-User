@@ -130,6 +130,8 @@ class PaymentViewController: UIViewController {
         }
         CartList.cartItems = []
         generalViewModel.putShoppingCartDraftOrder()
+        UserDefault().setCoupon(couponCode: ("",""))
+        UserDefault().setCouponAmountAndSubtotal(amountAndSubTotal: ("",""))
     }
     
     func tapToPay(){
