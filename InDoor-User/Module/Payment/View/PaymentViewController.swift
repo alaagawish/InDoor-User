@@ -54,23 +54,6 @@ class PaymentViewController: UIViewController {
         //self.purchaseButton.addTarget(self, action: #selector(tapToPay), for: .touchUpInside)
         
         totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", orderTotalPrice * UserDefault().getCurrencyRate())
-        paymentViewModel.bindOrderToViewController = {
-            [weak self] in
-            if self?.paymentViewModel.order?.id ?? 0 != 0 {
-                
-                let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.congratulations, msg: "Order is done", negativeButtonTitle: Constants.ok, positiveButtonTitle: Constants.directHome) {[weak self] alert in
-                    
-                    let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
-                    let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
-                    home.modalPresentationStyle = .fullScreen
-                    
-                    self?.dismiss(animated: true)
-                    self?.present(home, animated: true)
-                    
-                }
-                self?.present(alert, animated: true)
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -22,7 +22,6 @@ class ReceiptViewController: UIViewController {
     var couponType: String = ""
     var couponAmount: String = ""
     var couponMinimumSubTotal: String = ""
-    var lineItmes: [LineItems] = []
     var total: Double = 0.0
     var allCoupons:[[DiscountCodes]] = []
     override func viewDidLoad() {
@@ -67,7 +66,7 @@ class ReceiptViewController: UIViewController {
     
     @IBAction func checkout(_ sender: Any) {
         let customer = Customer(id: UserDefault().getCustomerId())
-        let order = Orders(currency: UserDefault().getCurrencySymbol(), lineItems: lineItmes, number: lineItmes.count, customer: customer, totalPrice: String(format: "%.2f", total ))
+        let order = Orders(currency: UserDefault().getCurrencySymbol(), lineItems: CartList.cartItems, number: CartList.cartItems.count, customer: customer, totalPrice: String(format: "%.2f", total ))
         
         let storyboard = UIStoryboard(name: Constants.settingsStoryboard, bundle: nil)
         let addressStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.addressIdentifier) as! AddressViewController
