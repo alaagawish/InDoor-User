@@ -145,4 +145,6 @@ class Constants {
     static let ordersPath = "orders"
     static let alert = "Alert"
     static let isSignUp = "isSignUp"
+    static let checkYourEmail = "Please, check your email.\nVerification email is sent to you."
+    static let emailIsNotVerified = "Your email ia not verified yet.\nPlease, check your email.\nVerification email is sent to you."
 }

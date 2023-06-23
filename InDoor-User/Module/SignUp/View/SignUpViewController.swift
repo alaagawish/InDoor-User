@@ -47,14 +47,37 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         signUpViewModel.bindUserWithDraftOrderToSignUpController = {[weak self] in
             if(self?.signUpViewModel.userWithDraftOrder?.note != nil ){
-                let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
-                let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
-                print("----u-customerId: \(self?.defaults.integer(forKey: Constants.customerId) ?? 000)")
-                print("----u-favId: \(self?.defaults.integer(forKey: Constants.favoritesId) ?? 000)")
-                print("----u-cartId: \(self?.defaults.integer(forKey: Constants.cartId) ?? 000)")
-                print("----u-isgoogle: \(self?.defaults.integer(forKey: Constants.isGoogle) ?? 000)")
-                home.modalPresentationStyle = .fullScreen
-                self?.present(home, animated: true)
+                if self?.isGoogle == false {
+                    Auth.auth().createUser(withEmail: self?.emailTextField.text ?? "", password: self?.passwordTextField.text ?? ""){result, error in
+                        if let error = error {
+                            print(error)
+                            return
+                        }
+                        guard let currentUser = Auth.auth().currentUser else {return}
+                        currentUser.sendEmailVerification { error in
+                            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.checkYourEmail, positiveButtonTitle: Constants.ok){ [weak self] _ in
+                                let login = self?.storyboard?.instantiateViewController(identifier: Constants.loginIdentifier) as! LoginViewController
+                                login.modalPresentationStyle = .fullScreen
+                                self?.present(login, animated: true)
+                            }
+                            self?.present(alert, animated: true)
+                            // Verification email sent successfully
+                            print("Verification email sent")
+                        }
+                    }
+                }else{
+                    guard let currentUser = Auth.auth().currentUser else {return}
+                    currentUser.sendEmailVerification { error in
+                        let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.checkYourEmail, positiveButtonTitle: Constants.ok){ [weak self] _ in
+                            let login = self?.storyboard?.instantiateViewController(identifier: Constants.loginIdentifier) as! LoginViewController
+                            login.modalPresentationStyle = .fullScreen
+                            self?.present(login, animated: true)
+                        }
+                        self?.present(alert, animated: true)
+                        // Verification email sent successfully
+                        print("Verification email sent")
+                    }
+                }
             }
         }
         signUpViewModel.bindDraftOrderToSignUpController = {[weak self] in
@@ -131,13 +154,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 }
                 
                 if self?.registered == true {
-                    DispatchQueue.main.async {
-                        let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
-                        let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
-                        self?.defaults.setValue(self?.isGoogle, forKey: Constants.isGoogle)
-                        home.modalPresentationStyle = .fullScreen
-                        self?.present(home, animated: true)
+                    self?.registered = false
+                    let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.warning, msg: Constants.emailUsedBefore, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok, negativeHandler: nil) { action in
+                        let login = self?.storyboard?.instantiateViewController(identifier: Constants.loginIdentifier) as! LoginViewController
+                        login.modalPresentationStyle = .fullScreen
+                        self?.present(login, animated: true)
                     }
+                    self?.present(alert, animated: true)
                 } else {
                     let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: self?.user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil,order: nil)
                     

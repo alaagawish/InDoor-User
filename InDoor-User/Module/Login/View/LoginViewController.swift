@@ -32,14 +32,39 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
             print("note: \(self?.loginViewModel.userWithDraftOrder?.note)")
             if(self?.loginViewModel.userWithDraftOrder?.note != nil ){
                 self?.getFavoritesDraftOrderFromRemoteToLocal()
-                let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: Constants.registeredSuccessfully, positiveButtonTitle: Constants.ok){_ in
-                    let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
-                    let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
-                    self?.defaults.setValue(self?.isGoogle, forKey: Constants.isGoogle)
-                    home.modalPresentationStyle = .fullScreen
-                    self?.present(home, animated: true)
+                if self?.isGoogle == false {
+                    Auth.auth().createUser(withEmail: self?.emailTextField.text ?? "", password: self?.passwordTextField.text ?? ""){result, error in
+                        if let error = error {
+                            print(error)
+                            return
+                        }
+                        guard let currentUser = Auth.auth().currentUser else {return}
+                        currentUser.sendEmailVerification { error in
+                            guard let error = error else {
+                                // Handle error
+                                print("Error sending verification email: \(error?.localizedDescription)")
+                                return
+                            }
+                            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.checkYourEmail, positiveButtonTitle: Constants.ok)
+                            self?.present(alert, animated: true)
+                            // Verification email sent successfully
+                            print("Verification email sent")
+                        }
+                    }
+                }else{
+                    guard let currentUser = Auth.auth().currentUser else {return}
+                    currentUser.sendEmailVerification { error in
+                        guard let error = error else {
+                            // Handle error
+                            print("Error sending verification email: \(error?.localizedDescription)")
+                            return
+                        }
+                        let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.checkYourEmail, positiveButtonTitle: Constants.ok)
+                        self?.present(alert, animated: true)
+                        // Verification email sent successfully
+                        print("Verification email sent")
+                    }
                 }
-                self?.present(alert, animated: true)
             }
         }
         
@@ -97,12 +122,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                 }
                 
                 if self?.found == true {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2){
-                        let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
-                        let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
-                        self?.defaults.setValue(self?.isGoogle, forKey: Constants.isGoogle)
-                        home.modalPresentationStyle = .fullScreen
-                        self?.present(home, animated: true)
+                    let currentUser = Auth.auth().currentUser
+                    guard let currentUser = currentUser else {return}
+                    currentUser.reload{[weak self]_ in
+                        if (currentUser.isEmailVerified) {
+                            // Email verified
+                            print("Email verified")
+                            let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
+                            let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
+                            self?.defaults.setValue(self?.isGoogle, forKey: Constants.isGoogle)
+                            home.modalPresentationStyle = .fullScreen
+                            self?.present(home, animated: true)
+                        } else {
+                            // Email not verified
+                            print("Email not verified\(currentUser.email)")
+                            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.emailIsNotVerified, positiveButtonTitle: Constants.ok, positiveHandler: nil)
+                            self?.present(alert, animated: true)
+                        }
                     }
                 } else {
                     let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.checkEmailAndPassword, positiveButtonTitle: Constants.ok, positiveHandler: nil)
@@ -125,12 +161,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                 }
                 
                 if self?.found == true {
-                    DispatchQueue.main.async {
-                        let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
-                        let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
-                        self?.defaults.setValue(self?.isGoogle, forKey: Constants.isGoogle)
-                        home.modalPresentationStyle = .fullScreen
-                        self?.present(home, animated: true)
+                    let currentUser = Auth.auth().currentUser
+                    guard let currentUser = currentUser else {return}
+                    currentUser.reload{[weak self]_ in
+                        if (currentUser.isEmailVerified) {
+                            // Email verified
+                            print("Email verified\(currentUser.email)")
+                            let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
+                            let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
+                            self?.defaults.setValue(self?.isGoogle, forKey: Constants.isGoogle)
+                            home.modalPresentationStyle = .fullScreen
+                            self?.present(home, animated: true)
+                        } else {
+                            // Email not verified
+                            print("Email not verified\(currentUser.email)")
+                            let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.emailIsNotVerified, positiveButtonTitle: Constants.ok, positiveHandler: nil)
+                            self?.present(alert, animated: true)
+                        }
                     }
                 } else {
                     let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: self?.user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil,order: nil)
