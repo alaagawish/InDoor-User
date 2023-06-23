@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var internetConnectivity: Connectivity?
     var couponAmount = ""
     var couponSubTotal = ""
+    static var donePayment = false
     var promoCodes: [InputSource] = [ImageSource(image: UIImage(named: "discount5")!),
                                      ImageSource(image: UIImage(named: "discount2")!),
                                      ImageSource(image: UIImage(named: "discount3")!)]{
@@ -53,9 +54,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         brandCollectionView.register(UINib(nibName: Constants.brandsNibFile, bundle: nil), forCellWithReuseIdentifier: Constants.brandCell)
         startSlider()
         callingData()
+        if HomeViewController.donePayment {
+            ShoppingCartViewController.cartItems = []
+            generalViewModel.putShoppingCartDraftOrder()
+            HomeViewController.donePayment = false
+        }else {
+            generalViewModel.getShippingCartDraftOrder()
+        }
         favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
         var lineItems:[LineItems] = []
-        generalViewModel.getShippingCartDraftOrder()
+        
 //        favoritesViewModel.bindPutfavoriteDraftOrderToController = {[weak self] in
 //            
 //        }

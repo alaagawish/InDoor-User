@@ -38,4 +38,5 @@ class GeneralViewModel {
             }
             ShoppingCartViewController.cartItems = lineItems
         })
-    }}
+    }
+}

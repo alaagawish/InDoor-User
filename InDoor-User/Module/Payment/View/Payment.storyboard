@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -156,11 +157,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8yO-DX-tS6" customClass="LottieAnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="done"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0eN-xo-uz1" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.315522" id="0vF-Fc-WcS"/>
+                            <constraint firstItem="8yO-DX-tS6" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="0yY-e4-DxC"/>
                             <constraint firstItem="0aO-Qd-9Fp" firstAttribute="top" secondItem="JNA-9m-rVU" secondAttribute="bottom" constant="8" id="1Mb-TB-6M8"/>
                             <constraint firstItem="aj6-Tm-AO8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="50" id="1fF-JQ-XBs"/>
                             <constraint firstItem="GGP-Uu-dAx" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="5Wp-VI-DBv"/>
@@ -168,6 +177,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0aO-Qd-9Fp" secondAttribute="trailing" constant="16" id="799-rO-3xK"/>
                             <constraint firstItem="TDe-q1-h6J" firstAttribute="leading" secondItem="aj6-Tm-AO8" secondAttribute="leading" id="8FI-JK-v17"/>
                             <constraint firstItem="0aO-Qd-9Fp" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.07" id="A7q-as-CxP"/>
+                            <constraint firstItem="8yO-DX-tS6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="AtI-h1-I6J"/>
                             <constraint firstItem="0eN-xo-uz1" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Bqa-46-hhy"/>
                             <constraint firstItem="0aO-Qd-9Fp" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="CiG-iZ-Jf2"/>
                             <constraint firstItem="Wol-tj-aW7" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="DDR-wW-u7w"/>
@@ -187,6 +197,8 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="aj6-Tm-AO8" secondAttribute="bottom" constant="8" id="Zki-YI-N99"/>
                             <constraint firstItem="Gc5-Ve-CXg" firstAttribute="top" secondItem="0eN-xo-uz1" secondAttribute="bottom" constant="16" id="hX4-ng-Rv2"/>
                             <constraint firstItem="JNA-9m-rVU" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="oxt-YW-xeb"/>
+                            <constraint firstItem="8yO-DX-tS6" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="r0q-Kh-sC0"/>
+                            <constraint firstItem="8yO-DX-tS6" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="udR-Yc-tDc"/>
                             <constraint firstItem="GGP-Uu-dAx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="xMc-sP-e1P"/>
                         </constraints>
                     </view>
@@ -196,6 +208,7 @@
                         <outlet property="cashView" destination="Wol-tj-aW7" id="J96-Dp-D8O"/>
                         <outlet property="creditCheckMarkImage" destination="h6K-Hc-RL0" id="sWz-Su-dXW"/>
                         <outlet property="creditView" destination="0aO-Qd-9Fp" id="YbM-vp-Smf"/>
+                        <outlet property="doneAnimation" destination="8yO-DX-tS6" id="KQf-Y5-bUQ"/>
                         <outlet property="purchaseButton" destination="aj6-Tm-AO8" id="f4T-cl-FXx"/>
                         <outlet property="totalPriceLabel" destination="cWR-5f-Cza" id="dme-dE-yaN"/>
                     </connections>
@@ -214,7 +227,7 @@
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="cridet.jpeg" width="449" height="472"/>
         <namedColor name="pink">
-            <color red="0.77254901960784317" green="0.21176470588235294" blue="0.51372549019607838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77300000190734863" green="0.21199999749660492" blue="0.51399999856948853" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -21,7 +21,6 @@ class ShoppingCartTableViewCell: UITableViewCell {
     var totalAvailableVariantInStock: Int = 0
     var productCount = 1
     var itemInCart: LineItems!
-    var cellIndex:Int!
     var generalViewModel = GeneralViewModel(network: Network())
     
     override func layoutSubviews() {
@@ -61,14 +60,13 @@ class ShoppingCartTableViewCell: UITableViewCell {
         
     }
     
-    func setCartItemValues(lineItem: LineItems, viewController: ShoppingCartViewController, index: Int){
-        var imageUrl = (lineItem.properties?[0].value?.split(separator: "_")[0])!
+    func setCartItemValues(lineItem: LineItems, viewController: ShoppingCartViewController){
+        let imageUrl = (lineItem.properties?[0].value?.split(separator: "_")[0])!
         shoppingCartImage.kf.setImage(with: URL(string: String(imageUrl)),placeholder: UIImage(named: Constants.noImage))
         self.shoppingCartProductNameLabel.text = lineItem.name
         self.shoppingCartProductDescriptionLabel.text = "\(lineItem.vendor ?? "") / \((lineItem.variantTitle)!)"
         self.shoppingCartPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", Double(lineItem.price ?? "0.0")! * UserDefault().getCurrencyRate()) + " / item"
         self.shoppingCartProductCountLabel.text = "\((lineItem.quantity)!)"
-        self.cellIndex = index
         productCount = lineItem.quantity!
         if productCount == 1 {
             minusButton.isEnabled = false
@@ -121,7 +119,11 @@ class ShoppingCartTableViewCell: UITableViewCell {
     }
     
     func updateItemsQuantityInShoppingCartList (){
-        ShoppingCartViewController.cartItems[cellIndex].quantity = productCount
+        for (index , item) in ShoppingCartViewController.cartItems.enumerated() {
+            if item.variantId == itemInCart.variantId {
+                ShoppingCartViewController.cartItems[index].quantity = productCount
+            }
+        }
         generalViewModel.putShoppingCartDraftOrder()
         
     }

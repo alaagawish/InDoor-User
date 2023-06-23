@@ -7,9 +7,11 @@
 
 import UIKit
 import PassKit
+import Lottie
 
 class PaymentViewController: UIViewController {
     
+    @IBOutlet weak var doneAnimation: LottieAnimationView!
     @IBOutlet weak var creditView: UIView!
     @IBOutlet weak var cashView: UIView!
     @IBOutlet weak var creditCheckMarkImage: UIImageView!
@@ -147,18 +149,27 @@ class PaymentViewController: UIViewController {
         paymentViewModel.postOrder(order: order)
         orderTotalPrice = 0.0
         paymentViewModel.decreaseVariantCountByOrderAmount()
-        ShoppingCartViewController.cartItems = []
-        generalViewModel.putShoppingCartDraftOrder()
         if creditTappedFlag{
             tapToPay()
         }
-        navigateToHomeAfterPay()
+        animateDone()
+    }
+    
+    func animateDone(){
+        doneAnimation.isHidden = false
+        doneAnimation.contentMode = .scaleAspectFit
+        doneAnimation.loopMode = .playOnce
+        doneAnimation.play { [weak self] done in
+            self?.doneAnimation.isHidden = true
+            self?.navigateToHomeAfterPay()
+        }
     }
     
     func navigateToHomeAfterPay(){
         let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: "Successful payment done", positiveButtonTitle: Constants.ok) { action in
             let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
             let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
+            HomeViewController.donePayment = true
             home.modalPresentationStyle = .fullScreen
             self.present(home, animated: true)
         }
@@ -172,9 +183,7 @@ extension PaymentViewController: PKPaymentAuthorizationViewControllerDelegate{
             self.orderTotalPrice = 0.0
             self.totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) \(0.0)"
             self.paymentViewModel.decreaseVariantCountByOrderAmount()
-            ShoppingCartViewController.cartItems = []
-            self.generalViewModel.putShoppingCartDraftOrder()
-            self.navigateToHomeAfterPay()
+            self.animateDone()
         }
     }
     

@@ -31,12 +31,12 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        shoppingCartTabelView.reloadData()
         setupUI()
         prepareCartPrice()
         priceView.isHidden = false
         emptyCartImageView.isHidden = true
         shoppingCartTabelView.isHidden = false
-        
     }
     
     func prepareCartPrice(){
@@ -93,7 +93,7 @@ extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cartCellIdentifier, for: indexPath) as! ShoppingCartTableViewCell
         
-        cell.setCartItemValues(lineItem: ShoppingCartViewController.cartItems[indexPath.row], viewController: self, index: indexPath.row)
+        cell.setCartItemValues(lineItem: ShoppingCartViewController.cartItems[indexPath.row], viewController: self)
         return cell
     }
     

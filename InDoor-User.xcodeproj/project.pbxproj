@@ -154,6 +154,7 @@
 		61FD1DD82A2BA98A008B938D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FD1DD72A2BA98A008B938D /* MainTabBarController.swift */; };
 		920271F084C4E95FCF45CD93 /* Pods_InDoor_User_InDoor_UserUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 940000ACFC4575F88A20FB5D /* Pods_InDoor_User_InDoor_UserUITests.framework */; };
 		9D1FD3989110A749C97AEEB6 /* Pods_InDoor_User.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA1447C2C4FA3E4CC670BE8 /* Pods_InDoor_User.framework */; };
+		E274355E2A455F09000ADED8 /* done.json in Resources */ = {isa = PBXBuildFile; fileRef = E274355D2A455F08000ADED8 /* done.json */; };
 		F5F61E117AAF616C3BD5CFFC /* Pods_InDoor_UserTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C6DB28A14E65054943143A /* Pods_InDoor_UserTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -328,6 +329,7 @@
 		C8F874C76010B8A0A1478160 /* Pods-InDoor-UserTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InDoor-UserTests.debug.xcconfig"; path = "Target Support Files/Pods-InDoor-UserTests/Pods-InDoor-UserTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D0C6DB28A14E65054943143A /* Pods_InDoor_UserTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InDoor_UserTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDFD36C4F2820D7268665050 /* Pods-InDoor-User.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InDoor-User.debug.xcconfig"; path = "Target Support Files/Pods-InDoor-User/Pods-InDoor-User.debug.xcconfig"; sourceTree = "<group>"; };
+		E274355D2A455F08000ADED8 /* done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = done.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -902,6 +904,7 @@
 		61A19C992A327D4F0067D2F2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E274355D2A455F08000ADED8 /* done.json */,
 				61A19C962A322A8D0067D2F2 /* Constants.swift */,
 				61A19C9A2A327D890067D2F2 /* Splitter.swift */,
 				0410DFC82A3CA0C20005114A /* Extensions.swift */,
@@ -1291,6 +1294,7 @@
 				049837D82A432C81001A2F15 /* animation_lj3s8db4.json in Resources */,
 				616BCF2B2A354F830021BDD9 /* BrandsCollectionViewCell.xib in Resources */,
 				043477BA2A3CDF7300FC72B6 /* ProductSearchStoryboard.storyboard in Resources */,
+				E274355E2A455F09000ADED8 /* done.json in Resources */,
 				04B154D82A3A0F3900B808E3 /* animation_livuicgk.json in Resources */,
 				04A156802A2D178000189909 /* FavoritesCell.xib in Resources */,
 			);
