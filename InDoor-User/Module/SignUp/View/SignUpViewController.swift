@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import GoogleSignIn
+import GoogleSignInSwift
+import FirebaseAuth
+import FirebaseCore
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
@@ -16,14 +20,30 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     var signUpViewModel: SignUpViewModel!
+    var favoritesViewModel: FavoritesViewModel!
     var registered = false
     let defaults = UserDefaults.standard
-    
+    var customerId: Int? = 0
+    var isGoogle = false
+    var user: User!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupDelegation()
         signUpViewModel = SignUpViewModel(service: Network())
+        favoritesViewModel = FavoritesViewModel(service: DatabaseManager.instance, network: Network())
+        
+        favoritesViewModel.bindGetFavoriteDraftOrderToController = {[weak self] in
+            guard let lineItemsList = self?.favoritesViewModel.getFavoriteDraftOrder?.lineItems else {return}
+            let list = lineItemsList.filter{$0.title != "dummy"}
+            for item in list {
+                //if(item.productId == self?.defaults.integer(forKey: Constants.customerId)){
+                    let localProduct = LocalProduct(id: item.productId ?? 0, customer_id: (self?.defaults.integer(forKey: Constants.customerId))!, variant_id: item.variantId!, title: item.title!, price: item.price!, image: item.properties![0].value!)
+                    
+                    self?.favoritesViewModel.addProduct(product: localProduct)
+                //}
+            }
+        }
         
         signUpViewModel.bindUserWithDraftOrderToSignUpController = {[weak self] in
             if(self?.signUpViewModel.userWithDraftOrder?.note != nil ){
@@ -64,33 +84,66 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
         
         signUpViewModel.bindUsersListToSignUpController = { [weak self] in
-            if let list = self?.signUpViewModel.usersList{
-                for user in list {
-                    if user.email == self?.emailTextField.text {
-                        self?.registered = true
-                        break
+            if self?.isGoogle == false {
+                if let list = self?.signUpViewModel.usersList{
+                    for user in list {
+                        if user.email == self?.emailTextField.text {
+                            self?.registered = true
+                            break
+                        }
                     }
                 }
-            }
-            
-            if self?.registered == true {
-                self?.registered = false
-                let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.warning, msg: Constants.emailUsedBefore, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok, negativeHandler: nil) { action in
-                    let login = self?.storyboard?.instantiateViewController(identifier: Constants.loginIdentifier) as! LoginViewController
-                    login.modalPresentationStyle = .fullScreen
-                    self?.present(login, animated: true)
+                
+                if self?.registered == true {
+                    self?.registered = false
+                    let alert = Alert().showAlertWithNegativeAndPositiveButtons(title: Constants.warning, msg: Constants.emailUsedBefore, negativeButtonTitle: Constants.cancel, positiveButtonTitle: Constants.ok, negativeHandler: nil) { action in
+                        let login = self?.storyboard?.instantiateViewController(identifier: Constants.loginIdentifier) as! LoginViewController
+                        login.modalPresentationStyle = .fullScreen
+                        self?.present(login, animated: true)
+                    }
+                    self?.present(alert, animated: true)
+                    
+                } else if self?.registered == false {
+                    let addresses = [Address(id: nil, customer_id: nil, name: "\(self?.firstNameTextField.text ?? "") \(self?.lastNameTextField.text ?? "")", first_name: self?.firstNameTextField.text ?? "", last_name: self?.lastNameTextField.text ?? "",phone: self?.phoneTextField.text ?? "",address1: nil,city: nil, country: nil, default: true)]
+                    
+                    let user = User(id: nil, firstName: self?.firstNameTextField.text ?? "", lastName: self?.lastNameTextField.text ?? "", email: self?.emailTextField.text ?? "", phone: self?.phoneTextField.text ?? "", addresses: addresses, tags: self?.passwordTextField.text ?? "")
+                    
+                    let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil, order: nil)
+                    
+                    let params = JSONCoding().encodeToJson(objectClass: response)
+                    self?.signUpViewModel.postUser(parameters: params ?? [:])
                 }
-                self?.present(alert, animated: true)
+            }
+            else{
+                if let list = self?.signUpViewModel.usersList{
+                    for user in list {
+                        if user.email == self?.user.email {
+                            self?.registered = true
+                            self?.customerId = user.id
+                            self?.defaults.setValue(self?.customerId, forKey: Constants.customerId)
+                            let splitNote = user.note?.components(separatedBy: ",")
+                            self?.defaults.set(Int((splitNote?[1])!), forKey: Constants.cartId)
+                            self?.defaults.set(Int((splitNote?[0])!), forKey: Constants.favoritesId)
+                            self?.getFavoritesDraftOrderFromRemoteToLocal()
+                            break
+                        }
+                    }
+                }
                 
-            } else if self?.registered == false {
-                let addresses = [Address(id: nil, customer_id: nil, name: "\(self?.firstNameTextField.text ?? "") \(self?.lastNameTextField.text ?? "")", first_name: self?.firstNameTextField.text ?? "", last_name: self?.lastNameTextField.text ?? "",phone: self?.phoneTextField.text ?? "",address1: nil,city: nil, country: nil, default: true)]
-                
-                let user = User(id: nil, firstName: self?.firstNameTextField.text ?? "", lastName: self?.lastNameTextField.text ?? "", email: self?.emailTextField.text ?? "", phone: self?.phoneTextField.text ?? "", addresses: addresses, tags: self?.passwordTextField.text ?? "")
-                
-                let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil, order: nil)
-                
-                let params = JSONCoding().encodeToJson(objectClass: response)
-                self?.signUpViewModel.postUser(parameters: params ?? [:])
+                if self?.registered == true {
+                    DispatchQueue.main.async {
+                        let storyboard = UIStoryboard(name: Constants.homeStoryboardName, bundle: nil)
+                        let home = storyboard.instantiateViewController(withIdentifier: Constants.homeIdentifier) as! MainTabBarController
+                        self?.defaults.setValue(self?.isGoogle, forKey: Constants.isGoogle)
+                        home.modalPresentationStyle = .fullScreen
+                        self?.present(home, animated: true)
+                    }
+                } else {
+                    let response = Response(product: nil, products: nil, smartCollections: nil, customCollections: nil, currencies: nil, base: nil, rates: nil, customer: self?.user, customers: nil, addresses: nil, customer_address: nil, draftOrder: nil, orders: nil,order: nil)
+                    
+                    let params = JSONCoding().encodeToJson(objectClass: response)
+                    self?.signUpViewModel.postUser(parameters: params ?? [:])
+                }
             }
         }
     }
@@ -100,6 +153,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func SignUpUser(_ sender: UIButton) {
+        isGoogle = false
         if(firstNameTextField.text == "" && lastNameTextField.text == "" && phoneTextField.text == "" && emailTextField.text == "" && passwordTextField.text == "" && confirmPasswordTextField.text == "") {
             let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.enterAllData, positiveButtonTitle: Constants.ok, positiveHandler: nil)
             self.present(alert, animated: true)
@@ -145,6 +199,26 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             }
             else{
                 signUpViewModel.getUsers()
+            }
+        }
+    }
+    
+    @IBAction func signupWithGoogle(_ sender: UIButton) {
+        isGoogle = true
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) {[weak self] signInResult, error in
+            guard error == nil else { return }
+            guard let user = signInResult?.user, let idToken = user.idToken?.tokenString else { return }
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                                   accessToken: user.accessToken.tokenString)
+            Auth.auth().signIn(with: credential) {[weak self] result, error in
+                self?.user = User(id: nil, firstName: signInResult?.user.profile?.givenName ,lastName: signInResult?.user.profile?.familyName, email: signInResult?.user.profile?.email, phone: nil, addresses: nil, tags: nil)
+                self?.signUpViewModel.getUsers()
             }
         }
     }
@@ -204,6 +278,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
         
         return true
+    }
+    
+    func getFavoritesDraftOrderFromRemoteToLocal(){
+        self.favoritesViewModel.removeAllProduct()
+        self.favoritesViewModel.getFavoriteDraftOrderFromAPI()
     }
     
     func createDraftOrder(note: String){
