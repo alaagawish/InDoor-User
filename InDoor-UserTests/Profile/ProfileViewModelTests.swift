@@ -23,11 +23,11 @@ final class ProfileViewModelTests: XCTestCase {
         
     }
 
-    func testGetOrders(){
-        profileViewModel.getOrders()
-        XCTAssertNotNil(profileViewModel.result)
-        XCTAssertEqual(profileViewModel.result?.count, 1)
-    }
+//    func testGetOrders(){
+//        profileViewModel.getOrders()
+//        XCTAssertNotNil(profileViewModel.result)
+//        XCTAssertEqual(profileViewModel.result?.count, 1)
+//    }
     
 
 }

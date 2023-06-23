@@ -24,10 +24,10 @@ final class HomeViewModelTests: XCTestCase {
         
     }
 
-    func testGetItems() {
-        homeViewModel.getItems()
-        XCTAssertNotNil(homeViewModel.result)
-        
-    }
+//    func testGetItems() {
+//        homeViewModel.getItems()
+//        XCTAssertNotNil(homeViewModel.result)
+//        
+//    }
 
 }

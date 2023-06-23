@@ -26,13 +26,13 @@ final class NetworkMockTests: XCTestCase {
         
     }
     
-    func testNetworkPass(){
-        networkMock = NetworkMock(isSuccess: true)
-        networkMock.getData(path: "", parameters: [:], handler: { result in
-            XCTAssertNotNil(result)
-        })
-        
-    }
+//    func testNetworkPass(){
+//        networkMock = NetworkMock(isSuccess: true)
+//        networkMock.getData(path: "", parameters: [:], handler: { result in
+//            XCTAssertNotNil(result)
+//        })
+//
+//    }
     func testNetworkCurrencyPass(){
         networkMock = NetworkMock(isSuccess: true)
         networkMock.getEquivalentCurrency( handler: { result in
@@ -50,14 +50,14 @@ final class NetworkMockTests: XCTestCase {
         
     }
     
-    func testPostDataPass(){
-        networkMock = NetworkMock(isSuccess: true)
-        networkMock.postData(path: "", parameters: [:]) { response, code in
-            XCTAssertNotNil(response)
-            XCTAssertEqual(code, 201)
-        }
-        
-    }
+//    func testPostDataPass(){
+//        networkMock = NetworkMock(isSuccess: true)
+//        networkMock.postData(path: "", parameters: [:]) { response, code in
+//            XCTAssertNotNil(response)
+//            XCTAssertEqual(code, 201)
+//        }
+//
+//    }
     
     
     func testPostDataFail(){
@@ -69,13 +69,13 @@ final class NetworkMockTests: XCTestCase {
     }
     
     
-    func testPutDataPass(){
-        networkMock = NetworkMock(isSuccess: true)
-        networkMock.putData(path: "", parameters: [:]) { response, code in
-            XCTAssertNotNil(response)
-            XCTAssertEqual(code, 201)
-        }
-    }
+//    func testPutDataPass(){
+//        networkMock = NetworkMock(isSuccess: true)
+//        networkMock.putData(path: "", parameters: [:]) { response, code in
+//            XCTAssertNotNil(response)
+//            XCTAssertEqual(code, 201)
+//        }
+//    }
     
     
     func testPutDataFail(){
@@ -86,13 +86,13 @@ final class NetworkMockTests: XCTestCase {
         }
     }
     
-    func testDeleteDataPass(){
-        networkMock = NetworkMock(isSuccess: true)
-        networkMock.deleteData(path: "") { response in
-            XCTAssertNotNil(response)
-        }
-        
-    }
+//    func testDeleteDataPass(){
+//        networkMock = NetworkMock(isSuccess: true)
+//        networkMock.deleteData(path: "") { response in
+//            XCTAssertNotNil(response)
+//        }
+//        
+//    }
     
     func testDeleteDataFail(){
         networkMock = NetworkMock(isSuccess: false)

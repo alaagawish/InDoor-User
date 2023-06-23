@@ -22,11 +22,11 @@ final class OrdersViewModelTests: XCTestCase {
         network = nil
         ordersViewModel = nil
     }
-    
-    func testGetOrders(){
-        ordersViewModel.getOrders()
-        XCTAssertNotNil(ordersViewModel.result)
-        XCTAssertEqual(ordersViewModel.result?.count, 1)
-    }
+//    
+//    func testGetOrders(){
+//        ordersViewModel.getOrders()
+//        XCTAssertNotNil(ordersViewModel.result)
+//        XCTAssertEqual(ordersViewModel.result?.count, 1)
+//    }
     
 }

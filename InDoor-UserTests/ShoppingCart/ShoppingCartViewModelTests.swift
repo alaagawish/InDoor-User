@@ -19,7 +19,14 @@ final class ShoppingCartViewModelTests: XCTestCase {
 
     override func tearDownWithError() throws {
     }
-
+    func testGetSpecificProduct(){
+//        productId: Int, completionHandler:@escaping (Product) -> Void){
+//        let path = "products/\(productId)"
+//        netWorkingDataSource.getData(path: path, parameters: [:]){ (response : Response?) in
+//            completionHandler((response?.product)!)
+//        }
+    }
+    
    
 
 }

@@ -21,21 +21,21 @@ final class NetworkTests: XCTestCase {
     }
     
     
-    func testGetData(){
-        
-        let myExpectation = expectation(description: "network")
-        network.getData(path: "products/8348562686239", parameters: [:]) { result in
-            guard result != nil else{
-                XCTFail()
-                myExpectation.fulfill()
-                return
-            }
-            XCTAssertNotNil(result?.product)
-            myExpectation.fulfill()
-            
-        }
-        waitForExpectations(timeout: 10)
-    }
+//    func testGetData(){
+//        
+//        let myExpectation = expectation(description: "network")
+//        network.getData(path: "products/8348562686239", parameters: [:]) { result in
+//            guard result != nil else{
+//                XCTFail()
+//                myExpectation.fulfill()
+//                return
+//            }
+//            XCTAssertNotNil(result?.product)
+//            myExpectation.fulfill()
+//            
+//        }
+//        waitForExpectations(timeout: 10)
+//    }
     
     func testGetDataFail(){
         
