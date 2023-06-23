@@ -53,15 +53,14 @@ class FavoritesCell: UITableViewCell {
         self.localProduct = product
         productImageView.kf.setImage(with: URL(string: localProduct.image ))
         productTitleLabel.text = Splitter().splitName(text: localProduct.title, delimiter: "| ")
-        productPriceLabel.text = localProduct.price
+        productPriceLabel.text =  "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", Double(localProduct.price ?? "")! *  UserDefault().getCurrencyRate())
     }
     
     func setProductToTableCell(product: Product) {
         self.product = product
         productImageView.kf.setImage(with: URL(string: product.image?.src ?? ""))
         productTitleLabel.text = Splitter().splitName(text: product.title ?? "", delimiter: "| ")
-       
-        productPriceLabel.text = product.variants?[0].price
+        productPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", Double(product.variants?[0].price ?? "")! *  UserDefault().getCurrencyRate())
     }
     
 }
