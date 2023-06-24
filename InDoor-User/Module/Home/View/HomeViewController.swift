@@ -116,7 +116,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         homeViewModel.bindDiscountToViewController = {[weak self] in
             for discount in (self?.homeViewModel.priceRuleDiscounts)!{
-                if UserDefault().getCustomerId() != -1 || UserDefault().getCustomerId() != 0 {
+                if UserDefault().getCustomerId() != -1 && UserDefault().getCustomerId() != 0 {
                     if discount.usageCount! < (self?.homeViewModel.priceRules![self!.selectedImageIndex].usageLimit)!{
                         UserDefault().setCoupon(couponCode: (discount.code!, (self?.homeViewModel.priceRules![self!.selectedImageIndex].valueType)!))
                         UserDefault().setCouponAmountAndSubtotal(amountAndSubTotal:( ((self?.homeViewModel.priceRules![self!.selectedImageIndex].value)!), (self?.homeViewModel.priceRules![self!.selectedImageIndex].prerequisiteSubtotalRange?.greaterThanOrEqualTo)!))
