@@ -29,7 +29,8 @@ class GeneralViewModel {
     }
     
     func getShippingCartDraftOrder(){
-        if UserDefault().getCustomerId() != -1 && UserDefault().getCustomerId() != 0 {
+        print("\(UserDefault().getCustomerId())")
+       if UserDefault().getCustomerId() != -1 && UserDefault().getCustomerId() != 0 {
             network.getData(path: Constants.getCartDraftPath, parameters: [:], handler: { response  in
                 var lineItems = (response?.draftOrder?.lineItems)!
                 for (index,lineItem) in lineItems.enumerated() {

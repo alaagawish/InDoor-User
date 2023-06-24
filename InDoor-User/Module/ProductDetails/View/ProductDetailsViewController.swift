@@ -177,7 +177,7 @@ class ProductDetailsViewController: UIViewController, ImageSlideshowDelegate {
             for variant in product.variants!{
                 let variantName = "\(selectedSize!) / \(selectedColor!)"
                 if variant.title! == variantName{
-                    price.text = String(format: "%.2f", (Double(variant.price) ?? 0 ) *  UserDefault().getCurrencyRate()) + " \(UserDefault().getCurrencySymbol())"
+                    price.text = String(format: "%.1f", (Double(variant.price) ?? 0 ) *  UserDefault().getCurrencyRate()) + " \(UserDefault().getCurrencySymbol())"
                     if variant.inventoryQuantity == nil || variant.inventoryQuantity == 0 {
                         stockCount.text = "Not Available"
                     }else{
