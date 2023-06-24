@@ -29,15 +29,17 @@ class GeneralViewModel {
     }
     
     func getShippingCartDraftOrder(){
-        network.getData(path: Constants.getCartDraftPath, parameters: [:], handler: { response  in
-            var lineItems = (response?.draftOrder?.lineItems)!
-            for (index,lineItem) in lineItems.enumerated() {
-                if lineItem.title == "dummy" {
-                    lineItems.remove(at: index)
-                    break
+        if UserDefault().getCustomerId() != -1 && UserDefault().getCustomerId() != 0 {
+            network.getData(path: Constants.getCartDraftPath, parameters: [:], handler: { response  in
+                var lineItems = (response?.draftOrder?.lineItems)!
+                for (index,lineItem) in lineItems.enumerated() {
+                    if lineItem.title == "dummy" {
+                        lineItems.remove(at: index)
+                        break
+                    }
                 }
-            }
-            CartList.cartItems = lineItems
-        })
+                CartList.cartItems = lineItems
+            })
+        }
     }
 }

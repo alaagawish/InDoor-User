@@ -24,9 +24,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var internetConnectivity: Connectivity?
     var couponAmount = ""
     var couponSubTotal = ""
-    var promoCodes: [InputSource] = [ImageSource(image: UIImage(named: "discount5")!),
-                                     ImageSource(image: UIImage(named: "discount2")!),
-                                     ImageSource(image: UIImage(named: "discount3")!)]{
+    var promoCodes: [InputSource] = []{
         didSet{
             startSlider()
         }

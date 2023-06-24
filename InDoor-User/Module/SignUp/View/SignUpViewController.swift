@@ -220,7 +220,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 }
                 self.present(alert, animated: true)
             }
-            if(isValidPhone(phone: phoneTextField.text ?? "") == false){
+            else if(isValidPhone(phone: phoneTextField.text ?? "") == false){
                 let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: Constants.invalidPhone, positiveButtonTitle: Constants.ok){_ in
                     self.phoneTextField.text = ""
                 }
