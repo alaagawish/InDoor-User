@@ -68,7 +68,7 @@ class BrandProductCollectionViewCell: UICollectionViewCell {
         
         if product.variants?.count ?? 0 > 0{
             
-            self.price.text = String(format: "%.2f", Double(product.variants![0].price)! *  UserDefault().getCurrencyRate())
+            self.price.text = String(format: "%.1f", Double(product.variants![0].price)! *  UserDefault().getCurrencyRate())
         }
     }
 

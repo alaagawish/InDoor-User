@@ -28,7 +28,7 @@ class ReceiptViewController: UIViewController {
     var priceRuleArr: [PriceRule] = []
     var total: Double = 0.0 {
         didSet{
-            totalMoney.text! = String(format: "%.2f", total)
+            totalMoney.text! = String(format: "%.1f", total)
         }
     }
     var allCoupons:[[DiscountCodes]] = []
@@ -77,16 +77,16 @@ class ReceiptViewController: UIViewController {
     
     func prepareCheckOutData(){
         subTotalCurrencyLabel.text = "\(UserDefault().getCurrencySymbol())"
-        subtotal.text! = String(format: "%.2f", (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())
+        subtotal.text! = String(format: "%.1f", (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())
         totalMoneyCurrencyLabel.text = "\(UserDefault().getCurrencySymbol())"
         discountCurrencyLabel.text = "\(UserDefault().getCurrencySymbol())"
-        totalMoney.text! = String(format: "%.2f", (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())
+        totalMoney.text! = String(format: "%.1f", (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())
     }
     
     @IBAction func checkout(_ sender: Any) {
         changeApplyCouponButtonTitleToApply()
         let customer = Customer(id: UserDefault().getCustomerId())
-        let order = Orders(currency: UserDefault().getCurrencySymbol(), lineItems: CartList.cartItems, number: CartList.cartItems.count, customer: customer, totalPrice: String(format: "%.2f", total ))
+        let order = Orders(currency: UserDefault().getCurrencySymbol(), lineItems: CartList.cartItems, number: CartList.cartItems.count, customer: customer, totalPrice: String(format: "%.1f", total ))
         let storyboard = UIStoryboard(name: Constants.settingsStoryboard, bundle: nil)
         let addressStoryboard = storyboard.instantiateViewController(withIdentifier: Constants.addressIdentifier) as! AddressViewController
         addressStoryboard.modalPresentationStyle = .fullScreen
@@ -181,7 +181,7 @@ class ReceiptViewController: UIViewController {
     func showInvalidCouponAlert(){
         let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "Invalid coupon", positiveButtonTitle: Constants.ok)
         present(alert, animated: true)
-        totalMoney.text! = String(format: "%.2f", (((subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())))
+        totalMoney.text! = String(format: "%.1f", (((subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate())))
         
         total = (subtotalPrice ?? 0.0) * UserDefault().getCurrencyRate()
         discount.text = "-0.0"

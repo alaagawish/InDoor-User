@@ -53,7 +53,7 @@ class PaymentViewController: UIViewController {
         checkCashPayment()
         //self.purchaseButton.addTarget(self, action: #selector(tapToPay), for: .touchUpInside)
         
-        totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", orderTotalPrice * UserDefault().getCurrencyRate())
+        totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.1f", orderTotalPrice * UserDefault().getCurrencyRate())
     }
     
     override func viewWillAppear(_ animated: Bool) {

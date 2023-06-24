@@ -26,9 +26,21 @@ class AddressViewController: UIViewController {
         settingsViewModel.bindDeleteAddressToViewController = { [weak self] in
             self?.addressesTable.reloadData()
         }
+        
+        hideContinueButtonWithEmptyAddressList()
     }
+    
+    func hideContinueButtonWithEmptyAddressList(){
+        if addressesList.isEmpty {
+            continueButton.isHidden = true
+        }else{
+            continueButton.isHidden = false
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         callingData()
+        hideContinueButtonWithEmptyAddressList()
     }
     override func viewDidAppear(_ animated: Bool) {
         checkAddressListCount()
@@ -42,6 +54,7 @@ class AddressViewController: UIViewController {
                 tableView(addressesTable, didSelectRowAt: IndexPath(row: index, section: 0) )
             }
         }
+        hideContinueButtonWithEmptyAddressList()
     }
     
     func setNibFile(){

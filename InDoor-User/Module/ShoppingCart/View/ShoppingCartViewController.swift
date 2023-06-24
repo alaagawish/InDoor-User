@@ -19,7 +19,7 @@ class ShoppingCartViewController: UIViewController, UITextFieldDelegate {
     var viewModel = ShoppingCartViewModel(netWorkingDataSource: Network())
     var cartPrice  = 0.0{
         didSet{
-            totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", cartPrice * UserDefault().getCurrencyRate())
+            totalPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.1f", cartPrice * UserDefault().getCurrencyRate())
         }
     }
     var tableArr:[LineItems] = []

@@ -69,7 +69,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
         self.shoppingCartImage.kf.setImage(with: URL(string: String(imageUrl)),placeholder: UIImage(named: Constants.noImage))
         self.shoppingCartProductNameLabel.text = lineItem.name
         self.shoppingCartProductDescriptionLabel.text = "\(lineItem.vendor ?? "") / \((lineItem.variantTitle)!)"
-        self.shoppingCartPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.2f", Double(lineItem.price ?? "0.0")! * UserDefault().getCurrencyRate()) + " / item"
+        self.shoppingCartPriceLabel.text = "\(UserDefault().getCurrencySymbol()) " + String(format: "%.1f", Double(lineItem.price ?? "0.0")! * UserDefault().getCurrencyRate()) + " / item"
         self.shoppingCartProductCountLabel.text = "\((lineItem.quantity)!)"
         productCount = lineItem.quantity!
         if productCount == 1 {

@@ -24,9 +24,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var internetConnectivity: Connectivity?
     var couponAmount = ""
     var couponSubTotal = ""
-    var promoCodes: [InputSource] = [ImageSource(image: UIImage(named: "discount5")!),
-                                     ImageSource(image: UIImage(named: "discount2")!),
-                                     ImageSource(image: UIImage(named: "discount3")!)]{
+    var promoCodes: [InputSource] = []{
         didSet{
             startSlider()
         }
@@ -118,22 +116,30 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         homeViewModel.bindDiscountToViewController = {[weak self] in
             for discount in (self?.homeViewModel.priceRuleDiscounts)!{
-                if discount.usageCount! < (self?.homeViewModel.priceRules![self!.selectedImageIndex].usageLimit)!{
-                    UserDefault().setCoupon(couponCode: (discount.code!, (self?.homeViewModel.priceRules![self!.selectedImageIndex].valueType)!))
-                    UserDefault().setCouponAmountAndSubtotal(amountAndSubTotal:( ((self?.homeViewModel.priceRules![self!.selectedImageIndex].value)!), (self?.homeViewModel.priceRules![self!.selectedImageIndex].prerequisiteSubtotalRange?.greaterThanOrEqualTo)!))
-                    
-                    self?.couponAmount = String((Double((self?.homeViewModel.priceRules![self!.selectedImageIndex].value)!) ?? 0.0) * UserDefault().getCurrencyRate())
-                    self?.couponSubTotal = String((Double((self?.homeViewModel.priceRules![self!.selectedImageIndex].prerequisiteSubtotalRange?.greaterThanOrEqualTo)!) ?? 0.0) * UserDefault().getCurrencyRate())
-                    
-                    var sign = ""
-                    if self?.homeViewModel.priceRules![self!.selectedImageIndex].valueType == "percentage"{
-                        sign = "%"
-                    }else{
-                        sign = UserDefault().getCurrencySymbol()
+                if UserDefault().getCustomerId() != -1 {
+                    if discount.usageCount! < (self?.homeViewModel.priceRules![self!.selectedImageIndex].usageLimit)!{
+                        UserDefault().setCoupon(couponCode: (discount.code!, (self?.homeViewModel.priceRules![self!.selectedImageIndex].valueType)!))
+                        UserDefault().setCouponAmountAndSubtotal(amountAndSubTotal:( ((self?.homeViewModel.priceRules![self!.selectedImageIndex].value)!), (self?.homeViewModel.priceRules![self!.selectedImageIndex].prerequisiteSubtotalRange?.greaterThanOrEqualTo)!))
+                        
+                        self?.couponAmount = String((Double((self?.homeViewModel.priceRules![self!.selectedImageIndex].value)!) ?? 0.0) * UserDefault().getCurrencyRate())
+                        self?.couponSubTotal = String((Double((self?.homeViewModel.priceRules![self!.selectedImageIndex].prerequisiteSubtotalRange?.greaterThanOrEqualTo)!) ?? 0.0) * UserDefault().getCurrencyRate())
+                        
+                        var sign = ""
+                        if self?.homeViewModel.priceRules![self!.selectedImageIndex].valueType == "percentage"{
+                            sign = "%"
+                        }else{
+                            sign = UserDefault().getCurrencySymbol()
+                        }
+                        let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: "Enjoy your discount \((self?.couponAmount)!) \(sign) after \((self?.couponSubTotal)!) \(UserDefault().getCurrencySymbol())", positiveButtonTitle: Constants.ok)
+                        self?.present(alert, animated: true)
+                        
                     }
-                    let alert = Alert().showAlertWithPositiveButtons(title: Constants.congratulations, msg: "Enjoy your discount \((self?.couponAmount)!) \(sign) after \((self?.couponSubTotal)!) \(UserDefault().getCurrencySymbol())", positiveButtonTitle: Constants.ok)
-                    self?.present(alert, animated: true)
-                }
+                    
+                }else {
+                        let alert = Alert().showAlertWithPositiveButtons(title: Constants.warning, msg: "You have to create an account", positiveButtonTitle: Constants.ok)
+                        self?.present(alert, animated: true)
+                    }
+                
             }
         }
         
