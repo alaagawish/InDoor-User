@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cartCell" rowHeight="131" id="KGk-i7-Jjw" customClass="ShoppingCartTableViewCell" customModule="InDoor_User" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="131"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="131"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6a-3L-2cV">
+                        <rect key="frame" x="224.33333333333334" y="98.666666666666671" width="30" height="24.333333333333329"/>
+                        <color key="tintColor" name="pink"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="minus.circle.fill" catalog="system">
+                            <color key="titleColor" name="pink"/>
+                        </state>
+                        <connections>
+                            <action selector="minusButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="znw-qw-OMP"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zu-vh-mBJ">
+                        <rect key="frame" x="282" y="98.666666666666671" width="30" height="24.333333333333329"/>
+                        <color key="tintColor" name="pink"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="plus.circle.fill" catalog="system">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="plusButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MzL-ee-oXY"/>
+                        </connections>
+                    </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoes" translatesAutoresizingMaskIntoConstraints="NO" id="e9Y-IS-dfq">
+                        <rect key="frame" x="0.0" y="0.0" width="128" height="131"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rE4-Tn-kNX">
+                        <rect key="frame" x="258.33333333333331" y="98.666666666666671" width="19.666666666666686" height="24.333333333333329"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="753" text="ADIDAS | SUPERSTAR 80S" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlc-pq-rhT">
+                        <rect key="frame" x="136" y="8" width="176" height="40.666666666666664"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="ADIDAS, SHOES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3S-1y-RsH">
+                        <rect key="frame" x="136" y="64.666666666666671" width="176" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RK-Lc-Itl">
+                        <rect key="frame" x="136" y="98.666666666666671" width="26" height="24.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="d6a-3L-2cV" firstAttribute="top" secondItem="Z3S-1y-RsH" secondAttribute="bottom" constant="16" id="1cp-TM-b0i"/>
+                    <constraint firstAttribute="bottom" secondItem="e9Y-IS-dfq" secondAttribute="bottom" id="3Fs-EF-CHk"/>
+                    <constraint firstItem="7zu-vh-mBJ" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.09375" id="BRJ-Qn-Zyp"/>
+                    <constraint firstItem="4RK-Lc-Itl" firstAttribute="top" secondItem="Z3S-1y-RsH" secondAttribute="bottom" constant="16" id="CTu-MZ-ywK"/>
+                    <constraint firstItem="rE4-Tn-kNX" firstAttribute="top" secondItem="Z3S-1y-RsH" secondAttribute="bottom" constant="16" id="Dnf-fB-B59"/>
+                    <constraint firstItem="Z3S-1y-RsH" firstAttribute="top" secondItem="nlc-pq-rhT" secondAttribute="bottom" constant="16" id="E72-SN-D2Q"/>
+                    <constraint firstAttribute="trailing" secondItem="7zu-vh-mBJ" secondAttribute="trailing" constant="8" id="Ki4-dT-vzG"/>
+                    <constraint firstItem="e9Y-IS-dfq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="NRb-1p-Y99"/>
+                    <constraint firstItem="7zu-vh-mBJ" firstAttribute="leading" secondItem="rE4-Tn-kNX" secondAttribute="trailing" constant="4" id="PO8-1c-MtX"/>
+                    <constraint firstAttribute="bottom" secondItem="7zu-vh-mBJ" secondAttribute="bottom" constant="8" id="TYk-Kq-beb"/>
+                    <constraint firstAttribute="bottom" secondItem="d6a-3L-2cV" secondAttribute="bottom" constant="8" id="Tx1-Br-G3v"/>
+                    <constraint firstItem="7zu-vh-mBJ" firstAttribute="top" secondItem="Z3S-1y-RsH" secondAttribute="bottom" constant="16" id="Ucd-UT-DOH"/>
+                    <constraint firstItem="rE4-Tn-kNX" firstAttribute="leading" secondItem="d6a-3L-2cV" secondAttribute="trailing" constant="4" id="bMo-8l-Cs1"/>
+                    <constraint firstItem="d6a-3L-2cV" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.09375" id="hHQ-gP-60C"/>
+                    <constraint firstAttribute="trailing" secondItem="Z3S-1y-RsH" secondAttribute="trailing" constant="8" id="iRs-7X-UrH"/>
+                    <constraint firstAttribute="trailing" secondItem="nlc-pq-rhT" secondAttribute="trailing" constant="8" id="jdx-MA-uUz"/>
+                    <constraint firstItem="e9Y-IS-dfq" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.4" id="jgn-og-7bd"/>
+                    <constraint firstAttribute="bottom" secondItem="rE4-Tn-kNX" secondAttribute="bottom" constant="8" id="kvL-aO-Qsq"/>
+                    <constraint firstItem="d6a-3L-2cV" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.185751" id="lED-Bx-rj0"/>
+                    <constraint firstItem="Z3S-1y-RsH" firstAttribute="leading" secondItem="e9Y-IS-dfq" secondAttribute="trailing" constant="8" id="mE7-PY-pJP"/>
+                    <constraint firstItem="4RK-Lc-Itl" firstAttribute="leading" secondItem="e9Y-IS-dfq" secondAttribute="trailing" constant="8" id="pLn-cY-A2G"/>
+                    <constraint firstItem="nlc-pq-rhT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="qjM-hV-bib"/>
+                    <constraint firstItem="e9Y-IS-dfq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qlh-gf-8Oj"/>
+                    <constraint firstItem="nlc-pq-rhT" firstAttribute="leading" secondItem="e9Y-IS-dfq" secondAttribute="trailing" constant="8" id="r6A-PT-tpv"/>
+                    <constraint firstItem="7zu-vh-mBJ" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.185751" id="tuI-46-OAH"/>
+                    <constraint firstAttribute="bottom" secondItem="4RK-Lc-Itl" secondAttribute="bottom" constant="8" id="ufN-Ss-ixq"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="minusButton" destination="d6a-3L-2cV" id="Iyg-pw-XKx"/>
+                <outlet property="plusButton" destination="7zu-vh-mBJ" id="cL4-Pr-6t0"/>
+                <outlet property="shoppingCartImage" destination="e9Y-IS-dfq" id="5Zd-vk-UBY"/>
+                <outlet property="shoppingCartPriceLabel" destination="4RK-Lc-Itl" id="4GK-cR-faj"/>
+                <outlet property="shoppingCartProductCountLabel" destination="rE4-Tn-kNX" id="fqi-co-8CD"/>
+                <outlet property="shoppingCartProductDescriptionLabel" destination="Z3S-1y-RsH" id="7jZ-tg-Mkt"/>
+                <outlet property="shoppingCartProductNameLabel" destination="nlc-pq-rhT" id="PWv-Ae-I6Z"/>
+            </connections>
+            <point key="canvasLocation" x="77.862595419847324" y="19.366197183098592"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="minus.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="shoes" width="1880" height="1880"/>
+        <namedColor name="pink">
+            <color red="0.77254901960784317" green="0.21176470588235294" blue="0.51372549019607838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

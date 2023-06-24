@@ -1,0 +1,459 @@
+{
+    "orders": [
+        {
+            "id": 5377091207455,
+            "admin_graphql_api_id": "gid://shopify/Order/5377091207455",
+            "app_id": 44157370369,
+            "browser_ip": null,
+            "buyer_accepts_marketing": false,
+            "cancel_reason": null,
+            "cancelled_at": null,
+            "cart_token": null,
+            "checkout_id": null,
+            "checkout_token": null,
+            "client_details": null,
+            "closed_at": null,
+            "company": null,
+            "confirmed": true,
+            "contact_email": "dodowael@gmail.com",
+            "created_at": "2023-06-16T08:31:39-04:00",
+            "currency": "EUR",
+            "current_subtotal_price": "224.97",
+            "current_subtotal_price_set": {
+                "shop_money": {
+                    "amount": "224.97",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "224.97",
+                    "currency_code": "EUR"
+                }
+            },
+            "current_total_additional_fees_set": null,
+            "current_total_discounts": "0.00",
+            "current_total_discounts_set": {
+                "shop_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "current_total_duties_set": null,
+            "current_total_price": "224.97",
+            "current_total_price_set": {
+                "shop_money": {
+                    "amount": "224.97",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "224.97",
+                    "currency_code": "EUR"
+                }
+            },
+            "current_total_tax": "0.00",
+            "current_total_tax_set": {
+                "shop_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "customer_locale": null,
+            "device_id": null,
+            "discount_codes": [],
+            "email": "dodowael@gmail.com",
+            "estimated_taxes": false,
+            "financial_status": "paid",
+            "fulfillment_status": null,
+            "landing_site": null,
+            "landing_site_ref": null,
+            "location_id": null,
+            "merchant_of_record_app_id": null,
+            "name": "#1039",
+            "note": null,
+            "note_attributes": [],
+            "number": 39,
+            "order_number": 1039,
+            "order_status_url": "https://mad43-sv-ios1.myshopify.com/76695830815/orders/5bc2756d701fef991690cdbcdb3cc0b9/authenticate?key=4928fe3a36a65d0ae9fc052224fa2838",
+            "original_total_additional_fees_set": null,
+            "original_total_duties_set": null,
+            "payment_gateway_names": [],
+            "phone": null,
+            "presentment_currency": "EUR",
+            "processed_at": "2023-06-16T08:31:39-04:00",
+            "reference": null,
+            "referring_site": null,
+            "source_identifier": null,
+            "source_name": "44157370369",
+            "source_url": null,
+            "subtotal_price": "224.97",
+            "subtotal_price_set": {
+                "shop_money": {
+                    "amount": "224.97",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "224.97",
+                    "currency_code": "EUR"
+                }
+            },
+            "tags": "",
+            "tax_lines": [],
+            "taxes_included": false,
+            "test": false,
+            "token": "5bc2756d701fef991690cdbcdb3cc0b9",
+            "total_discounts": "0.00",
+            "total_discounts_set": {
+                "shop_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "total_line_items_price": "224.97",
+            "total_line_items_price_set": {
+                "shop_money": {
+                    "amount": "224.97",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "224.97",
+                    "currency_code": "EUR"
+                }
+            },
+            "total_outstanding": "224.97",
+            "total_price": "238.47",
+            "total_price_set": {
+                "shop_money": {
+                    "amount": "238.47",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "238.47",
+                    "currency_code": "EUR"
+                }
+            },
+            "total_shipping_price_set": {
+                "shop_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "0.00",
+                    "currency_code": "EUR"
+                }
+            },
+            "total_tax": "13.50",
+            "total_tax_set": {
+                "shop_money": {
+                    "amount": "13.50",
+                    "currency_code": "EUR"
+                },
+                "presentment_money": {
+                    "amount": "13.50",
+                    "currency_code": "EUR"
+                }
+            },
+            "total_tip_received": "0.00",
+            "total_weight": 0,
+            "updated_at": "2023-06-16T08:32:40-04:00",
+            "user_id": null,
+            "billing_address": null,
+            "customer": {
+                "id": 7000574820639,
+                "email": "dodowael@gmail.com",
+                "accepts_marketing": false,
+                "created_at": "2023-06-13T06:50:18-04:00",
+                "updated_at": "2023-06-16T20:11:45-04:00",
+                "first_name": "dodo",
+                "last_name": "earl",
+                "state": "disabled",
+                "note": null,
+                "verified_email": true,
+                "multipass_identifier": null,
+                "tax_exempt": false,
+                "phone": "+201024075125",
+                "email_marketing_consent": {
+                    "state": "not_subscribed",
+                    "opt_in_level": "single_opt_in",
+                    "consent_updated_at": null
+                },
+                "sms_marketing_consent": {
+                    "state": "not_subscribed",
+                    "opt_in_level": "single_opt_in",
+                    "consent_updated_at": null,
+                    "consent_collected_from": "OTHER"
+                },
+                "tags": "123456aA@",
+                "currency": "EUR",
+                "accepts_marketing_updated_at": "2023-06-13T06:50:18-04:00",
+                "marketing_opt_in_level": null,
+                "tax_exemptions": [],
+                "admin_graphql_api_id": "gid://shopify/Customer/7000574820639",
+                "default_address": {
+                    "id": 9236508901663,
+                    "customer_id": 7000574820639,
+                    "first_name": "lolo",
+                    "last_name": "earl",
+                    "company": null,
+                    "address1": "Chestnut Street 92",
+                    "address2": "",
+                    "city": "Louisville",
+                    "province": null,
+                    "country": "United States",
+                    "zip": null,
+                    "phone": "555-777-1199",
+                    "name": "lolo earl",
+                    "province_code": null,
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "default": true
+                }
+            },
+            "discount_applications": [],
+            "fulfillments": [],
+            "line_items": [
+                {
+                    "id": 13939401654559,
+                    "admin_graphql_api_id": "gid://shopify/LineItem/13939401654559",
+                    "fulfillable_quantity": 3,
+                    "fulfillment_service": "manual",
+                    "fulfillment_status": null,
+                    "gift_card": false,
+                    "grams": 0,
+                    "name": "Big Brown Bear Boots",
+                    "price": "74.99",
+                    "price_set": {
+                        "shop_money": {
+                            "amount": "74.99",
+                            "currency_code": "EUR"
+                        },
+                        "presentment_money": {
+                            "amount": "74.99",
+                            "currency_code": "EUR"
+                        }
+                    },
+                    "product_exists": false,
+                    "product_id": null,
+                    "properties": [],
+                    "quantity": 3,
+                    "requires_shipping": true,
+                    "sku": null,
+                    "taxable": true,
+                    "title": "Big Brown Bear Boots",
+                    "total_discount": "0.00",
+                    "total_discount_set": {
+                        "shop_money": {
+                            "amount": "0.00",
+                            "currency_code": "EUR"
+                        },
+                        "presentment_money": {
+                            "amount": "0.00",
+                            "currency_code": "EUR"
+                        }
+                    },
+                    "variant_id": null,
+                    "variant_inventory_management": null,
+                    "variant_title": null,
+                    "vendor": null,
+                    "tax_lines": [],
+                    "duties": [],
+                    "discount_allocations": []
+                }
+            ],
+            "payment_terms": null,
+            "refunds": [],
+            "shipping_address": null,
+            "shipping_lines": []
+        }
+    ],
+    "product": {
+        "id": 8300145836319,
+        "title": "DR MARTENS | 1460Z DMC 8-EYE BOOT | CHERRY SMOOTH",
+        "body_html": "Make a statement with these iconic Dr Marten boots. This classic style has stood the test of time thanks to the combination of reinvented styling and the rugged yet urban look. Crafted with high-quality, durable leathers, the 1460OZ DMC 8-Eye Boot Cherry Smooth is made to last and will only get better with time. This lace-up boot features the iconic Dr Martens air-cushioned sole offering good abrasion and slip resistance, and is made with Goodyear welt - the sole and upper are heat-sealed and sewn together.",
+        "vendor": "DR MARTENS",
+        "product_type": "SHOES",
+        "created_at": "2023-05-31T08:59:01-04:00",
+        "handle": "dr-martens-1460z-dmc-8-eye-boot-cherry-smooth",
+        "updated_at": "2023-05-31T09:10:33-04:00",
+        "published_at": "2023-05-31T08:59:01-04:00",
+        "template_suffix": null,
+        "status": "active",
+        "published_scope": "global",
+        "tags": "autumn, drmartens, egnition-sample-data, spring, women",
+        "admin_graphql_api_id": "gid://shopify/Product/8300145836319",
+        "variants": [
+            
+            {
+                "id": 45154195570975,
+                "product_id": 8300145836319,
+                "title": "5 / red",
+                "price": "249.00",
+                "sku": "DM-03-red-5",
+                "position": 3,
+                "inventory_policy": "deny",
+                "compare_at_price": null,
+                "fulfillment_service": "manual",
+                "inventory_management": "shopify",
+                "option1": "5",
+                "option2": "red",
+                "option3": null,
+                "created_at": "2023-05-31T08:59:01-04:00",
+                "updated_at": "2023-05-31T09:00:26-04:00",
+                "taxable": true,
+                "barcode": null,
+                "grams": 0,
+                "image_id": null,
+                "weight": 0.0,
+                "weight_unit": "kg",
+                "inventory_item_id": 47202452767007,
+                "inventory_quantity": 4,
+                "old_inventory_quantity": 4,
+                "requires_shipping": true,
+                "admin_graphql_api_id": "gid://shopify/ProductVariant/45154195570975"
+            }
+        ],
+        "options": [
+            {
+                "id": 10526692442399,
+                "product_id": 8300145836319,
+                "name": "Size",
+                "position": 1,
+                "values": [
+                    "3"
+                ]
+            },
+            {
+                "id": 10526692475167,
+                "product_id": 8300145836319,
+                "name": "Color",
+                "position": 2,
+                "values": [
+                    "red"
+                ]
+            }
+        ],
+        "images": [
+            {
+                "id": 41479733805343,
+                "product_id": 8300145836319,
+                "position": 1,
+                "created_at": "2023-05-31T08:59:01-04:00",
+                "updated_at": "2023-05-31T08:59:01-04:00",
+                "alt": null,
+                "width": 635,
+                "height": 560,
+                "src": "https://cdn.shopify.com/s/files/1/0766/9583/0815/products/633e8800dbc6dc5704b35fd027e4eeaa.jpg?v=1685537941",
+                "variant_ids": [],
+                "admin_graphql_api_id": "gid://shopify/ProductImage/41479733805343"
+            }
+        ],
+        "image": {
+            "id": 41479733805343,
+            "product_id": 8300145836319,
+            "position": 1,
+            "created_at": "2023-05-31T08:59:01-04:00",
+            "updated_at": "2023-05-31T08:59:01-04:00",
+            "alt": null,
+            "width": 635,
+            "height": 560,
+            "src": "https://cdn.shopify.com/s/files/1/0766/9583/0815/products/633e8800dbc6dc5704b35fd027e4eeaa.jpg?v=1685537941",
+            "variant_ids": [],
+            "admin_graphql_api_id": "gid://shopify/ProductImage/41479733805343"
+        
+        
+    }
+        },
+    "products": [
+        {
+            "id": 8300145836319,
+            "title": "DR MARTENS | 1460Z DMC 8-EYE BOOT | CHERRY SMOOTH",
+            "body_html": "Make a statement with these iconic Dr Marten boots. This classic style has stood the test of time thanks to the combination of reinvented styling and the rugged yet urban look. Crafted with high-quality, durable leathers, the 1460OZ DMC 8-Eye Boot Cherry Smooth is made to last and will only get better with time. This lace-up boot features the iconic Dr Martens air-cushioned sole offering good abrasion and slip resistance, and is made with Goodyear welt - the sole and upper are heat-sealed and sewn together.",
+            "vendor": "DR MARTENS",
+            "product_type": "SHOES",
+            "created_at": "2023-05-31T08:59:01-04:00",
+            "handle": "dr-martens-1460z-dmc-8-eye-boot-cherry-smooth",
+            "updated_at": "2023-05-31T09:10:33-04:00",
+            "published_at": "2023-05-31T08:59:01-04:00",
+            "template_suffix": null,
+            "status": "active",
+            "published_scope": "global",
+            "tags": "autumn, drmartens, egnition-sample-data, spring, women",
+            "admin_graphql_api_id": "gid://shopify/Product/8300145836319",
+            "options": [
+                {
+                    "id": 10526692442399,
+                    "product_id": 8300145836319,
+                    "name": "Size",
+                    "position": 1
+                }
+            ],
+            "images": [
+                {
+                    "id": 41479733805343,
+                    "product_id": 8300145836319,
+                    "position": 1,
+                    "created_at": "2023-05-31T08:59:01-04:00",
+                    "updated_at": "2023-05-31T08:59:01-04:00",
+                    "alt": null,
+                    "width": 635,
+                    "height": 560,
+                    "src": "https://cdn.shopify.com/s/files/1/0766/9583/0815/products/633e8800dbc6dc5704b35fd027e4eeaa.jpg?v=1685537941",
+                    "variant_ids": [],
+                    "admin_graphql_api_id": "gid://shopify/ProductImage/41479733805343"
+                }
+            ],
+            "image": {
+                "id": 41479733805343,
+                "product_id": 8300145836319,
+                "position": 1,
+                "created_at": "2023-05-31T08:59:01-04:00",
+                "updated_at": "2023-05-31T08:59:01-04:00",
+                "alt": null,
+                "width": 635,
+                "height": 560,
+                "src": "https://cdn.shopify.com/s/files/1/0766/9583/0815/products/633e8800dbc6dc5704b35fd027e4eeaa.jpg?v=1685537941",
+                "variant_ids": [],
+                "admin_graphql_api_id": "gid://shopify/ProductImage/41479733805343"
+            }
+        }
+    ],
+    "smart_collections": [
+            {
+                "id": 448450855199,
+                "handle": "adidas",
+                "title": "ADIDAS",
+                "updated_at": "2023-06-16T15:47:39-04:00",
+                "body_html": "Adidas collection",
+                "published_at": "2023-05-31T09:00:48-04:00",
+                "sort_order": "best-selling",
+                "template_suffix": null,
+                "disjunctive": false,
+                "rules": [
+                    {
+                        "column": "title",
+                        "relation": "contains",
+                        "condition": "ADIDAS"
+                    }
+                ],
+                "published_scope": "web",
+                "admin_graphql_api_id": "gid://shopify/Collection/448450855199",
+                "image": {
+                    "created_at": "2023-05-31T09:00:48-04:00",
+                    "alt": null,
+                    "width": 1000,
+                    "height": 676,
+                    "src": "https://cdn.shopify.com/s/files/1/0766/9583/0815/collections/97a3b1227876bf099d279fd38290e567.jpg?v=1685538048"
+                }
+            }
+        ]
+}

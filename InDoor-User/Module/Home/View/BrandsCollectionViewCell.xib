@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="brandCell" id="gTV-IL-0wX" customClass="BrandsCollectionViewCell" customModule="InDoor_User" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="381" height="215"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="381" height="215"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="os7-bE-x2b">
+                        <rect key="frame" x="0.0" y="0.0" width="381" height="215"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxj-7g-Xc3">
+                                <rect key="frame" x="8" y="153.33333333333334" width="365" height="53.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Aso-OS-2hv">
+                                <rect key="frame" x="8" y="8" width="365" height="137.33333333333334"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Aso-OS-2hv" firstAttribute="leading" secondItem="os7-bE-x2b" secondAttribute="leading" constant="8" id="7zj-x4-Xhy"/>
+                            <constraint firstAttribute="trailing" secondItem="Sxj-7g-Xc3" secondAttribute="trailing" constant="8" id="Hui-HJ-9qe"/>
+                            <constraint firstItem="Sxj-7g-Xc3" firstAttribute="top" secondItem="Aso-OS-2hv" secondAttribute="bottom" constant="8" id="Z7X-lz-WCW"/>
+                            <constraint firstAttribute="bottom" secondItem="Sxj-7g-Xc3" secondAttribute="bottom" constant="8" id="cMW-4A-P4W"/>
+                            <constraint firstItem="Sxj-7g-Xc3" firstAttribute="leading" secondItem="os7-bE-x2b" secondAttribute="leading" constant="8" id="g1p-8V-9hv"/>
+                            <constraint firstItem="Aso-OS-2hv" firstAttribute="top" secondItem="os7-bE-x2b" secondAttribute="top" constant="8" id="jDL-Qt-G2k"/>
+                            <constraint firstAttribute="trailing" secondItem="Aso-OS-2hv" secondAttribute="trailing" constant="8" id="kAL-dO-SI7"/>
+                            <constraint firstItem="Sxj-7g-Xc3" firstAttribute="height" secondItem="os7-bE-x2b" secondAttribute="height" multiplier="0.25" id="uYG-OW-Ut0"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="os7-bE-x2b" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8v2-Ri-Tdy"/>
+                <constraint firstItem="os7-bE-x2b" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WKN-BF-0Vq"/>
+                <constraint firstAttribute="trailing" secondItem="os7-bE-x2b" secondAttribute="trailing" id="Xy2-fH-cYc"/>
+                <constraint firstAttribute="bottom" secondItem="os7-bE-x2b" secondAttribute="bottom" id="cWP-hT-alO"/>
+            </constraints>
+            <size key="customSize" width="381" height="215"/>
+            <connections>
+                <outlet property="brandImageView" destination="Aso-OS-2hv" id="ed2-8X-PJc"/>
+                <outlet property="brandName" destination="Sxj-7g-Xc3" id="LRe-Ww-bzd"/>
+            </connections>
+            <point key="canvasLocation" x="-64.885496183206101" y="5.9859154929577469"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
