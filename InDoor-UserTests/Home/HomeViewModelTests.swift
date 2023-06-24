@@ -9,25 +9,35 @@ import XCTest
 @testable import InDoor_User
 
 final class HomeViewModelTests: XCTestCase {
-
-   
+    
     var homeViewModel: HomeViewModel!
     var network: NetworkProtocol!
     override func setUpWithError() throws {
         network = NetworkMock(isSuccess: true)
         homeViewModel = HomeViewModel(netWorkingDataSource: network)
     }
-
+    
     override func tearDownWithError() throws {
         homeViewModel = nil
         network = nil
         
     }
-
-//    func testGetItems() {
-//        homeViewModel.getItems()
-//        XCTAssertNotNil(homeViewModel.result)
-//        
-//    }
-
+    
+    func testGetItems() {
+        homeViewModel.getItems()
+        XCTAssertNotNil(homeViewModel.result)
+        
+    }
+    func testGetAllDiscountCoupons(){
+        homeViewModel.getAllDiscountCoupons(priceRule: PriceRule(id: 1387862982943))
+        XCTAssertNotNil(homeViewModel.priceRuleDiscounts)
+        
+    }
+    
+    func testGetAllPriceRules(){
+        homeViewModel.getAllPriceRules()
+        XCTAssertNotNil(homeViewModel.priceRules)
+        
+    }
+    
 }

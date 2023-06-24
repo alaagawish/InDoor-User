@@ -585,55 +585,171 @@
         }
     ],
     "smart_collections": [
-            {
-                "id": 448450855199,
-                "handle": "adidas",
-                "title": "ADIDAS",
-                "updated_at": "2023-06-16T15:47:39-04:00",
-                "body_html": "Adidas collection",
-                "published_at": "2023-05-31T09:00:48-04:00",
-                "sort_order": "best-selling",
-                "template_suffix": null,
-                "disjunctive": false,
-                "rules": [
-                    {
-                        "column": "title",
-                        "relation": "contains",
-                        "condition": "ADIDAS"
-                    }
-                ],
-                "published_scope": "web",
-                "admin_graphql_api_id": "gid://shopify/Collection/448450855199",
-                "image": {
-                    "created_at": "2023-05-31T09:00:48-04:00",
-                    "alt": null,
-                    "width": 1000,
-                    "height": 676,
-                    "src": "https://cdn.shopify.com/s/files/1/0766/9583/0815/collections/97a3b1227876bf099d279fd38290e567.jpg?v=1685538048"
+        {
+            "id": 450784067871,
+            "handle": "adidas",
+            "title": "ADIDAS",
+            "updated_at": "2023-06-23T07:30:35-04:00",
+            "body_html": "Adidas collection",
+            "published_at": "2023-06-20T02:24:21-04:00",
+            "sort_order": "best-selling",
+            "template_suffix": null,
+            "disjunctive": false,
+            "rules": [
+                {
+                    "column": "title",
+                    "relation": "contains",
+                    "condition": "ADIDAS"
                 }
+            ],
+            "published_scope": "web",
+            "admin_graphql_api_id": "gid://shopify/Collection/450784067871",
+            "image": {
+                "created_at": "2023-06-20T02:24:21-04:00",
+                "alt": null,
+                "width": 1000,
+                "height": 676,
+                "src": "https://cdn.shopify.com/s/files/1/0766/9583/0815/collections/97a3b1227876bf099d279fd38290e567.jpg?v=1687242261"
             }
-        ],
-    {
-        "addresses": [
-            {
-                "id": 9244122677535,
-                "customer_id": 7016302674207,
-                "first_name": "laila",
-                "last_name": "mohamed",
-                "company": null,
-                "address1": null,
-                "address2": null,
-                "city": null,
-                "province": null,
-                "country": null,
-                "zip": null,
-                "phone": "01067381074",
-                "name": "laila mohamed",
-                "province_code": null,
-                "country_code": null,
-                "country_name": null,
-                "default": true
-            }
-        ]
-    }
+        }
+    ],
+    "addresses": [
+        {
+            "id": 9244220358943,
+            "customer_id": 7016398913823,
+            "first_name": "Ahmed",
+            "last_name": "Abdo",
+            "company": null,
+            "address1": null,
+            "address2": null,
+            "city": null,
+            "province": null,
+            "country": null,
+            "zip": null,
+            "phone": "01060928008",
+            "name": "Ahmed Abdo",
+            "province_code": null,
+            "country_code": null,
+            "country_name": null,
+            "default": true
+        }
+    ],
+    "price_rules": [
+        {
+            "id": 1387862982943,
+            "value_type": "percentage",
+            "value": "-50.0",
+            "customer_selection": "all",
+            "target_type": "line_item",
+            "target_selection": "all",
+            "allocation_method": "across",
+            "allocation_limit": null,
+            "once_per_customer": true,
+            "usage_limit": 10,
+            "starts_at": "2023-06-23T07:59:44-04:00",
+            "ends_at": "2023-06-28T19:35:00-04:00",
+            "created_at": "2023-06-17T19:35:55-04:00",
+            "updated_at": "2023-06-23T07:59:49-04:00",
+            "entitled_product_ids": [],
+            "entitled_variant_ids": [],
+            "entitled_collection_ids": [],
+            "entitled_country_ids": [],
+            "prerequisite_product_ids": [],
+            "prerequisite_variant_ids": [],
+            "prerequisite_collection_ids": [],
+            "customer_segment_prerequisite_ids": [],
+            "prerequisite_customer_ids": [],
+            "prerequisite_subtotal_range": {
+                "greater_than_or_equal_to": "300.0"
+            },
+            "prerequisite_quantity_range": null,
+            "prerequisite_shipping_price_range": null,
+            "prerequisite_to_entitlement_quantity_ratio": {
+                "prerequisite_quantity": null,
+                "entitled_quantity": null
+            },
+            "prerequisite_to_entitlement_purchase": {
+                "prerequisite_amount": null
+            },
+            "title": "50OFF",
+            "admin_graphql_api_id": "gid://shopify/PriceRule/1387862982943"
+        }
+    ],
+    "discount_codes": [
+        {
+            "id": 17825557709087,
+            "price_rule_id": 1387862982943,
+            "code": "50Discount",
+            "usage_count": 0,
+            "created_at": "2023-06-17T21:37:10-04:00",
+            "updated_at": "2023-06-21T05:19:38-04:00"
+        }
+    ],
+    "draft_orders": [
+        {
+            "id": 1120111853855,
+            "note": "fav",
+            "email": null,
+            "taxes_included": false,
+            "currency": "EGP",
+            "invoice_sent_at": null,
+            "created_at": "2023-06-19T06:17:49-04:00",
+            "updated_at": "2023-06-21T04:47:15-04:00",
+            "tax_exempt": false,
+            "completed_at": null,
+            "name": "#D1",
+            "status": "open",
+            "line_items": [
+                {
+                    "id": 58269391225119,
+                    "variant_id": null,
+                    "product_id": null,
+                    "title": "IPod Nano - 8gb",
+                    "variant_title": null,
+                    "sku": null,
+                    "vendor": null,
+                    "quantity": 1,
+                    "requires_shipping": false,
+                    "taxable": true,
+                    "gift_card": false,
+                    "fulfillment_service": "manual",
+                    "grams": 0,
+                    "tax_lines": [
+                        {
+                            "rate": 0.14,
+                            "title": "GST",
+                            "price": "27.86"
+                        }
+                    ],
+                    "applied_discount": null,
+                    "name": "IPod Nano - 8gb",
+                    "properties": [],
+                    "custom": true,
+                    "price": "199.00",
+                    "admin_graphql_api_id": "gid://shopify/DraftOrderLineItem/58269391225119"
+                }
+            ],
+            "shipping_address": null,
+            "billing_address": null,
+            "invoice_url": "https://mad43-sv-ios1.myshopify.com/76695830815/invoices/d12b89ef21adf7f0c6b23f65ff6cfd7b",
+            "applied_discount": null,
+            "order_id": null,
+            "shipping_line": null,
+            "tax_lines": [
+                {
+                    "rate": 0.14,
+                    "title": "GST",
+                    "price": "27.86"
+                }
+            ],
+            "tags": "",
+            "note_attributes": [],
+            "total_price": "226.86",
+            "subtotal_price": "199.00",
+            "total_tax": "27.86",
+            "payment_terms": null,
+            "admin_graphql_api_id": "gid://shopify/DraftOrder/1120111853855"
+        }
+    ]
+    
 }

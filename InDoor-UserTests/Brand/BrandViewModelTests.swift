@@ -7,8 +7,9 @@
 
 import XCTest
 @testable import InDoor_User
-final class BrandViewModelTests: XCTestCase {
 
+final class BrandViewModelTests: XCTestCase {
+    
     var network: NetworkProtocol!
     var brandViewModel: BrandViewModel!
     
@@ -22,20 +23,35 @@ final class BrandViewModelTests: XCTestCase {
         network = nil
         
     }
-
-//    func testgetItems() {
-//        brandViewModel.getItems(id: 450784461087)
-//        XCTAssertNotNil(brandViewModel.result)
-//        XCTAssertEqual(brandViewModel.result.count, 1)
-//    }
-//    
-//    func testgetPrice() {
-//        brandViewModel.getItems(id: 450784461087)
-//        
-//        brandViewModel.getPrice(i: (brandViewModel.result[0])) { product in
-//            XCTAssertNotNil(product)
-//            
-//        }
-//        
-//    }
+    
+    func testgetItems() {
+        brandViewModel.getItems(id: 450784461087)
+        XCTAssertNotNil(brandViewModel.result)
+        XCTAssertEqual(brandViewModel.result.count, 1)
+    }
+    
+    func testgetPrice() {
+        brandViewModel.getItems(id: 450784461087)
+        
+        brandViewModel.getPrice(i: (brandViewModel.result[0])) { product in
+            XCTAssertNotNil(product)
+            
+        }
+        
+    }
+    
+    //    func testPutFavoriteDraftOrderFromAPI(){
+    //
+    //        brandViewModel.putFavoriteDraftOrderFromAPI(parameters: <#T##Parameters#>)
+    //
+    //        XCTAssertNotNil(brandViewModel.putFavoriteDraftOrder)
+    //
+    //
+    //    }
+    
+    func testGetFavoriteDraftOrderFromAPI(){
+        brandViewModel.getFavoriteDraftOrderFromAPI()
+        XCTAssertNotNil(brandViewModel.getFavoriteDraftOrder)
+        
+    }
 }

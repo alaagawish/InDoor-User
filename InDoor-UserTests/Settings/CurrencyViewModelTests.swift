@@ -19,17 +19,17 @@ final class CurrencyViewModelTests: XCTestCase {
     override func tearDownWithError() throws {
     }
 
-//    func testGetCurrencies(){
-//        
-//        netWorkingDataSource.getData(path: Constants.currencyPath, parameters: [:]){ [weak self] (response : Response?) in
-//            self?.result = response?.currencies
-//        }
-//    }
-//    
-//    func testGetEquivalentCurrencies(){
-//        netWorkingDataSource.getEquivalentCurrency { [weak self] (response : Response?) in
-//            self?.rates = response?.rates
-//        }
-//    }
+    func testGetCurrencies(){
+        
+        currencyViewModel.getCurrencies()
+        XCTAssertNotNil(currencyViewModel.result)
+      
+    }
+    
+    func testGetEquivalentCurrencies(){
+        currencyViewModel.getEquivalentCurrencies()
+        XCTAssertNotNil(currencyViewModel.rates?.AED)
+        
+    }
 
 }
